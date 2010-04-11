@@ -1,6 +1,21 @@
 <h3>Servers</h3>
 <?php
 include "include/mysql.php";
+//Change into servers
+chdir("servers/");
+$dirs = glob("*");
+exec("pidof bzfs", $pid);
+//Go through each directory and server seeing if PID is actually up, updating mysql each time
+foreach($dirs as $dir){
+	$pidc = file_get_contents("$dir/bzfs.pid");
+	if(strstr($pid[0],$pidc)){
+			mysql_query("UPDATE servers SET `status`='1' WHERE `id`='$dir'");
+		} else {
+			mysql_query("UPDATE servers SET `status`='0' WHERE `id`='$dir'");
+	}
+}
+//Back into main dir
+chdir("../");
 if ($_POST['createserver'] == "1" && $_POST['newserver'] != ""){ // form was posted and isnt blank
 	//Setup vars
 	$newserver = $_POST['newserver'];
@@ -72,11 +87,10 @@ if ($_POST['deletegroup'] == "1"){ // form was posted and isnt blank
 			echo "No Permission";
 		}	
 
-}
+}	
 ?>
 <table width="100%">
  <tr>
-  <!-- specifing one or more widths keeps columns constant despite changes in visible content -->
   <th>Server</th>
   <th>Status</th>
   <th>Owner</th>
@@ -85,7 +99,9 @@ if ($_POST['deletegroup'] == "1"){ // form was posted and isnt blank
  </tr>
 <?php
 $i_group = 0;
+//query
 $group = mysql_query("SELECT * FROM groups WHERE `enabled`='1'");
+//group list loop
 while ($g_row = mysql_fetch_array($group)) {
   $i_groups++;
   echo ' <tr id="'.$i_groups.'" class="a">
@@ -105,6 +121,7 @@ echo
   }
 echo '</td></tr>';
 $server = mysql_query("SELECT * FROM servers WHERE master='$g_row[0]' AND `enabled`='1'");
+//For each group, also loop through the servers
 while ($s_row = mysql_fetch_array($server)) {
   $i_servers++;
   echo '  <tr id="'.$i_groups.'-'.$i_servers.'" class="a">
@@ -114,7 +131,23 @@ while ($s_row = mysql_fetch_array($server)) {
   } else {
    echo ' <a><div class="doc"></div></a>'.$s_row[2].'</div></td>';
   }
-  echo "<td>DOWN</td>";
+  // Check mysql if server is up and if user owns server
+  if($s_row[3]==1){
+  	  	if($name == $g_row[2]){
+  	  		echo "<td><a class=\"tooltip\" href=\"?p=exec&mode=stop&g=$g_row[0]&s=$s_row[0]\">Up";
+  			echo "<span>Click to Stop</span></a></td>";
+  		} else {
+  			echo "<td>Up</td>";
+  		}
+  } else {
+  	// Check mysql if server is down and if user owns server
+  	  	if($name == $g_row[2]){
+  	  		echo "<td><a class=\"tooltip\" href=\"?p=exec&mode=start&g=$g_row[0]&s=$s_row[0]\">Down";
+  			echo "<span>Click to Start</span></a></td>";
+  		} else {
+  			echo "<td>Down</td>";
+  		}
+  }
   echo '
   <td></td>
   <td><a href="?p=logs&server='.$s_row[0].'">Logs</a></td>';
