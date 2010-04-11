@@ -1,0 +1,222 @@
+				<h3>Logs</h3>
+                <?php
+     $logfile = file_get_contents("log.txt");
+     $logarray = explode("\n",$logfile);//explode log file on new line
+     $data = array();//create data array
+     $player = array();
+     $i_length = 0;
+     $i_player= 0;
+     //test space
+     //test end
+     ?>
+     <table cellpadding="2">
+     <tr>
+     <td width="5%" BGCOLOR="#66CC66"><center>join</center></td>
+     <td width="5%" BGCOLOR="#66CC66"><center>part</center></td>
+     <td width="9%" BGCOLOR="#99FF99"><center>msg-brodcast</center></td>
+     <td width="7%" BGCOLOR="#FF9933"><center>msg-admin</center></td>
+     <td width="7%" BGCOLOR="#33FFFF"><center>msg-team</center></td>
+     <td width="11%" BGCOLOR="#FF3300"><center>slashcommand</center></td>
+     <td width="9%" BGCOLOR="#CCCCC"><center>playercount</center></td>
+     <td width="9%" BGCOLOR="#FFFFCC"><center>msg-private</center></td>
+     <td width="6%" BGCOLOR="#FFFF00"><center>filtered</center></td>
+     <td width="6%" BGCOLOR="#CC66FF"><center>report</center></td>
+     <td width="7%" BGCOLOR="#CC33CC"><center>server-status</center></td>
+     </tr>
+     </table>
+     <table cellpadding="10">
+ 	<tr>
+  		<td width="9%">Date</td>
+  		<td width="3%">Time</td>
+  		<td width="5%">Event</td>
+  		<td width="10%">From</td>
+  		<td width="10%">To</td>
+  		<td width="50%">Detail</td>
+	</tr>
+	<?php
+   foreach( $logarray as $logout ){
+    preg_match("/(\d+)-(\d+)-(\d+)\s(\d+):(\d+):(\d+):\s(\w+(-\w+)?)\s(.*)/",$logout,$data);//find timestamps
+	echo '<tr ';
+	if($data[7] == "PLAYER-JOIN" || $data[7] == "PLAYER-PART") {
+		echo 'BGCOLOR="#66CC66">';
+	}
+	if($data[7] == "MSG-BROADCAST") {
+		echo 'BGCOLOR="#99FF99">';
+	} else {
+	if($data[7] == "MSG-ADMIN") {
+		echo 'BGCOLOR="#FF9933">';
+	} else {
+	if($data[7] == "MSG-TEAM") {
+		echo 'BGCOLOR="#33FFFF">';
+	} else {
+	if($data[7] == "MSG-COMMAND") {
+		echo 'BGCOLOR="#FF3300">';
+	} else {
+	if($data[7] == "PLAYERS") {
+		echo 'BGCOLOR="#CCCCC">';
+	} else {
+	if($data[7] == "MSG-DIRECT") {
+		echo 'BGCOLOR="#FFFFCC">';
+	} else {
+	if($data[7] == "MSG-REPORT") {
+		echo 'BGCOLOR="#CC66FF">';
+	} else {
+	if($data[7] == "MSG-FILTERED") {
+		echo 'BGCOLOR="#FFFF00">';
+	} else {
+
+	if($data[7] == "SERVER-STATUS") {
+		echo 'BGCOLOR="#CC33CC">';
+	} else {
+	}
+	}
+	}
+	}
+	}
+	}
+	}
+	}
+	}
+  		echo '<td>'.$data[2].'-'.$data[3].'-'.$data[1].'</td>
+  		<td>'.$data[4].':'.$data[5].':'.$data[6].'</td>
+  		<td>';
+  		$i_length++;
+		if($data[7] == "PLAYER-JOIN") {
+         $player = array();
+         preg_match("/^\d+:(.*)\s#\d+\s(BZid:(\d*)\s)?\w+\sIP:(\d+(\.\d+)+)\s?(\w+(\s\w+)*)?$/",$data[9],$player);
+          echo "join</td>";
+          echo "<td>$player[2]</td>";
+          echo "<td>--</td>";
+          echo "<td><b>Name:</b> $player[1] <b>IP:</b> $player[4]"; if(strstr("$player[6]","ADMIN")){ echo "<b> Admin</b></td>";
+          } else {
+          	echo " <b>Not Admin</b>";
+          }
+          echo "</tr>";
+        $player[$i_player] = "$player[1]";
+        $i_player++;
+  		}
+  		if($data[7] == "MSG-BROADCAST") {
+         $msgall = array();
+         preg_match("/(.*?):(.*?$)/",$data[9],$msgall);
+         $justmessage = substr($msgall[2],$msgall[1]);//seperating the message from the callsign
+         $entirelength = strlen($msgall[2]);
+         $actuallength = ($entirelength - $msgall[1]);
+         $justuser = substr($msgall[2],0,-$actuallength);
+          echo "msg-brodcast</td>";
+          echo "<td>$justuser</td>";
+          echo "<td>All</td>";
+          echo "<td>$justmessage</td>";
+          echo "</tr>";
+  		}
+  		if($data[7] == "MSG-DIRECT") {
+         $msgdirect = array();
+         preg_match("/(^\d+):(.*) (\d+):(.*)/",$data[9],$msgdirect);
+         $justmessage = substr($msgdirect[4],$msgdirect[3]);
+         $entirelength = strlen($msgdirect[4]);
+         $actuallength = ($entirelength - $msgdirect[3]);
+         $justuser = substr($msgdirect[4],0,-$actuallength);
+          echo "msg-private</td>";
+          echo "<td>$msgdirect[2]</td>";
+          echo "<td>$justuser</td>";
+       	  echo "<td>$justmessage</td>";
+          echo "</tr>";
+  		}
+  		if($data[7] == "MSG-TEAM") {
+         $msgteam = array();
+         preg_match("/(.*):(.*) (RABBIT|HUNTER|ROGUE|BLUE|RED|GREEN|PURPLE|OBSERVER|NOTEAM) (.*)/",$data[9],$msgteam);
+          echo "msg-team</td>";
+          echo "<td>$msgteam[2]</td>";
+          echo "<td>$msgteam[3]</td>";//FINE
+          echo "<td>$msgteam[4]</td>";
+          echo "</tr>";
+  		} 	 	 	
+  		if($data[7] == "MSG-ADMIN") {
+         $msgadmin = array();
+         preg_match("/(.*?):(.*?$)/",$data[9],$msgadmin);
+         $justmessage = substr($msgadmin[2],$msgadmin[1]);
+         $entirelength = strlen($msgadmin[2]);
+         $actuallength = ($entirelength - $msgadmin[1]);
+         $justuser = substr($msgadmin[2],0,-$actuallength);
+          echo "msg-admin</td>";
+          echo "<td>$justuser</td>";
+          echo "<td>Admin</td>";
+          echo "<td>$justmessage</td>";
+          echo "</tr>";
+  		} 	 	 	
+  		if($data[7] == "MSG-COMMAND") {
+         $slash = array();
+         preg_match("/(.*?):(.*?$)/",$data[9],$slash);
+         $justmessage = substr($slash[2],$slash[1]);
+         $entirelength = strlen($slash[2]);
+         $actuallength = ($entirelength - $slash[1]);
+         $justuser = substr($slash[2],0,-$actuallength);
+          echo "slashcommand</td>";
+          echo "<td>$justuser</td>";
+          echo "<td>Cmd</td>";
+          echo "<td>$justmessage</td>";
+          echo "</tr>";
+  		}
+  		if($data[7] == "MSG-REPORT") {
+         $players = array();
+         preg_match("/(.*?):(.*?$)/",$data[9],$report);
+         $justmessage = substr($report[2],$report[1]);
+         $entirelength = strlen($report[2]);
+         $actuallength = ($entirelength - $report[1]);
+         $justuser = substr($report[2],0,-$actuallength);
+          echo "report</td>";
+          echo "<td><b>$justuser</b></td>";
+          echo "<td>Report</td>";
+          echo "<td>$justmessage</td>";
+          echo "</tr>";
+  		}
+  		if($data[7] == "MSG-FILTERED") {
+         $players = array();
+         preg_match("/(.*?):(.*?$)/",$data[9],$report);
+         $justmessage = substr($report[2],$report[1]);
+         $entirelength = strlen($report[2]);
+         $actuallength = ($entirelength - $report[1]);
+         $justuser = substr($report[2],0,-$actuallength);
+          echo "filtered</td>";
+          echo "<td>$justuser</td>";
+          echo "<td>Filtered</td>";
+          echo "<td>$justmessage</td>";
+          echo "</tr>";
+  		}
+  		if($data[7] == "PLAYER-PART") {
+         $playerpart = array();
+         preg_match("/(.*?):(.*?$)/",$data[9],$playerpart);
+          echo "part</td>";
+          echo "<td><b>Player part</b> </td>";
+          echo "<td>--</td>";
+          echo "<td>$playerpart[2]</td>";
+          echo "</tr>";
+  		} 	
+  		if($data[7] == "PLAYERS") {
+         $players = array();
+         preg_match("/\((\d+)\) \[(.*)/",$data[9],$players);
+          echo "playercount</td>";
+          echo "<td><b>Player Count</b></td>";
+          echo "<td>--</td>";
+          echo "<td>";
+          if($players[1] == ""){
+          	echo "0</td>";
+          } else {
+          	echo "$players[1]</td>";
+  		}
+          echo "</tr>";
+  		}
+  		if($data[7] == "SERVER-STATUS") {
+         $msgall = array();
+         preg_match("/(.*)/",$data[9],$srvrstatus);
+         $serverstatus=strtolower($srvrstatus[1]);
+          echo "server-status</td>";
+          echo "<td><b>Server is $serverstatus</b></td>";
+          echo "<td>--</td>";
+          echo "<td>--</td>";
+          echo "</tr>";
+  		}
+     }
+          echo "></td>";
+          echo "<td><b>Process complete</b></td><td></td><td></td></tr>";
+     ?>
+	</table>

@@ -1,0 +1,155 @@
+<h3>Servers</h3>
+<?php
+include "include/mysql.php";
+if ($_POST['createserver'] == "1" && $_POST['newserver'] != ""){ // form was posted and isnt blank
+	//Setup vars
+	$newserver = $_POST['newserver'];
+	$newserver_clean = sanitize($newserver);
+	$group = $_POST['group'];
+	$group_clean = sanitize($group);
+	//Querys
+	$q = mysql_query("SELECT * FROM groups WHERE id='$group_clean'");
+	$e = mysql_query("SELECT name FROM servers WHERE name='$newserver_clean' AND master='$group_clean'");
+	$g_ar = mysql_fetch_array($q);
+	$e_ar = mysql_fetch_array($e);
+		//See if server belongs to user
+		if($e_ar[0] == "$newserver"){
+			//Server already exists
+			echo "Server Already Exists";
+		} elseif ($g_ar[2] == $name){
+			//Create server
+			mysql_query("INSERT INTO servers (`master`, `name`, `enabled`) VALUES ('$g_ar[0]', '$newserver_clean', '1')");
+			$a = mysql_query("SELECT id FROM servers WHERE `master` = '$g_ar[0]' AND `name` = '$newserver_clean'");
+			$a_ar = mysql_fetch_array($a);
+			mkdir("servers/$a_ar[0]/");
+			chmod("servers/$a_ar[0]/", 0777);
+			echo "Server Created Successfully";
+		} else {
+			//That isnt your server
+			echo "No permission";
+		}
+}
+if ($_POST['creategroup'] == "1" && $_POST['newgroup'] != ""){ // form was posted and isnt blank
+	$newgroup = $_POST['newgroup'];
+	$newgroup_clean = sanitize($newgroup);
+	$q = mysql_query("SELECT * FROM groups WHERE name='$newgroup_clean'");
+	$g_ar = mysql_fetch_array($q);
+	if($g_ar[0]){
+			echo "Group Already Exists";
+		} else {
+			mysql_query("INSERT INTO groups (`name`, `owner`, `status`, `enabled`) VALUES ('$newgroup_clean', '$name', 0, 1)");
+			echo "Group Created Successfully!";
+		}	
+
+}
+if ($_POST['deleteserver'] == "1"){ // form was posted and isnt blank
+	$deleteserver = $_POST['server'];
+	$master = $_POST['master'];
+	$deleteserver_clean = sanitize($deleteserver);
+	$master_clean = sanitize($master);
+	$g = mysql_query("SELECT * FROM groups WHERE `owner`='$name' AND `id`='$master_clean'");
+	$e = mysql_query("SELECT * FROM servers WHERE `master`='$master_clean' AND `id`='$deleteserver_clean'");
+	$g_ar = mysql_fetch_array($g);
+	$e_ar = mysql_fetch_array($e);
+	if ($name == $g_ar[2] && $e_ar[1]==$master){
+			mysql_query("UPDATE servers SET `enabled`='0' WHERE `id`='$deleteserver_clean'");
+			echo "Server Deleted Successfully";
+		} else {
+			echo "No Permission";
+		}	
+
+}
+if ($_POST['deletegroup'] == "1"){ // form was posted and isnt blank
+	$deletegroup = $_POST['group'];
+	$deletegroup_clean = sanitize($deletegroup);
+	$g = mysql_query("SELECT * FROM groups WHERE `owner`='$name' AND `id`='$deletegroup_clean'");
+	$g_ar = mysql_fetch_array($g);
+	if ($name == $g_ar[2]){
+			mysql_query("DELETE FROM groups WHERE `id`='$deletegroup_clean'");
+			mysql_query("UPDATE servers SET `enabled`='0' WHERE `master`='$deletegroup_clean'");
+			echo "Group Deleted Successfully";
+		} else {
+			echo "No Permission";
+		}	
+
+}
+?>
+<table width="100%">
+ <tr>
+  <!-- specifing one or more widths keeps columns constant despite changes in visible content -->
+  <th>Server</th>
+  <th>Status</th>
+  <th>Owner</th>
+  <th>Log Files</th>
+  <th>Delete</th>
+ </tr>
+<?php
+$i_group = 0;
+$group = mysql_query("SELECT * FROM groups WHERE `enabled`='1'");
+while ($g_row = mysql_fetch_array($group)) {
+  $i_groups++;
+  echo ' <tr id="'.$i_groups.'" class="a">
+  <td id="p1"><div id="p2" class="tier1"><a id="p3" onclick="toggleRows(this)" class="folder"></a>'.$g_row[1].'</div></td>
+  <td>--</td>
+  <td>'.$g_row[2].'</td>
+  <td>--</td>';
+  if ($name == $g_row[2]){
+echo
+ '<td><form method="post">
+<input type="submit" value="Delete">
+<input type="hidden" name="deletegroup" value="1" >
+<input type="hidden" name="group" value="'.$g_row[0].'">
+</form>';
+  } else {
+  	echo '<td>--';
+  }
+echo '</td></tr>';
+$server = mysql_query("SELECT * FROM servers WHERE master='$g_row[0]' AND `enabled`='1'");
+while ($s_row = mysql_fetch_array($server)) {
+  $i_servers++;
+  echo '  <tr id="'.$i_groups.'-'.$i_servers.'" class="a">
+  <td><div class="tier2">';
+  if ($name == $g_row[2]){
+   echo' <a class="tooltip" href="?p=edit&group='.$g_row[0].'&server='.$s_row[0].'"><div class="doc"></div><span>Click to edit</span></a>'.$s_row[2].'</div></td>';
+  } else {
+   echo ' <a><div class="doc"></div></a>'.$s_row[2].'</div></td>';
+  }
+  echo "<td>DOWN</td>";
+  echo '
+  <td></td>
+  <td><a href="?p=logs&server='.$s_row[0].'">Logs</a></td>';
+echo '<td>';
+  if ($name == $g_row[2])
+echo
+ '<form method="post">
+<input type="submit" value="Delete">
+<input type="hidden" name="deleteserver" value="1" >
+<input type="hidden" name="server" value="'.$s_row[0].'">
+<input type="hidden" name="master" value="'.$g_row[0].'">
+</form>';
+echo '</td>
+ </tr>';//logs
+}
+}
+?>
+</table>
+<br>
+<form method="post">
+<b>Add a server to </b><select name="group">
+<?php
+$servera = mysql_query("SELECT * FROM groups WHERE owner='$name' AND enabled='1'");
+while ($sa_row = mysql_fetch_array($servera)) {
+ echo '<option value="'.$sa_row[0].'">'.$sa_row[1].'</option>';
+ }
+ ?></select> :
+ <input type="text" name="newserver"> <input type="submit" value="Create it">
+ <input type="hidden" name="createserver" value="1" >
+</form>
+<br>
+<form method="post">
+<b>Create a group : </b>
+<input type="text" name="newgroup"> <input type="submit" value="Create it">
+<input type="hidden" name="creategroup" value="1" >
+</form>
+<br><br>
+<small>NOTE: Servers can be recovered, Groups can not.</small>

@@ -1,0 +1,63 @@
+Sat Oct 10 00:29:25 2009
+Reported by PlasticTank: make base mesh more transparret, they r hard to c through!
+
+Sat Oct 10 00:34:21 2009
+Reported by Peter Frampton: playland? 
+
+Sat Oct 10 19:09:15 2009
+Reported by vpower 1: put a mg turrent and make tanks faster and wings jump count 100000000000000000000000000000000000000
+
+Fri Oct 16 23:21:33 2009
+Reported by Pizzahead:  bases cant snipe over the middle
+
+Sat Oct 17 01:08:09 2009
+Reported by wonderous fellow: the team flag spawn is unreachable (about 2 units floating off box in center)
+
+Sat Oct 17 01:11:35 2009
+Reported by unregistered: team flags cannot be captured when they are on mid.fix it plz
+
+Sat Oct 17 01:33:29 2009
+Reported by gentle giant: mesh of holy cross and that one top map?
+
+Sat Jan 16 21:55:46 2010
+Reported by Bambino: remove SL on ST
+
+Sun Jan 17 00:46:48 2010
+Reported by jack: spawned UNDER box
+
+Sun Jan 17 01:20:49 2010
+Reported by allejo: this is just a full out camping map hence making it so popular ;)
+
+Sun Jan 17 19:21:22 2010
+Reported by darkid: move the pyr'ds closer to the base, remove the direct snipe link from 1-way to 1-way mesh,
+
+Sun Jan 17 19:21:38 2010
+Reported by darkid: and get rid of the ground level connections into the base
+
+Sun Jan 17 19:21:58 2010
+Reported by darkid: extend the minute ledge on the outside to provide *some* cover.
+
+Sun Jan 17 19:23:48 2010
+Reported by darkid: make more defined areas for the separate flags
+
+Sun Jan 17 19:34:52 2010
+Reported by darkid: set wings jump count at 13
+
+Sun Jan 17 20:02:28 2010
+Reported by darkid: can spawn above
+
+Thu Jan 21 00:32:55 2010
+Reported by mrapplecomputer1: pappy's ip: 67.190.78.180 host: *.hsd1.co.comcast.net
+
+Wed Jan 27 03:49:38 2010
+Reported by oreos are yummy: pooplklklklk
+
+Wed Feb 10 23:48:23 2010
+Reported by i have spaces: test
+
+Thu Feb 11 23:22:54 2010
+Reported by mrapplecomputer1: hi
+
+Thu Feb 11 23:23:22 2010
+Reported by a balanced piece of paper: this is f***ing awesome
+

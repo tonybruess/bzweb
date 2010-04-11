@@ -1,0 +1,36 @@
+h3,h4,h5,h6
+{
+color: #601B66;
+}
+a
+{
+text-decoration: underline;
+color: #D900B0;
+}
+#header
+{
+width:100%;
+height:122px;
+background: #440000 url('../images/magenta/n1.gif') repeat-x;
+}
+#logo h2
+{
+display: inline;
+padding-left: 0.5em;
+color: #E2D2E4;
+font-size: 1.0em;
+}
+#menu li a
+{
+background: #fff url('../images/magenta/n4.gif') repeat-x;
+}
+#menu li a.active
+{
+background: #CA2FAD url('../images/magenta/n3.gif') repeat-x;
+color: #fff;
+border: solid 1px #A94B97;
+}
+#main
+{
+background: #fff url('../images/magenta/n2.gif') 0px 1px repeat-x;
+}

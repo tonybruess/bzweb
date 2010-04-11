@@ -1,0 +1,186 @@
+div.fixed
+{
+width: 950px !important;
+}
+*
+{
+margin: 0em;
+}
+body
+{
+background-color: #fff;
+color: #000000;
+font-size: 9pt;
+font-family: "trebuchet ms", helvetica, sans-serif;
+}
+h1,h2,h3,h4,h5,h6
+{
+font-weight: normal;
+letter-spacing: -1px;
+text-transform: none;
+}
+h1 span
+{
+font-weight: bold;
+}
+h3 span
+{
+font-weight: bold;
+}
+h4 span
+{
+font-weight: bold;
+}
+br.clear
+{
+clear: both;
+}
+img
+{
+padding: 3px;
+border: solid 1px #e1e1e1;
+}
+img.floatTL
+{
+float: left;
+margin-right: 1.5em;
+margin-bottom: 1.5em;
+margin-top: 0.5em;
+}
+a:hover
+{
+text-decoration: none;
+}
+ul.links
+{
+list-style: none;
+}
+ul.links li
+{
+line-height: 2em;
+}
+ul.links li.first
+{
+}
+p
+{
+line-height: 1.8em;
+}
+#header_inner
+{
+position: relative;
+width: 950px;
+height:122px;
+margin: 0 auto;
+}
+#logo
+{
+position: absolute;
+bottom: 0.6em;
+}
+#logo h1
+{
+display: inline;
+color: #fff;
+font-size: 2.6em;
+}
+#menu
+{
+position: absolute;
+right: 0em;
+bottom: 0em;
+}
+#menu ul
+{
+list-style: none;
+}
+#menu li
+{
+float: left;
+}
+#menu li a
+{
+margin-left: 0.5em;
+display: block;
+padding: 1.1em 1.4em 1.0em 1.4em;
+border: solid 1px #fff;
+color: #616161;
+font-weight: bold;
+font-size: 1.0em;
+text-transform: lowercase;
+text-decoration: none;
+}
+.menu li ul{
+background:transparent;
+display:none;
+padding:0px;
+margin:0px;
+border:0px;
+position:absolute;
+z-index:200;
+}
+.menu li:hover ul{
+display:block;	
+}
+#main_inner p
+{
+text-align: justify;
+margin-bottom: 2.0em;
+}
+#main_inner
+{
+position: relative;
+width: 950px;
+margin: 0 auto;
+padding-top: 3.5em;
+}
+#main_inner h3,h4
+{
+border-bottom: dotted 1px #E1E1E1;
+position: relative;
+}
+#main_inner h3
+{
+font-size: 2.1em;
+padding-bottom: 0.1em;
+margin-bottom: 0.8em;
+}
+#main_inner h4
+{
+font-size: 1.2em;
+padding-bottom: 0.175em;
+margin-bottom: 1.4em;
+margin-top: 0.95em;
+}
+#footer
+{
+width: 950px;
+margin: 0 auto;
+text-align: center;
+clear: both;
+border-top: dotted 1px #E1E1E1;
+margin-top: 1.0em;
+margin-bottom: 1.0em;
+padding-top: 1.0em;
+text-transform: lowercase;
+}
+/* Colors */
+#colors
+{ height: 20px;
+  text-align: right;
+  padding: 20px 80px 20px 0px;
+  float: right;
+}
+img#color1, img#color2, img#color3, img#color4, img#color5, img#color6 {
+width: 25px; 
+height: 25px; 
+}
+#content
+{
+position: relative;
+}	
+#body
+{
+position: relative;
+width: 100%;
+}

@@ -1,0 +1,35 @@
+				<h3>Reports</h3>
+                <?php
+     $reportfile = file_get_contents("report.txt");
+     $reports = array();
+     $i_length = 0;
+     $reportarray = explode("\n",$reportfile);//explode log file on new line
+     ?><table border="0px" width="100%" style="table-layout:fixed" CELLPADDING="10" >
+ <col width=15>
+ <col width=15>
+ <col width=20>
+ <col width=70>
+	<tr>
+  		<td>Date</td>
+  		<td>Time</td>
+  		<td>Reporter</td>
+  		<td>Report</td>
+ 	</tr>
+	<?php
+   foreach( $reportarray as $reportout ){
+    if (preg_match("/(Sun|Mon|Tue|Wed|Thu|Fri|Sat) (.*) (\d+) (\d+):(\d+):(\d+) (\d+)/",$reportout,$data)){//find timestamps
+	echo '<tr>
+  		<td>'.$data[1].' '.$data[2].' '.$data[3].' '.$data[7].'</td>
+  		<td>'.$data[4].':'.$data[5].':'.$data[6].'</td>
+  		<td>';
+    }
+     if (preg_match("/Reported by (.*): (.*)/",$reportout,$reports)){//find reports
+          echo "$reports[1] </td>";
+          echo "<td>$reports[2]</td>";
+          echo "</tr>";
+          $i_length++;
+        $player[$i_player] = "$player[1]";
+   		}
+     }
+     ?>
+	</table>
