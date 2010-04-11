@@ -1,0 +1,172 @@
+<h3><?php 
+if($_GET['mode']=='start') echo 'Start'; if($_GET['mode']=='stop') echo 'Stop';?> Server</h3>
+<form method="GET">
+<input type="hidden" name="p" value="servers">
+<input type="submit" value="Back">
+</form>
+<?php
+include "include/mysql.php";
+	$name = $_SESSION['callsign'];
+	$serverclean = sanitize($_GET['s']);
+	$groupclean = sanitize($_GET['g']);
+	$g = mysql_query("SELECT * FROM groups WHERE id='$groupclean'");
+	$e = mysql_query("SELECT * FROM servers WHERE id='$serverclean' AND master='$groupclean'");
+	$g = mysql_fetch_array($g);
+	$e = mysql_fetch_array($e);
+	if ($g[2] !== $name){
+			//Isnt your server
+			echo "No permission!";
+		} else {
+			//Do the file
+?><center>
+<table  border="1" cellpadding="3" cellspacing="0" width="400">
+<tr><th colspan="2"><?php if($_GET['mode']=='start') echo 'Starting '.$e['name']; if($_GET['mode']=='stop') echo 'Stopping '.$e['name']; ?></th></tr>
+	<tr><td>Organization:</td><td><?php echo $g['name'] ?></td></tr>
+	<tr><td>Server:</td><td><?php echo $e['name'] ?></td></tr>
+<?php
+$pidd = shell_exec("kill -0 `cat servers/".$e['id']."/bzfs.pid` 2>&1");
+if($_GET['mode']=='start'){
+	?>
+		<tr><td>Request:</td><td>Start</td></tr>
+		<tr>
+			<td>Output:</td>
+			<td>
+<?
+if(!$pidd){
+	mysql_query("UPDATE servers SET `status`=1 WHERE id='$serverclean'");
+	echo "Server is already running.<br>";
+	echo '</td></tr></table></center>';
+	include_once "include/footer.php";
+	die();
+} else {
+	mysql_query("UPDATE servers SET `status`=0 WHERE id='$serverclean'");
+	echo "Server is not already running...<br>";
+}
+
+if($e){
+	echo "Configuration recieved...<br>";
+} else { 
+	echo "Configuration failed<br>";	
+	echo '</td></tr></table></center>';
+	include_once "include/footer.php";
+	die();
+}
+//Parse config
+switch ($e['style']) {
+   case "gtn": $conf .= " "; break;
+   case "gtc": $conf .= " -c "; break;
+   case "gtcr": $conf .= " -cr "; break;
+   case "gtrs": $conf .= " -rabbit score "; break;
+   case "gtrk": $conf .= " -rabbit killer "; break;
+   case "gtrr": $conf .= " -rabbit random "; break;
+}
+if($e['j']=='1')$conf .= ' -j';
+if($e['r']=='1')$conf .= ' +r';
+if($e['noradar']=='1')$conf .= ' -noradar';
+if($e['ms'] < 20)$conf .= ' -ms '.$e['ms'];
+if($e['autoteam']=='1')$conf .= ' -autoTeam';
+if($e['rogue'] || $e['red'] || $e['green'] || $e['blue'] || $e['purple'] || $e['observer'])$conf .= ' -mp '.$e['rogue'].','.$e['red'].','.$e['green'].','.$e['blue'].','.$e['purple'].','.$e['observer'];
+if($e['nomasterban']=='1')$conf .= ' -noMasterBanlist';
+if($e['fa'] && $e['fa'] != "0" ) $conf .= " +f A{".$e['fa']."}";
+if($e['fcl'] && $e['fcl'] != "0" ) $conf .= " +f CL{".$e['fcl']."}";
+if($e['ff'] && $e['ff'] != "0" ) $conf .= " +f F{".$e['ff']."}";
+if($e['fg'] && $e['fg'] != "0" ) $conf .= " +f G{".$e['fg']."}";
+if($e['fgm'] && $e['fgm'] != "0" ) $conf .= " +f GM{".$e['fgm']."}";
+if($e['fib'] && $e['fib'] != "0" ) $conf .= " +f IB{".$e['fib']."}";
+if($e['fl'] && $e['fl'] != "0" ) $conf .= " +f L{".$e['fl']."}";
+if($e['fmg'] && $e['fmg'] != "0" ) $conf .= " +f MG{".$e['fmg']."}";
+if($e['fn'] && $e['fn'] != "0" ) $conf .= " +f N{".$e['fn']."}";
+if($e['foo'] && $e['foo'] != "0" ) $conf .= " +f OO{".$e['foo']."}";
+if($e['fpz'] && $e['fpz'] != "0" ) $conf .= " +f PZ{".$e['fpz']."}";
+if($e['fqt'] && $e['fqt'] != "0" ) $conf .= " +f QT{".$e['fqt']."}";
+if($e['fsb'] && $e['fsb'] != "0" ) $conf .= " +f SB{".$e['fsb']."}";
+if($e['fse'] && $e['fse'] != "0" ) $conf .= " +f SE{".$e['fse']."}";
+if($e['fsh'] && $e['fsh'] != "0" ) $conf .= " +f SH{".$e['fsh']."}";
+if($e['fsr'] && $e['fsr'] != "0" ) $conf .= " +f SR{".$e['fsr']."}";
+if($e['fst'] && $e['fst'] != "0" ) $conf .= " +f ST{".$e['fst']."}";
+if($e['fsw'] && $e['fsw'] != "0" ) $conf .= " +f SW{".$e['fsw']."}";
+if($e['ft'] && $e['ft'] != "0" ) $conf .= " +f T{".$e['ft']."}";
+if($e['fth'] && $e['fth'] != "0" ) $conf .= " +f TH{".$e['fth']."}";
+if($e['fus'] && $e['fus'] != "0" ) $conf .= " +f US{".$e['fus']."}";
+if($e['fv'] && $e['fv'] != "0" ) $conf .= " +f V{".$e['fv']."}";
+if($e['fwg'] && $e['fwg'] != "0" ) $conf .= " +f WG{".$e['fwg']."}";
+if($e['worldfile'] == "None")$conf .= ' -worldsize '.$e['worldsize'].' ';
+if($e['b']=='1' && $e['worldfile']=="None")$conf .= ' -b';
+if($e['h']=='1' && $e['worldfile']=="None")$conf .= ' -h';
+if($e['public'])$conf .= ' -public "'.$e['public'].'"';
+if($e['domain'])$conf .= ' -publicaddr '.$e['domain'].':'.$e['p'].' -p '.$e['p'];
+if($e['disablebots']=='1') $conf .= ' -disableBots';
+$srvex = explode("\n",$e['servermsg']);
+foreach ($srvex as $srv){
+	$conf .= " -srvmsg \"$srv\"";
+}
+$adex = explode("\n",$e['admsg']);
+foreach ($adex as $ad){
+	$conf .= " -admsg \"$ad\"";
+}
+if($e && $conf){
+	echo "Configuration parsed...<br>";
+} else { 
+	echo "Configuration failed<br>";	
+	echo '</td></tr></table></center>';
+	include_once "include/footer.php";
+	die();
+}
+if(exec("bzfs".$conf." -requireudp -pidfile servers/".$e[0]."/bzfs.pid 2>servers/".$e[0]."/error.txt >/dev/null &")){
+	$error = file_get_contents("servers/$e[0]/error.txt");
+	if($error){
+		echo "---------<br>";
+		echo $error;
+		echo "<br>---------";
+	}
+}
+if(preg_match("/Usage: /",$error)){
+	echo "Server failed to start<br>";
+} else {
+	echo "Server started sucesfully!<br>";
+}
+}
+if($_GET['mode']=='stop'){
+	?>
+	<tr><td>Request:</td><td>Stop</td></tr>
+		<tr>
+			<td>Output:</td>
+			<td>
+	<?php
+$pidd = shell_exec("kill -0 `cat servers/".$e['id']."/bzfs.pid` 2>&1");
+if($pidd){
+	mysql_query("UPDATE servers SET `status`=0 WHERE id='$serverclean'");
+	echo "Server is already stopped.<br>";
+	echo '</td></tr></table></center>';
+	include_once "include/footer.php";
+	die();
+} else {
+	mysql_query("UPDATE servers SET `status`=1 WHERE id='$serverclean'");
+	echo "Server is running...<br>";
+}
+echo "Requesting information...<br>";
+if(file_exists("servers/$e[0]/bzfs.pid")){
+	$tokill = file_get_contents("servers/$e[0]/bzfs.pid");
+	echo "Stopping server...<br>";
+} else {
+	echo "Failed to get information<br>";
+	echo '</td></tr></table></center>';
+	include_once "include/footer.php";
+	die();
+}
+if(posix_kill($tokill, 9)){
+	echo "Server stopped sucesfully<br>";
+} else {
+	echo "Server failed to stop<br>";
+	echo '</td></tr></table></center>';
+	include_once "include/footer.php";
+	die();
+}
+}
+?>
+		</td>
+	</tr>
+</table>
+</center><br><?php
+		}
+		?>
