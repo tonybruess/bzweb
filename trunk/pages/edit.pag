@@ -182,8 +182,8 @@ Add <input type="text" size="2" name="fwg" value="<?php echo $zar['fwg'];?>" max
 <fieldset>
  <legend>Public Settings</legend>
 <input name="public" size="35" maxlength="60" value="<?php echo $zar['public']?>"> The name of the server<br>
-<select name="domain"><option>test.com</option></select> : 
-<select name="p"></select> Port (which port to listen on) <br>
+<select name="domain"><option>bzbureau.com</option></select> : 
+<select name="p"><option>6000</option><option>6001</option><option>6002</option><option>6003</option><option>6004</option></select> Port (which port to listen on) <br>
 </fieldset><br>
 <fieldset>
  <legend>Miscellaneous Settings</legend>
