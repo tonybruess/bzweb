@@ -1,0 +1,4 @@
+	<?php
+	$_SESSION = array(); //this deletes the session data from php
+?>
+		<meta HTTP-EQUIV="Refresh" CONTENT="0;URL=?p=error&error=2">

@@ -1,0 +1,376 @@
+2010-02-09 03:04:43: SERVER-STATUS Running
+2010-02-09 03:04:43: PLAYERS (0) 
+2010-02-09 03:13:58: PLAYER-JOIN 6:Kaspar #0 BZid:41003 BLUE IP:69.180.173.220 VERIFIED GLOBALUSER ADMIN
+2010-02-09 03:13:58: PLAYERS (1) [+]6:Kaspar(12:BZBureau.com) 
+2010-02-09 03:14:03: MSG-BROADCAST 6:Kaspar helloi
+2010-02-09 03:14:04: MSG-TEAM 6:Kaspar BLUE hello
+2010-02-09 03:14:05: MSG-ADMIN 6:Kaspar hello
+2010-02-09 03:14:08: MSG-DIRECT 15:SomeOtherPlayer 10:SomePlayer what's up
+2010-02-09 03:14:10: MSG-COMMAND 6:Kaspar say hi
+2010-02-09 03:14:10: MSG-BROADCAST 6:SERVER hi
+2010-02-09 03:14:10: MSG-ADMIN 6:SERVER Kaspar used the say command
+2010-02-09 03:14:15: MSG-COMMAND 6:Kaspar kill #0
+2010-02-09 03:14:19: MSG-COMMAND 6:Kaspar op
+2010-02-09 03:14:21: MSG-COMMAND 6:Kaspar kill #0
+2010-02-09 03:14:26: PLAYER-PART 6:Kaspar #0 BZid:41003 left
+2010-02-09 03:14:26: PLAYERS (0) 
+2010-02-09 03:19:47: MSG-BROADCAST 6:SERVER Use /report to leave comments and suggestions.
+2010-02-09 03:19:47: MSG-BROADCAST 6:SERVER Use /help to see a list of FAQ and Rules here on BZFlag.
+2010-02-09 03:19:47: MSG-BROADCAST 6:SERVER Having Fun? Good! Just remember, no swearing, cheating, or TKing.
+2010-02-10 23:48:14: PLAYER-JOIN 13:i have spaces #0 OBSERVER IP:69.180.173.220
+2010-02-10 23:48:14: PLAYERS (1) [ ]13:i have spaces(7:bzadmin) 
+2010-02-10 23:48:14: MSG-BROADCAST 13:i have spaces i
+2010-02-10 23:48:15: MSG-BROADCAST 13:i have spaces have
+2010-02-10 23:48:15: MSG-BROADCAST 13:i have spaces spaces@bzbureau.com
+2010-02-10 23:48:16: MSG-BROADCAST 13:i have spaces test
+2010-02-10 23:48:20: MSG-ADMIN 13:i have spaces test
+2010-02-10 23:48:23: MSG-REPORT 13:i have spaces test
+2010-02-10 23:48:23: MSG-ADMIN 6:SERVER **"i have spaces" reports: test 
+2010-02-10 23:48:26: MSG-COMMAND 13:i have spaces say hi
+2010-02-14 19:14:56: SERVER-STATUS Running
+2010-02-14 19:14:56: PLAYERS (0) 
+2010-02-14 19:15:26: PLAYER-JOIN 16:mrapplecomputer1 #0 BZid:40718 RED IP:69.180.173.220 VERIFIED GLOBALUSER ADMIN
+2010-02-14 19:15:26: PLAYERS (1) [@]16:mrapplecomputer1(12:BZBureau.com) 
+2010-02-14 19:15:36: MSG-COMMAND 16:mrapplecomputer1 set _skyColor red
+2010-02-14 19:15:36: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _skyColor red
+2010-02-14 19:15:38: MSG-COMMAND 16:mrapplecomputer1 set _mirror red
+2010-02-14 19:15:38: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _mirror red
+2010-02-14 19:15:42: MSG-COMMAND 16:mrapplecomputer1 set _drawMountains 0
+2010-02-14 19:15:42: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _drawMountains 0
+2010-02-14 19:15:47: MSG-COMMAND 16:mrapplecomputer1 set _rainType red_bolt
+2010-02-14 19:15:47: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _rainType red_bolt
+2010-02-14 19:15:51: MSG-COMMAND 16:mrapplecomputer1 set _rainTexture red_bolt
+2010-02-14 19:15:51: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _rainTexture red_bolt
+2010-02-14 19:15:56: MSG-COMMAND 16:mrapplecomputer1 set _rainSpeed 10
+2010-02-14 19:15:56: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _rainSpeed 10
+2010-02-14 19:16:05: MSG-COMMAND 16:mrapplecomputer1 set _rainSpeed -10
+2010-02-14 19:16:05: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _rainSpeed -10
+2010-02-14 19:16:17: MSG-COMMAND 16:mrapplecomputer1 set _rainSpeed 10
+2010-02-14 19:16:17: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _rainSpeed 10
+2010-02-14 19:16:23: MSG-COMMAND 16:mrapplecomputer1 set _rainSpeedMod 1
+2010-02-14 19:16:23: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _rainSpeedMod 1
+2010-02-14 19:16:31: MSG-COMMAND 16:mrapplecomputer1 set _rainSpeed 5
+2010-02-14 19:16:31: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _rainSpeed 5
+2010-02-14 19:16:37: MSG-COMMAND 16:mrapplecomputer1 set _rainSpread 1000
+2010-02-14 19:16:37: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _rainSpread 1000
+2010-02-14 19:16:42: MSG-COMMAND 16:mrapplecomputer1 set _rainDensity 10000
+2010-02-14 19:16:42: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _rainDensity 10000
+2010-02-14 19:16:47: MSG-COMMAND 16:mrapplecomputer1 set _rainDensity 1000
+2010-02-14 19:16:47: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _rainDensity 1000
+2010-02-14 19:16:53: MSG-COMMAND 16:mrapplecomputer1 set _rainDensity 500
+2010-02-14 19:16:53: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _rainDensity 500
+2010-02-14 19:17:01: MSG-COMMAND 16:mrapplecomputer1 set _rainSpread 800
+2010-02-14 19:17:01: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _rainSpread 800
+2010-02-14 19:17:10: MSG-COMMAND 16:mrapplecomputer1 reset _rainDensity
+2010-02-14 19:17:13: MSG-COMMAND 16:mrapplecomputer1 reset _rainSp
+2010-02-14 19:17:16: MSG-COMMAND 16:mrapplecomputer1 reset _rainSpread
+2010-02-14 19:17:22: PLAYER-PART 16:mrapplecomputer1 #0 BZid:40718 left
+2010-02-14 19:17:22: PLAYERS (0) 
+2010-02-14 19:17:34: PLAYER-JOIN 16:mrapplecomputer1 #1 BZid:40718 GREEN IP:69.180.173.220 VERIFIED GLOBALUSER ADMIN
+2010-02-14 19:17:34: PLAYERS (1) [@]16:mrapplecomputer1(12:BZBureau.com) 
+2010-02-14 19:17:51: MSG-COMMAND 16:mrapplecomputer1 set _fogColor red
+2010-02-14 19:17:51: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _fogColor red
+2010-02-14 19:17:59: MSG-COMMAND 16:mrapplecomputer1 set _fogDensity 0.0025
+2010-02-14 19:17:59: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _fogDensity 0.0025
+2010-02-14 19:18:02: MSG-COMMAND 16:mrapplecomputer1 set _fogMode on
+2010-02-14 19:18:02: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _fogMode on
+2010-02-14 19:18:12: MSG-COMMAND 16:mrapplecomputer1 set _fogDensity 0.0005
+2010-02-14 19:18:12: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _fogDensity 0.0005
+2010-02-14 19:18:17: MSG-COMMAND 16:mrapplecomputer1 set _tankSpeed 50
+2010-02-14 19:18:17: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _tankSpeed 50
+2010-02-14 19:18:51: PLAYER-JOIN 5:roby2 #0 RED IP:79.6.118.169
+2010-02-14 19:18:51: PLAYERS (2) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) 
+2010-02-14 19:19:24: PLAYER-JOIN 11:pie eatr345 #2 ROGUE IP:69.155.88.236
+2010-02-14 19:19:24: PLAYERS (3) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) 
+2010-02-14 19:19:41: PLAYER-JOIN 9:andrew100 #3 GREEN IP:69.155.88.236
+2010-02-14 19:19:41: PLAYERS (4) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) 
+2010-02-14 19:20:09: PLAYER-PART 16:mrapplecomputer1 #1 BZid:40718 left
+2010-02-14 19:20:09: PLAYERS (4) [ ]5:roby2() [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [ ]10:Strakowski(22:mrstrakowski@gmail.com) 
+2010-02-14 19:20:09: PLAYER-JOIN 10:Strakowski #4 BZid:41951 ROGUE IP:70.230.171.177 VERIFIED GLOBALUSER
+2010-02-14 19:20:09: PLAYERS (4) [ ]5:roby2() [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) 
+2010-02-14 19:20:11: PLAYER-JOIN 16:mrapplecomputer1 #1 BZid:40718 ROGUE IP:69.180.173.220 VERIFIED GLOBALUSER ADMIN
+2010-02-14 19:20:11: PLAYERS (5) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) 
+2010-02-14 19:20:19: PLAYER-JOIN 15:Queen Catherine #5 GREEN IP:64.253.10.221
+2010-02-14 19:20:19: PLAYERS (6) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]15:Queen Catherine() 
+2010-02-14 19:20:27: MSG-BROADCAST 10:Strakowski gah! so much red!
+2010-02-14 19:20:29: MSG-BROADCAST 16:mrapplecomputer1 :D
+2010-02-14 19:20:41: PLAYER-JOIN 7:Runruns #6 BZid:5144 OBSERVER IP:67.171.132.149 VERIFIED GLOBALUSER
+2010-02-14 19:20:41: PLAYERS (7) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]15:Queen Catherine() [+]7:Runruns(14:Runrun is runs) 
+2010-02-14 19:20:46: PLAYER-JOIN 5:Bully #7 RED IP:88.73.193.198
+2010-02-14 19:20:46: PLAYERS (8) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]15:Queen Catherine() [+]7:Runruns(14:Runrun is runs) [ ]5:Bully() 
+2010-02-14 19:20:47: PLAYER-PART 15:Queen Catherine #5 left
+2010-02-14 19:20:47: PLAYERS (8) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [+]7:Runruns(14:Runrun is runs) [ ]5:Bully() [ ]5:Limes() 
+2010-02-14 19:20:57: PLAYER-JOIN 15:Queen Catherine #5 GREEN IP:64.253.10.221
+2010-02-14 19:20:57: PLAYERS (9) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]15:Queen Catherine() [+]7:Runruns(14:Runrun is runs) [ ]5:Bully() [ ]5:Limes() 
+2010-02-14 19:20:57: PLAYER-JOIN 5:Limes #8 BLUE IP:71.199.194.130
+2010-02-14 19:20:57: PLAYERS (9) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]15:Queen Catherine() [+]7:Runruns(14:Runrun is runs) [ ]5:Bully() [ ]5:Limes() 
+2010-02-14 19:20:59: PLAYER-PART 11:pie eatr345 #2 left
+2010-02-14 19:20:59: PLAYERS (8) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]15:Queen Catherine() [+]7:Runruns(14:Runrun is runs) [ ]5:Bully() [ ]5:Limes() 
+2010-02-14 19:21:00: PLAYER-JOIN 9:tank-ita2 #9 BLUE IP:82.52.36.44
+2010-02-14 19:21:00: PLAYERS (9) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]15:Queen Catherine() [+]7:Runruns(14:Runrun is runs) [ ]5:Bully() [ ]5:Limes() [ ]9:tank-ita2() 
+2010-02-14 19:21:04: MSG-COMMAND 16:mrapplecomputer1 set _rainTexture red_laser
+2010-02-14 19:21:04: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _rainTexture red_laser
+2010-02-14 19:21:06: PLAYER-JOIN 11:pie eatr345 #2 ROGUE IP:69.155.88.236
+2010-02-14 19:21:06: PLAYERS (10) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]15:Queen Catherine() [+]7:Runruns(14:Runrun is runs) [ ]5:Bully() [ ]5:Limes() [ ]9:tank-ita2() 
+2010-02-14 19:21:07: PLAYER-PART 9:tank-ita2 #9 no UDP
+2010-02-14 19:21:07: PLAYERS (9) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]15:Queen Catherine() [+]7:Runruns(14:Runrun is runs) [ ]5:Bully() [ ]5:Limes() 
+2010-02-14 19:21:19: PLAYER-JOIN 20:MAKE PEACE NOT WAR 2 #9 BZid:46279 ROGUE IP:72.70.232.69 VERIFIED GLOBALUSER
+2010-02-14 19:21:19: PLAYERS (10) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]15:Queen Catherine() [+]7:Runruns(14:Runrun is runs) [ ]5:Bully() [ ]5:Limes() [+]20:MAKE PEACE NOT WAR 2(16:Dont Abuse Power) 
+2010-02-14 19:21:31: MSG-COMMAND 16:mrapplecomputer1 set _rainSpins 0
+2010-02-14 19:21:31: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _rainSpins 0
+2010-02-14 19:21:35: PLAYER-JOIN 12:Pesky_wabbit #10 BLUE IP:87.194.206.135
+2010-02-14 19:21:35: PLAYERS (11) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]15:Queen Catherine() [+]7:Runruns(14:Runrun is runs) [ ]5:Bully() [ ]5:Limes() [+]20:MAKE PEACE NOT WAR 2(16:Dont Abuse Power) [ ]12:Pesky_wabbit(12:cire@clipper) 
+2010-02-14 19:21:39: PLAYER-PART 7:Runruns #6 BZid:5144 left
+2010-02-14 19:21:39: PLAYERS (10) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]15:Queen Catherine() [ ]5:Bully() [ ]5:Limes() [+]20:MAKE PEACE NOT WAR 2(16:Dont Abuse Power) [ ]12:Pesky_wabbit(12:cire@clipper) 
+2010-02-14 19:21:48: PLAYER-PART 15:Queen Catherine #5 left
+2010-02-14 19:21:48: PLAYERS (10) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]6:bryjen() [ ]5:Bully() [ ]5:Limes() [+]20:MAKE PEACE NOT WAR 2(16:Dont Abuse Power) [ ]12:Pesky_wabbit(12:cire@clipper) 
+2010-02-14 19:21:49: PLAYER-JOIN 6:bryjen #6 BZid:45 GREEN IP:75.81.201.131 VERIFIED GLOBALUSER
+2010-02-14 19:21:49: PLAYERS (10) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [+]6:bryjen() [ ]5:Bully() [ ]5:Limes() [+]20:MAKE PEACE NOT WAR 2(16:Dont Abuse Power) [ ]12:Pesky_wabbit(12:cire@clipper) 
+2010-02-14 19:21:50: PLAYER-JOIN 15:Queen Catherine #5 PURPLE IP:64.253.10.221
+2010-02-14 19:21:50: PLAYERS (11) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]15:Queen Catherine() [+]6:bryjen() [ ]5:Bully() [ ]5:Limes() [+]20:MAKE PEACE NOT WAR 2(16:Dont Abuse Power) [ ]12:Pesky_wabbit(12:cire@clipper) 
+2010-02-14 19:21:52: MSG-COMMAND 16:mrapplecomputer1 set _explodeTime 1
+2010-02-14 19:21:52: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _explodeTime 1
+2010-02-14 19:22:01: PLAYER-PART 6:bryjen #6 BZid:45 left
+2010-02-14 19:22:01: PLAYERS (10) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]15:Queen Catherine() [ ]5:Bully() [ ]5:Limes() [+]20:MAKE PEACE NOT WAR 2(16:Dont Abuse Power) [ ]12:Pesky_wabbit(12:cire@clipper) 
+2010-02-14 19:22:03: MSG-BROADCAST 6:SERVER Limes is on a Rampage!
+2010-02-14 19:22:19: PLAYER-JOIN 19:Guybrush Threepwood #6 PURPLE IP:189.107.3.51
+2010-02-14 19:22:19: PLAYERS (11) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]15:Queen Catherine() [ ]19:Guybrush Threepwood() [ ]5:Bully() [ ]5:Limes() [+]20:MAKE PEACE NOT WAR 2(16:Dont Abuse Power) [ ]12:Pesky_wabbit(12:cire@clipper) 
+2010-02-14 19:22:24: PLAYER-JOIN 4:C300 #11 GREEN IP:173.76.133.239
+2010-02-14 19:22:24: PLAYERS (12) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]15:Queen Catherine() [ ]19:Guybrush Threepwood() [ ]5:Bully() [ ]5:Limes() [+]20:MAKE PEACE NOT WAR 2(16:Dont Abuse Power) [ ]12:Pesky_wabbit(12:cire@clipper) [ ]4:C300(20:useless@Brothers2-PC) 
+2010-02-14 19:22:26: PLAYER-JOIN 21:ShotInTheBack...Again #12 ROGUE IP:99.185.44.180
+2010-02-14 19:22:26: PLAYERS (13) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]15:Queen Catherine() [ ]19:Guybrush Threepwood() [ ]5:Bully() [ ]5:Limes() [+]20:MAKE PEACE NOT WAR 2(16:Dont Abuse Power) [ ]12:Pesky_wabbit(12:cire@clipper) [ ]4:C300(20:useless@Brothers2-PC) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:22:31: MSG-BROADCAST 6:SERVER Limes's rampage was stopped by mrapplecomputer1
+2010-02-14 19:22:35: PLAYER-PART 19:Guybrush Threepwood #6 left
+2010-02-14 19:22:35: PLAYERS (12) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]15:Queen Catherine() [ ]5:Bully() [ ]5:Limes() [+]20:MAKE PEACE NOT WAR 2(16:Dont Abuse Power) [ ]12:Pesky_wabbit(12:cire@clipper) [ ]4:C300(20:useless@Brothers2-PC) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:22:40: PLAYER-JOIN 19:Guybrush Threepwood #6 ROGUE IP:189.107.3.51
+2010-02-14 19:22:40: PLAYERS (13) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]15:Queen Catherine() [ ]19:Guybrush Threepwood() [ ]5:Bully() [ ]5:Limes() [+]20:MAKE PEACE NOT WAR 2(16:Dont Abuse Power) [ ]12:Pesky_wabbit(12:cire@clipper) [ ]4:C300(20:useless@Brothers2-PC) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:22:46: PLAYER-PART 20:MAKE PEACE NOT WAR 2 #9 BZid:46279 left
+2010-02-14 19:22:46: PLAYERS (12) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]15:Queen Catherine() [ ]19:Guybrush Threepwood() [ ]5:Bully() [ ]5:Limes() [ ]12:Pesky_wabbit(12:cire@clipper) [ ]4:C300(20:useless@Brothers2-PC) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:22:50: PLAYER-PART 12:Pesky_wabbit #10 left
+2010-02-14 19:22:50: PLAYERS (11) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [+]10:Strakowski(22:mrstrakowski@gmail.com) [ ]15:Queen Catherine() [ ]19:Guybrush Threepwood() [ ]5:Bully() [ ]5:Limes() [ ]4:C300(20:useless@Brothers2-PC) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:23:06: PLAYER-PART 10:Strakowski #4 BZid:41951 left
+2010-02-14 19:23:06: PLAYERS (10) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [ ]15:Queen Catherine() [ ]19:Guybrush Threepwood() [ ]5:Bully() [ ]5:Limes() [ ]4:C300(20:useless@Brothers2-PC) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:23:12: PLAYER-PART 11:pie eatr345 #2 left
+2010-02-14 19:23:12: PLAYERS (9) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]9:andrew100(17:andrew the cheese) [ ]15:Queen Catherine() [ ]19:Guybrush Threepwood() [ ]5:Bully() [ ]5:Limes() [ ]4:C300(20:useless@Brothers2-PC) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:23:18: PLAYER-PART 5:Limes #8 left
+2010-02-14 19:23:18: PLAYERS (8) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]9:andrew100(17:andrew the cheese) [ ]15:Queen Catherine() [ ]19:Guybrush Threepwood() [ ]5:Bully() [ ]4:C300(20:useless@Brothers2-PC) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:23:21: PLAYER-JOIN 11:pie eatr345 #2 ROGUE IP:69.155.88.236
+2010-02-14 19:23:21: PLAYERS (9) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]11:pie eatr345(15:you are the pie) [ ]9:andrew100(17:andrew the cheese) [ ]15:Queen Catherine() [ ]19:Guybrush Threepwood() [ ]5:Bully() [ ]4:C300(20:useless@Brothers2-PC) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:23:23: PLAYER-PART 11:pie eatr345 #2 left
+2010-02-14 19:23:23: PLAYERS (8) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]9:andrew100(17:andrew the cheese) [ ]15:Queen Catherine() [ ]19:Guybrush Threepwood() [ ]5:Bully() [ ]4:C300(20:useless@Brothers2-PC) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:23:26: PLAYER-PART 15:Queen Catherine #5 left
+2010-02-14 19:23:26: PLAYERS (7) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]9:andrew100(17:andrew the cheese) [ ]19:Guybrush Threepwood() [ ]5:Bully() [ ]4:C300(20:useless@Brothers2-PC) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:23:40: MSG-ADMIN 6:SERVER Team kill: Bully killed roby2
+2010-02-14 19:23:42: PLAYER-JOIN 6:Blades #2 OBSERVER IP:174.24.62.17
+2010-02-14 19:23:42: PLAYERS (8) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [ ]9:andrew100(17:andrew the cheese) [ ]19:Guybrush Threepwood() [ ]5:Bully() [ ]4:C300(20:useless@Brothers2-PC) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:23:47: PLAYER-PART 19:Guybrush Threepwood #6 left
+2010-02-14 19:23:47: PLAYERS (7) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [ ]9:andrew100(17:andrew the cheese) [ ]5:Bully() [ ]4:C300(20:useless@Brothers2-PC) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:24:02: MSG-BROADCAST 6:Blades love hurts!!!!!!!!!
+2010-02-14 19:24:04: PLAYER-PART 4:C300 #11 left
+2010-02-14 19:24:04: PLAYERS (6) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [ ]9:andrew100(17:andrew the cheese) [ ]5:Bully() [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:24:05: MSG-BROADCAST 16:mrapplecomputer1 lol
+2010-02-14 19:24:30: MSG-ADMIN 6:SERVER Team kill: roby2 killed Bully
+2010-02-14 19:24:35: MSG-TEAM 5:roby2 RED sry
+2010-02-14 19:24:36: PLAYER-JOIN 13:blendernation #5 BZid:47060 GREEN IP:8.24.2.45 VERIFIED GLOBALUSER
+2010-02-14 19:24:36: PLAYERS (8) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [ ]9:andrew100(17:andrew the cheese) [ ]4:oslo() [+]13:blendernation(27:Bringing badluck everywhere) [ ]5:Bully() [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:24:37: PLAYER-JOIN 4:oslo #4 PURPLE IP:77.186.137.8
+2010-02-14 19:24:37: PLAYERS (8) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [ ]9:andrew100(17:andrew the cheese) [ ]4:oslo() [+]13:blendernation(27:Bringing badluck everywhere) [ ]5:Bully() [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:24:48: PLAYER-PART 9:andrew100 #3 left
+2010-02-14 19:24:48: PLAYERS (7) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [ ]4:oslo() [+]13:blendernation(27:Bringing badluck everywhere) [ ]5:Bully() [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:24:51: PLAYER-PART 13:blendernation #5 BZid:47060 left
+2010-02-14 19:24:51: PLAYERS (6) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [ ]4:oslo() [ ]5:Bully() [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:25:03: MSG-ADMIN 6:SERVER Team kill: roby2 killed Bully
+2010-02-14 19:25:06: PLAYER-JOIN 8:lilyanna #3 PURPLE IP:199.172.196.14
+2010-02-14 19:25:06: PLAYERS (7) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [ ]8:lilyanna(14:User1@home1521) [ ]4:oslo() [ ]5:Bully() [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:25:08: MSG-TEAM 5:roby2 RED dsr
+2010-02-14 19:26:36: PLAYER-JOIN 6:Galsku #5 BZid:3229 BLUE IP:109.208.89.85 VERIFIED GLOBALUSER
+2010-02-14 19:26:36: PLAYERS (8) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [ ]8:lilyanna(14:User1@home1521) [ ]4:oslo() [+]6:Galsku(15:lolo@lolomaster) [ ]5:Bully() [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:26:38: MSG-BROADCAST 6:Blades ouch
+2010-02-14 19:26:38: PLAYER-JOIN 4:nipa #6 BZid:45711 BLUE IP:83.216.23.19 VERIFIED GLOBALUSER
+2010-02-14 19:26:38: PLAYERS (9) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [ ]8:lilyanna(14:User1@home1521) [ ]4:oslo() [+]6:Galsku(15:lolo@lolomaster) [+]4:nipa() [ ]5:Bully() [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:26:49: PLAYER-JOIN 6:Subaru #8 GREEN IP:88.171.126.50
+2010-02-14 19:26:49: PLAYERS (10) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [ ]8:lilyanna(14:User1@home1521) [ ]4:oslo() [+]6:Galsku(15:lolo@lolomaster) [+]4:nipa() [ ]5:Bully() [ ]6:Subaru() [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:26:53: MSG-ADMIN 6:SERVER Team kill: Bully killed roby2
+2010-02-14 19:26:58: PLAYER-PART 5:Bully #7 left
+2010-02-14 19:26:58: PLAYERS (9) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [ ]8:lilyanna(14:User1@home1521) [ ]4:oslo() [+]6:Galsku(15:lolo@lolomaster) [+]4:nipa() [ ]6:Subaru() [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:26:59: PLAYER-JOIN 11:annonamouse #9 RED IP:216.138.221.251
+2010-02-14 19:26:59: PLAYERS (10) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [ ]8:lilyanna(14:User1@home1521) [ ]4:oslo() [+]6:Galsku(15:lolo@lolomaster) [+]4:nipa() [ ]6:Subaru() [ ]11:annonamouse() [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:27:04: PLAYER-PART 6:Subaru #8 left
+2010-02-14 19:27:04: PLAYERS (9) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [ ]8:lilyanna(14:User1@home1521) [ ]4:oslo() [+]6:Galsku(15:lolo@lolomaster) [+]4:nipa() [ ]11:annonamouse() [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:27:14: PLAYER-JOIN 9:bdog98760 #7 BZid:35268 GREEN IP:75.168.123.13 VERIFIED GLOBALUSER ADMIN
+2010-02-14 19:27:14: PLAYERS (10) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [ ]8:lilyanna(14:User1@home1521) [ ]4:oslo() [+]6:Galsku(15:lolo@lolomaster) [+]4:nipa() [+]9:bdog98760(21:jump, you can make it) [ ]11:annonamouse() [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:27:41: MSG-BROADCAST 6:SERVER roby2 is on a Rampage!
+2010-02-14 19:27:42: PLAYER-PART 4:nipa #6 BZid:45711 left
+2010-02-14 19:27:42: PLAYERS (9) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [ ]8:lilyanna(14:User1@home1521) [ ]4:oslo() [+]6:Galsku(15:lolo@lolomaster) [+]9:bdog98760(21:jump, you can make it) [ ]11:annonamouse() [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:27:47: MSG-COMMAND 16:mrapplecomputer1 lagstats
+2010-02-14 19:27:54: PLAYER-PART 11:annonamouse #9 left
+2010-02-14 19:27:54: PLAYERS (8) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [ ]8:lilyanna(14:User1@home1521) [ ]4:oslo() [+]6:Galsku(15:lolo@lolomaster) [+]9:bdog98760(21:jump, you can make it) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:28:03: PLAYER-PART 8:lilyanna #3 left
+2010-02-14 19:28:03: PLAYERS (7) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [ ]4:oslo() [+]6:Galsku(15:lolo@lolomaster) [+]9:bdog98760(21:jump, you can make it) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:28:04: PLAYER-JOIN 16:cat-o-nine-tails #6 BZid:34103 ROGUE IP:75.57.8.190 VERIFIED GLOBALUSER
+2010-02-14 19:28:04: PLAYERS (8) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [ ]4:oslo() [+]6:Galsku(15:lolo@lolomaster) [+]16:cat-o-nine-tails() [+]9:bdog98760(21:jump, you can make it) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:28:20: MSG-BROADCAST 6:SERVER roby2's rampage was stopped by Galsku
+2010-02-14 19:28:21: MSG-COMMAND 16:mrapplecomputer1 set _rainDensity 0
+2010-02-14 19:28:21: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _rainDensity 0
+2010-02-14 19:28:27: MSG-COMMAND 9:bdog98760 lagstats
+2010-02-14 19:28:29: PLAYER-PART 16:cat-o-nine-tails #6 BZid:34103 left
+2010-02-14 19:28:29: PLAYERS (7) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [ ]4:oslo() [+]6:Galsku(15:lolo@lolomaster) [+]9:bdog98760(21:jump, you can make it) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:28:31: PLAYER-JOIN 16:cat-o-nine-tails #3 BZid:34103 RED IP:75.57.8.190 VERIFIED GLOBALUSER
+2010-02-14 19:28:31: PLAYERS (8) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [+]6:Galsku(15:lolo@lolomaster) [+]9:bdog98760(21:jump, you can make it) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:28:36: MSG-COMMAND 16:mrapplecomputer1 lagstats
+2010-02-14 19:28:49: PLAYER-PART 6:Galsku #5 BZid:3229 left
+2010-02-14 19:28:49: PLAYERS (7) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [+]9:bdog98760(21:jump, you can make it) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:29:00: PLAYER-JOIN 17:Simoncheeseburger #5 PURPLE IP:97.107.202.192
+2010-02-14 19:29:00: PLAYERS (8) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [+]9:bdog98760(21:jump, you can make it) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:29:11: MSG-ADMIN 6:SERVER Team kill: Simoncheeseburger killed oslo
+2010-02-14 19:29:26: PLAYER-JOIN 3:lax #6 BZid:31413 GREEN IP:69.205.50.5 VERIFIED GLOBALUSER ADMIN
+2010-02-14 19:29:26: PLAYERS (9) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:29:31: MSG-ADMIN 6:SERVER Team kill: oslo killed Simoncheeseburger
+2010-02-14 19:29:35: MSG-ADMIN 3:lax hey mr!
+2010-02-14 19:29:38: MSG-ADMIN 16:mrapplecomputer1 sup!
+2010-02-14 19:29:44: MSG-ADMIN 16:mrapplecomputer1 happy valentines day
+2010-02-14 19:29:47: MSG-ADMIN 3:lax u2
+2010-02-14 19:29:52: PLAYER-PART 4:oslo #4 left
+2010-02-14 19:29:52: PLAYERS (8) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:29:53: MSG-COMMAND 16:mrapplecomputer1 set _rainDensity 200
+2010-02-14 19:29:53: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _rainDensity 200
+2010-02-14 19:29:54: PLAYER-JOIN 4:oslo #4 ROGUE IP:77.186.137.8
+2010-02-14 19:29:54: PLAYERS (9) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:29:59: MSG-COMMAND 16:mrapplecomputer1 set _rainDensity 500
+2010-02-14 19:29:59: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _rainDensity 500
+2010-02-14 19:30:03: PLAYER-JOIN 3:kev #8 PURPLE IP:94.195.162.40
+2010-02-14 19:30:03: PLAYERS (10) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [ ]3:kev(14:kevin@kevin-cw) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:30:08: MSG-COMMAND 16:mrapplecomputer1 set _rainDensity 600
+2010-02-14 19:30:08: MSG-BROADCAST 6:SERVER Variable Modification Notice by mrapplecomputer1 of set _rainDensity 600
+2010-02-14 19:30:11: PLAYER-PART 3:kev #8 no UDP
+2010-02-14 19:30:11: PLAYERS (9) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:30:32: PLAYER-JOIN 5:xyzzy #8 BZid:42158 PURPLE IP:67.189.98.231 VERIFIED GLOBALUSER
+2010-02-14 19:30:32: PLAYERS (10) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]5:xyzzy() [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:30:37: MSG-BROADCAST 6:Blades do 1000
+2010-02-14 19:30:38: MSG-COMMAND 16:mrapplecomputer1 lagstats
+2010-02-14 19:30:42: MSG-BROADCAST 16:mrapplecomputer1 no
+2010-02-14 19:31:06: PLAYER-JOIN 4:WoBe #9 BLUE IP:99.37.188.195
+2010-02-14 19:31:06: PLAYERS (11) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]5:xyzzy() [ ]4:WoBe() [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:31:06: PLAYER-PART 4:WoBe #9 /rejected
+2010-02-14 19:31:06: PLAYERS (10) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]5:xyzzy() [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:31:12: PLAYER-JOIN 11:grey matter #9 BZid:46373 BLUE IP:75.173.219.87 VERIFIED GLOBALUSER
+2010-02-14 19:31:12: PLAYERS (11) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]5:xyzzy() [+]11:grey matter(16:mind over matter) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:31:20: MSG-BROADCAST 11:grey matter augh! my eyes!
+2010-02-14 19:31:21: PLAYER-PART 17:Simoncheeseburger #5 left
+2010-02-14 19:31:21: PLAYERS (10) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]5:xyzzy() [+]11:grey matter(16:mind over matter) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:31:23: MSG-BROADCAST 6:SERVER bdog98760 is on a Rampage!
+2010-02-14 19:31:25: MSG-BROADCAST 16:mrapplecomputer1 hehe
+2010-02-14 19:31:27: PLAYER-JOIN 17:Simoncheeseburger #5 PURPLE IP:97.107.202.192
+2010-02-14 19:31:27: PLAYERS (11) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]5:xyzzy() [+]11:grey matter(16:mind over matter) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:31:39: MSG-BROADCAST 6:SERVER lax is on a Rampage!
+2010-02-14 19:31:43: PLAYER-PART 5:xyzzy #8 BZid:42158 left
+2010-02-14 19:31:43: PLAYERS (10) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]11:grey matter(16:mind over matter) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:31:45: MSG-TEAM 3:lax GREEN leme?
+2010-02-14 19:31:59: PLAYER-JOIN 8:alcatraz #8 BZid:6399 ROGUE IP:77.81.74.131 VERIFIED GLOBALUSER
+2010-02-14 19:31:59: PLAYERS (11) [ ]5:roby2() [@]16:mrapplecomputer1(12:BZBureau.com) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]8:alcatraz(3:.ro) [+]11:grey matter(16:mind over matter) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:32:02: MSG-ADMIN 16:mrapplecomputer1 i g2g
+2010-02-14 19:32:03: MSG-BROADCAST 8:alcatraz hi ALl
+2010-02-14 19:32:05: MSG-ADMIN 16:mrapplecomputer1 watch da server pleaes D:
+2010-02-14 19:32:12: MSG-BROADCAST 6:SERVER bdog98760's rampage was stopped by grey matter
+2010-02-14 19:32:17: PLAYER-PART 16:mrapplecomputer1 #1 BZid:40718 left
+2010-02-14 19:32:17: PLAYERS (10) [ ]5:roby2() [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]8:alcatraz(3:.ro) [+]11:grey matter(16:mind over matter) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:32:28: MSG-BROADCAST 6:SERVER lax's rampage was stopped by cat-o-nine-tails
+2010-02-14 19:32:49: PLAYER-PART 8:alcatraz #8 BZid:6399 left
+2010-02-14 19:32:49: PLAYERS (10) [ ]5:roby2() [ ]14:Maestro Rackam(4:wut?) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]11:grey matter(16:mind over matter) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:32:50: PLAYER-JOIN 14:Maestro Rackam #1 PURPLE IP:81.207.21.155
+2010-02-14 19:32:50: PLAYERS (11) [ ]5:roby2() [ ]14:Maestro Rackam(4:wut?) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]11:grey matter(16:mind over matter) [ ]5:Heavy(5:Heavy) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:32:51: PLAYER-JOIN 5:Heavy #10 BLUE IP:174.19.147.22
+2010-02-14 19:32:51: PLAYERS (11) [ ]5:roby2() [ ]14:Maestro Rackam(4:wut?) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]11:grey matter(16:mind over matter) [ ]5:Heavy(5:Heavy) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:32:54: PLAYER-PART 14:Maestro Rackam #1 unidentified
+2010-02-14 19:32:54: PLAYERS (10) [ ]5:roby2() [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]11:grey matter(16:mind over matter) [ ]5:Heavy(5:Heavy) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:33:01: PLAYER-JOIN 14:Maestro Rackam #1 PURPLE IP:81.207.21.155
+2010-02-14 19:33:01: PLAYERS (11) [ ]5:roby2() [ ]14:Maestro Rackam(4:wut?) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]11:grey matter(16:mind over matter) [ ]5:Heavy(5:Heavy) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:33:05: PLAYER-PART 14:Maestro Rackam #1 unidentified
+2010-02-14 19:33:05: PLAYERS (10) [ ]5:roby2() [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]11:grey matter(16:mind over matter) [ ]5:Heavy(5:Heavy) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:33:11: PLAYER-PART 5:roby2 #0 idling
+2010-02-14 19:33:11: PLAYERS (9) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]11:grey matter(16:mind over matter) [ ]5:Heavy(5:Heavy) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:33:29: PLAYER-PART 5:Heavy #10 left
+2010-02-14 19:33:29: PLAYERS (8) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]11:grey matter(16:mind over matter) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:33:33: PLAYER-JOIN 6:daplop #0 ROGUE IP:88.171.77.116
+2010-02-14 19:33:33: PLAYERS (9) [ ]6:daplop(16:claire@persienne) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]17:Simoncheeseburger(18:Ray Simon@sellmore) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]11:grey matter(16:mind over matter) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:33:37: PLAYER-PART 17:Simoncheeseburger #5 left
+2010-02-14 19:33:37: PLAYERS (8) [ ]6:daplop(16:claire@persienne) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]11:grey matter(16:mind over matter) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:33:48: MSG-BROADCAST 11:grey matter well, at least it's not pink.
+2010-02-14 19:33:52: PLAYER-JOIN 9:Cold 2svk #1 RED IP:78.99.100.11
+2010-02-14 19:33:52: PLAYERS (9) [ ]6:daplop(16:claire@persienne) [ ]9:Cold 2svk(21:Admin@admin-9cff58749) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]11:grey matter(16:mind over matter) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:33:53: MSG-BROADCAST 3:lax purple
+2010-02-14 19:33:53: PLAYER-JOIN 13:karolkuich.pl #5 BLUE IP:83.2.224.2
+2010-02-14 19:33:53: PLAYERS (10) [ ]6:daplop(16:claire@persienne) [ ]9:Cold 2svk(21:Admin@admin-9cff58749) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]13:karolkuich.pl(21:karolkuich@ka-desktop) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]11:grey matter(16:mind over matter) [ ]21:ShotInTheBack...Again(15:Soup Or Bullets) 
+2010-02-14 19:34:03: MSG-COMMAND 16:cat-o-nine-tails lagstats
+2010-02-14 19:34:10: PLAYER-PART 21:ShotInTheBack...Again #12 left
+2010-02-14 19:34:10: PLAYERS (9) [ ]6:daplop(16:claire@persienne) [ ]9:Cold 2svk(21:Admin@admin-9cff58749) [ ]6:Blades(4:tron) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]13:karolkuich.pl(21:karolkuich@ka-desktop) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]11:grey matter(16:mind over matter) 
+2010-02-14 19:34:17: PLAYER-PART 6:Blades #2 left
+2010-02-14 19:34:17: PLAYERS (8) [ ]6:daplop(16:claire@persienne) [ ]9:Cold 2svk(21:Admin@admin-9cff58749) [+]16:cat-o-nine-tails() [ ]4:oslo() [ ]13:karolkuich.pl(21:karolkuich@ka-desktop) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]11:grey matter(16:mind over matter) 
+2010-02-14 19:34:20: MSG-ADMIN 6:SERVER Team kill: cat-o-nine-tails killed Cold 2svk
+2010-02-14 19:34:21: MSG-TEAM 16:cat-o-nine-tails RED sry
+2010-02-14 19:34:47: PLAYER-PART 16:cat-o-nine-tails #3 BZid:34103 left
+2010-02-14 19:34:47: PLAYERS (7) [ ]6:daplop(16:claire@persienne) [ ]9:Cold 2svk(21:Admin@admin-9cff58749) [ ]4:oslo() [ ]13:karolkuich.pl(21:karolkuich@ka-desktop) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]11:grey matter(16:mind over matter) 
+2010-02-14 19:35:15: PLAYER-JOIN 9:wolves-32 #2 BZid:47000 ROGUE IP:99.139.213.65 VERIFIED GLOBALUSER
+2010-02-14 19:35:15: PLAYERS (8) [ ]6:daplop(16:claire@persienne) [ ]9:Cold 2svk(21:Admin@admin-9cff58749) [+]9:wolves-32(12:Sam@mynew-PC) [ ]4:oslo() [ ]13:karolkuich.pl(21:karolkuich@ka-desktop) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]11:grey matter(16:mind over matter) 
+2010-02-14 19:35:31: PLAYER-JOIN 16:mrapplecomputer1 #3 BZid:40718 OBSERVER IP:69.180.173.220 VERIFIED GLOBALUSER ADMIN
+2010-02-14 19:35:31: PLAYERS (9) [ ]6:daplop(16:claire@persienne) [ ]9:Cold 2svk(21:Admin@admin-9cff58749) [+]9:wolves-32(12:Sam@mynew-PC) [@]16:mrapplecomputer1(12:BZBureau.com) [ ]4:oslo() [ ]13:karolkuich.pl(21:karolkuich@ka-desktop) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]11:grey matter(16:mind over matter) 
+2010-02-14 19:35:41: MSG-BROADCAST 9:wolves-32 cool color
+2010-02-14 19:35:56: MSG-COMMAND 3:lax lagstats
+2010-02-14 19:36:01: PLAYER-JOIN 10:not allejo #8 BZid:44523 OBSERVER IP:173.51.205.154 VERIFIED GLOBALUSER
+2010-02-14 19:36:01: PLAYERS (10) [ ]6:daplop(16:claire@persienne) [ ]9:Cold 2svk(21:Admin@admin-9cff58749) [+]9:wolves-32(12:Sam@mynew-PC) [@]16:mrapplecomputer1(12:BZBureau.com) [ ]4:oslo() [ ]13:karolkuich.pl(21:karolkuich@ka-desktop) [@]3:lax() [+]9:bdog98760(21:jump, you can make it) [+]10:not allejo() [+]11:grey matter(16:mind over matter) 
+2010-02-14 19:36:17: MSG-ADMIN 3:lax i gtg watch over? :)
+2010-02-14 19:36:19: MSG-ADMIN 16:mrapplecomputer1 heh
+2010-02-14 19:36:22: PLAYER-PART 3:lax #6 BZid:31413 left
+2010-02-14 19:36:22: PLAYERS (9) [ ]6:daplop(16:claire@persienne) [ ]9:Cold 2svk(21:Admin@admin-9cff58749) [+]9:wolves-32(12:Sam@mynew-PC) [@]16:mrapplecomputer1(12:BZBureau.com) [ ]4:oslo() [ ]13:karolkuich.pl(21:karolkuich@ka-desktop) [+]9:bdog98760(21:jump, you can make it) [+]10:not allejo() [+]11:grey matter(16:mind over matter) 
+2010-02-14 19:36:26: MSG-BROADCAST 6:SERVER grey matter is on a Rampage!
+2010-02-14 19:36:35: MSG-COMMAND 16:mrapplecomputer1 grouplist
+2010-02-14 19:36:43: MSG-BROADCAST 6:SERVER grey matter's rampage was stopped by bdog98760
+2010-02-14 19:36:46: MSG-BROADCAST 11:grey matter yay
+2010-02-14 19:36:51: MSG-COMMAND 10:not allejo grouplist
+2010-02-14 19:37:13: PLAYER-JOIN 13:the poly hope #6 BZid:34586 OBSERVER IP:91.62.7.9 VERIFIED GLOBALUSER
+2010-02-14 19:37:13: PLAYERS (10) [ ]6:daplop(16:claire@persienne) [ ]9:Cold 2svk(21:Admin@admin-9cff58749) [+]9:wolves-32(12:Sam@mynew-PC) [@]16:mrapplecomputer1(12:BZBureau.com) [ ]4:oslo() [ ]13:karolkuich.pl(21:karolkuich@ka-desktop) [+]13:the poly hope() [+]9:bdog98760(21:jump, you can make it) [+]10:not allejo() [+]11:grey matter(16:mind over matter) 
+2010-02-14 19:37:14: MSG-COMMAND 9:bdog98760 lagstats
+2010-02-14 19:37:55: MSG-COMMAND 6:daplop lagstats
+2010-02-14 19:38:06: MSG-COMMAND 16:mrapplecomputer1 setgroup "not allejo" bzbureau.admin
+2010-02-14 19:38:19: PLAYER-PART 13:the poly hope #6 BZid:34586 left
+2010-02-14 19:38:19: PLAYERS (9) [ ]6:daplop(16:claire@persienne) [ ]9:Cold 2svk(21:Admin@admin-9cff58749) [+]9:wolves-32(12:Sam@mynew-PC) [@]16:mrapplecomputer1(12:BZBureau.com) [ ]4:oslo() [ ]13:karolkuich.pl(21:karolkuich@ka-desktop) [+]9:bdog98760(21:jump, you can make it) [+]10:not allejo() [+]11:grey matter(16:mind over matter) 
+2010-02-14 19:38:56: PLAYER-PART 10:not allejo #8 BZid:44523 left
+2010-02-14 19:38:56: PLAYERS (8) [ ]6:daplop(16:claire@persienne) [ ]9:Cold 2svk(21:Admin@admin-9cff58749) [+]9:wolves-32(12:Sam@mynew-PC) [@]16:mrapplecomputer1(12:BZBureau.com) [ ]4:oslo() [ ]13:karolkuich.pl(21:karolkuich@ka-desktop) [+]9:bdog98760(21:jump, you can make it) [+]11:grey matter(16:mind over matter) 
+2010-02-14 19:39:17: MSG-COMMAND 4:oslo lagstats
+2010-02-14 19:39:22: MSG-ADMIN 6:SERVER Team kill: karolkuich.pl killed grey matter
+2010-02-14 19:39:25: MSG-TEAM 13:karolkuich.pl BLUE  sry
+2010-02-14 19:39:25: PLAYER-JOIN 6:Leenuh #6 RED IP:83.37.200.209
+2010-02-14 19:39:25: PLAYERS (9) [ ]6:daplop(16:claire@persienne) [ ]9:Cold 2svk(21:Admin@admin-9cff58749) [+]9:wolves-32(12:Sam@mynew-PC) [@]16:mrapplecomputer1(12:BZBureau.com) [ ]4:oslo() [ ]13:karolkuich.pl(21:karolkuich@ka-desktop) [ ]6:Leenuh(15:fknglbrls@no.no) [+]9:bdog98760(21:jump, you can make it) [+]11:grey matter(16:mind over matter) 
+2010-02-14 19:39:27: MSG-TEAM 11:grey matter BLUE np
+2010-02-14 19:39:29: MSG-BROADCAST 9:wolves-32 happy valentines day
+2010-02-14 19:39:29: MSG-BROADCAST 6:SERVER bdog98760 is on a Rampage!
+2010-02-14 19:39:33: PLAYER-JOIN 10:not allejo #8 BZid:44523 OBSERVER IP:173.51.205.154 VERIFIED GLOBALUSER
+2010-02-14 19:39:33: PLAYERS (10) [ ]6:daplop(16:claire@persienne) [ ]9:Cold 2svk(21:Admin@admin-9cff58749) [+]9:wolves-32(12:Sam@mynew-PC) [@]16:mrapplecomputer1(12:BZBureau.com) [ ]4:oslo() [ ]13:karolkuich.pl(21:karolkuich@ka-desktop) [ ]6:Leenuh(15:fknglbrls@no.no) [+]9:bdog98760(21:jump, you can make it) [+]10:not allejo() [+]11:grey matter(16:mind over matter) 
+2010-02-14 19:39:41: MSG-BROADCAST 6:SERVER bdog98760's rampage was stopped by grey matter
+2010-02-14 19:39:46: PLAYER-PART 16:mrapplecomputer1 #3 BZid:40718 Ghost
+2010-02-14 19:39:46: PLAYERS (10) [ ]6:daplop(16:claire@persienne) [ ]9:Cold 2svk(21:Admin@admin-9cff58749) [+]9:wolves-32(12:Sam@mynew-PC) [ ]4:oslo() [ ]13:karolkuich.pl(21:karolkuich@ka-desktop) [ ]6:Leenuh(15:fknglbrls@no.no) [+]9:bdog98760(21:jump, you can make it) [+]10:not allejo() [+]11:grey matter(16:mind over matter) [@]16:mrapplecomputer1(7:bzadmin) 
+2010-02-14 19:39:46: PLAYER-JOIN 16:mrapplecomputer1 #10 BZid: OBSERVER IP:69.180.173.220 VERIFIED GLOBALUSER ADMIN
+2010-02-14 19:39:46: PLAYERS (10) [ ]6:daplop(16:claire@persienne) [ ]9:Cold 2svk(21:Admin@admin-9cff58749) [+]9:wolves-32(12:Sam@mynew-PC) [ ]4:oslo() [ ]13:karolkuich.pl(21:karolkuich@ka-desktop) [ ]6:Leenuh(15:fknglbrls@no.no) [+]9:bdog98760(21:jump, you can make it) [+]10:not allejo() [+]11:grey matter(16:mind over matter) [@]16:mrapplecomputer1(7:bzadmin) 
+2010-02-14 19:39:51: PLAYER-JOIN 10:Carrera GT #3 GREEN IP:89.134.161.179
+2010-02-14 19:39:51: PLAYERS (11) [ ]6:daplop(16:claire@persienne) [ ]9:Cold 2svk(21:Admin@admin-9cff58749) [+]9:wolves-32(12:Sam@mynew-PC) [ ]10:Carrera GT() [ ]4:oslo() [ ]13:karolkuich.pl(21:karolkuich@ka-desktop) [ ]6:Leenuh(15:fknglbrls@no.no) [+]9:bdog98760(21:jump, you can make it) [+]10:not allejo() [+]11:grey matter(16:mind over matter) [@]16:mrapplecomputer1(7:bzadmin) 
+2010-02-14 19:39:51: MSG-BROADCAST 11:grey matter so there. :P
+2010-02-14 19:40:13: MSG-BROADCAST 6:SERVER grey matter is on a Rampage!
+2010-02-14 19:40:29: MSG-BROADCAST 6:SERVER grey matter's rampage was stopped by Leenuh
+2010-02-14 19:40:36: MSG-ADMIN 6:SERVER Team kill: bdog98760 killed Carrera GT
+2010-02-14 19:40:42: MSG-TEAM 9:bdog98760 GREEN SOO SOO SRY!!
+2010-02-14 19:40:48: MSG-TEAM 10:Carrera GT GREEN np
+2010-02-14 19:41:05: PLAYER-JOIN 8:Anathema #11 BZid:32543 PURPLE IP:24.223.128.224 VERIFIED GLOBALUSER
+2010-02-14 19:41:05: PLAYERS (12) [ ]6:daplop(16:claire@persienne) [ ]9:Cold 2svk(21:Admin@admin-9cff58749) [+]9:wolves-32(12:Sam@mynew-PC) [ ]10:Carrera GT() [ ]4:oslo() [ ]13:karolkuich.pl(21:karolkuich@ka-desktop) [ ]6:Leenuh(15:fknglbrls@no.no) [+]9:bdog98760(21:jump, you can make it) [+]10:not allejo() [+]11:grey matter(16:mind over matter) [@]16:mrapplecomputer1(7:bzadmin) [+]8:Anathema(17:Big Old Bad Bucko) 
+2010-02-14 19:41:07: MSG-DIRECT 16:mrapplecomputer1 10:not allejo join as allejo :|
+2010-02-14 19:41:09: MSG-COMMAND 16:mrapplecomputer1 op
+2010-02-14 19:41:20: PLAYER-JOIN 5:dgdog #12 BZid:5720 ROGUE IP:82.18.167.246 VERIFIED GLOBALUSER
+2010-02-14 19:41:20: PLAYERS (13) [ ]6:daplop(16:claire@persienne) [ ]9:Cold 2svk(21:Admin@admin-9cff58749) [+]9:wolves-32(12:Sam@mynew-PC) [ ]10:Carrera GT() [ ]4:oslo() [ ]13:karolkuich.pl(21:karolkuich@ka-desktop) [ ]6:Leenuh(15:fknglbrls@no.no) [+]9:bdog98760(21:jump, you can make it) [+]10:not allejo() [+]11:grey matter(16:mind over matter) [@]16:mrapplecomputer1(7:bzadmin) [+]8:Anathema(17:Big Old Bad Bucko) [+]5:dgdog(14:alan@localhost) 
+2010-02-14 19:41:22: MSG-ADMIN 6:SERVER Team kill: Leenuh killed Cold 2svk
+2010-02-14 19:42:16: PLAYER-PART 8:Anathema #11 BZid:32543 left
+2010-02-14 19:42:16: PLAYERS (14) [ ]6:daplop(16:claire@persienne) [ ]9:Cold 2svk(21:Admin@admin-9cff58749) [+]9:wolves-32(12:Sam@mynew-PC) [+]8:RedShirt(19:mauddib@arakkis.net) [ ]4:oslo() [ ]13:karolkuich.pl(21:karolkuich@ka-desktop) [ ]6:Leenuh(15:fknglbrls@no.no) [+]9:bdog98760(21:jump, you can make it) [+]10:not allejo() [+]11:grey matter(16:mind over matter) [@]16:mrapplecomputer1(7:bzadmin) [+]5:dgdog(14:alan@localhost) [ ]7:BARFBOY() [+]4:Cool() 
+2010-02-18 02:28:13: MSG-COMMAND 16:mrapplecomputer1 msg #0 shit
+2010-02-18 02:28:13: MSG-FILTERED 16:mrapplecomputer1 #*$&
+2010-02-18 02:28:13: MSG-DIRECT 16:mrapplecomputer1 16:mrapplecomputer1 shit
+2010-02-18 02:28:15: MSG-BROADCAST 16:mrapplecomputer1 shit
+2010-02-18 02:28:15: MSG-FILTERED 16:mrapplecomputer1 %^%*
+2010-02-09 03:21:15: SERVER-STATUS Stopped

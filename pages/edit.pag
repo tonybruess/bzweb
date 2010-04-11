@@ -1,0 +1,211 @@
+<h3>Edit</h3>
+<?php
+include "include/mysql.php";
+//Check for correc paramaters
+if (!$_GET['server'] || !$_GET['group']){
+	echo "Error encountered, contact support";
+} else {
+//Get data
+	$server = $_GET['server'];
+	$server_clean = sanitize($server);
+	$group = $_GET['group'];
+	$group_clean = sanitize($group);
+	$g = mysql_query("SELECT * FROM groups WHERE `owner`='$name' AND `id`='$group_clean'");
+	$e = mysql_query("SELECT * FROM servers WHERE `master`='$group_clean' AND `id`='$server_clean'");
+	$g_ar = mysql_fetch_array($g);
+	$e_ar = mysql_fetch_array($e);
+	//Is this your server?
+	if ($name !== $g_ar[2] || $e_ar[1]!==$group_clean){
+			echo "No permission";
+		} else {
+	
+//If user posted conf, check if numerical 
+if($_POST['save']){
+$varscheck = Array($_POST['msv'],$_POST['rogue'],$_POST['red'],$_POST['green'],$_POST['blue'],$_POST['purple'],$_POST['observer'],$_POST['fa'],$_POST['fcl'],$_POST['frf'],$_POST['fg'],$_POST['fgm'],$_POST['fib'],$_POST['fl'],$_POST['fmg'],$_POST['fn'],$_POST['foo'],$_POST['fpz'],$_POST['fqt'],$_POST['fsb'],$_POST['fse'],$_POST['fsh'],$_POST['fsr'],$_POST['fst'],$_POST['fsw'],$_POST['ft'],$_POST['fth'],$_POST['fus'],$_POST['fv'],$_POST['fwg'],$_POST['worldsize'],$_POST['pv']);
+echo "Debug: ";
+//Loop each var
+foreach ($varscheck as $element) {
+    if (is_numeric($element) || !$element) {
+        echo "Pass ";
+    } else {
+        echo "Alphabetic characters detected";
+        //Die if user attempted to hack
+        include_once "include/footer.php";
+        die();
+    }
+// End foreach loop
+}
+//Execute sucesfull Edit SQL Here
+mysql_query("UPDATE servers SET
+`style`='".$_POST['style']."',
+`j`='".$_POST['j']."',
+`r`='".$_POST['r']."',
+`ms`='".$_POST['ms']."',
+`noradar`='".$_POST['noradar']."',
+`autoteam`='".$_POST['autoteam']."',
+`mp`='".$_POST['mp']."',
+`rogue`='".$_POST['rogue']."',
+`red`='".$_POST['red']."',
+`green`='".$_POST['green']."',
+`blue`='".$_POST['blue']."',
+`purple`='".$_POST['purple']."',
+`observer`='".$_POST['observer']."',
+`user`='".$_POST['user']."',
+`group`='".$_POST['group']."',
+`ban`='".$_POST['ban']."',
+`report`='".$_POST['report']."',
+`nomasterban`='".$_POST['nomasterban']."',
+`fa`='".$_POST['fa']."',
+`fcl`='".$_POST['fcl']."',
+`ff`='".$_POST['ff']."',
+`fg`='".$_POST['fg']."',
+`fgm`='".$_POST['fgm']."',
+`fib`='".$_POST['fib']."',
+`fl`='".$_POST['fl']."',
+`fmg`='".$_POST['fmg']."',
+`fn`='".$_POST['fn']."',
+`foo`='".$_POST['foo']."',
+`fpz`='".$_POST['fpz']."',
+`fqt`='".$_POST['fqt']."',
+`fsb`='".$_POST['fsb']."',
+`fse`='".$_POST['fse']."',
+`fsh`='".$_POST['fsh']."',
+`fsr`='".$_POST['fsr']."',
+`fst`='".$_POST['fst']."',
+`fsw`='".$_POST['fsw']."',
+`ft`='".$_POST['ft']."',
+`fth`='".$_POST['fth']."',
+`fus`='".$_POST['fus']."',
+`fv`='".$_POST['fv']."',
+`fwg`='".$_POST['fwg']."',
+`fb`='".$_POST['fb']."',
+`sb`='".$_POST['sb']."',
+`worldfile`='".$_POST['worldfile']."',
+`b`='".$_POST['b']."',
+`h`='".$_POST['h']."',
+`worldsize`='".$_POST['worldsize']."',
+`public`='".$_POST['public']."',
+`p`='".$_POST['p']."',
+`domain`='".$_POST['domain']."',
+`disablebots`='".$_POST['disablebots']."',
+`servermsg`='".$_POST['servermsg']."',
+`admsg`='".$_POST['admsg']."' WHERE `id`='$server_clean'");
+echo mysql_error();
+}
+//Fetch the data
+	$z = mysql_query("SELECT * FROM servers WHERE `id`='$server_clean'");
+	$zar = mysql_fetch_array($z);
+//Edit conf file!
+?>
+<form method="GET">
+<input type="hidden" name="p" value="servers">
+<input type="submit" value="Back">
+</form>
+<br>
+<form method="POST">
+<input type="hidden" name="save" value="1">
+<fieldset>
+ <legend>Gameplay Settings</legend>
+<select name="style">
+<option value="gtn" <?php if($zar['style']=='gtn') echo 'selected';?>>None (FFA)</option>
+<option value="gtc" <?php if($zar['style']=='gtc') echo 'selected';?>>Capture The Flag</option>
+<option value="gtcr" <?php if($zar['style']=='gtcr') echo 'selected';?>>Capture The Flag Random Map</option>
+<option value="gtrs" <?php if($zar['style']=='gtrs') echo 'selected';?>>Rabbit Chase: Score Rabbit</option>
+<option value="gtrk" <?php if($zar['style']=='gtrk') echo 'selected';?>>Rabbit Chase: Killer Rabbit</option>
+<option value="gtrr" <?php if($zar['style']=='gtrr') echo 'selected';?>>Rabbit Chase: Random Rabbit</option>
+</select> Game Type<br>
+<input name="j" type="checkbox" value="1" <?php if($zar['j']=='1') echo 'checked';?>> Jumping<br>
+<input name="r" type="checkbox" value="1" <?php if($zar['r']=='1') echo 'checked';?>> Ricochet<br>
+<input name="noradar" type="checkbox" value="1" <?php if($zar['noradar']=='1') echo 'checked';?>> No Radar<br>
+Max Shots <input type="text" size="2" maxlength="2" name="ms" value="<?php echo $zar['ms'];?>"><br>
+</fieldset><br>
+<fieldset>
+ <legend>Player and Team Settings</legend>
+<input name="autoteam" type="checkbox" value="1" <?php if($zar['autoteam']=='1') echo 'checked';?>> Autoteam<br>
+ <fieldset><legend>Maximum Players</legend>
+<input name="rogue" type="text" size="2" maxlength="3" value="<?php echo $zar['rogue'];?>"> Rogues<br>
+<input name="red" type="text" size="2" maxlength="3" value="<?php echo $zar['red'];?>"> Reds<br>
+<input name="green" type="text" size="2" maxlength="3" value="<?php echo $zar['green'];?>"> Greens<br>
+<input name="blue" type="text" size="2" maxlength="3" value="<?php echo $zar['blue'];?>"> Blues<br>
+<input name="purple" type="text" size="2" maxlength="3" value="<?php echo $zar['purple'];?>"> Purples<br>
+<input name="observer" type="text" size="2" maxlength="3" value="<?php echo $zar['observer'];?>"> Observers<br>
+ </fieldset><br>
+<select name="user"><option>None</option></select> User Database
+<br>
+<select name ="group"><option>None</option></select> Group Database
+<br>
+<select name ="ban"><option>None</option></select> Ban Database
+<br>
+<select name ="report"><option>None</option></select> Report File
+<br>
+<input name="nomasterban" type="checkbox" value="1" <?php if($zar['nomasterban']=='1') echo 'checked';?>> No Master Banlist<br>
+</fieldset><br>
+<fieldset>
+ <legend>Flag Settings</legend>
+Add <input type="text" size="2" name="fa" value="<?php echo $zar['fa'];?>" maxlength="2" >Agility Flag(s) <br>
+Add <input type="text" size="2" name="fcl" value="<?php echo $zar['fcl'];?>" maxlength="2" >Cloaking Flag(s)<br>
+Add <input type="text" size="2" name="ff" value="<?php echo $zar['ff'];?>" maxlength="2" >Rapid Fire Flag(s)<br>
+Add <input type="text" size="2" name="fg" value="<?php echo $zar['fg'];?>" maxlength="2" >Genocide Flag(s)<br>
+Add <input type="text" size="2" name="fgm" value="<?php echo $zar['fgm'];?>" maxlength="2" >Guided Missile Flag(s)<br>
+Add <input type="text" size="2" name="fib" value="<?php echo $zar['fib'];?>" maxlength="2" >Invisible Bullet Flag(s)<br>
+Add <input type="text" size="2" name="fl" value="<?php echo $zar['fl'];?>" maxlength="2" >Laser Flag(s)<br>
+Add <input type="text" size="2" name="fmg" value="<?php echo $zar['fmg'];?>" maxlength="2" >Machine Gun Flag(s)<br>
+Add <input type="text" size="2" name="fn" value="<?php echo $zar['fn'];?>" maxlength="2" >Narrow Flag(s)<br>
+Add <input type="text" size="2" name="foo" value="<?php echo $zar['foo'];?>" maxlength="2" >Oscillation Overthruster Flag(s)<br>
+Add <input type="text" size="2" name="fpz" value="<?php echo $zar['fpz'];?>" maxlength="2" >Phantom Zone Flag(s)<br>
+Add <input type="text" size="2" name="fqt" value="<?php echo $zar['fqt'];?>" maxlength="2" >QuickTurn Flag(s)<br>
+Add <input type="text" size="2" name="fsb" value="<?php echo $zar['fsb'];?>" maxlength="2" >Super Bullet Flag(s)<br>
+Add <input type="text" size="2" name="fse" value="<?php echo $zar['fse'];?>" maxlength="2" >Seer Flag(s)<br>
+Add <input type="text" size="2" name="fsh" value="<?php echo $zar['fsh'];?>" maxlength="2" >Shield Flag(s)<br>
+Add <input type="text" size="2" name="fsr" value="<?php echo $zar['fsr'];?>" maxlength="2" >Steamroller Flag(s)<br>
+Add <input type="text" size="2" name="fst" value="<?php echo $zar['fst'];?>" maxlength="2" >Stealth Flag(s)<br>
+Add <input type="text" size="2" name="fsw" value="<?php echo $zar['fsw'];?>" maxlength="2" >Shockwave Flag(s)<br>
+Add <input type="text" size="2" name="ft" value="<?php echo $zar['ft'];?>" maxlength="2" >Tiny Flag(s)<br>
+Add <input type="text" size="2" name="fth" value="<?php echo $zar['fth'];?>" maxlength="2" >Thief Flag(s)<br>
+Add <input type="text" size="2" name="fus" value="<?php echo $zar['fus'];?>" maxlength="2" >Useless Flag(s)<br>
+Add <input type="text" size="2" name="fv" value="<?php echo $zar['fv'];?>" maxlength="2" >High Speed Flag(s)<br>
+Add <input type="text" size="2" name="fwg" value="<?php echo $zar['fwg'];?>" maxlength="2" >Wings Flag(s)<br>
+<input name="fb" type="checkbox" value="1" <?php if($zar['fb']=='1') echo 'checked';?>> Flags on Buildings<br>
+<input name="sb" type="checkbox" value="1" <?php if($zar['sb']=='1') echo 'checked';?>> Tanks Spawn on Buildings<br>
+</fieldset><br>
+<fieldset>
+ <legend>World Settings</legend>
+ <select name="worldfile"><option>None</option></select> Map File
+<br>
+<fieldset>
+ <legend>Random Map Settings <small>(for use with random maps only)</small></legend>
+<input name="b" type="checkbox" value="1" <?php if($zar['b']=='1') echo 'checked';?>> Random Rotation<br>
+<input name="h" type="checkbox" value="1" <?php if($zar['h']=='1') echo 'checked';?>> Random Height<br>
+<input type="text" name="worldsize" size="3" maxlength="4" value="<?php echo $zar['worldsize']?>"> World Size, if not set 400 is used<br>
+</fieldset>
+</fieldset><br>
+<fieldset>
+ <legend>Public Settings</legend>
+<input name="public" size="35" maxlength="60" value="<?php echo $zar['public']?>"> The name of the server<br>
+<select name="domain"><option>test.com</option></select> : 
+<select name="p"></select> Port (which port to listen on) <br>
+</fieldset><br>
+<fieldset>
+ <legend>Miscellaneous Settings</legend>
+<input name="disablebots" type="checkbox" value="1" <?php if($zar['disablebots']=='1') echo 'checked';?>> Disable Bots<br>
+<?php
+//<input name="owncmd" type="text" size="50" > Own Command Line Options<br>
+?><br>
+Enter your SRVERMSG here. <br><textarea type="text" cols="50" rows="10" name="servermsg">
+<?php echo $zar['servermsg']?>
+</textarea><br><br>
+Enter your ADMSG here. <br><textarea type="text" cols="50" rows="10" name="admsg">
+<?php echo $zar['admsg']?>
+</textarea><br>
+</fieldset>
+<br>
+<center>
+<input value="           Save           " type="submit" >
+</center>
+</form>
+</div>
+<?php
+// Close it up
+}
+}
+?>
