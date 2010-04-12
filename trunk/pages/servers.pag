@@ -38,6 +38,11 @@ if ($_POST['createserver'] == "1" && $_POST['newserver'] != ""){ // form was pos
 			$a_ar = mysql_fetch_array($a);
 			mkdir("servers/$a_ar[0]/");
 			chmod("servers/$a_ar[0]/", 0777);
+			$pidCreate = "servers/$a_ar[0]/bzfs.pid";
+			$pidHandle = fopen($pidCreate, 'w') or die("Can't create pid");
+			fwrite($pidHandle,'9999999999');
+			fclose($pidHandle);
+			chmod("servers/$a_ar[0]/bzfs.pid", 0777);
 			echo "Server Created Successfully";
 		} else {
 			//That isnt your server
