@@ -135,18 +135,19 @@ if($e && $conf){
 	include_once "include/footer.php";
 	die();
 }
-if(exec("bzfs".$conf." -requireudp -pidfile servers/".$e[0]."/bzfs.pid 2>servers/".$e[0]."/error.txt >/dev/null &")){
-	$error = file_get_contents("servers/$e[0]/error.txt");
-	if($error){
-		echo "---------<br>";
-		echo $error;
-		echo "<br>---------";
-	}
-}
-if(preg_match("/Usage: /",$error)){
+shell_exec("bzfs".$conf." -requireudp -pidfile servers/".$e[0]."/bzfs.pid 2>servers/".$e[0]."/error.txt >/dev/null &");
+sleep(2);
+$error = file_get_contents("servers/$e[0]/error.txt");
+if(preg_match("/Usage: /",$error) || preg_match("/ERROR: /",$error)){
 	echo "Server failed to start<br>";
 } else {
-	echo "Server started sucesfully!<br>";
+	if($error){
+		$error = preg_replace("/\n/","<br>",$error);
+		echo "---------<br>";
+		echo $error;
+		echo "---------<br>";
+		echo "Server started successfully!";
+	}
 }
 }
 if($_GET['mode']=='stop'){
@@ -178,7 +179,7 @@ if(file_exists("servers/$e[0]/bzfs.pid")){
 	die();
 }
 if(posix_kill($tokill, 9)){
-	echo "Server stopped sucesfully<br>";
+	echo "Server stopped successfully<br>";
 } else {
 	echo "Server failed to stop<br>";
 	echo '</td></tr></table></center>';
