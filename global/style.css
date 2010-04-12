@@ -1,0 +1,186 @@
+body {
+	background-color: #f0f0f0 !important;
+	font-family: "Lucida Grande", Arial, Geneva, sans-serif;
+    font-weight: normal;
+    color: #404040;
+    font-size: 13px;
+    line-height: 1.4;
+    margin: 0px;
+    padding: 0px;
+}
+
+/*Link Styling*/
+
+a:link {
+    color: #404040;
+    text-decoration: none;
+    font-weight: normal;
+    transition:color 0.4s ease-in
+}
+a:visited {
+    color: #404040;
+    text-decoration: none;
+    font-weight: normal;
+    transition:color 0.4s ease-in
+}
+a:hover {
+    color: #006BB3;
+    font-weight: normal;
+}
+a:focus{
+	-moz-outline-style: none;
+	font-weight: normal;
+}
+
+/*Main Page Styling*/
+
+#Header{
+	height: 50px;
+	width: 100%;
+	min-width: 950px;
+	background-color: #f6f6f6;
+	border-bottom: solid 1px #c3c3c3;
+	margin-bottom: 50px;
+}
+#Container{	
+	width: 100%;
+	display: block;
+	background-color: #f6f6f6;
+	border-top: solid 1px #c3c3c3;
+	min-width: 950px;
+}
+#PageContent{
+	display: block;
+	margin: 0 auto;
+	padding-left: 25px;
+	padding-bottom: 15px;
+	padding-right: 25px;
+	height: 100%;
+	width: 900px;
+}
+#Logo{
+	display: inline-block;
+	margin-top: 5px;
+}
+#Logo h1{
+	font-size: 20px;
+	margin: 0px;
+}
+#Logo h2{
+	font-size: 9px;
+	margin: 0px;
+	margin-top: -2px;
+}
+
+/* Copyright Styling */
+
+#Copyright{
+	width: 100%;
+	height: 50px;
+	margin: 0 auto;
+	background-color: #f0f0f0;
+	border-top: solid 1px #c3c3c3;
+	min-width: 950px;
+}
+#Copyright span{
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+	padding-top: 20px;
+	font-size: 11px;
+}
+h3{
+	border-bottom: #999999 solid 1px;
+}
+
+
+/* Navigation Styling */
+
+#PageNavigation{
+	width: 900px;
+	height: 50px;
+	margin: 0 auto;
+	display: block;
+	padding-top: 47px;
+}
+#PageNavigation ul{
+	list-style:none;
+	display:inline-block;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding: 0px;
+	margin: 0px;
+    width: 578px;
+	margin-top: 18px;
+	float: right;
+	text-align: right;
+}
+#PageNavigation li{
+	list-style:none;
+	display:inline;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+#PageNavigation li a.active{
+	font-size: 1.15em;
+    color: #006BB3;
+}
+
+/* Forms */
+
+fieldset{
+	border: #999999 solid 1px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+textarea{
+	background: #f0f0f0;
+	border: #999999 solid 1px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	padding: 3px;
+}
+textarea:hover{
+	border: #555555 solid 1px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+textarea:active{
+	border: #555555 solid 1px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+input[type=text]{
+	border: #999999 solid 1px;
+	background: #f0f0f0;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	margin-bottom: 5px;
+	padding: 3px;
+}
+input[type=text]:hover{
+	border: #555555 solid 1px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+input[type=text]:active{
+	border: #555555 solid 1px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+select{
+	margin-bottom: 5px;
+	border: #555555 solid 1px;
+	background: #f0f0f0;
+}
+input[type=submit]{
+	background: #f0f0f0;
+	border: #555555 solid 1px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+input[type=submit]:hover{
+	background: #C7C7C7;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
