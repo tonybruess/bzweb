@@ -2,10 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" href="./styles/MainStyle.css" type="text/css" />
-	<link rel="stylesheet" href="./styles/FormStyle.css" type="text/css" />
-	<link rel="shortcut icon" href="./favicon.ico">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="global/style.css">
 	<link rel="stylesheet" type="text/css" href="global/servers.css">
 	<script src="global/global.js" type="text/javascript"></script>
 	<script src="global/servers.js" type="text/javascript"></script>
