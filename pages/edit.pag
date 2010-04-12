@@ -1,3 +1,26 @@
+<?php
+/*
+    BZWeb v1.0
+    Copyright (c) 2010 Tony Bruess
+
+	BZWeb is an online based tool developed by mrapple which allows multiple users to manage bzfs instances.
+	For questions, join ##bzbureau on irc.freenode.net and ask mrapple.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this program.  If not, see
+    <http://www.gnu.org/licenses/>.
+*/
+?>
 <h3>Edit</h3>
 <?php
 include "include/mysql.php";
@@ -181,7 +204,7 @@ Add <input type="text" size="2" name="fwg" value="<?php echo $zar['fwg'];?>" max
 </fieldset><br>
 <fieldset>
  <legend>Public Settings</legend>
-<input name="public" size="35" maxlength="60" value="<?php echo $zar['public']?>"> The name of the server<br>
+<input type="text" name="public" size="35" maxlength="60" value="<?php echo $zar['public']?>"> The name of the server<br>
 <select name="domain"><option>bzbureau.com</option></select> : 
 <select name="p"><option>6000</option><option>6001</option><option>6002</option><option>6003</option><option>6004</option></select> Port (which port to listen on) <br>
 </fieldset><br>

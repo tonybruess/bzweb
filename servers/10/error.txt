@@ -1,0 +1,3 @@
+WARNING: tanks will not be able to shoot
+using world size of "800"
+require UDP clients!
