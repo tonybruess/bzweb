@@ -3,10 +3,13 @@ session_start();
 header("Cache-control: private");
 include("global/vars.php");
 if(!$_SESSION['callsign'] && $_GET['p'] !== "error"){
-	?>
-	<meta HTTP-EQUIV="Refresh" CONTENT="1;URL=http://my.bzflag.org/weblogin.php?url=http%3A%2F%2F<?php echo $_SERVER['HTTP_HOST'] ?>%2Fauthenticate.php%3Ftoken%3D%25TOKEN%25%26username%3D%25USERNAME%25">
-	<a href="http://my.bzflag.org/weblogin.php?url=http%3A%2F%2F<?php echo $_SERVER['HTTP_HOST'] ?>%2Fauthenticate.php%3Ftoken%3D%25TOKEN%25%26username%3D%25USERNAME%25">http://my.bzflag.org/weblogin.php?url=http%3A%2F%2F<?php echo $_SERVER['HTTP_HOST'] ?>%2Fauthenticate.php%3Ftoken%3D%25TOKEN%25%26username%3D%25USERNAME%25</a>
+	include_once("include/header.php");
+	include_once("include/menu.php");
+?>
+		<h3>Please login</h3>
+		<p>Before accessing this page you must <a href="http://my.bzflag.org/weblogin.php?url=http%3A%2F%2F<?php echo $_SERVER['HTTP_HOST'] ?>%2Fauthenticate.php%3Ftoken%3D%25TOKEN%25%26username%3D%25USERNAME%25">login.</a></p>
 	<?php
+	include_once("include/footer.php");
 	} else { 
 	include_once("include/header.php");
 	$page = $_GET['p'];
