@@ -193,13 +193,16 @@ Add <input type="text" size="2" name="fwg" value="<?php echo $zar['fwg'];?>" max
 </fieldset><br>
 <fieldset>
  <legend>World Settings</legend>
- <select name="worldfile"><option>None</option></select> Map File
+ <fieldset>
+<legend><input type="radio" name="myRadioButton" onclick="b.disabled=true; h.disabled=true; b.checked=false; h.checked=false; worldsize.disabled=true; worldsize.value='0'; worldfile.disabled=false;" checked> Map File</legend>
+<select name="worldfile"><option>None</option></select> Map File
 <br>
+</fieldset>
 <fieldset>
- <legend>Random Map Settings <small>(for use with random maps only)</small></legend>
-<input name="b" type="checkbox" value="1" <?php if($zar['b']=='1') echo 'checked';?>> Random Rotation<br>
-<input name="h" type="checkbox" value="1" <?php if($zar['h']=='1') echo 'checked';?>> Random Height<br>
-<input type="text" name="worldsize" size="3" maxlength="4" value="<?php echo $zar['worldsize']?>"> World Size, if not set 400 is used<br>
+ <legend><input type="radio" name="myRadioButton" onclick="b.disabled=false; h.disabled=false; worldsize.disabled=false; worldfile.disabled=true; worldfile.value='None';"> Random Map</legend>
+<input name="b" type="checkbox" value="1" <?php if($zar['b']=='1') echo 'checked';?> disabled> Random Rotation<br>
+<input name="h" type="checkbox" value="1" <?php if($zar['h']=='1') echo 'checked';?> disabled> Random Height<br>
+<input type="text" name="worldsize" size="3" maxlength="4" value="<?php echo $zar['worldsize']?>" disabled> World Size, if not set 400 is used<br>
 </fieldset>
 </fieldset><br>
 <fieldset>
@@ -214,10 +217,10 @@ Add <input type="text" size="2" name="fwg" value="<?php echo $zar['fwg'];?>" max
 <?php
 //<input name="owncmd" type="text" size="50" > Own Command Line Options<br>
 ?><br>
-Enter your SRVERMSG here. <br><textarea type="text" cols="50" rows="10" name="servermsg">
+ Server message goes here, one per line <br><textarea type="text" cols="50" rows="10" name="servermsg">
 <?php echo $zar['servermsg']?>
 </textarea><br><br>
-Enter your ADMSG here. <br><textarea type="text" cols="50" rows="10" name="admsg">
+ Ad message goes here, one per line <br><textarea type="text" cols="50" rows="10" name="admsg">
 <?php echo $zar['admsg']?>
 </textarea><br>
 </fieldset>

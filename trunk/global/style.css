@@ -139,6 +139,7 @@ textarea{
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	padding: 3px;
+	resize:none;
 }
 textarea:hover{
 	border: #555555 solid 1px;
@@ -165,6 +166,12 @@ input[type=text]:hover{
 }
 input[type=text]:active{
 	border: #555555 solid 1px;
+	background: #f0f0f0;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+input[type=text]:disabled{
+	background: #CDCDCE;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 }
@@ -180,7 +187,7 @@ input[type=submit]{
 	-webkit-border-radius: 3px;
 }
 input[type=submit]:hover{
-	background: #C7C7C7;
+	background: #DDDDDD;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 }
