@@ -20,6 +20,176 @@
     License along with this program.  If not, see
     <http://www.gnu.org/licenses/>.
 */
+$op = $_GET['op'];
+include "include/mysql.php";
 ?>
-				<h3>File Management</h3>
-				<p>Coming Soon</p>
+<h3>File Management</h3>
+<fieldset>
+<legend><a href="?p=files&op=create">Create a Report, Help, Group, Or User DB</a></legend>
+<?php
+if($op=='create'){
+  if ( $_POST['type'] == "userdb" ) {
+  	$nameclean = sanitize($_POST['name']);
+  	$contentsclean = sanitize($_POST['contents']);
+  	if(mysql_query("INSERT INTO files (`name`,`owner`,`type`,`contents`) VALUES ('$nameclean','$name','userdb','$contentsclean')")){
+  		echo "Created successfully";
+  	} else {
+  		echo "Failed";
+  	}
+  } elseif ( $_POST['type'] == "groupdb") {
+  	$nameclean = sanitize($_POST['name']);
+  	$contentsclean = sanitize($_POST['contents']);
+  	if(mysql_query("INSERT INTO files (`name`,`owner`,`type`,`contents`) VALUES ('$nameclean','$name','groupdb','$contentsclean')")){
+  		echo "Created successfully";
+  	} else {
+  		echo "Failed";
+  	}
+  } elseif ( $_POST['type'] == "bandb") {
+  	$nameclean = sanitize($_POST['name']);
+  	$contentsclean = sanitize($_POST['contents']);
+  	if(mysql_query("INSERT INTO files (`name`,`owner`,`type`,`contents`) VALUES ('$nameclean','$name','bandb','$contentsclean')")){
+  		echo "Created successfully";
+  	} else {
+  		echo "Failed";
+  	}
+  } elseif ( $_POST['type'] == "reportf") {
+  	$nameclean = sanitize($_POST['name']);
+  	$contentsclean = sanitize($_POST['contents']);
+  	if(mysql_query("INSERT INTO files (`name`,`owner`,`type`,`contents`) VALUES ('$nameclean','$name','reportf','$contentsclean')")){
+  		echo "Created successfully";
+  	} else {
+  		echo "Failed";
+  	}
+  }
+?>
+<form action="?p=files&op=create" method="POST">
+Type: <select name="type">
+<option value="userdb">User Database</option>
+<option value="groupdb">Group Database</option>
+<option value="bandb">Ban Database</option>
+<option value="reportf">Report File</option>
+</select>
+<br>
+Name: <input name="name" value="" type="text">
+<input name="create" type="hidden" value="1">
+<br>
+<textarea name="contents" cols="40" rows="15"></textarea>
+<br>
+<input value="Create" type="submit" >
+</form>
+<?php
+}
+?>
+</fieldset>
+<br>
+<fieldset>
+<legend><a href="?p=files&op=upload">Upload a Map File</a></legend>
+<?php
+if($op=='upload'){
+  if ($_POST) {
+  	echo "<br>Map uploading disabled<br><br>";
+  }
+?>
+<form action="?p=files&op=upload" enctype="multipart/form-data" method="POST">
+<input type="file" name="map" >
+<input type="hidden" name="upload" value="1">
+<br><br>
+<input type="submit" value="Upload" >
+</form>
+<?php
+}
+?>
+</fieldset>
+<br>
+<fieldset>
+<legend><a href="?p=files&op=edit">Edit or Delete Files</a></legend>
+<?php
+if($op=='edit'){
+?>
+<fieldset>
+<legend>Maps</legend>
+<table border="1px">
+	<tr>
+		<td>Name</td>
+		<td>Edit</td>
+		<td>Delete</td>
+	</tr>
+<?php
+$m = mysql_query("SELECT * FROM files WHERE owner='$name' AND `type`='map'");
+while($mr = mysql_fetch_array($m)){
+	echo '<tr><td>';
+	echo $mr['name'];
+	echo '</td><td>Edit</td><td>Delete</td></tr>';
+}
+?>
+</table></fieldset><br>
+<fieldset>
+<legend>Group Databases</legend>
+<table border="1px">
+	<tr>
+		<td>Name</td>
+		<td>Edit</td>
+		<td>Delete</td>
+	</tr>
+<?php
+$g = mysql_query("SELECT * FROM files WHERE owner='$name' AND `type`='groupdb'");
+while($gr = mysql_fetch_array($g)){
+	echo '<tr><td>';
+	echo $gr['name'];
+	echo '</td><td>Edit</td><td>Delete</td></tr>';
+}
+?>
+</table></fieldset><br>
+<fieldset>
+<legend>User Databases</legend>
+<table border="1px">
+	<tr>
+		<td>Name</td>
+		<td>Edit</td>
+		<td>Delete</td>
+	</tr>
+<?php
+$u = mysql_query("SELECT * FROM files WHERE owner='$name' AND `type`='userdb'");
+while($ur = mysql_fetch_array($u)){
+	echo '<tr><td>';
+	echo $ur['name'];
+	echo '</td><td>Edit</td><td>Delete</td></tr>';
+}
+?>
+</table></fieldset><br><fieldset>
+<legend>Ban Databases</legend>
+<table border="1px">
+	<tr>
+		<td>Name</td>
+		<td>Edit</td>
+		<td>Delete</td>
+	</tr>
+<?php
+$b = mysql_query("SELECT * FROM files WHERE owner='$name' AND `type`='bandb'");
+while($br = mysql_fetch_array($b)){
+	echo '<tr><td>';
+	echo $br['name'];
+	echo '</td><td>Edit</td><td>Delete</td></tr>';
+}
+?>
+</table></fieldset><br><fieldset>
+<legend>Report Files</legend>
+<table border="1px">
+	<tr>
+		<td>Name</td>
+		<td>Edit</td>
+		<td>Delete</td>
+	</tr>
+<?php
+$r = mysql_query("SELECT * FROM files WHERE owner='$name' AND `type`='reportf'");
+while($rr = mysql_fetch_array($r)){
+	echo '<tr><td>';
+	echo $rr['name'];
+	echo '</td><td>Edit</td><td>Delete</td></tr>';
+}
+?>
+</table></fieldset>
+<?php
+}
+?>
+</fieldset>
