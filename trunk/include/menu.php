@@ -36,7 +36,7 @@ if($_SESSION['callsign']){
 
 	<?php } else { ?>		
 			<ul>
-				<li><a href="http://my.bzflag.org/weblogin.php?url=http%3A%2F%2F<?php echo $_SERVER['HTTP_HOST']?>%2Fauthenticate.php%3Ftoken%3D%25TOKEN%25%26username%3D%25USERNAME%25">Login</a></li>
+				<li><a href="http://my.bzflag.org/weblogin.php?url=http%3A%2F%2F<?php echo $_SERVER['HTTP_REFERER']?>%2Fauthenticate.php%3Ftoken%3D%25TOKEN%25%26username%3D%25USERNAME%25">Login</a></li>
 			</ul>
 		<?php
 		
