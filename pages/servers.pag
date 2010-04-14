@@ -155,7 +155,7 @@ while ($s_row = mysql_fetch_array($server)) {
   echo '  <tr id="'.$i_groups.'-'.$i_servers.'" class="a">
   <td><div class="tier2">';
   if ($name == $g_row[2]){
-   echo' <a class="tooltip" href="?p=edit&group='.$g_row[0].'&server='.$s_row[0].'"><div class="doc"></div><span>Click to edit</span></a>'.$s_row[2].'</div></td>';
+   echo' <a class="tooltip" href="?p=edit&mode=conf&group='.$g_row[0].'&server='.$s_row[0].'"><div class="doc"></div><span>Click to edit</span></a>'.$s_row[2].'</div></td>';
   } else {
    echo ' <a><div class="doc"></div></a>'.$s_row[2].'</div></td>';
   }
