@@ -36,7 +36,7 @@
 	}
     define('SQL_SERVER','localhost'); 
     define('SQL_USER','mrapple'); 
-    define('SQL_PASS',''); 
+    define('SQL_PASS','inspiron'); 
     define('SQL_DB','bzweb'); 
         
     // Creating the connection using the above configuration
