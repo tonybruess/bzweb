@@ -24,6 +24,7 @@
 <h3>Edit</h3>
 <?php
 include "include/mysql.php";
+if($_GET['mode']=='conf'){
 //Check for correc paramaters
 if (!$_GET['server'] || !$_GET['group']){
 	echo "Error encountered, contact support";
@@ -231,7 +232,37 @@ Add <input type="text" size="2" name="fwg" value="<?php echo $zar['fwg'];?>" max
 </form>
 </div>
 <?php
-// Close it up
+		}
+	}
+} else {
+//If not a conf edit, check for a file edit.
+if($_GET['mode']=='file'){
+	//Edit file here
+	$idc = sanitize($_GET['file']);
+	$q = mysql_query("SELECT * FROM files WHERE id='$idc'");
+	$qr = mysql_fetch_array($q);
+	if($name !== $qr['owner']){
+		echo "You don't own this file";
+	} else {
+	if($_POST){
+		$cc = sanitize($_POST['contents']);
+		$nc = sanitize($_POST['name']);
+		if(mysql_query("UPDATE files SET `name`='$nc', `contents`='$cc' WHERE id='$idc'"))
+		echo "Updated successfully!<br><br>";
+	}
+		?>
+<form action="?p=edit&mode=file&file=<?php echo $idc ?>" method="POST">
+Name: <input name="name" value="<?php echo $qr['name'] ?>" type="text">
+<br>
+Contents:
+<Br><textarea name="contents" cols="40" rows="15"><?php if($_POST){ echo $cc; } else { echo $qr['contents']; }?></textarea>
+<br>
+<input value="Save" type="submit" >
+
+</form>
+<?php
+	}
 }
 }
 ?>
+		
