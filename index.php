@@ -7,7 +7,7 @@ if(!$_SESSION['callsign'] && $_GET['p'] !== "error"){
 	include_once("include/menu.php");
 ?>
 		<h3>Please login</h3>
-		<p>Before accessing this page you must <a href="http://my.bzflag.org/weblogin.php?url=http%3A%2F%2F<?php echo $_SERVER['HTTP_HOST'] ?>%2Fauthenticate.php%3Ftoken%3D%25TOKEN%25%26username%3D%25USERNAME%25">login.</a></p>
+		<p>Before accessing this page you must <a href="http://my.bzflag.org/weblogin.php?url=http%3A%2F%2F<?php echo $_SERVER['HTTP_REFERER']?>%2Fauthenticate.php%3Ftoken%3D%25TOKEN%25%26username%3D%25USERNAME%25">login.</a></p>
 	<?php
 	include_once("include/footer.php");
 	} else { 
