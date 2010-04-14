@@ -45,8 +45,6 @@ if($_SESSION['callsign']){
 	</div>
 </div>
 <div id="Container">
-
-	<div id="PageTop"></div>
 	
 	<div id="PageContent">		
 		
