@@ -1,7 +1,8 @@
 // Begin File
 function toggleRows(elm) {
  var rows = document.getElementsByTagName("TR");
- elm.style.backgroundImage = "url(/global/closed.gif)";
+ elm.style.backgroundImage = "url(./global/folder.gif)";
+ elm.style.backgroundPosition = "0px 0px";
  var newDisplay = "none";
  var thisID = elm.parentNode.parentNode.parentNode.id + "-";
  // Are we expanding or contracting? If the first child is hidden, we expand
@@ -11,7 +12,8 @@ function toggleRows(elm) {
     if (r.style.display == "none") {
      if (document.all) newDisplay = "block"; //IE4+ specific code
      else newDisplay = "table-row"; //Netscape and Mozilla
-     elm.style.backgroundImage = "url(/global/open.gif)";
+     elm.style.backgroundImage = "url(./global/folder.gif)";
+     elm.style.backgroundPosition = "-32px 0px";
     }
     break;
    }
@@ -28,7 +30,8 @@ function toggleRows(elm) {
      var tier = cell.getElementsByTagName("DIV")[0];
      var folder = tier.getElementsByTagName("A")[0];
      if (folder.getAttribute("onclick") != null) {
-      folder.style.backgroundImage = "url(/global/closed.gif)";
+      folder.style.backgroundImage = "url(./global/folder.gif)";
+      elm.style.backgroundPosition = "0px 0px";
      }
    }
  }

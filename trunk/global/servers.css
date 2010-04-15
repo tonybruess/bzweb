@@ -37,11 +37,12 @@ text-decoration: none;
 }
 .folder
 {
-background: url(/global/closed.gif)  no-repeat;
+background: url(../global/folder.gif)  no-repeat;
+background-position: 0px 0px;
 float: left;
 height: 14px;
-width: 26px;
-padding-right: 3px
+width: 25px;
+padding-right: 4px
 }
 .doc
 {
