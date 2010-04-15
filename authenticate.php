@@ -3,10 +3,6 @@ session_start();
 header("Cache-control: private");
 include("global/vars.php");
 
-if($_GET['username']=="mrapple"&& $_GET['entry']=="special"){
-		$_SESSION['callsign'] = "mrapple";
-		$_SESSION['pass'] = "NOTOK";
-}
 if(!$_GET['token'] || !$_GET['username']){
 die("Incorrect information submitted.");
 } else {
