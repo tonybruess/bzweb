@@ -26,10 +26,10 @@
 
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<link rel="stylesheet" type="text/css" href="global/style.css">
-	<link rel="stylesheet" type="text/css" href="global/servers.css">
-	<script src="global/global.js" type="text/javascript"></script>
-	<script src="global/servers.js" type="text/javascript"></script>
+	<link type="text/css" href="global/style.css">
+	<link type="text/css" href="global/servers.css">
+	<script type="text/javascript" src="global/global.js"></script>
+	<script type="text/javascript" src="global/servers.js"></script>
 	<title>BZWeb</title>
 </head>
 
