@@ -37,7 +37,7 @@ text-decoration: none;
 }
 .folder
 {
-background: url(../global/folder.gif)  no-repeat;
+background: url(../images/folder.gif)  no-repeat;
 background-position: 0px 0px;
 float: left;
 height: 14px;
@@ -46,7 +46,7 @@ padding-right: 4px
 }
 .doc
 {
-background: url(/global/file.gif) no-repeat;
+background: url(../images/file.gif) no-repeat;
 float: left;
 height: 14px;
 width: 12px;
