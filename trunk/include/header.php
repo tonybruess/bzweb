@@ -26,8 +26,8 @@
 
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<link type="text/css" href="global/style.css">
-	<link type="text/css" href="global/servers.css">
+	<link rel="stylesheet" href="global/style.css">
+	<link rel="stylesheet" href="global/servers.css">
 	<script type="text/javascript" src="global/global.js"></script>
 	<script type="text/javascript" src="global/servers.js"></script>
 	<title>BZWeb</title>
