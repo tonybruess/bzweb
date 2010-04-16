@@ -21,5 +21,47 @@
     <http://www.gnu.org/licenses/>.
 */
 ?>
-				<h3>Player Info</h3>
-				<p>Coming Soon</p>
+<h3>Player Info</h3>
+<?php
+	include "include/mysql.php";
+	//check for post
+	if ($_POST['searchfor'] == "1" && $_POST['query'] != ""){ // form was posted and isnt blank
+		//Setup vars
+		$query_type = $_POST['query_type'];
+		$query = $_POST['query'];
+		$query_clean = sanitize($query);
+		//check query type
+		if ($query_type == "NA") {
+			$type = "<b>Search Type</b><br>Name query";
+			$values = "<b>You Searched</b><br>".$query_clean;
+		}else if ($query_type == "BZ") {
+			$type = "<b>Search Type</b><br>BZID query";
+			$values = "<b>You Searched</b><br>".$query_clean;
+		}else if ($query_type == "HO") {
+			$type = "<b>Search Type</b><br>Host query";
+			$values = "<b>You Searched</b><br>".$query_clean;
+		}else if ($query_type == "IP") {
+			$type = "<b>Search Type</b><br>IP query";
+			$values = "<b>You Searched</b><br>".$query_clean;
+		}
+	}
+	if ($_POST['searchfor'] == "1" && $_POST['query'] == ""){
+		$type = "<b>You need to enter a search string.</b>";
+	}
+?>
+
+<form method="post">
+	<b>Search:</b>
+	<select name="query_type">
+		<option value="NA">Name</option>
+		<option value="BZ">BZID</option>
+		<option value="HO">Host</option>
+		<option value="IP">IP</option>
+	</select>
+	<input type="text" name="query"/>
+	<input type="submit" value="Search" name="search">
+	<input type="hidden" name="searchfor" value="1" >
+</form>
+<br>
+<?php echo $type; ?><br>
+<?php echo $values; ?>
