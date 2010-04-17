@@ -21,13 +21,53 @@
     <http://www.gnu.org/licenses/>.
 */
 include_once "include/mysql.php";
-   date_default_timezone_set("America/Chicago"); 
+date_default_timezone_set("America/Chicago"); 
+$id_clean = sanitize($_GET['server']);
+$q = mysql_query("SELECT * FROM servers WHERE enabled='1'");
+?>				<h3>Logs</h3>
+<?
+if(!$id_clean){
 ?>
-				<h3>Logs</h3>
+<form>
+Please select a server:
+<input type=hidden name="p" value="logs">
+<select name="server">
+<?php
+while($qr = mysql_fetch_array($q)){
+?>
+<option value="<?php echo $qr[0]?>"><?php echo $qr[2]?></option>
+<?php
+}
+?>
+</select>
+<br>
+Order by:<select name="order" onchange="this.form.submit();">
+<option value="1"<?php if($_GET['order']=='1') echo " selected";?>>Newest</option>
+<option value="2"<?php if($_GET['order']=='2') echo " selected";?>>Oldest</option>
+</select>
+<br>
+<input type=submit value=Go>
+</form>
+<?php
+} else {
+?>
                 <form name="form" method="get">
-                Order by:<select onchange="this.form.submit();">
-                <option>Most recent</option>
-                <option>Oldest</option>
+				Server:
+				<input type=hidden name="p" value="logs">
+				<select name="server" onchange="this.form.submit();">
+				<?php
+				while($qr = mysql_fetch_array($q)){
+				?>
+				<option value="<?php echo $qr[0]?>"<?php if($qr[0]==$id_clean) echo ' selected';?>><?php echo $qr[2]?></option>
+				<?php
+				}
+				?>
+				</select>
+				<br>
+                <input type=hidden name="p" value="logs">
+                Order by:<select name="order" onchange="this.form.submit();">
+                <option value="1"<?php if($_GET['order']=='1') echo " selected";?>>Newest</option>
+                <option value="2"<?php if($_GET['order']=='2') echo " selected";?>>Oldest</option>
                 </select>
                 </form><br>
      <table cellpadding="1">
@@ -55,9 +95,13 @@ include_once "include/mysql.php";
   		<td width="50%">Detail</td>
 	</tr>
 <?php
-$q = mysql_query("SELECT * FROM serverlogs WHERE `server`='10'");
-while($log = mysql_fetch_array($q)){?>
-<tr
+if($_GET['order']=='1' || !$_GET['order']){
+	$q = mysql_query("SELECT * FROM serverlogs WHERE `server`='$id_clean' ORDER BY time DESC");
+} else {
+	$q = mysql_query("SELECT * FROM serverlogs WHERE `server`='$id_clean' ORDER BY time ASC");
+}
+while($log = mysql_fetch_array($q)){
+?><tr
 <?php
 	if($log['type'] == "PLAYER-JOIN") {
 		echo 'BGCOLOR="#66CC66">';
@@ -257,3 +301,6 @@ while($log = mysql_fetch_array($q)){?>
 }
 ?>
 	</table>
+	<?php
+}
+?>
