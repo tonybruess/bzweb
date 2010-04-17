@@ -23,45 +23,101 @@
 ?>
 <h3>Player Info</h3>
 <?php
+	error_reporting(E_ALL);
 	include "include/mysql.php";
-	//check for post
-	if ($_POST['searchfor'] == "1" && $_POST['query'] != ""){ // form was posted and isnt blank
+	
+	//check if search button was pressed
+	if ($_POST['searchfor'] == "1" && $_POST['query'] != ""){ // form was posted and isn't blank
 		//Setup vars
 		$query_type = $_POST['query_type'];
-		$query = $_POST['query'];
-		$query_clean = sanitize($query);
-		//check query type
+		$search_query = $_POST['query'];
+		$query_clean = sanitize($search_query);
+		
+		// Check query type
 		if ($query_type == "NA") {
-			$type = "<b>Search Type</b><br>Name query";
-			$values = "<b>You Searched</b><br>".$query_clean;
+			$info = "<b>Search Type: </b>Name query<br><b>You Searched: </b>".$query_clean."<br><br>";
+			// Setup correct mySQL query
+			$sql_query=("Select * FROM players WHERE name='$query_clean'");
 		}else if ($query_type == "BZ") {
-			$type = "<b>Search Type</b><br>BZID query";
-			$values = "<b>You Searched</b><br>".$query_clean;
+			$info = "<b>Search Type: </b>BZID query<br><b>You Searched: </b>".$query_clean."<br><br>";
+			// Setup correct mySQL query
+			$sql_query=("Select * FROM players WHERE bzid='$query_clean'");
 		}else if ($query_type == "HO") {
-			$type = "<b>Search Type</b><br>Host query";
-			$values = "<b>You Searched</b><br>".$query_clean;
+			$info = "<b>Search Type: </b>Host query<br><b>You Searched: </b>".$query_clean."<br><br>";
+			// Setup correct mySQL query
+			$sql_query=("Select * FROM players WHERE host='$query_clean'");
 		}else if ($query_type == "IP") {
-			$type = "<b>Search Type</b><br>IP query";
-			$values = "<b>You Searched</b><br>".$query_clean;
+			$info = "<b>Search Type: </b>IP address query<br><b>You Searched: </b>".$query_clean."<br><br>";
+			// Setup correct mySQL query
+			$sql_query=("Select * FROM players WHERE ip='$query_clean'");
+		}
+		
+		// Run query
+		$query_result=mysql_query($sql_query);
+		if(mysql_num_rows($query_result)<1){ // No results found
+			$info = "<b>Search string not found.</b><br>";
+		}else{
+			$result_array=array();
+			while($row = mysql_fetch_assoc($query_result)){ // Results found, add them to result array
+				array_push($result_array, array($row['name'], $row['ip'], $row['host'], $row['description'], $row['bzid'], $row['time'], ));
+			}
+			// Setup result <table>
+			$result=
+			"<table width=\"100%\">
+			 <tr>
+			  <th>Username</th>
+			  <th>Ip Address</th>
+			  <th>Host</th>
+			  <th>Description</th>
+			  <th>BZID</th>
+			  <th>Time</th>
+			 </tr>";
+			
+			// Add items to result <table>
+			$num_results=count($result_array);			
+			for ( $row = 0; $row < $num_results; $row++ )
+			{				
+				$temp_results=
+				"<tr class=\"a\">".
+					"<td style=\"text-align: center;\">".$result_array[$row][0]."</td>".
+					"<td style=\"text-align: center;\">".$result_array[$row][1]."</td>".
+					"<td style=\"text-align: center;\">".$result_array[$row][2]."</td>".
+					"<td style=\"text-align: center;\">".$result_array[$row][3]."</td>".
+					"<td style=\"text-align: center;\">".$result_array[$row][4]."</td>".
+					"<td style=\"text-align: center;\">".$result_array[$row][5]."</td>".
+				"</tr>";
+				
+				// Add table row to result
+				$result.=$temp_results;
+			}
+			// Finish result by closing <table>
+			$result.="</table>";
 		}
 	}
-	if ($_POST['searchfor'] == "1" && $_POST['query'] == ""){
-		$type = "<b>You need to enter a search string.</b>";
+	if ($_POST['searchfor'] == "1" && $_POST['query'] == ""){ // form was posted but is blank
+		$info = "<b>You need to enter a search string.</b>";
 	}
 ?>
 
 <form method="post">
-	<b>Search:</b>
+	<b>Search for:</b>
 	<select name="query_type">
-		<option value="NA">Name</option>
+		<option value="NA">Username</option>
 		<option value="BZ">BZID</option>
-		<option value="HO">Host</option>
-		<option value="IP">IP</option>
+		<option value="HO">Internet Host</option>
+		<option value="IP">IP Address</option>
 	</select>
 	<input type="text" name="query"/>
 	<input type="submit" value="Search" name="search">
 	<input type="hidden" name="searchfor" value="1" >
 </form>
 <br>
-<?php echo $type; ?><br>
-<?php echo $values; ?>
+
+<?php
+	}
+	// Show info message
+	echo $info;
+	// Show result table
+	echo $result;
+?>
+
