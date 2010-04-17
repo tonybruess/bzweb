@@ -114,7 +114,6 @@
 <br>
 
 <?php
-	}
 	// Show info message
 	echo $info;
 	// Show result table
