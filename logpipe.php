@@ -59,7 +59,6 @@ while(! feof($stdin)) {
 
 		$q = mysql_query("SELECT * FROM players WHERE `name`='$player[1]' AND `ip`='$player[4]'");
 		$oldrecord = mysql_fetch_array($q);
-			fwrite($stderr,"Error while grabbing data ".$oldrecord[1]);
 		if($oldrecord[0]) {
 			// verify the existing record to make sure the last seen time are up-to-date
 			if($oldrecord['time'] < $ts) {

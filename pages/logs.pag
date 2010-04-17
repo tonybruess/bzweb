@@ -22,6 +22,12 @@
 */
 ?>
 				<h3>Logs</h3>
+                <form name="form" method="get">
+                Order by:<select onchange="this.form.submit();">
+                <option>Most recent</option>
+                <option>Oldest</option>
+                </select>
+                </form><br>
                 <?php
      $logfile = file_get_contents("log.txt");
      $logarray = explode("\n",$logfile);//explode log file on new line
@@ -32,24 +38,24 @@
      //test space
      //test end
      ?>
-     <table cellpadding="2">
+     <table cellpadding="1">
      <tr>
      <td width="5%" BGCOLOR="#66CC66"><center>join</center></td>
      <td width="5%" BGCOLOR="#66CC66"><center>part</center></td>
      <td width="9%" BGCOLOR="#99FF99"><center>msg-brodcast</center></td>
-     <td width="7%" BGCOLOR="#FF9933"><center>msg-admin</center></td>
+     <td width="8%" BGCOLOR="#FF9933"><center>msg-admin</center></td>
      <td width="7%" BGCOLOR="#33FFFF"><center>msg-team</center></td>
      <td width="11%" BGCOLOR="#FF3300"><center>slashcommand</center></td>
      <td width="9%" BGCOLOR="#CCCCC"><center>playercount</center></td>
      <td width="9%" BGCOLOR="#FFFFCC"><center>msg-private</center></td>
      <td width="6%" BGCOLOR="#FFFF00"><center>filtered</center></td>
      <td width="6%" BGCOLOR="#CC66FF"><center>report</center></td>
-     <td width="7%" BGCOLOR="#CC33CC"><center>server-status</center></td>
+     <td width="9%" BGCOLOR="#CC33CC"><center>server-status</center></td>
      </tr>
      </table>
-     <table cellpadding="10">
+     <table cellpadding="5">
  	<tr>
-  		<td width="9%">Date</td>
+  		<td width="12%">Date</td>
   		<td width="3%">Time</td>
   		<td width="5%">Event</td>
   		<td width="10%">From</td>
@@ -239,7 +245,7 @@
           echo "</tr>";
   		}
      }
-          echo "></td>";
+          echo "</td>";
           echo "<td><b>Process complete</b></td><td></td><td></td></tr>";
      ?>
 	</table>
