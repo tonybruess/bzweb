@@ -23,14 +23,14 @@
 ?>
 <h3>Player Info</h3>
 <?php
-	error_reporting(E_ALL);
 	include "include/mysql.php";
-	
+	if($_POST){
+	$query_type = $_POST['query_type'];
+	}	
 	//check if search button was pressed
 	if (isset($_POST['searchfor'])){
 		if ($_POST['searchfor'] == "1" && $_POST['query'] != ""){ // form was posted and isn't blank
 			//Setup vars
-			$query_type = $_POST['query_type'];
 			$search_query = $_POST['query'];
 			$query_clean = sanitize($search_query);
 			
@@ -38,19 +38,19 @@
 			if ($query_type == "NA") {
 				$info = "<b>Search Type: </b>Name query<br><b>You Searched: </b>".$query_clean."<br><br>";
 				// Setup correct mySQL query
-				$sql_query=("Select * FROM players WHERE name='$query_clean'");
+				$sql_query=("Select * FROM players WHERE name LIKE '%$query_clean%'");
 			}else if ($query_type == "BZ") {
 				$info = "<b>Search Type: </b>BZID query<br><b>You Searched: </b>".$query_clean."<br><br>";
 				// Setup correct mySQL query
-				$sql_query=("Select * FROM players WHERE bzid='$query_clean'");
+				$sql_query=("Select * FROM players WHERE bzid LIKE '%$query_clean%'");
 			}else if ($query_type == "HO") {
 				$info = "<b>Search Type: </b>Host query<br><b>You Searched: </b>".$query_clean."<br><br>";
 				// Setup correct mySQL query
-				$sql_query=("Select * FROM players WHERE host='$query_clean'");
+				$sql_query=("Select * FROM players WHERE host LIKE '%$query_clean%'");
 			}else if ($query_type == "IP") {
 				$info = "<b>Search Type: </b>IP address query<br><b>You Searched: </b>".$query_clean."<br><br>";
 				// Setup correct mySQL query
-				$sql_query=("Select * FROM players WHERE ip='$query_clean'");
+				$sql_query=("Select * FROM players WHERE ip LIKE '%$query_clean%'");
 			}
 			
 			// Run query
@@ -104,10 +104,10 @@
 <form method="post">
 	<b>Search for:</b>
 	<select name="query_type">
-		<option value="NA">Username</option>
-		<option value="BZ">BZID</option>
-		<option value="HO">Internet Host</option>
-		<option value="IP">IP Address</option>
+		<option value="NA"<?php if($query_type == "NA") echo " selected"; ?>>Username</option>
+		<option value="BZ"<?php if($query_type == "BZ") echo " selected"; ?>>BZID</option>
+		<option value="HO"<?php if($query_type == "HO") echo " selected"; ?>>Internet Host</option>
+		<option value="IP"<?php if($query_type == "IP") echo " selected"; ?>>IP Address</option>
 	</select>
 	<input type="text" name="query"/>
 	<input type="submit" value="Search" name="search">
