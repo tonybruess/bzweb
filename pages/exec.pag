@@ -135,7 +135,11 @@ if($e && $conf){
 	include_once "include/footer.php";
 	die();
 }
-shell_exec("bzfs".$conf." -requireudp -pidfile servers/".$e[0]."/bzfs.pid 2>servers/".$e[0]."/error.txt >/dev/null &");
+$serverid = $e[0];
+$conf .= " -pidfile bzfs.pid -ts -requireudp -groupdb /home/tony/db/groups.txt -loadplugin /usr/local/lib/bzflag/logDetail.so";
+$cmd = "cd servers/".$serverid."; bzfs".$conf." | /usr/bin/php5-cgi ../../logpipe.php ".$serverid." ".$serverid." 2>error_logpipe.txt >error2.txt >/dev/null&";
+shell_exec($cmd);
+echo $cmd;
 sleep(2);
 $error = file_get_contents("servers/$e[0]/error.txt");
 if(preg_match("/Usage: /",$error) || preg_match("/ERROR: /",$error)){
