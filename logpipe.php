@@ -1,7 +1,7 @@
 <?php
 
 chdir("../../");
-require "./mysql.php";
+require "include/mysql.php";
 $stdin=fopen('php://stdin','r');
 $stderr=fopen('php://stderr','r');
 set_time_limit(0);
@@ -39,7 +39,7 @@ while(! feof($stdin)) {
 	$ts = mktime($entities[4],$entities[5],$entities[6],$entities[2],$entities[3],$entities[1]);
 
 	if(count($entities) > 1)
-		mysql_query("INSERT INTO serverlogs SET ".
+		mysql_query("INSERT INTO ".$argv[1]."serverlogs SET ".
 				"server=".$argv[1].",".
 				"time=".$ts.",".
 				"type=\"".mysql_real_escape_string($entities[7])."\",".

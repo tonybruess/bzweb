@@ -59,6 +59,8 @@ if ($_POST['createserver'] == "1" && $_POST['newserver'] != ""){ // form was pos
 			mysql_query("INSERT INTO servers (`master`, `name`, `enabled`) VALUES ('$g_ar[0]', '$newserver_clean', '1')");
 			$a = mysql_query("SELECT id FROM servers WHERE `master` = '$g_ar[0]' AND `name` = '$newserver_clean'");
 			$a_ar = mysql_fetch_array($a);
+			//Create logs
+			mysql_query("CREATE TABLE ".$a_ar[0]."serverlogs ( server INT, time TEXT, type TEXT, data TEXT)");
 			mkdir("servers/$a_ar[0]/");
 			chmod("servers/$a_ar[0]/", 0777);
 			$pidCreate = "servers/$a_ar[0]/bzfs.pid";

@@ -96,9 +96,9 @@ Order by:<select name="order" onchange="this.form.submit();">
 	</tr>
 <?php
 if($_GET['order']=='1' || !$_GET['order']){
-	$q = mysql_query("SELECT * FROM serverlogs WHERE `server`='$id_clean' ORDER BY time DESC");
+	$q = mysql_query("SELECT * FROM ".$id_clean."serverlogs WHERE `server`='$id_clean' ORDER BY time DESC");
 } else {
-	$q = mysql_query("SELECT * FROM serverlogs WHERE `server`='$id_clean' ORDER BY time ASC");
+	$q = mysql_query("SELECT * FROM ".$id_clean."serverlogs WHERE `server`='$id_clean' ORDER BY time ASC");
 }
 while($log = mysql_fetch_array($q)){
 ?><tr
