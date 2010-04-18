@@ -70,7 +70,6 @@ date_default_timezone_set("America/Chicago");
 				  <th>Username</th>
 				  <th>Ip Address</th>
 				  <th>Host</th>
-				  <th>Description</th>
 				  <th>BZID</th>
 				  <th>Last Seen</th>
 				 </tr>";
@@ -79,12 +78,13 @@ date_default_timezone_set("America/Chicago");
 				$num_results=count($result_array);			
 				for ( $row = 0; $row < $num_results; $row++ )
 				{				
+					if(strstr($result_array[$row][3],"VERIFIED")){ $bg = ' bgcolor=#99FF99'; }
+					if(strstr($result_array[$row][3],"ADMIN")){ $bg = ' bgcolor=#FF9933'; } else { $bg = ' bgcolor=#CCCCCC'; }
 					$temp_results=
-					"<tr class=\"a\">".
+					"<tr class=\"a\"".$bg.">".
 						"<td style=\"text-align: center;\">".$result_array[$row][0]."</td>".
 						"<td style=\"text-align: center;\">".$result_array[$row][1]."</td>".
 						"<td style=\"text-align: center;\">".$result_array[$row][2]."</td>".
-						"<td style=\"text-align: center;\">".$result_array[$row][3]."</td>".
 						"<td style=\"text-align: center;\">".$result_array[$row][4]."</td>".
 						"<td style=\"text-align: center;\">".date("Y-m-d",$result_array[$row][5]).' '.date("h:i:s A",$result_array[$row][5])."</td>".
 					"</tr>";
@@ -126,6 +126,45 @@ date_default_timezone_set("America/Chicago");
 	if(isset($result)) 
 	{ 
 		echo $result;
-	}
+	} else {
+				$sql_query=("SELECT * FROM players");
+				$query_result=mysql_query($sql_query);
+				$result_array=array();
+				while($row = mysql_fetch_assoc($query_result)){ // Results found, add them to result array
+					array_push($result_array, array($row['name'], $row['ip'], $row['host'], $row['description'], $row['bzid'], $row['time'], ));
+				}
+				// Setup result <table>
+				$result=
+				"<table width=\"100%\">
+				 <tr>
+				  <th>Username</th>
+				  <th>Ip Address</th>
+				  <th>Host</th>
+				  <th>BZID</th>
+				  <th>Last Seen</th>
+				 </tr>";
+				
+				// Add items to result <table>
+				$num_results=count($result_array);			
+				for ( $row = 0; $row < $num_results; $row++ )
+				{				
+					if(strstr($result_array[$row][3],"VERIFIED")){ $bg = ' bgcolor=#99FF99'; }
+					if(strstr($result_array[$row][3],"ADMIN")){ $bg = ' bgcolor=#FF9933'; } else { $bg = ' bgcolor=#CCCCCC'; }
+					$temp_results=
+					"<tr class=\"a\"".$bg.">".
+						"<td style=\"text-align: center;\">".$result_array[$row][0]."</td>".
+						"<td style=\"text-align: center;\">".$result_array[$row][1]."</td>".
+						"<td style=\"text-align: center;\">".$result_array[$row][2]."</td>".
+						"<td style=\"text-align: center;\">".$result_array[$row][4]."</td>".
+						"<td style=\"text-align: center;\">".date("Y-m-d",$result_array[$row][5]).' '.date("h:i:s A",$result_array[$row][5])."</td>".
+					"</tr>";
+					
+					// Add table row to result
+					$result.=$temp_results;
+				}
+				// Finish result by closing <table>
+				$result.="</table>";
+					echo $result;
+			}
 ?>
 
