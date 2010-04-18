@@ -72,7 +72,7 @@
 				$num_results=count($result_array);			
 				for ( $row = 0; $row < $num_results; $row++ )
 				{				
-					$bg = ' bgcolor=#CCCCCC';
+					if(strstr($result_array[$row][2],"5h")){$bg=' bgcolor=#BBC9D3';} else {$bg =' bgcolor=#CCCCCC';}
 					$temp_results=
 					"<tr class=\"a\"".$bg.">".
 						"<td style=\"text-align: center;\">".$result_array[$row][0]."</td>".
@@ -140,7 +140,7 @@
 				$num_results=count($result_array);			
 				for ( $row = 0; $row < $num_results; $row++ )
 				{				
-					$bg = ' bgcolor=#CCCCCC';
+					if(strstr($result_array[$row][2],"5h")){$bg=' bgcolor=#BBC9D3';} else {$bg =' bgcolor=#CCCCCC';}
 					$temp_results=
 					"<tr class=\"a\"".$bg.">".
 						"<td style=\"text-align: center;\">".$result_array[$row][0]."</td>".
