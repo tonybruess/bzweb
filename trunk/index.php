@@ -2,7 +2,7 @@
 session_start(); 
 header("Cache-control: private");
 include("global/vars.php");
-if(!$_SESSION['callsign'] && $_GET['p'] !== "error"){
+if($_SESSION['callsign'] && $_GET['p'] !== "error"){
 	include_once("include/header.php");
 	include_once("include/menu.php");
 ?>
