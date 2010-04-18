@@ -87,7 +87,7 @@ Order by:<select name="order" onchange="this.form.submit();">
      </table>
      <table cellpadding="5">
  	<tr>
-  		<td width="11%">Date</td>
+  		<td width="12%">Date</td>
   		<td width="11%">Time</td>
   		<td width="10%">Event</td>
   		<td width="10%">From</td>
