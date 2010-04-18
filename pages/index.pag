@@ -20,6 +20,140 @@
     License along with this program.  If not, see
     <http://www.gnu.org/licenses/>.
 */
+include_once "include/mysql.php";
 ?>
-<h3>Welcome to BZWeb</h3>
-<p>Erm, no colors here!</p>
+<h3>Dashboard</h3>
+<p>Use the dashboard to see what other users are doing. Most recent activity is below</p>
+			<h3>Current Up Server(s)</h3>
+<?php
+				$sql_query=("SELECT * FROM servers WHERE `status`='1'");
+				$query_result=mysql_query($sql_query);
+				$result_array=array();
+				while($row = mysql_fetch_assoc($query_result)){ // Results found, add them to result array
+					array_push($result_array, array($row['name']));
+				}
+				// Setup result <table>
+				$result=
+				"<table width=\"100%\">
+				 <tr>
+				  <th>Server name</th>
+				 </tr>";
+				
+				// Add items to result <table>
+				$num_results=count($result_array);			
+				for ( $row = 0; $row < $num_results; $row++ )
+				{				
+					if(strstr($result_array[$row][3],"VERIFIED")){ $bg = ' bgcolor=#99FF99'; }
+					if(strstr($result_array[$row][3],"ADMIN")){ $bg = ' bgcolor=#FF9933'; } else { $bg = ' bgcolor=#CCCCCC'; }
+					$temp_results=
+					"<tr class=\"a\"".$bg.">".
+						"<td style=\"text-align: center;\">".$result_array[$row][0]."</td>".
+						"</tr>";
+					
+					// Add table row to result
+					$result.=$temp_results;
+				}
+				// Finish result by closing <table>
+				$result.="</table>";
+					echo $result;
+			?>
+			<br>
+			<form>
+			<input type=hidden name="p" value="servers">
+			<input type=submit value="All servers">
+			</form>
+			<h3>Most Recent Bans</h3>
+<?php
+				$sql_query=("SELECT * FROM bans");
+				$query_result=mysql_query($sql_query);
+				$result_array=array();
+				while($row = mysql_fetch_assoc($query_result)){ // Results found, add them to result array
+					array_push($result_array, array($row['banner'], $row['ip'], $row['length'], $row['reason'], $row['time'], ));
+				}
+				// Setup result <table>
+				$result=
+				"<table width=\"100%\">
+				 <tr>
+				  <th>Banner</th>
+				  <th>Address</th>
+				  <th>Length</th>
+				  <th>Reason</th>
+				  <th>When</th>
+				 </tr>";
+				
+				// Add items to result <table>
+				$num_results=count($result_array);			
+				for ( $row = 0; $row < $num_results; $row++ )
+				{				
+					$bg = ' bgcolor=#CCCCCC';
+					$temp_results=
+					"<tr class=\"a\"".$bg.">".
+						"<td style=\"text-align: center;\">".$result_array[$row][0]."</td>".
+						"<td style=\"text-align: center;\">".$result_array[$row][1]."</td>".
+						"<td style=\"text-align: center;\">".$result_array[$row][2]."</td>".
+						"<td style=\"text-align: center;\">".$result_array[$row][3]."</td>".
+						"<td style=\"text-align: center;\">".date("Y-m-d",$result_array[$row][4]).' '.date("h:i:s A",$result_array[$row][4])."</td>".
+					"</tr>";
+					
+					// Add table row to result
+					$result.=$temp_results;
+				}
+				// Finish result by closing <table>
+				$result.="</table>";
+					echo $result;
+			?>
+			<br>
+			<form>
+			<input type=hidden name="p" value="bans">
+			<input type=submit value="More...">
+			</form>
+			<h3>Most Recent Players</h3>
+<?php
+				$sql_query=("SELECT * FROM players ORDER BY time DESC LIMIT 10");
+				$query_result=mysql_query($sql_query);
+				$result_array=array();
+				while($row = mysql_fetch_assoc($query_result)){ // Results found, add them to result array
+					array_push($result_array, array($row['name'], $row['ip'], $row['host'], $row['description'], $row['bzid'], $row['time'], ));
+				}
+				// Setup result <table>
+				$result=
+				"<table width=\"100%\">
+				 <tr>
+				  <th>Username</th>
+				  <th>Ip Address</th>
+				  <th>Host</th>
+				  <th>BZID</th>
+				  <th>Last Seen</th>
+				 </tr>";
+				
+				// Add items to result <table>
+				$num_results=count($result_array);			
+				for ( $row = 0; $row < $num_results; $row++ )
+				{				
+					if(strstr($result_array[$row][3],"VERIFIED")){ $bg = ' bgcolor=#99FF99'; }
+					if(strstr($result_array[$row][3],"ADMIN")){ $bg = ' bgcolor=#FF9933'; } else { $bg = ' bgcolor=#CCCCCC'; }
+					$temp_results=
+					"<tr class=\"a\"".$bg.">".
+						"<td style=\"text-align: center;\">".$result_array[$row][0]."</td>".
+						"<td style=\"text-align: center;\">".$result_array[$row][1]."</td>".
+						"<td style=\"text-align: center;\">".$result_array[$row][2]."</td>".
+						"<td style=\"text-align: center;\">".$result_array[$row][4]."</td>".
+						"<td style=\"text-align: center;\">".date("Y-m-d",$result_array[$row][5]).' '.date("h:i:s A",$result_array[$row][5])."</td>".
+					"</tr>";
+					
+					// Add table row to result
+					$result.=$temp_results;
+				}
+				// Finish result by closing <table>
+				$result.="</table>";
+					echo $result;
+			?>
+			<br>
+			<form>
+			<input type=hidden name="p" value="player">
+			<input type=submit value="More...">
+			</form>
+<h3>Most Recent Reports</h3>
+<p>Coming soon</p>
+<h3>Most Recent Filtered Language</h3>
+<p>Coming soon</p>
