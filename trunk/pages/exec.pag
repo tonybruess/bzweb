@@ -137,7 +137,7 @@ if($e && $conf){
 }
 $serverid = $e[0];
 $conf .= " -pidfile bzfs.pid -ts -requireudp -groupdb /home/tony/db/groups.txt -loadplugin /usr/local/lib/bzflag/logDetail.so";
-$cmd = "cd servers/".$serverid."; bzfs".$conf." | /usr/bin/php5-cgi ../../include/logpipe.php ".$serverid." ".$serverid." 2>error_logpipe.txt >/dev/null&";
+$cmd = "cd servers/".$serverid."; bzfs".$conf." 2> error.txt | /usr/bin/php5-cgi ../../logpipe.php ".$serverid." ".$serverid." 2>error_logpipe.txt >/dev/null&";
 shell_exec($cmd);
 sleep(2);
 $error = file_get_contents("servers/$e[0]/error.txt");
