@@ -1,7 +1,7 @@
 <?php
 
 chdir("../../");
-require "include/mysql.php";
+require "./mysql.php";
 $stdin=fopen('php://stdin','r');
 $stderr=fopen('php://stderr','r');
 set_time_limit(0);
