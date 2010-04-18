@@ -74,6 +74,10 @@ while(! feof($stdin)) {
 			mysql_query("INSERT INTO players SET `name`='$player[1]',`ip`='$player[4]',`host`='$host',`description`='$player[6]',`bzid`='$player[3]',`time`='$ts'");
 		}
 	}
+	if($entities[7] == 'MSG-COMMAND' && preg_match("/^\d+:(.*) ban ([^.]*).([^.]*).([^.]*).([^ ]*) ([^ ]*) (.*)/",$entities[9],$ban)){
+		mysql_query("INSERT INTO bans SET `server` = '$argv[1]', `banner`= '$ban[1]', `ip` = '$ban[2].$ban[3].$ban[4].$ban[5]', `length` = '$ban[6]', `reason` = '$ban[7]', `time` = '$ts'");
+	}
+
 }
 
 exit;
