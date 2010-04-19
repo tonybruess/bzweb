@@ -46,6 +46,16 @@ Order by:<select name="order" onchange="this.form.submit();">
 <option value="2"<?php if($_GET['order']=='2') echo " selected";?>>Oldest</option>
 </select>
 <br>
+Include:
+<input type="checkbox" checked  value="1" name="admin">Admin Chat
+<input type="checkbox" checked  value="1" name="slash">Commands
+<input type="checkbox" checked  value="1" name="filtered">Filtered Chat
+<input type="checkbox" checked  value="1" name="chat">Player Chat
+<input type="checkbox" checked  value="1" name="join">Player Joins/Parts
+<input type="checkbox" checked  value="1" name="report">Reports
+<input type="checkbox" checked  value="1" name="status">Server Status
+<input type="checkbox" checked  value="1" name="player">Playercount
+<br>
 <input type=submit value=Go>
 </form>
 <?php
@@ -64,11 +74,22 @@ Order by:<select name="order" onchange="this.form.submit();">
 				?>
 				</select>
 				<br>
-                <input type=hidden name="p" value="logs">
-                Order by:<select name="order" onchange="this.form.submit();">
+                Order by:<select name="order">
                 <option value="1"<?php if($_GET['order']=='1') echo " selected";?>>Newest</option>
                 <option value="2"<?php if($_GET['order']=='2') echo " selected";?>>Oldest</option>
                 </select>
+                <br>
+                Include:
+				<input type="checkbox" checked  value="1" name="admin">Admin Chat
+				<input type="checkbox" checked  value="1" name="slash">Commands
+				<input type="checkbox" checked  value="1" name="filtered">Filtered Chat
+				<input type="checkbox" checked  value="1" name="chat">Player Chat
+				<input type="checkbox" checked  value="1" name="join">Player Joins/Parts
+				<input type="checkbox" checked  value="1" name="report">Reports
+				<input type="checkbox" checked  value="1" name="status">Server Status
+				<input type="checkbox" checked  value="1" name="player">Playercount
+				<br>
+				<input type=submit value=Update>
                 </form><br>
      <table cellpadding="1">
      <tr>
@@ -89,18 +110,45 @@ Order by:<select name="order" onchange="this.form.submit();">
  	<tr>
   		<td width="12%">Date</td>
   		<td width="11%">Time</td>
-  		<td width="10%">Event</td>
+  		<td width="12%">Event</td>
   		<td width="10%">From</td>
   		<td width="10%">To</td>
   		<td width="50%">Detail</td>
 	</tr>
 <?php
-if($_GET['order']=='1' || !$_GET['order']){
-	$q = mysql_query("SELECT * FROM ".$id_clean."serverlogs WHERE `server`='$id_clean' ORDER BY time DESC");
-} else {
-	$q = mysql_query("SELECT * FROM ".$id_clean."serverlogs WHERE `server`='$id_clean' ORDER BY time ASC");
+$q = "SELECT * FROM ".$id_clean."serverlogs WHERE `server`='$id_clean'";
+$q .= " AND `type`=''";
+if($_GET['admin']){
+$q .= " OR `type`='MSG-ADMIN'";
 }
-while($log = mysql_fetch_array($q)){
+if($_GET['slash']){
+$q .= " OR `type`='MSG-COMMAND'";
+}
+if($_GET['filtered']){
+$q .= " OR `type`='MSG-FILTERED'";
+}
+if($_GET['chat']){
+$q .= " OR `type`='MSG-BROADCAST' OR `type`='MSG-TEAM'";
+}
+if($_GET['join']){
+$q .= " OR `type`='PLAYER-JOIN' OR `type`='PLAYER-PART'";
+}
+if($_GET['report']){
+$q .= " OR `type`='MSG-REPORT'";
+}
+if($_GET['status']){
+$q .= " OR `type`='SERVER-STATUS'";
+}
+if($_GET['player']){
+$q .= " OR `type`='PLAYERS'";
+}
+if($_GET['order']=='1' || !$_GET['order']){
+	$q .= " ORDER BY time DESC";
+} else {
+	$q .= " ORDER BY time ASC";
+}
+$qr = mysql_query($q);
+while($log = mysql_fetch_array($qr)){
 ?><tr
 <?php
 	if($log['type'] == "PLAYER-JOIN") {
@@ -245,7 +293,7 @@ while($log = mysql_fetch_array($q)){
          $justuser = substr($report[2],0,-$actuallength);
           echo "report</td>";
           echo "<td><b>$justuser</b></td>";
-          echo "<td>Report</td>";
+          echo "<td>--</td>";
           echo "<td>$justmessage</td>";
           echo "</tr>";
   		}
