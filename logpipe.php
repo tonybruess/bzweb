@@ -77,6 +77,13 @@ while(! feof($stdin)) {
 	if($entities[7] == 'MSG-COMMAND' && preg_match("/^\d+:(.*) ban ([^.]*).([^.]*).([^.]*).([^ ]*) ([^ ]*) (.*)/",$entities[9],$ban)){
 		mysql_query("INSERT INTO bans SET `server` = '$argv[1]', `banner`= '$ban[1]', `ip` = '$ban[2].$ban[3].$ban[4].$ban[5]', `length` = '$ban[6]', `reason` = '$ban[7]', `time` = '$ts'");
 	}
+	if($entities[7] == 'MSG-REPORT' && preg_match("/(.*?):(.*?$)/",$entities[9],$report)){
+         $justmessage = substr($report[2],$report[1]);
+         $entirelength = strlen($report[2]);
+         $actuallength = ($entirelength - $report[1]);
+         $justuser = substr($report[2],0,-$actuallength);
+		mysql_query("INSERT INTO reports SET `server` = '$argv[1]', `reporter`= '$justuser', `report` = '$justmessage', `time` = '$ts'");
+	}
 
 }
 
