@@ -20,9 +20,88 @@
     License along with this program.  If not, see
     <http://www.gnu.org/licenses/>.
 */
+include_once "include/mysql.php";
+date_default_timezone_set("America/Chicago"); 
+$id_clean = sanitize($_GET['server']);
+$q = mysql_query("SELECT * FROM servers WHERE enabled='1'");
 ?>
 				<h3>Reports</h3>
+ <?
+if(!$id_clean){
+?>
+<form>
+Please select a server:
+<input type=hidden name="p" value="reports">
+<select name="server">
+<?php
+while($qr = mysql_fetch_array($q)){
+?>
+<option value="<?php echo $qr[0]?>"><?php echo $qr[2]?></option>
+<?php
+}
+?>
+</select>
+<br>
+Order by:<select name="order" onchange="this.form.submit();">
+<option value="1"<?php if($_GET['order']=='1') echo " selected";?>>Newest</option>
+<option value="2"<?php if($_GET['order']=='2') echo " selected";?>>Oldest</option>
+</select>
+<br>
+<input type=submit value=Go>
+</form>
+<?php
+} else {
+?>
+                <form name="form" method="get">
+				Server:
+				<input type=hidden name="p" value="logs">
+				<select name="server" onchange="this.form.submit();">
+				<?php
+				while($qr = mysql_fetch_array($q)){
+				?>
+				<option value="<?php echo $qr[0]?>"<?php if($qr[0]==$id_clean) echo ' selected';?>><?php echo $qr[2]?></option>
+				<?php
+				}
+				?>
+				</select>
+				<br>
+                <input type=hidden name="p" value="reports">
+                Order by:<select name="order" onchange="this.form.submit();">
+                <option value="1"<?php if($_GET['order']=='1') echo " selected";?>>Newest</option>
+                <option value="2"<?php if($_GET['order']=='2') echo " selected";?>>Oldest</option>
+                </select>
+                </form><br>
+     <table cellpadding="5">
+ 	<tr>
+  		<td width="12%">Date</td>
+  		<td width="11%">Time</td>
+  		<td width="10%">Reporter</td>
+  		<td width="60%">Report</td>
+	</tr>
                 <?php
+if($_GET['order']=='1' || !$_GET['order']){
+	$q = mysql_query("SELECT * FROM reports WHERE `server`='$id_clean' ORDER BY time DESC");
+} else {
+	$q = mysql_query("SELECT * FROM reports WHERE `server`='$id_clean' ORDER BY time ASC");
+}
+while($report = mysql_fetch_array($q)){
+$i_report++;
+?>
+<tr <?php if ($i_report % 2) {echo 'bgcolor="#99999"';} else {echo 'bgcolor="#CDCDCE"';}?>>
+<td><?php echo date("Y-m-d",$report['time']);?></td>
+<td><?php echo date("h:i:s A",$report['time']);?></td>
+<td><?php echo $report['reporter']?></td>
+<td><?php echo $report['report']?></td>
+</tr>
+<?php
+}
+?>
+</table>
+<?php
+}
+?>
+
+ <?php /*
      $reportfile = file_get_contents("report.txt");
      $reports = array();
      $i_length = 0;
@@ -56,3 +135,5 @@
      }
      ?>
 	</table>
+	*/
+	?>
