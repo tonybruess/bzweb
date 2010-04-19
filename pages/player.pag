@@ -127,7 +127,8 @@ date_default_timezone_set("America/Chicago");
 	{ 
 		echo $result;
 	} else {
-				$sql_query=("SELECT * FROM players ORDER BY time DESC LIMIT 50");
+		echo '<h3>Last 20 players</h3>';
+				$sql_query=("SELECT * FROM players ORDER BY time DESC LIMIT 20");
 				$query_result=mysql_query($sql_query);
 				$result_array=array();
 				while($row = mysql_fetch_assoc($query_result)){ // Results found, add them to result array
