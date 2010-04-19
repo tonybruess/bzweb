@@ -82,5 +82,30 @@ CREATE TABLE servers (
 	`admsg` TEXT,
 	`enabled` INT NOT NULL
 );
+
+CREATE TABLE files (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+owner VARCHAR(200),
+type VARCHAR(10),
+file text
+);
+
+create table players (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name TEXT,
+ip VARCHAR(100),
+host VARCHAR(200),
+description TEXT,
+bzid VARCHAR(50),
+time VARCHAR(100)
+);
+
+create table reports (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+server INT,
+reporter TEXT,
+report TEXT,
+time VARCHAR(100)
+);
 */
 ?>
