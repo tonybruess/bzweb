@@ -55,7 +55,11 @@ include_once "include/mysql.php";
 				}
 				// Finish result by closing <table>
 				$result.="</table>";
-					echo $result;
+					if($result_array[$row][0]){
+						echo $result;
+					} else {
+						echo "<center>No servers currently up</center>";
+					}
 			?>
 			<br>
 			<form>
