@@ -201,5 +201,3 @@ include_once "include/mysql.php";
 			<input type=hidden name="p" value="player">
 			<input type=submit value="More...">
 			</form>
-<h3>Most Recent Filtered Language</h3>
-<p>Coming soon</p>
