@@ -198,6 +198,6 @@ include_once "include/mysql.php";
 			?>
 			<br>
 			<form>
-			<input type=hidden name="p" value="player">
+			<input type=hidden name="p" value="reports">
 			<input type=submit value="More...">
 			</form>
