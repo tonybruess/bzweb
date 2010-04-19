@@ -124,7 +124,8 @@ if ($_POST['deletegroup'] == "1"){ // form was posted and isnt blank
   <th>Server</th>
   <th>Status</th>
   <th>Owner</th>
-  <th>Log Files</th>
+  <th>Logs</th>
+  <th>Reports</th>
   <th>Delete</th>
  </tr>
 <?php
@@ -136,20 +137,21 @@ while ($g_row = mysql_fetch_array($group)) {
   $i_groups++;
   echo ' <tr id="'.$i_groups.'" class="a">
   <td id="p1"><div id="p2" class="tier1"><a id="p3" onclick="toggleRows(this)" class="folder"></a>'.$g_row[1].'</div></td>
-  <td>--</td>
-  <td>'.$g_row[2].'</td>
-  <td>--</td>';
+  <td><center>--</center></td>
+  <td><center>'.$g_row[2].'</center></td>
+  <td><center>--</center></td>
+<td><center>--</center></td>';
   if ($name == $g_row[2]){
 echo
- '<td><form method="post">
+ '<td><center><form method="post">
 <input type="submit" value="Delete">
 <input type="hidden" name="deletegroup" value="1" >
 <input type="hidden" name="group" value="'.$g_row[0].'">
 </form>';
   } else {
-  	echo '<td>--';
+  	echo '<td><center>--';
   }
-echo '</td></tr>';
+echo '</center></td></tr>';
 $server = mysql_query("SELECT * FROM servers WHERE master='$g_row[0]' AND `enabled`='1'");
 //For each group, also loop through the servers
 while ($s_row = mysql_fetch_array($server)) {
@@ -172,25 +174,26 @@ while ($s_row = mysql_fetch_array($server)) {
   } else {
   	// Check mysql if server is down and if user owns server
   	  	if($name == $g_row[2]){
-  	  		echo "<td><a class=\"tooltip\" href=\"?p=exec&mode=start&g=$g_row[0]&s=$s_row[0]\">Down";
-  			echo "<span>Click to Start</span></a></td>";
+  	  		echo "<td><center><a class=\"tooltip\" href=\"?p=exec&mode=start&g=$g_row[0]&s=$s_row[0]\">Down";
+  			echo "<span>Click to Start</span></center></a></td>";
   		} else {
-  			echo "<td>Down</td>";
+  			echo "<td><center>Down</center></td>";
   		}
   }
   echo '
-  <td></td>
-  <td><a href="?p=logs&server='.$s_row[0].'">Logs</a></td>';
+  <td><center>--</center></td>
+  <td><center><a href="?p=logs&server='.$s_row[0].'">Logs</a></center></td>
+  <td><center><a href="?p=reports&server='.$s_row[0].'">Reports</a></center></td>';
 echo '<td>';
   if ($name == $g_row[2])
 echo
- '<form method="post">
+ '<center><form method="post">
 <input type="submit" value="Delete">
 <input type="hidden" name="deleteserver" value="1" >
 <input type="hidden" name="server" value="'.$s_row[0].'">
 <input type="hidden" name="master" value="'.$g_row[0].'">
 </form>';
-echo '</td>
+echo '</center></td>
  </tr>';//logs
 }
 }
