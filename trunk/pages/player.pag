@@ -78,8 +78,8 @@ date_default_timezone_set("America/Chicago");
 				$num_results=count($result_array);			
 				for ( $row = 0; $row < $num_results; $row++ )
 				{				
-					if(strstr($result_array[$row][3],"VERIFIED")){ $bg = ' bgcolor=#99FF99'; }
-					if(strstr($result_array[$row][3],"ADMIN")){ $bg = ' bgcolor=#FF9933'; } else { $bg = ' bgcolor=#CCCCCC'; }
+					if(strstr($result_array[$row][3],"VERIFIED")){ $bg = ' bgcolor=#99FF99'; } else { $bg = ' bgcolor=#CCCCCC'; }
+					if(strstr($result_array[$row][3],"ADMIN")){ $bg = ' bgcolor=#FF9933'; }
 					$temp_results=
 					"<tr class=\"a\"".$bg.">".
 						"<td style=\"text-align: center;\">".$result_array[$row][0]."</td>".
@@ -148,8 +148,8 @@ date_default_timezone_set("America/Chicago");
 				$num_results=count($result_array);			
 				for ( $row = 0; $row < $num_results; $row++ )
 				{				
-					if(strstr($result_array[$row][3],"VERIFIED")){ $bg = ' bgcolor=#99FF99'; }
-					if(strstr($result_array[$row][3],"ADMIN")){ $bg = ' bgcolor=#FF9933'; } else { $bg = ' bgcolor=#CCCCCC'; }
+					if(strstr($result_array[$row][3],"VERIFIED")){ $bg = ' bgcolor=#99FF99'; } else { $bg = ' bgcolor=#CCCCCC'; }
+					if(strstr($result_array[$row][3],"ADMIN")){ $bg = ' bgcolor=#FF9933'; }
 					$temp_results=
 					"<tr class=\"a\"".$bg.">".
 						"<td style=\"text-align: center;\">".$result_array[$row][0]."</td>".
