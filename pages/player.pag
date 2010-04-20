@@ -24,7 +24,6 @@ date_default_timezone_set("America/Chicago");
 ?>
 <h3>Player Info</h3>
 <?php
-	include "include/mysql.php";
 	if($_POST){
 	$query_type = $_POST['query_type'];
 	}	

@@ -46,12 +46,10 @@ if (!$_GET['server'] || !$_GET['group']){
 //If user posted conf, check if numerical 
 if($_POST['save']){
 $varscheck = Array($_POST['msv'],$_POST['rogue'],$_POST['red'],$_POST['green'],$_POST['blue'],$_POST['purple'],$_POST['observer'],$_POST['fa'],$_POST['fcl'],$_POST['frf'],$_POST['fg'],$_POST['fgm'],$_POST['fib'],$_POST['fl'],$_POST['fmg'],$_POST['fn'],$_POST['foo'],$_POST['fpz'],$_POST['fqt'],$_POST['fsb'],$_POST['fse'],$_POST['fsh'],$_POST['fsr'],$_POST['fst'],$_POST['fsw'],$_POST['ft'],$_POST['fth'],$_POST['fus'],$_POST['fv'],$_POST['fwg'],$_POST['worldsize'],$_POST['pv']);
-echo "Debug: ";
 //Loop each var
 foreach ($varscheck as $element) {
     if (is_numeric($element) || !$element) {
-        echo "Pass ";
-    } else {
+     } else {
         echo "Alphabetic characters detected";
         //Die if user attempted to hack
         include_once "include/footer.php";

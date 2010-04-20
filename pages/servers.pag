@@ -23,7 +23,6 @@
 ?>
 <h3>Servers</h3>
 <?php
-include "include/mysql.php";
 //Change into servers
 chdir("servers/");
 $dirs = glob("*");

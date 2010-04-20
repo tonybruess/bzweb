@@ -20,9 +20,6 @@
     License along with this program.  If not, see
     <http://www.gnu.org/licenses/>.
 */
-?>
-<?php
 session_start(); 
 header("Cache-control: private");
-include("global/vars.php");
 ?>  

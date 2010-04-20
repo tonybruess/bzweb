@@ -20,6 +20,19 @@
     License along with this program.  If not, see
     <http://www.gnu.org/licenses/>.
 */
+include("include/mysql.php");
+	if($_POST['updatesettings']){
+		$site = $_POST['site'];
+		$email = $_POST['email'];
+		$bzfs = $_POST['bzfs'];
+		$domain1 = $_POST['domain1'];
+		$global = $_POST['global'];
+		$local = $_POST['local'];
+		$q = "UPDATE settings SET `site`='$site', `email`='$email', `bzfs`='$bzfs', `domain1`='$domain1', `global`='$global', `local`='$local'";
+		mysql_query($q);
+		$err = "Settings updated successfully";
+	}
+$sitedata = mysql_fetch_array(mysql_query("SELECT * FROM settings"));
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
@@ -38,6 +51,6 @@
 <div id="Header">
 	<div id="PageNavigation">
 		<div id="Logo">
-			<h1>BZBureau</h1> 
+			<h1><?php echo $sitedata['site'] ?></h1> 
 			<h2>BZFS Administration</h2> 
 		</div>
