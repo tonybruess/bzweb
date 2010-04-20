@@ -20,18 +20,17 @@
     License along with this program.  If not, see
     <http://www.gnu.org/licenses/>.
 */
-?>
-<?php
 if($_SESSION['callsign']){
-	?>	<ul>
+	?>
+	<ul>
 			<li><a href="index.php"<?php if($page=='index') echo ' class=active';?>>Home</a></li>
- 			<li><a href="?p=servers"<?php if($page=='servers') echo ' class=active';?>>Servers</a></li>
- 			<li><a href="?p=files"<?php if($page=='files') echo ' class=active';?>>Files</a></li>
- 			<li><a href="?p=bans"<?php if($page=='bans') echo ' class=active';?>>Bans</a></li>
- 			<li><a href="?p=player"<?php if($page=='player') echo ' class=active';?>>Player Info</a></li>
- 			<li><a href="?p=reports"<?php if($page=='reports') echo ' class=active';?>>Reports</a></li>
- 			<li><a href="?p=logs"<?php if($page=='logs') echo ' class=active';?>>Logs</a></li>
- 			<li><a href="?p=logout"<?php if($page=='logout') echo ' class=active';?>>Logout</a></li>
+ 			<li><a href="index.php?p=servers"<?php if($page=='servers') echo ' class=active';?>>Servers</a></li>
+ 			<li><a href="index.php?p=files"<?php if($page=='files') echo ' class=active';?>>Files</a></li>
+ 			<li><a href="index.php?p=bans"<?php if($page=='bans') echo ' class=active';?>>Bans</a></li>
+ 			<li><a href="index.php?p=player"<?php if($page=='player') echo ' class=active';?>>Player Info</a></li>
+ 			<li><a href="index.php?p=reports"<?php if($page=='reports') echo ' class=active';?>>Reports</a></li>
+ 			<li><a href="index.php?p=logs"<?php if($page=='logs') echo ' class=active';?>>Logs</a></li>
+ 			<li><a href="index.php?p=logout"<?php if($page=='logout') echo ' class=active';?>>Logout</a></li>
 		</ul>
 
 	<?php } else { ?>		

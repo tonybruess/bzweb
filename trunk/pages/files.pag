@@ -21,7 +21,6 @@
     <http://www.gnu.org/licenses/>.
 */
 $op = $_GET['op'];
-include "include/mysql.php";
 ?>
 <h3>File Management</h3>
 <?php

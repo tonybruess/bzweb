@@ -118,7 +118,7 @@ h3{
 #PageNavigation li{
 	list-style:none;
 	display:inline;
-	padding-left: 10px;
+	padding-left: 0px;
 	padding-right: 10px;
 }
 #PageNavigation li a.active{

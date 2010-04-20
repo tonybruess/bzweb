@@ -23,7 +23,6 @@
 ?>
 				<h3>Bans</h3>
 <?php
-	include "include/mysql.php";
 	if($_POST){
 	$query_type = $_POST['query_type'];
 	}	
