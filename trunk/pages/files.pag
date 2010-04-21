@@ -71,8 +71,38 @@ Name: <input name="name" value="" type="text">
 <?php
 if($op=='upload'){
   if ($_POST) {
-  	echo "<br>Map uploading disabled<br><br>";
-  }
+  
+    	$fileName = sanitize($_FILES['map']['name']);
+    	$tmpName  = $_FILES['map']['tmp_name'];
+    	$fileSize = $_FILES['map']['size'];
+    	$fileType = $_FILES['map']['type'];
+    	
+    	echo "Uploading map file: ".$fileName;
+    	
+    	$ext = substr($fileName, strpos($fileName,'.'), strlen($fileName)-1); // Get the extension from the filename.
+    	
+    	if(!strstr($ext,'.bzw'))
+    	   die('The file you attempted to upload is not allowed.');
+    	
+    	// Now check the filesize, if it is too large then DIE and inform the user.
+    	if(filesize($fileSize > 5242880))// check if file size is greater that 5MB
+    	   die('The file you attempted to upload is too large.');
+    	
+    	
+    	
+    	$fp      = fopen($tmpName, 'r');
+    	$content = fread($fp, filesize($tmpName));
+    	$content = sanitize($content);
+    	fclose($fp);
+    	
+    	$query = "INSERT INTO files (name, owner, type, contents ) ".
+    	"VALUES ('$fileName', '$name', 'bzw', '$content')";
+    	
+    	mysql_query($query) or die('Error, query failed'); 
+    	
+    	echo "<br>File $fileName uploaded<br>";
+   
+    }
 ?>
 <form action="?p=files&op=upload" enctype="multipart/form-data" method="POST">
 <input type="file" name="map" >
@@ -92,11 +122,11 @@ if($op=='edit'){
 ?>
 <fieldset>
 <legend>Maps</legend>
-<table border="0px" cellpadding="3" cellspacing="3">
-	<tr bgcolor="#CDCDCE">
-		<td>Name</td>
-		<td>Edit</td>
-		<td>Delete</td>
+<table border="0px" cellpadding="3" cellspacing="3" width="500px">
+	<tr  style="text-align: left; font-weight: bold;">
+		<td>Map Name</td>
+		<td width="50px">Edit</td>
+		<td width="50px">Delete</td>
 	</tr>
 <?php
 $m = mysql_query("SELECT * FROM files WHERE owner='$name' AND `type`='map'");
@@ -109,11 +139,11 @@ while($mr = mysql_fetch_array($m)){
 </table></fieldset><br>
 <fieldset>
 <legend>Group Databases</legend>
-<table border="0px" cellpadding="3" cellspacing="3">
-	<tr bgcolor="#CDCDCE">
-		<td>Name</td>
-		<td>Edit</td>
-		<td>Delete</td>
+<table border="0px" cellpadding="3" cellspacing="3" width="500px">
+	<tr style="text-align: left; font-weight: bold;">
+		<td>Database Name</td>
+		<td width="50px">Edit</td>
+		<td width="50px">Delete</td>
 	</tr>
 <?php
 $g = mysql_query("SELECT * FROM files WHERE owner='$name' AND `type`='groupdb'");
@@ -125,11 +155,11 @@ while($gr = mysql_fetch_array($g)){
 ?>
 </table></fieldset><br><fieldset>
 <legend>Help Files</legend>
-<table border="0px" cellpadding="3" cellspacing="3">
-	<tr bgcolor="#CDCDCE">
-		<td>Name</td>
-		<td>Edit</td>
-		<td>Delete</td>
+<table border="0px" cellpadding="3" cellspacing="3" width="500px">
+	<tr style="text-align: left; font-weight: bold;">
+		<td>File Name</td>
+		<td width="50px">Edit</td>
+		<td width="50px">Delete</td>
 	</tr>
 <?php
 $b = mysql_query("SELECT * FROM files WHERE owner='$name' AND `type`='helpf'");
