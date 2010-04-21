@@ -21,8 +21,7 @@
     <http://www.gnu.org/licenses/>.
 */
 date_default_timezone_set("America/Chicago"); 
-$page = $_SERVER['PHP_SELF'];
-if($_SESSION['callsign']!=='mrapple'){
+if($_SESSION['perm'][1]!=='1'){
 } else {
 	?>
 <h3>Admin CP</h3>

@@ -112,7 +112,7 @@ $result = validate_token($_GET['token'], $_GET['username'], $groups);
 	mysql_query("UPDATE users SET `last login`='$ts'");
 ?>
 		<head>
-		<meta HTTP-EQUIV="Refresh" CONTENT="10;URL=index.php">
+		<meta HTTP-EQUIV="Refresh" CONTENT="0;URL=index.php">
 		</head>
 <?php
 	} else {
