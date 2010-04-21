@@ -23,6 +23,9 @@
 if($_SESSION['callsign']){
 	?>
 	<ul>
+			<?php if($_SESSION['perm'][1]=='1'){?>
+			<li><a href="index.php?p=admin"<?php if($page=='admin') echo ' class=active';?>>Admin</a></li>
+			<?php } ?>
 			<li><a href="index.php"<?php if($page=='index') echo ' class=active';?>>Home</a></li>
  			<li><a href="index.php?p=servers"<?php if($page=='servers') echo ' class=active';?>>Servers</a></li>
  			<li><a href="index.php?p=files"<?php if($page=='files') echo ' class=active';?>>Files</a></li>
