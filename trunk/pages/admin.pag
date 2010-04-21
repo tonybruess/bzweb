@@ -25,10 +25,6 @@ if($_SESSION['perm'][1]!=='1'){
 } else {
 	?>
 <h3>Admin CP</h3>
-<?php
-if(!$_GET['op']){
-	echo "Please select an option below<br><br>";
-}?>
 <fieldset>
 <legend><a href="?p=admin&op=config">Site Configuration</a></legend>
 <?php if($_GET['op']=='config'){
