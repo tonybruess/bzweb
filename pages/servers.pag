@@ -55,7 +55,7 @@ if ($_POST['createserver'] == "1" && $_POST['newserver'] != ""){ // form was pos
 			echo "Server Already Exists";
 		} elseif ($g_ar[2] == $name){
 			//Create server
-			mysql_query("INSERT INTO servers (`master`, `name`, `enabled`) VALUES ('$g_ar[0]', '$newserver_clean', '1')");
+			mysql_query("INSERT INTO servers (`master`, `name`, `owner`, `enabled`) VALUES ('$g_ar[0]', '$newserver_clean', '$name, '1')");
 			$a = mysql_query("SELECT id FROM servers WHERE `master` = '$g_ar[0]' AND `name` = '$newserver_clean'");
 			$a_ar = mysql_fetch_array($a);
 			//Create logs
