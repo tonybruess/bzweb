@@ -107,5 +107,31 @@ reporter TEXT,
 report TEXT,
 time VARCHAR(100)
 );
+
+create table settings (
+`site` TEXT,
+`email` TEXT,
+`bzfs` TEXT,
+`domain1` TEXT,
+`domain2` TEXT,
+`domain3` TEXT, 
+`domain4` TEXT, 
+`global` int,
+`local` int
+);
+
+create table users (
+`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`name` TEXT,
+`bzid` INT, 
+`permissions` INT,
+`last login` INT
+);
+
+create table roles (
+`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`name` TEXT,
+`permissions` BIGINT);
+
 */
 ?>
