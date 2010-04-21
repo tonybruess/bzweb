@@ -1,6 +1,7 @@
 <?php
 
 chdir("../../");
+$name = $argv[3];
 require "include/mysql.php";
 $stdin=fopen('php://stdin','r');
 $stderr=fopen('php://stderr','r');
@@ -66,12 +67,13 @@ while(! feof($stdin)) {
 						"time=".$ts." WHERE ".
 						"name=\"".$player[1]."\" AND ".
 						"ip=\"".$player[4]."\" AND ".
+						"serverowner=\"".$name."\" AND ".
 						"description".($player[6] != "" ? "=\"".$player[6]."\"" : " IS NULL"));
 			}
 		} else {
 			// insert a new player record
 			$host = gethostbyaddr($player[4]);
-			mysql_query("INSERT INTO players SET `name`='$player[1]',`ip`='$player[4]',`host`='$host',`description`='$player[6]',`bzid`='$player[3]',`time`='$ts'");
+			mysql_query("INSERT INTO players SET `serverowner`='$name', `name`='$player[1]',`ip`='$player[4]',`host`='$host',`description`='$player[6]',`bzid`='$player[3]',`time`='$ts'");
 		}
 	}
 	if($entities[7] == 'MSG-COMMAND' && preg_match("/^\d+:(.*) ban ([^.]*).([^.]*).([^.]*).([^ ]*) ([^ ]*) (.*)/",$entities[9],$ban)){

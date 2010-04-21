@@ -20,11 +20,16 @@
     License along with this program.  If not, see
     <http://www.gnu.org/licenses/>.
 */
-date_default_timezone_set("America/Chicago"); 
-$id_clean = sanitize($_GET['server']);
-$q = mysql_query("SELECT * FROM servers WHERE enabled='1'");
 ?>				<h3>Logs</h3>
 <?
+if($_SESSION['perm'][15]=='1'||$_SESSION['perm'][16]=='1'){
+date_default_timezone_set("America/Chicago"); 
+$id_clean = sanitize($_GET['server']);
+if($_SESSION['perm'][15]=='1'){
+	$q = mysql_query("SELECT * FROM servers WHERE enabled='1'");
+} else {
+	$q = mysql_query("SELECT id FROM servers WHERE enabled='1' AND owner='$name'");
+}	
 if(!$id_clean){
 ?>
 <form>
@@ -115,6 +120,10 @@ Include:
   		<td width="50%">Detail</td>
 	</tr>
 <?php
+$check = mysql_fetch_array(mysql_query("SELECT owner FROM servers WHERE id='$id_clean'"));
+if($name !== $check[0]){
+	die();
+}
 $q = "SELECT * FROM ".$id_clean."serverlogs WHERE `server`='$id_clean'";
 $q .= " AND `type`=''";
 if($_GET['admin']){
@@ -349,5 +358,10 @@ while($log = mysql_fetch_array($qr)){
 ?>
 	</table>
 	<?php
+}
+} else {
+?>
+<p>You do not have permission to view this page</p>
+<?php
 }
 ?>

@@ -15,18 +15,12 @@ CREATE TABLE groups (
 	`enabled` INT
 );
 
-CREATE TABLE servers(
-	`id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	`name` VARCHAR(100),
-	`owner` VARCHAR(100),
-	`stats` INT NOT NULL,
-	`enabled` INT
-);
-
 CREATE TABLE servers (
 	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`master` INT NOT NULL,
 	`name` TEXT,
+	`owner` TEXT,
+	`status` INT,
 	`style` VARCHAR(5),
 	`j` INT,
 	`r` INT,
