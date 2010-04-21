@@ -23,10 +23,6 @@
 $op = $_GET['op'];
 ?>
 <h3>File Management</h3>
-<?php
-if(!$_GET['op']){
-	echo "Please select an option below<br><br>";
-}?>
 <fieldset>
 <legend><a href="?p=files&op=create">Create a Help or Group Database</a></legend>
 <?php
