@@ -23,7 +23,6 @@
 ?>
 <h3>Edit</h3>
 <?php
-include "include/mysql.php";
 if($_GET['mode']=='conf'){
 //Check for correc paramaters
 if (!$_GET['server'] || !$_GET['group']){
@@ -243,7 +242,7 @@ if($_GET['mode']=='file'){
 		echo "You don't own this file";
 	} else {
 	if($_POST){
-		$cc = sanitize($_POST['contents']);
+		$cc = $_POST['contents'];
 		$nc = sanitize($_POST['name']);
 		if(mysql_query("UPDATE files SET `name`='$nc', `contents`='$cc' WHERE id='$idc'"))
 		echo "Updated successfully!<br><br>";
