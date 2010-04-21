@@ -2,7 +2,7 @@
 session_start(); 
 header("Cache-control: private");
 include("global/vars.php");
-
+include("include/mysql.php");
 if(!$_GET['token'] || !$_GET['username']){
 die("Incorrect information submitted.");
 } else {
@@ -80,10 +80,35 @@ $result = validate_token($_GET['token'], $_GET['username'], $groups);
 	if(strstr($bannedcap,$fusercap)) { 
 		exit("You have been banned from this server by an administrator.");
 	} else {
-	if(count($result['groups']) > 0) { 
-	
+	$users = mysql_query("SELECT name FROM users WHERE `name`='".$result['username']."'");
+	echo mysql_error();
+	$userar = mysql_fetch_array($users);
+		if(count($userar[0]) > 0) { 
+			$ts = time();
 		$_SESSION['callsign'] = $fuser;
 		$_SESSION['pass'] = $ftoken;
+		$userdata = mysql_fetch_array(mysql_query("SELECT * FROM users"));	 
+		$rolesdata = mysql_fetch_array(mysql_query("SELECT * FROM roles WHERE `id`=".$userdata['permissions'].""));
+		$perm = str_split($rolesdata['permissions']);
+	if($perm[1]=='1') $_SESSION['perm'][1] = 1;
+	if($perm[2]=='1') $_SESSION['perm'][2] = 1;
+	if($perm[3]=='1') $_SESSION['perm'][3] = 1;
+	if($perm[4]=='1') $_SESSION['perm'][4] = 1;
+	if($perm[5]=='1') $_SESSION['perm'][5] = 1;
+	if($perm[6]=='1') $_SESSION['perm'][6] = 1;
+	if($perm[7]=='1') $_SESSION['perm'][7] = 1;
+	if($perm[8]=='1') $_SESSION['perm'][8] = 1;
+	if($perm[9]=='1') $_SESSION['perm'][9] = 1;
+	if($perm[10]=='1') $_SESSION['perm'][10] = 1;
+	if($perm[11]=='1') $_SESSION['perm'][11] = 1;
+	if($perm[12]=='1') $_SESSION['perm'][12] = 1;
+	if($perm[13]=='1') $_SESSION['perm'][13] = 1;
+	if($perm[14]=='1') $_SESSION['perm'][14] = 1;
+	if($perm[15]=='1') $_SESSION['perm'][15] = 1;
+	if($perm[16]=='1') $_SESSION['perm'][16] = 1;
+	if($perm[17]=='1') $_SESSION['perm'][17] = 1;
+	if($perm[18]=='1') $_SESSION['perm'][18] = 1;
+		mysql_query("UPDATE users SET `last login`='$ts'");
 ?>
 		<head>
 		<meta HTTP-EQUIV="Refresh" CONTENT="0;URL=index.php">
