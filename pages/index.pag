@@ -21,7 +21,6 @@
     <http://www.gnu.org/licenses/>.
 */
 include_once "include/mysql.php";
-print_r($_SESSION['perm'])
 ?>
 <h3>Dashboard</h3>
 <p>Use the dashboard to see what other users are doing. Most recent activity is below</p>
