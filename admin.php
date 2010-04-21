@@ -49,10 +49,6 @@ BZFS Executable: <input type="text" name="bzfs" value="<?php echo $set_data[2]?>
 <br>
 Domain: <input type="text" name="domain1" value="<?php echo $set_data[3]?>">
 <br>
-Global auth: <input name="global" type="checkbox" value="1" <?php if($set_data[7]=='1') echo ' checked';?>>
-<br>
-Local auth: <input name="local" type="checkbox" value="1"<?php if($set_data[8]=='1') echo ' checked';?>>
-<br>
 <input type="hidden" name="updatesettings" value="1">
 <input type="submit" value="Save">
 </form>
@@ -62,11 +58,19 @@ Local auth: <input name="local" type="checkbox" value="1"<?php if($set_data[8]==
 </fieldset>
 <br>
 <fieldset>
-<legend><a href="?op=group">Permission Roles</a></legend>
-<?php if($_GET['op']=='group' && !$_GET['mode']){
+<legend><a href="?op=roles">Permission Roles</a></legend>
+<?php if($_GET['op']=='roles' && !$_GET['mode']){
+	if($_POST['deleterole']){
+	mysql_query("DELETE FROM roles WHERE id=".$_POST['deleterole']);
+	}
+	if($_POST['newrole']){
+	$newrole = "INSERT INTO roles (`name`) VALUES ('".$_POST['newrole']."')";
+	mysql_query($newrole);
+	echo mysql_error();
+	}
 	$q = mysql_query("SELECT * FROM roles");
 ?>
-			<table>
+			<table cellpadding=5>
 				<tr>
 				  <th width="50%">Name</th>
 				  <th width="20%">Edit</th>
@@ -76,17 +80,25 @@ Local auth: <input name="local" type="checkbox" value="1"<?php if($set_data[8]==
 				 <tr class="a" bgcolor=#CCCCCC>
 					<td><?php echo $roles['name']?></td>
 				 	<td><a href="admin.php?op=group&mode=edit&role=<?php echo $roles['id'] ?>">Edit</a></td>
-				 	<td>Delete</td>
+				 	<td><form method="post">
+					<input type="submit" value="Delete">
+					<input type="hidden" name="deleterole" value="<?php echo $roles['id']?>" >
+					</form></td>
 				 </tr>
 				 <?php
 				 }
 				 ?>
-			</table><?php
-			
+			</table>
+			<form method=post>
+			New Role:
+			<input type=text name=newrole>
+			<input type=submit value=Create>
+			</form>
+<?php			
 }
 if($_GET['mode']=='edit'){
 	if($_REQUEST['save']){
-	$_POST[0] = 1;
+	$_POST[0] = 9;
 	if(!$_POST[1]) $_POST[1] = 0;
 	if(!$_POST[2]) $_POST[2] = 0;
 	if(!$_POST[3]) $_POST[3] = 0;
@@ -104,7 +116,8 @@ if($_GET['mode']=='edit'){
 	if(!$_POST[15]) $_POST[15] = 0;
 	if(!$_POST[16]) $_POST[16] = 0;
 	if(!$_POST[17]) $_POST[17] = 0;
-	$perm = $_POST[0].$_POST[1].$_POST[2].$_POST[3].$_POST[4].$_POST[5].$_POST[6].$_POST[7].$_POST[8].$_POST[9].$_POST[10].$_POST[11].$_POST[12].$_POST[13].$_POST[14].$_POST[15].$_POST[16].$_POST[17];
+	if(!$_POST[18]) $_POST[18] = 0;
+	$perm = $_POST[0].$_POST[1].$_POST[2].$_POST[3].$_POST[4].$_POST[5].$_POST[6].$_POST[7].$_POST[8].$_POST[9].$_POST[10].$_POST[11].$_POST[12].$_POST[13].$_POST[14].$_POST[15].$_POST[16].$_POST[17].$_POST[18];
 	echo $perm;
 		mysql_query("UPDATE roles SET permissions='$perm' WHERE id=".$_GET['role']."");
 	}
@@ -112,7 +125,7 @@ $roles = mysql_fetch_array(mysql_query("SELECT * FROM roles WHERE id=".$_GET['ro
 $perm = str_split($roles['permissions']);
 ?>
 <form method="post">
-<table width="100%">
+<table width="100%" cellpadding=5>
 				 <tr>
 				  <th>User/Admin</th>
 				  <th>Servers</th>
@@ -122,7 +135,7 @@ $perm = str_split($roles['permissions']);
 				  <th>Per User</th>
 				 </tr>
 <tr class="a" bgcolor=#CCCCCC>
-<td><input name="0" type="checkbox" value="1"<?php if($perm[0]=='1') echo ' checked'?> disabled> Login</td>
+<td><input name="18" type="checkbox" value="1"<?php if($perm[18]=='1') echo ' checked'?>> Login</td>
 <td><input name="2"  type="checkbox" value="1"<?php if($perm[2]=='1') echo ' checked'?>> Create Servers</td>
 <td><input name="5"  type="checkbox" value="1"<?php if($perm[5]=='1') echo ' checked'?>> Create Groups</td>
 <td><input name="8"  type="checkbox" value="1"<?php if($perm[8]=='1') echo ' checked'?>> Create Files</td>
@@ -166,10 +179,70 @@ $perm = str_split($roles['permissions']);
 </fieldset>
 <br>
 <fieldset>
-<legend><a href="?op=roles">Users</a></legend>
-<?php if($_GET['op']=='roles'){
+<legend><a href="?op=users">Users</a></legend>
+<?php if($_GET['op']=='users'){
 ?>
-O hello
+<table cellpadding=5>
+<th>User</th>
+<th>Role</th>
+<th>Last Login</th>
+<?php
+if($_POST['role']){
+	mysql_query("UPDATE users SET `permissions`=".$_POST['role']." WHERE id=".$_POST['id']);
+}
+if($_POST['newuser']){
+	$userm = mysql_query("SELECT * FROM users WHERE name='".$_POST['newuser']."'");
+	$q = mysql_fetch_array($userm);
+	if($q[0]){
+		echo "User exists";
+	} else {
+	$ts = time();
+	mysql_query("INSERT INTO users (`name`,`permissions`,`last login`) VALUES ('".$_POST['newuser']."','".$_POST['role']."','$ts')");
+	echo mysql_error();
+	}
+}
+$q = mysql_query("SELECT * FROM users");
+while($users = mysql_fetch_array($q)){
+?>
+<tr class="a" bgcolor=#CCCCCC>
+<td><?php echo $users['name']?></td>
+<td>
+<form method="post">
+<select name= "role" onchange="this.form.submit();">
+<option></option><?php
+$roleq = mysql_query("SELECT * FROM roles");
+while($role = mysql_fetch_array($roleq)){
+	?>
+	<option value="<?php echo $role['id'] ?>" <?php if($role['id'] == $users['permissions']) echo 'selected'?>><?php echo $role['name'] ?></option>
+<?php
+}
+?>
+	<input type="hidden" name="id" value="<?php echo $users['id']?>">
+</form>
+</td>
+<td><?php echo date("Y-m-d",$users['last login']).' '.date("h:i:s A",$users['last login']);?></td>
+</tr>
+<?php
+}
+?>
+</table>
+<br>
+<form method=post>
+Callsign: <input type=text name=newuser>
+<br>
+Role: <select name="role">
+<?php
+$q2 = mysql_query("SELECT * FROM roles");
+while($role = mysql_fetch_array($q2)){
+	?>
+	<option value="<?php echo $role['id'] ?>"><?php echo $role['name'] ?></option>
+<?php
+}
+?>
+</select>
+<br>
+<input type="submit" value="Add User">
+</form>
 <?php
 }
 ?>
