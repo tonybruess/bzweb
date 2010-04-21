@@ -125,11 +125,11 @@ if($op=='edit'){
 		<td width="50px">Delete</td>
 	</tr>
 <?php
-$m = mysql_query("SELECT * FROM files WHERE owner='$name' AND `type`='map'");
+$m = mysql_query("SELECT * FROM files WHERE owner='$name' AND `type`='bzw'");
 while($mr = mysql_fetch_array($m)){
 	echo '<tr bgcolor="#DDDDDD"><td>';
 	echo $mr['name'];
-	echo '</td><td>Edit</td><td>Delete</td></tr>';
+	echo '</td><td><a href="?p=edit&mode=file&file='.$mr['id'].'">Edit</a></td><td>Delete</td></tr>';
 }
 ?>
 </table></fieldset><br>
