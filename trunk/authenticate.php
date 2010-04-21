@@ -87,31 +87,32 @@ $result = validate_token($_GET['token'], $_GET['username'], $groups);
 			$ts = time();
 		$_SESSION['callsign'] = $fuser;
 		$_SESSION['pass'] = $ftoken;
-		$userdata = mysql_fetch_array(mysql_query("SELECT * FROM users"));	 
+		$userdata = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE name='$fuser'"));	 
 		$rolesdata = mysql_fetch_array(mysql_query("SELECT * FROM roles WHERE `id`=".$userdata['permissions'].""));
 		$perm = str_split($rolesdata['permissions']);
-	if($perm[1]=='1') $_SESSION['perm'][1] = 1;
-	if($perm[2]=='1') $_SESSION['perm'][2] = 1;
-	if($perm[3]=='1') $_SESSION['perm'][3] = 1;
-	if($perm[4]=='1') $_SESSION['perm'][4] = 1;
-	if($perm[5]=='1') $_SESSION['perm'][5] = 1;
-	if($perm[6]=='1') $_SESSION['perm'][6] = 1;
-	if($perm[7]=='1') $_SESSION['perm'][7] = 1;
-	if($perm[8]=='1') $_SESSION['perm'][8] = 1;
-	if($perm[9]=='1') $_SESSION['perm'][9] = 1;
-	if($perm[10]=='1') $_SESSION['perm'][10] = 1;
-	if($perm[11]=='1') $_SESSION['perm'][11] = 1;
-	if($perm[12]=='1') $_SESSION['perm'][12] = 1;
-	if($perm[13]=='1') $_SESSION['perm'][13] = 1;
-	if($perm[14]=='1') $_SESSION['perm'][14] = 1;
-	if($perm[15]=='1') $_SESSION['perm'][15] = 1;
-	if($perm[16]=='1') $_SESSION['perm'][16] = 1;
-	if($perm[17]=='1') $_SESSION['perm'][17] = 1;
-	if($perm[18]=='1') $_SESSION['perm'][18] = 1;
-		mysql_query("UPDATE users SET `last login`='$ts'");
+	$_SESSION['perm'][0] = $perm[0];
+	$_SESSION['perm'][1] = $perm[1];
+	$_SESSION['perm'][2] = $perm[2];
+	$_SESSION['perm'][3] = $perm[3];
+	$_SESSION['perm'][4] = $perm[4];
+	$_SESSION['perm'][5] = $perm[5];
+	$_SESSION['perm'][6] = $perm[6];
+	$_SESSION['perm'][7] = $perm[7];
+	$_SESSION['perm'][8] = $perm[8];
+	$_SESSION['perm'][9] = $perm[9];
+	$_SESSION['perm'][10] = $perm[10];
+	$_SESSION['perm'][11] = $perm[11];
+	$_SESSION['perm'][12] = $perm[12];
+	$_SESSION['perm'][13] = $perm[13];
+	$_SESSION['perm'][14] = $perm[14];
+	$_SESSION['perm'][15] = $perm[15];
+	$_SESSION['perm'][16] = $perm[16];
+	$_SESSION['perm'][17] = $perm[17];
+	$_SESSION['perm'][18] = $perm[18];
+	mysql_query("UPDATE users SET `last login`='$ts'");
 ?>
 		<head>
-		<meta HTTP-EQUIV="Refresh" CONTENT="0;URL=index.php">
+		<meta HTTP-EQUIV="Refresh" CONTENT="10;URL=index.php">
 		</head>
 <?php
 	} else {
