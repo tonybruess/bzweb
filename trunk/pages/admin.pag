@@ -20,12 +20,8 @@
     License along with this program.  If not, see
     <http://www.gnu.org/licenses/>.
 */
-	session_start(); 
-	header("Cache-control: private");
-	$page = $_SERVER['PHP_SELF'];
-	include_once("include/session.php");
-	include_once("include/header.php");
-	include_once("include/menu.php");
+date_default_timezone_set("America/Chicago"); 
+$page = $_SERVER['PHP_SELF'];
 if($_SESSION['callsign']!=='mrapple'){
 } else {
 	?>
@@ -35,7 +31,7 @@ if(!$_GET['op']){
 	echo "Please select an option below<br><br>";
 }?>
 <fieldset>
-<legend><a href="?op=config">Site Configuration</a></legend>
+<legend><a href="?p=admin&op=config">Site Configuration</a></legend>
 <?php if($_GET['op']=='config'){
 		$set_data = mysql_fetch_array(mysql_query("SELECT * FROM settings"));
 		echo $err;
@@ -58,7 +54,7 @@ Domain: <input type="text" name="domain1" value="<?php echo $set_data[3]?>">
 </fieldset>
 <br>
 <fieldset>
-<legend><a href="?op=roles">Permission Roles</a></legend>
+<legend><a href="?p=admin&op=roles">Permission Roles</a></legend>
 <?php if($_GET['op']=='roles' && !$_GET['mode']){
 	if($_POST['deleterole']){
 	mysql_query("DELETE FROM roles WHERE id=".$_POST['deleterole']);
@@ -79,7 +75,7 @@ Domain: <input type="text" name="domain1" value="<?php echo $set_data[3]?>">
 				 <?php while($roles = mysql_fetch_array($q)){ ?>
 				 <tr class="a" bgcolor=#CCCCCC>
 					<td><?php echo $roles['name']?></td>
-				 	<td><a href="admin.php?op=group&mode=edit&role=<?php echo $roles['id'] ?>">Edit</a></td>
+				 	<td><a href="?p=admin&op=group&mode=edit&role=<?php echo $roles['id'] ?>">Edit</a></td>
 				 	<td><form method="post">
 					<input type="submit" value="Delete">
 					<input type="hidden" name="deleterole" value="<?php echo $roles['id']?>" >
@@ -179,7 +175,7 @@ $perm = str_split($roles['permissions']);
 </fieldset>
 <br>
 <fieldset>
-<legend><a href="?op=users">Users</a></legend>
+<legend><a href="?p=admin&op=users">Users</a></legend>
 <?php if($_GET['op']=='users'){
 ?>
 <table cellpadding=5>
