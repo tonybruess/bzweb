@@ -22,9 +22,16 @@
 */
 date_default_timezone_set("America/Chicago"); 
 $id_clean = sanitize($_GET['server']);
-$q = mysql_query("SELECT * FROM servers WHERE enabled='1'");
+
+// Setup correct mySQL query
+if(($_SESSION[perm][13])==1){
+	$q = mysql_query("SELECT * FROM servers WHERE enabled='1'");
+}else if (($_SESSION[perm][14])==1){
+	$sql_query=("SELECT * FROM servers WHERE enabled='1' And serverowner='$name'");
+}
+
 ?>
-				<h3>Reports</h3>
+<h3>Reports</h3>
  <?
 if(!$id_clean){
 ?>
@@ -79,9 +86,19 @@ Order by:<select name="order" onchange="this.form.submit();">
 	</tr>
                 <?php
 if($_GET['order']=='1' || !$_GET['order']){
-	$q = mysql_query("SELECT * FROM reports WHERE `server`='$id_clean' ORDER BY time DESC");
+	// Setup correct mySQL query
+	if(($_SESSION[perm][13])==1){
+		$q = mysql_query("SELECT * FROM reports WHERE `server`='$id_clean' ORDER BY time DESC");
+	}else if (($_SESSION[perm][14])==1){
+		$sql_query=("SELECT * FROM reports WHERE `server`='$id_clean' And serverowner='$name' ORDER BY time DESC");
+	}
 } else {
-	$q = mysql_query("SELECT * FROM reports WHERE `server`='$id_clean' ORDER BY time ASC");
+	// Setup correct mySQL query
+	if(($_SESSION[perm][13])==1){
+		$q = mysql_query("SELECT * FROM reports WHERE `server`='$id_clean' ORDER BY time ASC");
+	}else if (($_SESSION[perm][14])==1){
+		$sql_query=("SELECT * FROM reports WHERE `server`='$id_clean' And serverowner='$name' ORDER BY time ASC");
+	}	
 }
 while($report = mysql_fetch_array($q)){
 $i_report++;
