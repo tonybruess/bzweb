@@ -84,7 +84,7 @@ while(! feof($stdin)) {
          $entirelength = strlen($report[2]);
          $actuallength = ($entirelength - $report[1]);
          $justuser = substr($report[2],0,-$actuallength);
-		mysql_query("INSERT INTO reports SET `server` = '$argv[1]', `reporter`= '$justuser', `report` = '$justmessage', `time` = '$ts'");
+		mysql_query("INSERT INTO reports SET `server` = '$argv[1]', `serverowner` = '$name', `reporter`= '$justuser', `report` = '$justmessage', `time` = '$ts'");
 	}
 
 }

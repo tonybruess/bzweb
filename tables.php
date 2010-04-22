@@ -97,6 +97,7 @@ time VARCHAR(100)
 create table reports (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 server INT,
+serverowner TEXT,
 reporter TEXT,
 report TEXT,
 time VARCHAR(100)
