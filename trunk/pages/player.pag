@@ -20,11 +20,11 @@
     License along with this program.  If not, see
     <http://www.gnu.org/licenses/>.
 */
-date_default_timezone_set("America/Chicago"); 
 ?>
 <h3>Player Info</h3>
 <?php
-	
+	if($_SESSION[perm][11]=='1'||$_SESSION[perm][12]=='1'){
+	date_default_timezone_set("America/Chicago"); 	
 	if($_POST){
 	$query_type = $_POST['query_type'];
 	}	
@@ -189,5 +189,8 @@ date_default_timezone_set("America/Chicago");
 				$result.="</table>";
 					echo $result;
 			}
+	} else {
+		echo "You do not have permission to access this page";
+	}
 ?>
 

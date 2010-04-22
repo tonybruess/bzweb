@@ -111,9 +111,16 @@ include_once "include/mysql.php";
 			<input type=hidden name="p" value="bans">
 			<input type=submit value="More...">
 			</form>
+<?php
+	if($_SESSION[perm][11]=='1'||$_SESSION[perm][12]=='1'){
+?>
 			<h3>Most Recent Players</h3>
 <?php
-				$sql_query=("SELECT * FROM players ORDER BY time DESC LIMIT 10");
+				if(($_SESSION[perm][11])==1){
+					$sql_query=("SELECT * FROM players ORDER BY time DESC LIMIT 20");
+				}else if (($_SESSION[perm][12])==1){
+					$sql_query=("Select * From players Where serverowner='$name' ORDER BY time DESC LIMIT 20");
+				}
 				$query_result=mysql_query($sql_query);
 				$result_array=array();
 				while($row = mysql_fetch_assoc($query_result)){ // Results found, add them to result array
@@ -157,10 +164,18 @@ include_once "include/mysql.php";
 			<input type=hidden name="p" value="player">
 			<input type=submit value="More...">
 			</form>
+			<?php
+	}
+			if($_SESSION[perm][13]=='1'||$_SESSION[perm][14]=='1'){
+?>
 <h3>Most Recent Reports</h3>
 <?php
-				$sql_query=("SELECT * FROM reports ORDER BY time DESC LIMIT 5");
-				$query_result=mysql_query($sql_query);
+	if(($_SESSION[perm][13])==1){
+		$q = "SELECT * FROM reports WHERE `server`='$id_clean' ORDER BY time DESC";
+	}else if (($_SESSION[perm][14])==1){
+		$q = "SELECT * FROM reports WHERE `server`='$id_clean' And serverowner='$name' ORDER BY time DESC";
+	}
+				$query_result=mysql_query($q);
 				$result_array=array();
 				while($row = mysql_fetch_assoc($query_result)){ // Results found, add them to result array
 					array_push($result_array, array($row['name'], $row['server'], $row['reporter'], $row['report'], $row['time']));
@@ -201,3 +216,6 @@ include_once "include/mysql.php";
 			<input type=hidden name="p" value="reports">
 			<input type=submit value="More...">
 			</form>
+			<?php
+			}
+			?>

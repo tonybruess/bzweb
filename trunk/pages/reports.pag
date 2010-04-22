@@ -20,6 +20,10 @@
     License along with this program.  If not, see
     <http://www.gnu.org/licenses/>.
 */
+?>
+<h3>Reports</h3>
+<?php
+if($_SESSION[perm][13]=='1'||$_SESSION[perm][14]=='1'){
 date_default_timezone_set("America/Chicago"); 
 $id_clean = sanitize($_GET['server']);
 
@@ -31,7 +35,6 @@ if(($_SESSION[perm][13])==1){
 }
 
 ?>
-<h3>Reports</h3>
  <?
 if(!$id_clean){
 ?>
@@ -114,5 +117,9 @@ $i_report++;
 ?>
 </table>
 <?php
+}
+} else {
+	
+	echo "You do not have permission to access this page";
 }
 ?>
