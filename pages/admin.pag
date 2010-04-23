@@ -108,17 +108,17 @@ if($_GET['mode']=='edit'){
 	if(!$_POST[16]) $_POST[16] = 0;
 	if(!$_POST[17]) $_POST[17] = 0;
 	if(!$_POST[18]) $_POST[18] = 0;
-	if(!$_POST[19]) $_POST[19] = 0;
+	if(!$_POST['vs'] && !$_POST['vg']){ $_POST['vs'] = 0; } else { $_POST['vs'] = 1; } 
 	if(!$_POST[20]) $_POST[20] = 0;
 	if(!$_POST[21]) $_POST[21] = 0;
-	$perm = $_POST[0].$_POST[1].$_POST[2].$_POST[3].$_POST[4].$_POST[5].$_POST[6].$_POST[7].$_POST[8].$_POST[9].$_POST[10].$_POST[11].$_POST[12].$_POST[13].$_POST[14].$_POST[15].$_POST[16].$_POST[17].$_POST[18].$_POST[19].$_POST[20].$_POST[21];
+	$perm = $_POST[0].$_POST[1].$_POST[2].$_POST[3].$_POST[4].$_POST[5].$_POST[6].$_POST[7].$_POST[8].$_POST[9].$_POST[10].$_POST[11].$_POST[12].$_POST[13].$_POST[14].$_POST[15].$_POST[16].$_POST[17].$_POST[18].$_POST['vs'].$_POST[20].$_POST[21];
 	echo $perm;
 		mysql_query("UPDATE roles SET permissions='$perm' WHERE id=".$_GET['role']."");
 	}
 $roles = mysql_fetch_array(mysql_query("SELECT * FROM roles WHERE id=".$_GET['role'].""));
 $perm = str_split($roles['permissions']);
 ?>
-<form method="post">
+<form method="post" name="form">
 <table width="100%" cellpadding=5>
 				 <tr>
 				  <th>User/Admin</th>
@@ -165,11 +165,11 @@ $perm = str_split($roles['permissions']);
 </tr>
 <tr class="a" bgcolor=#CCCCCC>
 <td><center>--</center></td>
-<td><input name="19"  type="checkbox" value="1"<?php if($perm[19]=='1') echo ' checked'?>> View All Servers</td>
+<td><input name="vs"  type="checkbox" value="1" onclick="this.form.vg.checked = this.checked;"<?php if($perm[19]=='1') echo ' checked'?>> View All Servers</td>
+<td><input name="vg"  type="checkbox" value="1" onclick="this.form.vs.checked = this.checked;"<?php if($perm[19]=='1') echo ' checked'?>> View All Groups</td>
 <td><center>--</center></td>
 <td><center>--</center></td>
-<td><input name="15"  type="checkbox" value="1"<?php if($perm[15]=='1') echo ' checked'?>> Logs</td>
-<td><input name="16"  type="checkbox" value="1"<?php if($perm[16]=='1') echo ' checked'?>> Logs for their servers</td>
+<td><center>--</center></td>
 </tr>
 </table>
 <input type="hidden" name="save" value="1">
