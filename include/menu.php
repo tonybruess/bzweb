@@ -23,7 +23,7 @@
 if($_SESSION['callsign']){
 	?>
 	<ul>
-			<li><a href="index.php?p=admin"<?php if($page=='admin') echo ' class=active';?>>Admin</a></li>
+			<?php if($_SESSION['perm']['2']){?><li><a href="index.php?p=admin"<?php if($page=='admin') echo ' class=active';?>>Admin</a></li><?php } ?>
 			<li><a href="index.php"<?php if($page=='index') echo ' class=active';?>>Home</a></li>
  			<li><a href="index.php?p=servers"<?php if($page=='servers') echo ' class=active';?>>Servers</a></li>
  			<li><a href="index.php?p=files"<?php if($page=='files') echo ' class=active';?>>Files</a></li>

@@ -21,7 +21,7 @@
     <http://www.gnu.org/licenses/>.
 */
 date_default_timezone_set("America/Chicago"); 
-if($_SESSION['perm'][1]!=='1'){
+if($_SESSION['perm'][2]!=='1'){
 } else {
 	?>
 <h3>Admin CP</h3>
