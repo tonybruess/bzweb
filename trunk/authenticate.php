@@ -87,7 +87,7 @@ $result = validate_token($_GET['token'], $_GET['username'], $groups);
 		$ts = time();
 		$_SESSION['callsign'] = $fuser;
 		$_SESSION['pass'] = $ftoken;
-	mysql_query("UPDATE users SET `last login`='$ts'");
+	mysql_query("UPDATE users SET `last login`='$ts' WHERE `name`='$fuser'");
 	header('Location: index.php');
 	} else {
 	header('Location: index.php?p=error&error=4');
