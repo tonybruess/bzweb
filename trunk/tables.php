@@ -126,7 +126,7 @@ create table users (
 create table roles (
 `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 `name` TEXT,
-`permissions` BIGINT);
+`permissions` VARCHAR(100));
 
 */
 ?>
