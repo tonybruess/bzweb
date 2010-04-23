@@ -109,12 +109,15 @@ if($_GET['mode']=='edit'){
 	if(!$_POST[17]) $_POST[17] = 0;
 	if(!$_POST['vs'] && !$_POST['vg']){ $_POST['vs'] = 0; } else { $_POST['vs'] = 1; } 
 	$perm = $_POST[0].$_POST[1].$_POST[2].$_POST[3].$_POST[4].$_POST[5].$_POST[6].$_POST[7].$_POST[8].$_POST[9].$_POST[10].$_POST[11].$_POST[12].$_POST[13].$_POST[14].$_POST[15].$_POST[16].$_POST[17].$_POST[18].$_POST['vs'];
-	echo $perm;
 		mysql_query("UPDATE roles SET permissions='$perm' WHERE id=".$_GET['role']."");
 	}
 $roles = mysql_fetch_array(mysql_query("SELECT * FROM roles WHERE id=".$_GET['role'].""));
 $perm = str_split($roles['permissions']);
+if(empty($roles)){
+	echo "That role does not exist";
+} else {
 ?>
+You are editing permissions for: <b><?php echo $roles['name']?></b><br>
 <form method="post" name="form">
 <table width="100%" cellpadding=5>
 				 <tr>
@@ -168,6 +171,7 @@ $perm = str_split($roles['permissions']);
 </form>
 <?php
 }
+}
 ?>
 </fieldset>
 <br>
@@ -202,7 +206,7 @@ while($users = mysql_fetch_array($q)){
 <td>
 <form method="post">
 <select name= "role" onchange="this.form.submit();">
-<option></option><?php
+<?php
 $roleq = mysql_query("SELECT * FROM roles");
 while($role = mysql_fetch_array($roleq)){
 	?>
