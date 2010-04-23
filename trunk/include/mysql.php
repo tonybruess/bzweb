@@ -47,6 +47,11 @@
     $userdata = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE name='$name'"));	 
 	$rolesdata = mysql_fetch_array(mysql_query("SELECT * FROM roles WHERE `id`=".$userdata['permissions'].""));
 	$perm = str_split($rolesdata['permissions']);
+	    	if($perm[1]=='0'){
+	    		$_SESSION = array();
+	    		session_destroy();
+	    		header('Location: ?p=error&error=3');
+	    	} else {
 	$_SESSION['perm'][0] = $perm[0];
 	$_SESSION['perm'][1] = $perm[1];
 	$_SESSION['perm'][2] = $perm[2];
@@ -67,5 +72,6 @@
 	$_SESSION['perm'][17] = $perm[17];
 	$_SESSION['perm'][18] = $perm[18];
 	$_SESSION['perm'][19] = $perm[19];
+	    	}
     }
 ?>

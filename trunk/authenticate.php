@@ -84,17 +84,13 @@ $result = validate_token($_GET['token'], $_GET['username'], $groups);
 	echo mysql_error();
 	$userar = mysql_fetch_array($users);
 		if(count($userar[0]) > 0) { 
-			$ts = time();
+		$ts = time();
 		$_SESSION['callsign'] = $fuser;
 		$_SESSION['pass'] = $ftoken;
 	mysql_query("UPDATE users SET `last login`='$ts'");
-?>
-		<head>
-		<meta HTTP-EQUIV="Refresh" CONTENT="0;URL=index.php">
-		</head>
-<?php
+	header('Location: index.php');
 	} else {
-	echo "Your login was correct, but you dont have any permissions here";
+	header('Location: index.php?p=error&error=4');
 }
 }
 }
