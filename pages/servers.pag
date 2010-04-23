@@ -53,7 +53,7 @@ if ($_POST['createserver'] == "1" && $_POST['newserver'] != ""){ // form was pos
 		if($e_ar[0] == "$newserver"){
 			//Server already exists
 			echo "Server Already Exists";
-		} elseif ($g_ar[2] == $name||$_SESSION['perm'][4]=='1'){
+		} elseif ($g_ar[2] == $name||$_SESSION['perm'][4]){
 			//Create server
 			mysql_query("INSERT INTO servers (`master`, `name`, `owner`, `enabled`) VALUES ('$g_ar[0]', '$newserver_clean', '$name', '1')");
 			$a = mysql_query("SELECT id FROM servers WHERE `master` = '$g_ar[0]' AND `name` = '$newserver_clean'");
@@ -85,10 +85,12 @@ if ($_POST['creategroup'] == "1" && $_POST['newgroup'] != ""){ // form was poste
 				mysql_query("INSERT INTO groups (`name`, `owner`, `status`, `enabled`) VALUES ('$newgroup_clean', '$name', 0, 1)");
 				echo "Group Created Successfully!";
 			}
-			if($_POST['underuser']){
+			if($_POST['underuser']&&$_SESSION['perm'][8]){
 				$underuserc = sanitize($_POST['underuser']);
 				mysql_query("INSERT INTO groups (`name`, `owner`, `status`, `enabled`) VALUES ('$newgroup_clean', '$underuserc', 0, 1)");
 				echo "Group Created Successfully for user ".$_POST['underuserc']."!";
+			} else {
+				echo "No permission";
 			}
 		}	
 
@@ -102,7 +104,7 @@ if ($_POST['deleteserver'] == "1"){ // form was posted and isnt blank
 	$e = mysql_query("SELECT * FROM servers WHERE `master`='$master_clean' AND `id`='$deleteserver_clean'");
 	$g_ar = mysql_fetch_array($g);
 	$e_ar = mysql_fetch_array($e);
-	if ($name == $g_ar[2] && $e_ar[1]==$master){
+	if ($name == $g_ar[2] && $e_ar[1]==$master || $_SESSION['perm'][6]){
 			mysql_query("UPDATE servers SET `enabled`='0' WHERE `id`='$deleteserver_clean'");
 			echo "Server Deleted Successfully";
 		} else {
@@ -137,7 +139,7 @@ if ($_POST['deletegroup'] == "1"){ // form was posted and isnt blank
 <?php
 $i_group = 0;
 //query
-if($_SESSION['perm'][18]=='1'){
+if($_SESSION['perm'][18]){
 	$group = mysql_query("SELECT * FROM groups WHERE `enabled`='1'");
 } else {
 	$group = mysql_query("SELECT * FROM groups WHERE `enabled`='1' AND owner='$name'");
@@ -151,7 +153,7 @@ while ($g_row = mysql_fetch_array($group)) {
   <td><center>'.$g_row[2].'</center></td>
   <td><center>--</center></td>
 <td><center>--</center></td>';
-  if ($name == $g_row[2]){
+  if ($name == $g_row[2] || $_SESSION['perm'][10]){
 echo
  '<td><center><form method="post">
 <input type="submit" value="Delete">
@@ -201,7 +203,7 @@ if($_SESSION['perm'][17]=='1'||$name == $g_row[2]){
   echo'</td>
   <td><center><a href="?p=reports&server='.$s_row[0].'">Reports</a></center></td>';
 echo '<td>';
-  if ($name == $g_row[2])
+  if ($name == $g_row[2] || $_SESSION['perm'][10])
 echo
  '<center><form method="post">
 <input type="submit" value="Delete">

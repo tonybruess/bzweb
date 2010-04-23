@@ -110,6 +110,7 @@ if($_GET['mode']=='edit'){
 	if(!$_POST['vs'] && !$_POST['vg']){ $_POST['vs'] = 0; } else { $_POST['vs'] = 1; } 
 	$perm = $_POST[0].$_POST[1].$_POST[2].$_POST[3].$_POST[4].$_POST[5].$_POST[6].$_POST[7].$_POST[8].$_POST[9].$_POST[10].$_POST[11].$_POST[12].$_POST[13].$_POST[14].$_POST[15].$_POST[16].$_POST[17].$_POST[18].$_POST['vs'];
 		mysql_query("UPDATE roles SET permissions='$perm' WHERE id=".$_GET['role']."");
+		echo "Role updated sucesfully<br>";
 	}
 $roles = mysql_fetch_array(mysql_query("SELECT * FROM roles WHERE id=".$_GET['role'].""));
 $perm = str_split($roles['permissions']);
