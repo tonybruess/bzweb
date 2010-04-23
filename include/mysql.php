@@ -43,6 +43,7 @@
     mysql_connect(SQL_SERVER,SQL_USER,SQL_PASS) or die("Error: ".mysql_error()); // Connecting to the server
     mysql_select_db(SQL_DB) or die("Error: ".mysql_error()); // Connecting to the database
     
+    if($_SESSION['callsign']){
     $userdata = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE name='$name'"));	 
 	$rolesdata = mysql_fetch_array(mysql_query("SELECT * FROM roles WHERE `id`=".$userdata['permissions'].""));
 	$perm = str_split($rolesdata['permissions']);
@@ -66,4 +67,5 @@
 	$_SESSION['perm'][17] = $perm[17];
 	$_SESSION['perm'][18] = $perm[18];
 	$_SESSION['perm'][19] = $perm[19];
+    }
 ?>
