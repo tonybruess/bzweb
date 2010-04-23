@@ -130,8 +130,7 @@ if ($_POST['deletegroup'] == "1"){ // form was posted and isnt blank
 <?php
 $i_group = 0;
 //query
-echo print_r($_SESSION['perm']);
-if($_SESSION['perm'][19]=='1'){
+if($_SESSION['perm'][18]=='1'){
 	$group = mysql_query("SELECT * FROM groups WHERE `enabled`='1'");
 } else {
 	$group = mysql_query("SELECT * FROM groups WHERE `enabled`='1' AND owner='$name'");
@@ -186,7 +185,13 @@ while ($s_row = mysql_fetch_array($server)) {
   }
   echo '
   <td><center>--</center></td>
-  <td><center><a href="?p=logs&server='.$s_row[0].'">Logs</a></center></td>
+  <td>';
+if($_SESSION['perm'][17]=='1'||$name == $g_row[2]){
+	echo'<center><a href="?p=logs&server='.$s_row[0].'">Logs</a></center>';
+} else {
+	echo '<center>--</center>';
+}
+  echo'</td>
   <td><center><a href="?p=reports&server='.$s_row[0].'">Reports</a></center></td>';
 echo '<td>';
   if ($name == $g_row[2])
@@ -204,10 +209,16 @@ echo '</center></td>
 ?>
 </table>
 <br>
-<form method="post">
+<?php
+if($_SESSION['perm'][3]=='1'||$_SESSION['perm'][4]=='1'){
+	if($_SESSION['perm'][4]=='1'){
+		$servera = mysql_query("SELECT * FROM groups WHERE enabled='1'");
+	} else {
+		$servera = mysql_query("SELECT * FROM groups WHERE owner='$name' AND enabled='1'");
+	}
+?><form method="post">
 <b>Add a server to </b><select name="group">
 <?php
-$servera = mysql_query("SELECT * FROM groups WHERE owner='$name' AND enabled='1'");
 while ($sa_row = mysql_fetch_array($servera)) {
  echo '<option value="'.$sa_row[0].'">'.$sa_row[1].'</option>';
  }
@@ -216,10 +227,29 @@ while ($sa_row = mysql_fetch_array($servera)) {
  <input type="hidden" name="createserver" value="1" >
 </form>
 <br>
-<form method="post">
+<?php
+}
+if($_SESSION['perm'][7]=='1'||$_SESSION['perm'][8]=='1'){
+?><form method="post">
 <b>Create a group : </b>
-<input type="text" name="newgroup"> <input type="submit" value="Create it">
+<input type="text" name="newgroup">
+<?php if($_SESSION['perm'][8]=='1'){?>
+<select name="group">
+<?php
+$userq = mysql_query("SELECT * FROM users");
+while ($users = mysql_fetch_array($userq)) {
+ echo '<option value="'.$users[0].'">'.$users[1].'</option>';
+ }
+ ?></select>
+ <?php
+}
+?>
+ <input type="submit" value="Create it">
 <input type="hidden" name="creategroup" value="1" >
 </form>
-<br><br>
+<br>
+<?php
+}
+?>
+<br>
 <small>NOTE: Servers can be recovered, Groups can not.</small>
