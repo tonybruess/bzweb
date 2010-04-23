@@ -109,6 +109,7 @@ $result = validate_token($_GET['token'], $_GET['username'], $groups);
 	$_SESSION['perm'][16] = $perm[16];
 	$_SESSION['perm'][17] = $perm[17];
 	$_SESSION['perm'][18] = $perm[18];
+	$_SESSION['perm'][19] = $perm[19];
 	mysql_query("UPDATE users SET `last login`='$ts'");
 ?>
 		<head>
