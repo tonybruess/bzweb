@@ -53,7 +53,7 @@ if ($_POST['createserver'] == "1" && $_POST['newserver'] != ""){ // form was pos
 		if($e_ar[0] == "$newserver"){
 			//Server already exists
 			echo "Server Already Exists";
-		} elseif ($g_ar[2] == $name){
+		} elseif ($g_ar[2] == $name||$_SESSION['perm'][4]=='1'){
 			//Create server
 			mysql_query("INSERT INTO servers (`master`, `name`, `owner`, `enabled`) VALUES ('$g_ar[0]', '$newserver_clean', '$name', '1')");
 			$a = mysql_query("SELECT id FROM servers WHERE `master` = '$g_ar[0]' AND `name` = '$newserver_clean'");
@@ -81,8 +81,15 @@ if ($_POST['creategroup'] == "1" && $_POST['newgroup'] != ""){ // form was poste
 	if($g_ar[0]){
 			echo "Group Already Exists";
 		} else {
-			mysql_query("INSERT INTO groups (`name`, `owner`, `status`, `enabled`) VALUES ('$newgroup_clean', '$name', 0, 1)");
-			echo "Group Created Successfully!";
+			if(!$_POST['underuser']){
+				mysql_query("INSERT INTO groups (`name`, `owner`, `status`, `enabled`) VALUES ('$newgroup_clean', '$name', 0, 1)");
+				echo "Group Created Successfully!";
+			}
+			if($_POST['underuser']){
+				$underuserc = sanitize($_POST['underuser']);
+				mysql_query("INSERT INTO groups (`name`, `owner`, `status`, `enabled`) VALUES ('$newgroup_clean', '$underuserc', 0, 1)");
+				echo "Group Created Successfully for user ".$_POST['underuserc']."!";
+			}
 		}	
 
 }
@@ -234,11 +241,11 @@ if($_SESSION['perm'][7]=='1'||$_SESSION['perm'][8]=='1'){
 <b>Create a group : </b>
 <input type="text" name="newgroup">
 <?php if($_SESSION['perm'][8]=='1'){?>
-<select name="group">
+<select name="underuser">
 <?php
 $userq = mysql_query("SELECT * FROM users");
 while ($users = mysql_fetch_array($userq)) {
- echo '<option value="'.$users[0].'">'.$users[1].'</option>';
+ echo '<option value="'.$users[1].'">'.$users[1].'</option>';
  }
  ?></select>
  <?php
