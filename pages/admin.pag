@@ -109,7 +109,9 @@ if($_GET['mode']=='edit'){
 	if(!$_POST[17]) $_POST[17] = 0;
 	if(!$_POST[18]) $_POST[18] = 0;
 	if(!$_POST[19]) $_POST[19] = 0;
-	$perm = $_POST[0].$_POST[1].$_POST[2].$_POST[3].$_POST[4].$_POST[5].$_POST[6].$_POST[7].$_POST[8].$_POST[9].$_POST[10].$_POST[11].$_POST[12].$_POST[13].$_POST[14].$_POST[15].$_POST[16].$_POST[17].$_POST[18].$_POST[19];
+	if(!$_POST[20]) $_POST[20] = 0;
+	if(!$_POST[21]) $_POST[21] = 0;
+	$perm = $_POST[0].$_POST[1].$_POST[2].$_POST[3].$_POST[4].$_POST[5].$_POST[6].$_POST[7].$_POST[8].$_POST[9].$_POST[10].$_POST[11].$_POST[12].$_POST[13].$_POST[14].$_POST[15].$_POST[16].$_POST[17].$_POST[18].$_POST[19].$_POST[20].$_POST[21];
 	echo $perm;
 		mysql_query("UPDATE roles SET permissions='$perm' WHERE id=".$_GET['role']."");
 	}
@@ -128,7 +130,7 @@ $perm = str_split($roles['permissions']);
 				 </tr>
 <tr class="a" bgcolor=#CCCCCC>
 <td><input name="18" type="checkbox" value="1"<?php if($perm[18]=='1') echo ' checked'?>> Login</td>
-<td><input name="19"  type="checkbox" value="1"<?php if($perm[19]=='1') echo ' checked'?>> View All Servers</td>
+<td><input name="2"  type="checkbox" value="1"<?php if($perm[2]=='1') echo ' checked'?>> Create Servers</td>
 <td><input name="5"  type="checkbox" value="1"<?php if($perm[5]=='1') echo ' checked'?>> Create Groups</td>
 <td><input name="8"  type="checkbox" value="1"<?php if($perm[8]=='1') echo ' checked'?>> Create Files</td>
 <td><input name="9"  type="checkbox" value="1"<?php if($perm[9]=='1') echo ' checked'?>> Ban</td>
@@ -137,8 +139,8 @@ $perm = str_split($roles['permissions']);
 
 <tr class="a" bgcolor=#CCCCCC>
 <td><input name="1"  type="checkbox" value="1"<?php if($perm[1]=='1') echo ' checked'?>> Admin CP</td>
-<td><input name="2"  type="checkbox" value="1"<?php if($perm[2]=='1') echo ' checked'?>> Create Servers</td>
-<td><input name="6"  type="checkbox" value="1"<?php if($perm[6]=='1') echo ' checked'?>> Delete Groups</td>
+<td><input name="20"  type="checkbox" value="1"<?php if($perm[20]=='1') echo ' checked'?>> Create Any Server</td>
+<td><input name="21"  type="checkbox" value="1"<?php if($perm[21]=='1') echo ' checked'?>> Create Any Group</td>
 <td><input name="17"  type="checkbox" value="1"<?php if($perm[17]=='1') echo ' checked'?>> Delete Files</td>
 <td><input name="11"  type="checkbox" value="1"<?php if($perm[11]=='1') echo ' checked'?>>Player Info</td>
 <td><input name="12"  type="checkbox" value="1"<?php if($perm[12]=='1') echo ' checked'?>> Player Info for their servers</td>
@@ -146,8 +148,8 @@ $perm = str_split($roles['permissions']);
 
 <tr class="a" bgcolor=#CCCCCC>
 <td><center>--</center></td>
-<td><input name="3"  type="checkbox" value="1"<?php if($perm[3]=='1') echo ' checked'?>> Delete Servers</td>
-<td><input name="7"  type="checkbox" value="1"<?php if($perm[7]=='1') echo ' checked'?>> Delete their groups</td>
+<td><input name="4"  type="checkbox" value="1"<?php if($perm[4]=='1') echo ' checked'?>> Delete Servers</td>
+<td><input name="6"  type="checkbox" value="1"<?php if($perm[6]=='1') echo ' checked'?>> Delete Groups</td>
 <td><center>--</center></td>
 <td><input name="13"  type="checkbox" value="1"<?php if($perm[13]=='1') echo ' checked'?>> Reports</td>
 <td><input name="14"  type="checkbox" value="1"<?php if($perm[14]=='1') echo ' checked'?>> Reports for their servers</td>
@@ -155,7 +157,15 @@ $perm = str_split($roles['permissions']);
 
 <tr class="a" bgcolor=#CCCCCC>
 <td><center>--</center></td>
-<td><input name="4"  type="checkbox" value="1"<?php if($perm[4]=='1') echo ' checked'?>> Delete their servers</td>
+<td><input name="3"  type="checkbox" value="1"<?php if($perm[3]=='1') echo ' checked'?>> Delete Any Server</td>
+<td><input name="7"  type="checkbox" value="1"<?php if($perm[7]=='1') echo ' checked'?>> Delete Any Group</td>
+<td><center>--</center></td>
+<td><input name="15"  type="checkbox" value="1"<?php if($perm[15]=='1') echo ' checked'?>> Logs</td>
+<td><input name="16"  type="checkbox" value="1"<?php if($perm[16]=='1') echo ' checked'?>> Logs for their servers</td>
+</tr>
+<tr class="a" bgcolor=#CCCCCC>
+<td><center>--</center></td>
+<td><input name="19"  type="checkbox" value="1"<?php if($perm[19]=='1') echo ' checked'?>> View All Servers</td>
 <td><center>--</center></td>
 <td><center>--</center></td>
 <td><input name="15"  type="checkbox" value="1"<?php if($perm[15]=='1') echo ' checked'?>> Logs</td>
