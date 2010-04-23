@@ -23,14 +23,14 @@
 if($_SESSION['callsign']){
 	?>
 	<ul>
-			<?php if($_SESSION['perm'][1]=='1'){?><li><a href="index.php?p=admin"<?php if($page=='admin') echo ' class=active';?>>Admin</a></li><?php } ?>
+			<li><a href="index.php?p=admin"<?php if($page=='admin') echo ' class=active';?>>Admin</a></li>
 			<li><a href="index.php"<?php if($page=='index') echo ' class=active';?>>Home</a></li>
  			<li><a href="index.php?p=servers"<?php if($page=='servers') echo ' class=active';?>>Servers</a></li>
- 			<?php if($_SESSION['perm'][8]=='1' || $_SESSION['perm'][17]=='1'){?><li><a href="index.php?p=files"<?php if($page=='files') echo ' class=active';?>>Files</a></li><?php } ?>
- 			<?php if($_SESSION['perm'][9]=='1' || $_SESSION['perm'][10]=='1'){?><li><a href="index.php?p=bans"<?php if($page=='bans') echo ' class=active';?>>Bans</a></li><?php } ?>
- 			<?php if($_SESSION['perm'][11]=='1' || $_SESSION['perm'][12]=='1'){?><li><a href="index.php?p=player"<?php if($page=='player') echo ' class=active';?>>Player Info</a></li><?php } ?>
- 			<?php if($_SESSION['perm'][13]=='1' || $_SESSION['perm'][14]=='1'){?><li><a href="index.php?p=reports"<?php if($page=='reports') echo ' class=active';?>>Reports</a></li><?php } ?>
- 			<?php if($_SESSION['perm'][15]=='1' || $_SESSION['perm'][16]=='1'){?><li><a href="index.php?p=logs"<?php if($page=='logs') echo ' class=active';?>>Logs</a></li><?php } ?>
+ 			<li><a href="index.php?p=files"<?php if($page=='files') echo ' class=active';?>>Files</a></li>
+ 			<li><a href="index.php?p=bans"<?php if($page=='bans') echo ' class=active';?>>Bans</a></li>
+ 			<li><a href="index.php?p=player"<?php if($page=='player') echo ' class=active';?>>Player Info</a></li>
+ 			<li><a href="index.php?p=reports"<?php if($page=='reports') echo ' class=active';?>>Reports</a></li>
+ 			<li><a href="index.php?p=logs"<?php if($page=='logs') echo ' class=active';?>>Logs</a></li>
  			<li><a href="index.php?p=logout"<?php if($page=='logout') echo ' class=active';?>>Logout</a></li>
 		</ul>
 
