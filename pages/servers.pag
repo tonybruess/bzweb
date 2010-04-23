@@ -130,7 +130,11 @@ if ($_POST['deletegroup'] == "1"){ // form was posted and isnt blank
 <?php
 $i_group = 0;
 //query
-$group = mysql_query("SELECT * FROM groups WHERE `enabled`='1'");
+if($_SESSION['perm'][19]=='1'){
+	$group = mysql_query("SELECT * FROM groups WHERE `enabled`='1'");
+} else {
+	$group = mysql_query("SELECT * FROM groups WHERE `enabled`='1' AND owner='$name'");
+}	
 //group list loop
 while ($g_row = mysql_fetch_array($group)) {
   $i_groups++;
