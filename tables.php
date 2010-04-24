@@ -120,6 +120,8 @@ create table users (
 `name` TEXT,
 `bzid` INT, 
 `permissions` INT,
+`pstart` INT,
+`pend` INT,
 `last login` INT
 );
 
