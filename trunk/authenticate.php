@@ -1,7 +1,6 @@
 <?php
 session_start(); 
 header("Cache-control: private");
-include("global/vars.php");
 include("include/mysql.php");
 if(!$_GET['token'] || !$_GET['username']){
 die("Incorrect information submitted.");

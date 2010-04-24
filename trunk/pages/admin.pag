@@ -59,7 +59,7 @@ Domain: <input type="text" name="domain1" value="<?php echo $set_data[3]?>">
 	mysql_query($newrole);
 	echo mysql_error();
 	}
-	$q = mysql_query("SELECT * FROM roles");
+	$q = mysql_query("SELECT * FROM roles ORDER BY `name` ASC");
 ?>
 			<table cellpadding=5>
 				<tr>
@@ -183,10 +183,15 @@ You are editing permissions for: <b><?php echo $roles['name']?></b><br>
 <table cellpadding=5>
 <th>User</th>
 <th>Role</th>
+<th>Port Range</th>
 <th>Last Login</th>
 <?php
 if($_POST['role']){
 	mysql_query("UPDATE users SET `permissions`=".$_POST['role']." WHERE id=".$_POST['id']);
+}
+if($_POST['pstart']){
+	mysql_query("UPDATE users SET `pstart`='".$_POST['pstart']."', `pend`='".$_POST['pend']."' WHERE id=".$_POST['id']."");
+	echo mysql_error();
 }
 if($_POST['newuser']){
 	$userm = mysql_query("SELECT * FROM users WHERE name='".$_POST['newuser']."'");
@@ -199,7 +204,7 @@ if($_POST['newuser']){
 	echo mysql_error();
 	}
 }
-$q = mysql_query("SELECT * FROM users");
+$q = mysql_query("SELECT * FROM users ORDER BY `name` ASC");
 while($users = mysql_fetch_array($q)){
 ?>
 <tr class="a" bgcolor=#CCCCCC>
@@ -208,7 +213,7 @@ while($users = mysql_fetch_array($q)){
 <form method="post">
 <select name= "role" onchange="this.form.submit();">
 <?php
-$roleq = mysql_query("SELECT * FROM roles");
+$roleq = mysql_query("SELECT * FROM roles ORDER BY `name` ASC");
 while($role = mysql_fetch_array($roleq)){
 	?>
 	<option value="<?php echo $role['id'] ?>" <?php if($role['id'] == $users['permissions']) echo 'selected'?>><?php echo $role['name'] ?></option>
@@ -218,6 +223,7 @@ while($role = mysql_fetch_array($roleq)){
 	<input type="hidden" name="id" value="<?php echo $users['id']?>">
 </form>
 </td>
+<td><form method="post">Start: <input name="pstart" type="text" size="5" maxlength="5" value="<?php echo $users['pstart']; ?>"> End: <input name="pend" type="text" size="5" maxlength="5" value="<?php echo $users['pend']; ?>"><input type="hidden" name="id" value="<?php echo $users['id']?>"> <input type="submit" name="portrange" value="Save"></form></td>
 <td><?php echo date("Y-m-d",$users['last login']).' '.date("h:i:s A",$users['last login']);?></td>
 </tr>
 <?php
@@ -230,7 +236,7 @@ Callsign: <input type=text name=newuser>
 <br>
 Role: <select name="role">
 <?php
-$q2 = mysql_query("SELECT * FROM roles");
+$q2 = mysql_query("SELECT * FROM roles ORDER BY `name` ASC");
 while($role = mysql_fetch_array($q2)){
 	?>
 	<option value="<?php echo $role['id'] ?>"><?php echo $role['name'] ?></option>
@@ -241,6 +247,10 @@ while($role = mysql_fetch_array($q2)){
 <br>
 <input type="submit" value="Add User">
 </form>
+<br>
+<small>NOTE: If you change a role the form submits automatically</small>
+<br>
+<small>NOTE: You can only save one port range at a time</small>
 <?php
 }
 ?>
