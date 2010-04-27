@@ -26,7 +26,11 @@ include_once "include/mysql.php";
 <p>Use the dashboard to see what other users are doing. Most recent activity is below</p>
 			<h3>Current Up Server(s)</h3>
 <?php
-				$sql_query=("SELECT * FROM servers WHERE `status`='1'");
+				if($_SESSION['perm'][18]){
+					$sql_query=("SELECT * FROM servers WHERE `status`='1'");
+				} else {
+					$sql_query=("SELECT * FROM servers WHERE `status`='1' WHERE owner='$name'");
+				}
 				$query_result=mysql_query($sql_query);
 				$result_array=array();
 				while($row = mysql_fetch_assoc($query_result)){ // Results found, add them to result array
@@ -43,8 +47,7 @@ include_once "include/mysql.php";
 				$num_results=count($result_array);			
 				for ( $row = 0; $row < $num_results; $row++ )
 				{				
-					if(strstr($result_array[$row][3],"VERIFIED")){ $bg = ' bgcolor=#99FF99'; }
-					if(strstr($result_array[$row][3],"ADMIN")){ $bg = ' bgcolor=#FF9933'; } else { $bg = ' bgcolor=#CCCCCC'; }
+					$bg = ' bgcolor=#CCCCCC';
 					$temp_results=
 					"<tr class=\"a\"".$bg.">".
 						"<td style=\"text-align: center;\">".$result_array[$row][0]."</td>".
@@ -55,7 +58,7 @@ include_once "include/mysql.php";
 				}
 				// Finish result by closing <table>
 				$result.="</table>";
-					if($result_array[$row][0]){
+					if($result_array){
 						echo $result;
 					} else {
 						echo "<center>No servers currently up</center>";
