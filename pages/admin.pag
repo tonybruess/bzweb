@@ -108,7 +108,20 @@ if($_GET['mode']=='edit'){
 	if(!$_POST[16]) $_POST[16] = 0;
 	if(!$_POST[17]) $_POST[17] = 0;
 	if(!$_POST['vs'] && !$_POST['vg']){ $_POST['vs'] = 0; } else { $_POST['vs'] = 1; } 
-	$perm = $_POST[0].$_POST[1].$_POST[2].$_POST[3].$_POST[4].$_POST[5].$_POST[6].$_POST[7].$_POST[8].$_POST[9].$_POST[10].$_POST[11].$_POST[12].$_POST[13].$_POST[14].$_POST[15].$_POST[16].$_POST[17].$_POST[18].$_POST['vs'];
+	if(!$_POST[19]) $_POST[19] = 0;
+	if(!$_POST[20]) $_POST[20] = 0;
+	if(!$_POST[21]) $_POST[21] = 0;
+	if(!$_POST[22]) $_POST[22] = 0;
+	if(!$_POST[23]) $_POST[23] = 0;
+	if(!$_POST[24]) $_POST[24] = 0;
+	if(!$_POST[25]) $_POST[25] = 0;
+	if(!$_POST[26]) $_POST[26] = 0;
+	if(!$_POST[27]) $_POST[27] = 0;
+	if(!$_POST[28]) $_POST[28] = 0;
+	if(!$_POST[29]) $_POST[29] = 0;
+	if(!$_POST[30]) $_POST[30] = 0;
+	if(!$_POST[31]) $_POST[31] = 0;
+	$perm = $_POST[0].$_POST[1].$_POST[2].$_POST[3].$_POST[4].$_POST[5].$_POST[6].$_POST[7].$_POST[8].$_POST[9].$_POST[10].$_POST[11].$_POST[12].$_POST[13].$_POST[14].$_POST[15].$_POST[16].$_POST[17].$_POST[18].$_POST['vs'].$_POST[19].$_POST[20].$_POST[21].$_POST[22].$_POST[23].$_POST[24].$_POST[25].$_POST[26].$_POST[27].$_POST[28].$_POST[29].$_POST[30].$_POST[31];
 		mysql_query("UPDATE roles SET permissions='$perm' WHERE id=".$_GET['role']."");
 		echo "Role updated sucesfully<br>";
 	}
@@ -122,49 +135,74 @@ You are editing permissions for: <b><?php echo $roles['name']?></b><br>
 <form method="post" name="form">
 <table width="100%" cellpadding=5>
 				 <tr>
-				  <th>User/Admin</th>
-				  <th>Servers</th>
-				  <th>Groups</th>
-				  <th>Files</th>
+				  <th>Basic</th>
+				  <th>Per User</th>
+				  <th>Global</th>
+				  <th>Per User</th>
 				  <th>Global</th>
 				 </tr>
 <tr class="a" bgcolor=#CCCCCC>
-<td><input name="1" type="checkbox" value="1"<?php if($perm[1]=='1') echo ' checked'?>> Login</td>
-<td><input name="3"  type="checkbox" value="1"<?php if($perm[3]=='1') echo ' checked'?>> Create Servers</td>
-<td><input name="7"  type="checkbox" value="1"<?php if($perm[7]=='1') echo ' checked'?>> Create Groups</td>
-<td><input name="11"  type="checkbox" value="1"<?php if($perm[11]=='1') echo ' checked'?>> All Create</td>
-<td><input name="14"  type="checkbox" value="1"<?php if($perm[14]=='1') echo ' checked'?>> All Ban</td>
+<td><input name="1" id="1" type="checkbox" value="1"<?php if($perm[1]=='1') echo ' checked'?>> <label for="1"> Login</label></label></td>
+<td><input name="3"  id="3" type="checkbox" value="1"<?php if($perm[3]=='1') echo ' checked'?>> <label for="3"> Create Servers</label></td>
+<td><input name="4"  id="4" type="checkbox" value="1"<?php if($perm[4]=='1') echo ' checked'?>> <label for="4"> Create Any Server</label></td>
+<td><input name="7"  id="7" type="checkbox" value="1"<?php if($perm[7]=='1') echo ' checked'?>> <label for="7"> Create Groups</label></td>
+<td><input name="8"  id="8" type="checkbox" value="1"<?php if($perm[8]=='1') echo ' checked'?>> <label for="8"> Create Any Group</label></td>
 </tr>
 
 <tr class="a" bgcolor=#CCCCCC>
-<td><input name="2"  type="checkbox" value="1"<?php if($perm[2]=='1') echo ' checked'?>> Admin CP</td>
-<td><input name="4"  type="checkbox" value="1"<?php if($perm[4]=='1') echo ' checked'?>> Create Any Server</td>
-<td><input name="8"  type="checkbox" value="1"<?php if($perm[8]=='1') echo ' checked'?>> Create Any Group</td>
-<td><input name="12"  type="checkbox" value="1"<?php if($perm[12]=='1') echo ' checked'?>> All Edit</td>
-<td><input name="15"  type="checkbox" value="1"<?php if($perm[15]=='1') echo ' checked'?>> All Player Info</td>
-</tr>
-
-<tr class="a" bgcolor=#CCCCCC>
-<td><center>--</center></td>
-<td><input name="5"  type="checkbox" value="1"<?php if($perm[5]=='1') echo ' checked'?>> Delete Servers</td>
-<td><input name="9"  type="checkbox" value="1"<?php if($perm[9]=='1') echo ' checked'?>> Delete Groups</td>
-<td><input name="13"  type="checkbox" value="1"<?php if($perm[13]=='1') echo ' checked'?>> All Delete</td>
-<td><input name="16"  type="checkbox" value="1"<?php if($perm[16]=='1') echo ' checked'?>> All Reports</td>
+<td><input name="2"  id="2" type="checkbox" value="1"<?php if($perm[2]=='1') echo ' checked'?>> <label for="2"> Admin CP</label></td>
+<td><input name="5"  id="5" type="checkbox" value="1"<?php if($perm[5]=='1') echo ' checked'?>> <label for="5"> Delete Servers</label></td>
+<td><input name="6"  id="6" type="checkbox" value="1"<?php if($perm[6]=='1') echo ' checked'?>> <label for="6"> Delete Any Server</label></td>
+<td><input name="9"  id="9" type="checkbox" value="1"<?php if($perm[9]=='1') echo ' checked'?>> <label for="9"> Delete Groups</label></td>
+<td><input name="10"  id="10" type="checkbox" value="1"<?php if($perm[10]=='1') echo ' checked'?>> <label for="10"> Delete Any Group</label></td>
 </tr>
 
 <tr class="a" bgcolor=#CCCCCC>
 <td><center>--</center></td>
-<td><input name="6"  type="checkbox" value="1"<?php if($perm[6]=='1') echo ' checked'?>> Delete Any Server</td>
-<td><input name="10"  type="checkbox" value="1"<?php if($perm[10]=='1') echo ' checked'?>> Delete Any Group</td>
+<td><input name="19"  id="19" type="checkbox" value="1"<?php if($perm[19]=='1') echo ' checked'?>> <label for="19"> Start/Stop Servers</label></td>
+<td><input name="20"  id="20" type="checkbox" value="1"<?php if($perm[20]=='1') echo ' checked'?>> <label for="20"> Start/Stop Any Server</label></td>
 <td><center>--</center></td>
-<td><input name="17"  type="checkbox" value="1"<?php if($perm[17]=='1') echo ' checked'?>> All Logs</td>
+<td><center>--</center></td>
 </tr>
 <tr class="a" bgcolor=#CCCCCC>
 <td><center>--</center></td>
-<td><input name="vs"  type="checkbox" value="1" onclick="this.form.vg.checked = this.checked;"<?php if($perm[18]=='1') echo ' checked'?>> View All Servers</td>
-<td><input name="vg"  type="checkbox" value="1" onclick="this.form.vs.checked = this.checked;"<?php if($perm[18]=='1') echo ' checked'?>> View All Groups</td>
-<td><center>--</center></td>
-<td><center>--</center></td>
+<td><input name="21"  id="21" type="checkbox" value="1"<?php if($perm[21]=='1') echo ' checked'?>> <label for="21"> Edit Confs</label></td>
+<td><input name="22"  id="22" type="checkbox" value="1"<?php if($perm[22]=='1') echo ' checked'?>> <label for="22"> Edit Any Conf</label></td>
+<td><input name="vg"  id="vg" type="checkbox" value="1" onclick="this.form.vs.checked = this.checked;"<?php if($perm[18]=='1') echo ' checked'?>> <label for="vg"> View All Groups</label></td>
+<td><input name="vs"  id="vs" type="checkbox" value="1" onclick="this.form.vg.checked = this.checked;"<?php if($perm[18]=='1') echo ' checked'?>> <label for="vs"> View All Servers</label></td>
+</tr>
+</table>
+<table width="100%" cellpadding=5>
+				 <tr>
+				  <th>Per User</th>
+				  <th>Global</th>
+				  <th>Per User</th>
+				  <th>Global</th>
+				 </tr>
+
+<tr class="a" bgcolor=#CCCCCC>
+<td><input name="25"  id="25" type="checkbox" value="1"<?php if($perm[25]=='1') echo ' checked'?>> <label for="25"> Create Files</label></td>
+<td><input name="11"  id="11" type="checkbox" value="1"<?php if($perm[11]=='1') echo ' checked'?>> <label for="11"> Create Any File</label></td>
+<td><input name="28"  id="28" type="checkbox" value="1"<?php if($perm[28]=='1') echo ' checked'?>> <label for="28"> Ban</label></td>
+<td><input name="14"  id="14" type="checkbox" value="1"<?php if($perm[14]=='1') echo ' checked'?>> <label for="14"> All Ban</label></td>
+</tr>
+<tr class="a" bgcolor=#CCCCCC>
+<td><input name="26"  id="26" type="checkbox" value="1"<?php if($perm[26]=='1') echo ' checked'?>> <label for="26"> Edit Files</label></td>
+<td><input name="12"  id="12" type="checkbox" value="1"<?php if($perm[12]=='1') echo ' checked'?>> <label for="12"> Edit Any File</label></td>
+<td><input name="29"  id="29" type="checkbox" value="1"<?php if($perm[29]=='1') echo ' checked'?>> <label for="29"> Player Info</label></td>
+<td><input name="15"  id="15" type="checkbox" value="1"<?php if($perm[15]=='1') echo ' checked'?>> <label for="15"> All Player Info</label></td>
+</tr>
+<tr class="a" bgcolor=#CCCCCC>
+<td><input name="23"  id="23" type="checkbox" value="1"<?php if($perm[23]=='1') echo ' checked'?>> <label for="23"> Upload</label></td>
+<td><input name="24"  id="24" type="checkbox" value="1"<?php if($perm[24]=='1') echo ' checked'?>> <label for="24"> Upload Any File</label></td>
+<td><input name="30"  id="30" type="checkbox" value="1"<?php if($perm[30]=='1') echo ' checked'?>> <label for="30"> Logs</label></td>
+<td><input name="17"  id="17" type="checkbox" value="1"<?php if($perm[17]=='1') echo ' checked'?>> <label for="17"> All Logs</label></td>
+</tr>
+<tr class="a" bgcolor=#CCCCCC>
+<td><input name="27"  id="27" type="checkbox" value="1"<?php if($perm[27]=='1') echo ' checked'?>> <label for="27"> Delete Files</label></td>
+<td><input name="13"  id="13" type="checkbox" value="1"<?php if($perm[13]=='1') echo ' checked'?>> <label for="13"> Delete Any File</label></td>
+<td><input name="31"  id="31" type="checkbox" value="1"<?php if($perm[31]=='1') echo ' checked'?>> <label for="31"> Player Info</label></td>
+<td><input name="16"  id="16" type="checkbox" value="1"<?php if($perm[16]=='1') echo ' checked'?>> <label for="16"> All Reports</label></td>
 </tr>
 </table>
 <input type="hidden" name="save" value="1">
@@ -257,6 +295,4 @@ while($role = mysql_fetch_array($q2)){
 </fieldset>
 <?php
 }
-include_once("include/footer.php");
-
 ?>
