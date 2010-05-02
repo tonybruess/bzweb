@@ -201,7 +201,7 @@ You are editing permissions for: <b><?php echo $roles['name']?></b><br>
 <tr class="a" bgcolor=#CCCCCC>
 <td><input name="27"  id="27" type="checkbox" value="1"<?php if($perm[27]=='1') echo ' checked'?>> <label for="27"> Delete Files</label></td>
 <td><input name="13"  id="13" type="checkbox" value="1"<?php if($perm[13]=='1') echo ' checked'?>> <label for="13"> Delete Any File</label></td>
-<td><input name="31"  id="31" type="checkbox" value="1"<?php if($perm[31]=='1') echo ' checked'?>> <label for="31"> Player Info</label></td>
+<td><input name="31"  id="31" type="checkbox" value="1"<?php if($perm[31]=='1') echo ' checked'?>> <label for="31"> Reports</label></td>
 <td><input name="16"  id="16" type="checkbox" value="1"<?php if($perm[16]=='1') echo ' checked'?>> <label for="16"> All Reports</label></td>
 </tr>
 </table>
