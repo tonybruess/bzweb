@@ -72,6 +72,21 @@
 	$_SESSION['perm'][17] = $perm[17];
 	$_SESSION['perm'][18] = $perm[18];
 	$_SESSION['perm'][19] = $perm[19];
+	$_SESSION['perm'][20] = $perm[20];
+	$_SESSION['perm'][21] = $perm[21];
+	$_SESSION['perm'][22] = $perm[22];
+	$_SESSION['perm'][23] = $perm[23];
+	$_SESSION['perm'][24] = $perm[24];
+	$_SESSION['perm'][25] = $perm[25];
+	$_SESSION['perm'][26] = $perm[26];
+	$_SESSION['perm'][27] = $perm[27];
+	$_SESSION['perm'][28] = $perm[28];
+	$_SESSION['perm'][29] = $perm[29];
+	$_SESSION['perm'][30] = $perm[30];
+	$_SESSION['perm'][31] = $perm[31];
+	$_SESSION['perm'][32] = $perm[32];
+	$_SESSION['perm'][33] = $perm[33];
+	$_SESSION['perm'][34] = $perm[34];
 	    	}
     }
 ?>

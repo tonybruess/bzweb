@@ -27,20 +27,23 @@ include_once "include/mysql.php";
 			<h3>Current Up Server(s)</h3>
 <?php
 				if($_SESSION['perm'][18]){
-					$sql_query=("SELECT * FROM servers WHERE `status`='1'");
+					$query_result=mysql_query("SELECT * FROM servers WHERE `status`='1'");
 				} else {
-					$sql_query=("SELECT * FROM servers WHERE `status`='1' WHERE owner='$name'");
+					$query_result=mysql_query("SELECT * FROM servers WHERE `status`='1' AND owner='$name'");
 				}
-				$query_result=mysql_query($sql_query);
+
 				$result_array=array();
 				while($row = mysql_fetch_assoc($query_result)){ // Results found, add them to result array
-					array_push($result_array, array($row['name']));
+					array_push($result_array, array($row['name'],$row['owner'],$row['id']));
 				}
 				// Setup result <table>
 				$result=
 				"<table width=\"100%\">
 				 <tr>
 				  <th>Server name</th>
+				  <th>Owner</th>
+				  <th>Logs</th>
+				  <th>Reports</th>
 				 </tr>";
 				
 				// Add items to result <table>
@@ -51,6 +54,9 @@ include_once "include/mysql.php";
 					$temp_results=
 					"<tr class=\"a\"".$bg.">".
 						"<td style=\"text-align: center;\">".$result_array[$row][0]."</td>".
+						"<td style=\"text-align: center;\">".$result_array[$row][1]."</td>".
+						"<td style=\"text-align: center;\"><a href=\"?p=logs&server=".$result_array[$row][2]."&order=1&admin=1&slash=1&filtered=1&chat=1&join=1&report=1&status=1&player=1\">Logs</a></td>".
+						"<td style=\"text-align: center;\"><a href=\"?p=reports&server=".$result_array[$row][2]."\">Reports</a></td>".
 						"</tr>";
 					
 					// Add table row to result
@@ -69,6 +75,10 @@ include_once "include/mysql.php";
 			<input type=hidden name="p" value="servers">
 			<input type=submit value="All servers">
 			</form>
+<?php
+if($_SESSION['perm'][28] || $_SESSION['perm'][14]){
+?>
+
 			<h3>Most Recent Bans</h3>
 <?php
 				$sql_query=("SELECT * FROM bans");
@@ -114,6 +124,10 @@ include_once "include/mysql.php";
 			<input type=hidden name="p" value="bans">
 			<input type=submit value="More...">
 			</form>
+<?php
+}
+if($_SESSION['perm'][29] || $_SESSION['perm'][15]){
+?>
 			<h3>Most Recent Players</h3>
 <?php
 				if(($_SESSION[perm][15])==1){
@@ -164,12 +178,16 @@ include_once "include/mysql.php";
 			<input type=hidden name="p" value="player">
 			<input type=submit value="More...">
 			</form>
+<?php
+}
+if($_SESSION['perm'][31] || $_SESSION['perm'][16]){
+?>
 <h3>Most Recent Reports</h3>
 <?php
-	if(($_SESSION[perm][16])==1){
-		$q = "SELECT * FROM reports WHERE `server`='$id_clean' ORDER BY time DESC";
+	if($_SESSION['perm'][16]==1){
+		$q = "SELECT * FROM reports ORDER BY time DESC";
 	} else {
-		$q = "SELECT * FROM reports WHERE `server`='$id_clean' And serverowner='$name' ORDER BY time DESC";
+		$q = "SELECT * FROM reports WHERE serverowner='$name' ORDER BY time DESC";
 	}
 				$query_result=mysql_query($q);
 				$result_array=array();
@@ -181,8 +199,9 @@ include_once "include/mysql.php";
 				"<table width=\"100%\">
 				 <tr>
 				  <th width=\"20%\">When</th>
-				  <th width=\"5%\">Server</th>
-				  <th width=\"20%\">Reporter</th>
+				  <th width=\"10%\">Server</th>
+				  <th width=\"10%\">Owner</th>
+				  <th width=\"10%\">Reporter</th>
 				  <th>Report</th>
 				 </tr>";
 				
@@ -190,12 +209,14 @@ include_once "include/mysql.php";
 				$num_results=count($result_array);			
 				for ( $row = 0; $row < $num_results; $row++ )
 				{				
+					$serverdetails = mysql_fetch_array(mysql_query("SELECT * FROM servers WHERE id=".$result_array[$row][1]));
 					if(strstr($result_array[$row][3],"VERIFIED")){ $bg = ' bgcolor=#99FF99'; } else { $bg = ' bgcolor=#CCCCCC'; }
 					if(strstr($result_array[$row][3],"ADMIN")){ $bg = ' bgcolor=#FF9933'; }
 					$temp_results=
 					"<tr class=\"a\"".$bg.">".
 						"<td style=\"text-align: center;\">".date("Y-m-d",$result_array[$row][4]).' '.date("h:i:s A",$result_array[$row][4])."</td>".
-						"<td style=\"text-align: center;\">".$result_array[$row][1]."</td>".
+						"<td style=\"text-align: center;\">".$serverdetails[2]."</td>".
+						"<td style=\"text-align: center;\">".$serverdetails[3]."</td>".
 						"<td style=\"text-align: center;\">".$result_array[$row][2]."</td>".
 						"<td style=\"text-align: center;\">".$result_array[$row][3]."</td>".
 					"</tr>";
@@ -212,3 +233,6 @@ include_once "include/mysql.php";
 			<input type=hidden name="p" value="reports">
 			<input type=submit value="More...">
 			</form>
+			<?php
+}
+?>
