@@ -38,7 +38,13 @@ Admin Email: <input type="text" name="email" value="<?php echo $set_data[1]?>">
 <br>
 BZFS Executable: <input type="text" name="bzfs" value="<?php echo $set_data[2]?>">
 <br>
-Domain: <input type="text" name="domain1" value="<?php echo $set_data[3]?>">
+Domain 1: <input type="text" name="domain1" value="<?php echo $set_data[3]?>">
+<br>
+Domain 2: <input type="text" name="domain2" value="<?php echo $set_data[4]?>">
+<br>
+Domain 3: <input type="text" name="domain3" value="<?php echo $set_data[5]?>">
+<br>
+Domain 4: <input type="text" name="domain4" value="<?php echo $set_data[6]?>">
 <br>
 <input type="hidden" name="updatesettings" value="1">
 <input type="submit" value="Save">

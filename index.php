@@ -1,4 +1,7 @@
 <?php
+if(!file_exists("include/mysql.php")){
+	include_once("include/install.php");
+} else {
 session_start(); 
 header("Cache-control: private");
 $name = $_SESSION['callsign'];
@@ -22,5 +25,6 @@ if(!$_SESSION['callsign'] && $_GET['p'] !== "error"){
 		include_once("pages/index.pag");
 	}
 		include_once("include/footer.php");
+}
 }
 ?>

@@ -175,6 +175,30 @@ input[type=text]:disabled{
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 }
+input[type=password]{
+	border: #999999 solid 1px;
+	background: #f0f0f0;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	margin-bottom: 5px;
+	padding: 3px;
+}
+input[type=password]:hover{
+	border: #555555 solid 1px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+input[type=password]:active{
+	border: #555555 solid 1px;
+	background: #f0f0f0;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+input[type=password]:disabled{
+	background: #CDCDCE;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
 select{
 	margin-bottom: 5px;
 	border: #555555 solid 1px;
