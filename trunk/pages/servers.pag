@@ -53,7 +53,7 @@ if ($_POST['createserver'] == "1" && $_POST['newserver'] != ""){ // form was pos
 		if($e_ar[0] == "$newserver"){
 			//Server already exists
 			echo "Server Already Exists";
-		} elseif ($g_ar[2] == $name||$_SESSION['perm'][4]){
+		} elseif ($g_ar[2] == $name || $_SESSION['perm'][4]){
 			//Create server
 			mysql_query("INSERT INTO servers (`master`, `name`, `owner`, `enabled`) VALUES ('$g_ar[0]', '$newserver_clean', '$name', '1')");
 			$a = mysql_query("SELECT id FROM servers WHERE `master` = '$g_ar[0]' AND `name` = '$newserver_clean'");
@@ -82,13 +82,13 @@ if ($_POST['creategroup'] == "1" && $_POST['newgroup'] != ""){ // form was poste
 			echo "Group Already Exists";
 		} else {
 			if(!$_POST['underuser']){
-				mysql_query("INSERT INTO groups (`name`, `owner`, `status`, `enabled`) VALUES ('$newgroup_clean', '$name', 0, 1)");
+				mysql_query("INSERT INTO groups (`name`, `owner`, `enabled`) VALUES ('$newgroup_clean', '$name', 1)");
 				echo "Group Created Successfully!";
 			}
 			if($_POST['underuser']&&$_SESSION['perm'][8]){
 				$underuserc = sanitize($_POST['underuser']);
 				mysql_query("INSERT INTO groups (`name`, `owner`, `status`, `enabled`) VALUES ('$newgroup_clean', '$underuserc', 0, 1)");
-				echo "Group Created Successfully for user ".$_POST['underuserc']."!";
+				echo "Group Created Successfully for user ".$_POST['underuser']."!";
 			} else {
 				echo "No permission";
 			}
@@ -117,7 +117,7 @@ if ($_POST['deletegroup'] == "1"){ // form was posted and isnt blank
 	$deletegroup_clean = sanitize($deletegroup);
 	$g = mysql_query("SELECT * FROM groups WHERE `owner`='$name' AND `id`='$deletegroup_clean'");
 	$g_ar = mysql_fetch_array($g);
-	if ($name == $g_ar[2]){
+	if ($name == $g_ar[2] || $_SESSION['perm'][10]){
 			mysql_query("DELETE FROM groups WHERE `id`='$deletegroup_clean'");
 			mysql_query("UPDATE servers SET `enabled`='0' WHERE `master`='$deletegroup_clean'");
 			echo "Group Deleted Successfully";

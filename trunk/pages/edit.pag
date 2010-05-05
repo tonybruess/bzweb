@@ -224,7 +224,12 @@ Add <input type="text" size="2" name="fwg" value="<?php echo $zar['fwg'];?>" max
 <fieldset>
  <legend>Public Settings</legend>
 <input type="text" name="public" size="35" maxlength="60" value="<?php echo $zar['public']?>"> The name of the server<br>
-<select name="domain"><option>bzbureau.com</option></select> : 
+<select name="domain">
+<?php if($sitedata['domain1']){?><option><?php echo $sitedata['domain1'] ?></option><?php } ?>
+<?php if($sitedata['domain2']){?><option><?php echo $sitedata['domain2'] ?></option><?php } ?>
+<?php if($sitedata['domain3']){?><option><?php echo $sitedata['domain3'] ?></option><?php } ?>
+<?php if($sitedata['domain4']){?><option><?php echo $sitedata['domain4'] ?></option><?php } ?>
+</select> : 
 <select name="p">
 <?php
 $port = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE name='$overallowner'"));
