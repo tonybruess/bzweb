@@ -89,6 +89,7 @@
 			//Do login because you lack a value
 			do_login();
 		} else {
+			?><h3>Setuping up BZWeb...</h3><?php
 			//Connect to database
 			   mysql_connect("localhost",$_POST['user'],$_POST['password']) or die("Error: ".mysql_error()); // Connecting to the server
 			//All values, Create DB and such
@@ -96,7 +97,8 @@
 				echo "Failed to create database";
 				die();
 			} else {
-				echo "Database created...";
+				echo "Database created...<br><br>";
+				   mysql_select_db($_POST['db']) or die("Error: ".mysql_error()); // Connecting to the database
 			}
 			$sql1='create table files (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,`name` text,`owner` VARCHAR(200),`type` VARCHAR(10),`contents` text)';
 
@@ -104,7 +106,7 @@
 
 			$sql3='create table servers (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,`master` INT NOT NULL,`name` TEXT,`owner` TEXT,`status` INT,`style` VARCHAR(5),`j` INT,`r` INT,`ms` INT,`noradar` INT,`autoteam` INT,`mp` INT,`rogue` INT,`red` INT,`green` INT,`blue` INT,`purple` INT,`observer` INT,`user` TEXT,`group` TEXT,`ban` TEXT,`report` TEXT,`nomasterban` INT,`fa` INT,`fcl` INT,`ff` INT,`fg` INT,`fgm` INT,`fib` INT,`fl` INT,`fmg` INT,`fn` INT,`foo` INT,`fpz` INT,`fqt` INT,`fsb` INT,`fse` INT,`fsh` INT,`fsr` INT,`fst` INT,`fsw` INT,`ft` INT,`fth` INT,`fus` INT,`fv` INT,`fwg` INT,`fb` INT,`sb` INT,`worldfile` TEXT,`b` INT,`h` INT,`worldsize` INT,`public` TEXT,`p` INT,`domain` TEXT,`disablebots` INT,`servermsg` TEXT,`admsg` TEXT,`enabled` INT NOT NULL)';
 
-			$sql4='create table players (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,`serverowner` TEXT,`name` TEXT,`ip` VARCHAR(100),`host VARCHAR(200),`description` TEXT,`bzid` VARCHAR(50),`time` VARCHAR(100))';
+			$sql4='create table players (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,`serverowner` TEXT,`name` TEXT,`ip` VARCHAR(100),`host` VARCHAR(200),`description` TEXT,`bzid` VARCHAR(50),`time` VARCHAR(100))';
 
 			$sql5='create table reports (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,`server` INT,`serverowner` TEXT,`reporter` TEXT,`report` TEXT,`time` VARCHAR(100))';
 
@@ -117,8 +119,22 @@
 				echo "Failed to create tables";
 				die();
 			} else {
-				echo "Tables created...";
+				echo "Tables created...<br><br>";
 			}
+			$site = $_POST['site'];
+			$email = $_POST['email'];
+			$name = $_POST['callsign'];
+			$sql1="INSERT INTO settings (`site`,`email`) VALUES ('$site','$email'); INSERT INTO roles (`name`,`permissions`) VALUES ('Admin','91111111111111111111111111111111'); INSERT INTO users (`name`,`permissions`) VALUES ('$name','1')";
+			if(!mysql_query($sql1)){
+				echo "Failed to insert data";
+				die();
+			} else {
+				echo "Data inserted...<br><br>";
+		}
+		?>
+		<p>You have sucesfully setup BZWeb on your server!</p>
+		<p>Click HERE to login using the callsign you provided at setup.</p>
+		<?php
 		}
 	} else {
 		//No post, do login
