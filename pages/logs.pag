@@ -83,14 +83,14 @@ Include:
                 </select>
                 <br>
                 Include:
-				<input type="checkbox" <?php if($_GET['admin'] echo 'checked ';?>value="1" name="admin">Admin Chat
-				<input type="checkbox" <?php if($_GET['slash'] echo 'checked ';?>value="1" name="slash">Commands
-				<input type="checkbox" <?php if($_GET['filtered'] echo 'checked ';?>value="1" name="filtered">Filtered Chat
-				<input type="checkbox" <?php if($_GET['chat'] echo 'checked ';?>value="1" name="chat">Player Chat
-				<input type="checkbox" <?php if($_GET['join'] echo 'checked ';?>value="1" name="join">Player Joins/Parts
-				<input type="checkbox" <?php if($_GET['report'] echo 'checked ';?>value="1" name="report">Reports
-				<input type="checkbox" <?php if($_GET['status'] echo 'checked ';?>value="1" name="status">Server Status
-				<input type="checkbox" <?php if($_GET['player'] echo 'checked ';?>value="1" name="player">Playercount
+				<input type="checkbox" <?php if($_GET['admin']) echo 'checked ';?>value="1" name="admin">Admin Chat
+				<input type="checkbox" <?php if($_GET['slash']) echo 'checked ';?>value="1" name="slash">Commands
+				<input type="checkbox" <?php if($_GET['filtered']) echo 'checked ';?>value="1" name="filtered">Filtered Chat
+				<input type="checkbox" <?php if($_GET['chat']) echo 'checked ';?>value="1" name="chat">Player Chat
+				<input type="checkbox" <?php if($_GET['join']) echo 'checked ';?>value="1" name="join">Player Joins/Parts
+				<input type="checkbox" <?php if($_GET['report']) echo 'checked ';?>value="1" name="report">Reports
+				<input type="checkbox" <?php if($_GET['status']) echo 'checked ';?>value="1" name="status">Server Status
+				<input type="checkbox" <?php if($_GET['player']) echo 'checked ';?>value="1" name="player">Playercount
 				<br>
 				<input type=submit value=Update>
                 </form><br>
