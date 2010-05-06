@@ -49,16 +49,20 @@ Order by:<select name="order" onchange="this.form.submit();">
 <option value="2"<?php if($_GET['order']=='2') echo " selected";?>>Oldest</option>
 </select>
 <br>
-Include:
-<input type="checkbox" checked  value="1" name="admin">Admin Chat
-<input type="checkbox" checked  value="1" name="slash">Commands
-<input type="checkbox" checked  value="1" name="filtered">Filtered Chat
-<input type="checkbox" checked  value="1" name="chat">Player Chat
-<input type="checkbox" checked  value="1" name="join">Player Joins/Parts
-<input type="checkbox" checked  value="1" name="report">Reports
-<input type="checkbox" checked  value="1" name="status">Server Status
-<input type="checkbox" checked  value="1" name="player">Playercount
-<br>
+               <input type="radio" name="type" value="a" <?php if(!$_GET['search']) echo 'checked '; ?>onclick="admin.disabled=false; slash.disabled=false; filtered.disabled=false; search.disabled=true; chat.disabled=false; join.disabled=false; report.disabled=false; status.disabled=false; player.disabled=false; search.value='';">
+				Include:
+				<input type="checkbox" <?php if($_GET['admin']) echo 'checked ';?>value="1" name="admin" <?php if($_GET['search']) echo 'disabled '; ?>>Admin Chat
+				<input type="checkbox" <?php if($_GET['slash']) echo 'checked ';?>value="1" name="slash" <?php if($_GET['search']) echo 'disabled '; ?>>Commands
+				<input type="checkbox" <?php if($_GET['filtered']) echo 'checked ';?>value="1" name="filtered" <?php if($_GET['search']) echo 'disabled '; ?>>Filtered Chat
+				<input type="checkbox" <?php if($_GET['chat']) echo 'checked ';?>value="1" name="chat" <?php if($_GET['search']) echo 'disabled '; ?>>Player Chat
+				<input type="checkbox" <?php if($_GET['join']) echo 'checked ';?>value="1" name="join" <?php if($_GET['search']) echo 'disabled '; ?>>Player Joins/Parts
+				<input type="checkbox" <?php if($_GET['report']) echo 'checked ';?>value="1" name="report" <?php if($_GET['search']) echo 'disabled '; ?>>Reports
+				<input type="checkbox" <?php if($_GET['status']) echo 'checked ';?>value="1" name="status" <?php if($_GET['search']) echo 'disabled '; ?>>Server Status
+				<input type="checkbox" <?php if($_GET['player']) echo 'checked ';?>value="1" name="player" <?php if($_GET['search']) echo 'disabled '; ?>>Playercount
+				<br>
+				<input type="radio" name="type" value="b"  onclick="admin.disabled=true; slash.disabled=true; filtered.disabled=true; chat.disabled=true; join.disabled=true; report.disabled=true; status.disabled=true; player.disabled=true; search.disabled=false; search.value='<?php echo $_GET['search'] ?>'" <?php if($_GET['search']) echo 'checked '; ?>> 
+				Search: <input name="search" type="text" value="<?php echo $_GET['search'];?>" <?php if(!$_GET['search']) echo 'disabled '; ?>>
+				<br>
 <input type=submit value=Go>
 </form>
 <?php
@@ -82,15 +86,19 @@ Include:
                 <option value="2"<?php if($_GET['order']=='2') echo " selected";?>>Oldest</option>
                 </select>
                 <br>
-                Include:
-				<input type="checkbox" <?php if($_GET['admin']) echo 'checked ';?>value="1" name="admin">Admin Chat
-				<input type="checkbox" <?php if($_GET['slash']) echo 'checked ';?>value="1" name="slash">Commands
-				<input type="checkbox" <?php if($_GET['filtered']) echo 'checked ';?>value="1" name="filtered">Filtered Chat
-				<input type="checkbox" <?php if($_GET['chat']) echo 'checked ';?>value="1" name="chat">Player Chat
-				<input type="checkbox" <?php if($_GET['join']) echo 'checked ';?>value="1" name="join">Player Joins/Parts
-				<input type="checkbox" <?php if($_GET['report']) echo 'checked ';?>value="1" name="report">Reports
-				<input type="checkbox" <?php if($_GET['status']) echo 'checked ';?>value="1" name="status">Server Status
-				<input type="checkbox" <?php if($_GET['player']) echo 'checked ';?>value="1" name="player">Playercount
+                <input type="radio" name="type" value="a" <?php if(!$_GET['search']) echo 'checked '; ?>onclick="admin.disabled=false; slash.disabled=false; filtered.disabled=false; search.disabled=true; chat.disabled=false; join.disabled=false; report.disabled=false; status.disabled=false; player.disabled=false; search.value='';">
+				Include:
+				<input type="checkbox" <?php if($_GET['admin']) echo 'checked ';?>value="1" name="admin" <?php if($_GET['search']) echo 'disabled '; ?>>Admin Chat
+				<input type="checkbox" <?php if($_GET['slash']) echo 'checked ';?>value="1" name="slash" <?php if($_GET['search']) echo 'disabled '; ?>>Commands
+				<input type="checkbox" <?php if($_GET['filtered']) echo 'checked ';?>value="1" name="filtered" <?php if($_GET['search']) echo 'disabled '; ?>>Filtered Chat
+				<input type="checkbox" <?php if($_GET['chat']) echo 'checked ';?>value="1" name="chat" <?php if($_GET['search']) echo 'disabled '; ?>>Player Chat
+				<input type="checkbox" <?php if($_GET['join']) echo 'checked ';?>value="1" name="join" <?php if($_GET['search']) echo 'disabled '; ?>>Player Joins/Parts
+				<input type="checkbox" <?php if($_GET['report']) echo 'checked ';?>value="1" name="report" <?php if($_GET['search']) echo 'disabled '; ?>>Reports
+				<input type="checkbox" <?php if($_GET['status']) echo 'checked ';?>value="1" name="status" <?php if($_GET['search']) echo 'disabled '; ?>>Server Status
+				<input type="checkbox" <?php if($_GET['player']) echo 'checked ';?>value="1" name="player" <?php if($_GET['search']) echo 'disabled '; ?>>Playercount
+				<br>
+				<input type="radio" name="type" value="b"  onclick="admin.disabled=true; slash.disabled=true; filtered.disabled=true; chat.disabled=true; join.disabled=true; report.disabled=true; status.disabled=true; player.disabled=true; search.disabled=false; search.value='<?php echo $_GET['search'] ?>'" <?php if($_GET['search']) echo 'checked '; ?>> 
+				Search: <input name="search" type="text" value="<?php echo $_GET['search'];?>" <?php if(!$_GET['search']) echo 'disabled '; ?>>
 				<br>
 				<input type=submit value=Update>
                 </form><br>
@@ -124,6 +132,7 @@ if($name !== $check[0]&&$_SESSION['perm'][17]!=='1'){
 	die();
 }
 $q = "SELECT * FROM ".$id_clean."serverlogs WHERE `server`='$id_clean'";
+if(!$_GET['search']){
 $q .= " AND `type`=''";
 if($_GET['admin']){
 $q .= " OR `type`='MSG-ADMIN'";
@@ -149,10 +158,9 @@ $q .= " OR `type`='SERVER-STATUS'";
 if($_GET['player']){
 $q .= " OR `type`='PLAYERS'";
 }
-if($_GET['order']=='1' || !$_GET['order']){
-	$q .= " ORDER BY time DESC";
 } else {
-	$q .= " ORDER BY time ASC";
+	$search = $_GET['search'];
+$q .= " AND data LIKE '%$search%'";
 }
 $qr = mysql_query($q);
 while($log = mysql_fetch_array($qr)){
