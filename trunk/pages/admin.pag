@@ -299,6 +299,19 @@ while($role = mysql_fetch_array($q2)){
 }
 ?>
 </fieldset>
+<br>
+<fieldset>
+<legend><a href="?p=admin&op=conf">Master Conf/Group DB</a></legend>
+<?php if($_GET['op']=='conf'){
+?>
+<p>Enter a configuration file that will be included in ALL servers that are started</p>
+<textarea cols=50 rows=10></textarea>
+<p>Enter a group file that will be included in ALL servers that are started</p>
+<textarea cols=50 rows=10></textarea>
+<?php
+}
+?>
+</fieldset>
 <?php
 }
 ?>
