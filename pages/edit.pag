@@ -154,7 +154,7 @@ Max Shots <input type="text" size="2" maxlength="2" name="ms" value="<?php echo 
 <input name="observer" type="text" size="2" maxlength="3" value="<?php echo $zar['observer'];?>"> Observers<br>
  </fieldset><br>
 <select name ="group">
-<option>None</option>
+<option value="0">None</option>
 <?php
 $groupq = mysql_query("SELECT * FROM files WHERE owner='$overallowner' AND type='groupdb'");
 while($groupdb = mysql_fetch_array($groupq)) {
@@ -211,7 +211,17 @@ Add <input type="text" size="2" name="fwg" value="<?php echo $zar['fwg'];?>" max
  <legend>World Settings</legend>
  <fieldset>
 <legend><input type="radio" name="myRadioButton" onclick="b.disabled=true; h.disabled=true; b.checked=false; h.checked=false; worldsize.disabled=true; worldsize.value='0'; worldfile.disabled=false;" checked> Map File</legend>
-<select name="worldfile"><option>None</option></select> Map File
+
+<select name="worldfile">
+<option value="0">None</option>
+<?php
+$mapq = mysql_query("SELECT * FROM files WHERE owner='$overallowner' AND type='bzw'");
+while($mapfile = mysql_fetch_array($mapq)) {
+  ?><option value="<?php echo $mapfile['id']?>"<?php if ($zar['worldfile'] == $mapfile['id']) { echo ' selected'; } ?>><?php
+  echo $mapfile['name'] ?></option><?php
+  }
+?>
+</select> Map File
 <br>
 </fieldset>
 <fieldset>
