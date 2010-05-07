@@ -136,8 +136,9 @@ $adex = explode("\n",$e['admsg']);
 foreach ($adex as $ad){
 	$conf .= " -admsg \"$ad\"";
 }
+$masterdata = mysql_fetch_array(mysql_query("SELECT groupmaster,confmaster FROM settings"));
 $groupinfo = mysql_fetch_array(mysql_query("SELECT * FROM files WHERE id=".$e['group']));
-$bothgroup = $groupinfo['contents'];
+$bothgroup = $groupinfo['contents'] . "\n\n" . $masterdata['groupmaster'];
 $groupfile = "servers/".$e['id']."/groups.txt";
 $fh = fopen($groupfile, 'w');
 fwrite($fh, $bothgroup);
@@ -151,7 +152,7 @@ if($e && $conf){
 	die();
 }
 $serverid = $e[0];
-$conf .= " -pidfile bzfs.pid -ts -requireudp -groupdb groups.txt -loadplugin /usr/local/lib/bzflag/logDetail.so -reportfile reports.txt";
+$conf .= " -pidfile bzfs.pid -ts -requireudp -groupdb groups.txt -loadplugin /usr/local/lib/bzflag/logDetail.so -reportfile reports.txt  ".$masterdata['confmaster']."  ";
 $cmd = "cd servers/".$serverid."; bzfs".$conf." 2> error.txt | /usr/bin/php5-cgi ../../logpipe.php ".$serverid." ".$serverid." ".$e['owner']." 2>error_logpipe.txt >/dev/null&";
 shell_exec($cmd);
 sleep(2);
