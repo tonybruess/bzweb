@@ -50,8 +50,10 @@
 	
 	<div id="PageContent">
 	<?php //Define login function
-	function do_login(){?>
-	<h3>Install BZWeb</h3>
+	function do_login(){
+		if($_POST['2']){
+			?>
+	<h3>Install BZWeb - Part 2</h3>
 	<p>Lets get started by entering some data below:</p>
 	<form method="post">	
 	BZFlag Callsign: <input type="text" name="callsign">
@@ -72,12 +74,22 @@
 	Existing Password: <input type="password" name="password">
 	<br>
 	<br>
-	<input type="submit" value="     Setup BZWEB     ">
+	<input name=2 type="hidden" value="2">
+	<input name=3 type="submit" value="     Setup BZWEB     ">
+	</form>
+	<?php
+		} else {
+	?>
+	<h3>Install BZWeb - Part 1</h3>
+	<p>A few things first...</p>
+	<form method=post>
+	<input name=2 type=submit value=Continue>
 	</form>
 	<?php
 	}
+	}
 	//There is a post
-	if($_POST){
+	if($_POST['3']){
 		//You lack a value
 		if(!$_POST['callsign'] || !$_POST['company'] || !$_POST['email'] || !$_POST['db'] || !$_POST['user'] || !$_POST['password']) {
 			if(!$_POST['callsign']) echo "<br>Error: Please enter a callsign";
@@ -110,7 +122,7 @@
 
 			$sql5='create table reports (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,`server` INT,`serverowner` TEXT,`reporter` TEXT,`report` TEXT,`time` VARCHAR(100))';
 
-			$sql6='create table settings (`site` TEXT,`email` TEXT,`bzfs` TEXT,`domain1` TEXT,`domain2` TEXT,`domain3` TEXT, `domain4` TEXT, `global` int,`local` int, `confmaster` TEXT, `groupmaster` TEXT)';
+			$sql6='create table settings (`site` TEXT,`email` TEXT,`bzfs` TEXT,`domain1` TEXT,`domain2` TEXT,`domain3` TEXT, `domain4` TEXT, `global` int,`local` int, `confmaster` TEXT, `groupmaster` TEXT, `plugins` TEXT)';
 
 			$sql7='create table users (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,`name` TEXT,`bzid` INT, `permissions` INT,`pstart` INT,`pend` INT,`last login` INT)';
 

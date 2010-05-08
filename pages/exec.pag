@@ -20,6 +20,56 @@
     License along with this program.  If not, see
     <http://www.gnu.org/licenses/>.
 */
+function options($start,$stop,$restart){
+?>
+<center>
+<table>
+<tr><?php
+if($start){
+?>
+<td>
+<form method="GET">
+<input type="hidden" name="p" value="exec">
+<input type="hidden" name="mode" value="start">
+<input type="hidden" name="g" value="<?php echo $_GET['g']; ?>">
+<input type="hidden" name="s" value="<?php echo $_GET['s']; ?>">
+<input type="submit" value="Start">
+</form>
+</td>
+<?php
+}
+if($stop){
+?>
+<td>
+<form method="GET">
+<input type="hidden" name="p" value="exec">
+<input type="hidden" name="mode" value="stop">
+<input type="hidden" name="g" value="<?php echo $_GET['g']; ?>">
+<input type="hidden" name="s" value="<?php echo $_GET['s']; ?>">
+<input type="submit" value="Stop">
+</form>
+</td>
+<?php
+}
+if($restart){
+?>
+<td>
+<form method="GET">
+<input type="hidden" name="p" value="exec">
+<input type="hidden" name="mode" value="restart">
+<input type="hidden" name="g" value="<?php echo $_GET['g']; ?>">
+<input type="hidden" name="s" value="<?php echo $_GET['s']; ?>">
+<input type="submit" value="Restart">
+</form>
+</td>
+<?php
+}
+?>
+</tr>
+</table>
+</center>
+<?php
+}
 ?>
 <h3><?php 
 if($_GET['mode']=='start') echo 'Start'; if($_GET['mode']=='stop') echo 'Stop';?> Server</h3>
@@ -57,6 +107,7 @@ if(!$pidd){
 	mysql_query("UPDATE servers SET `status`=1 WHERE id='$serverclean'");
 	echo "Server is already running.<br>";
 	echo '</td></tr></table></center>';
+	options(1,1,1);
 	include_once "include/footer.php";
 	die();
 } else {
@@ -152,23 +203,29 @@ if($e && $conf){
 	die();
 }
 $serverid = $e[0];
-$conf .= " -pidfile bzfs.pid -ts -requireudp -groupdb groups.txt -loadplugin /usr/local/lib/bzflag/logDetail.so -reportfile reports.txt  ".$masterdata['confmaster']."  ";
-$cmd = "cd servers/".$serverid."; bzfs".$conf." 2> error.txt | /usr/bin/php5-cgi ../../logpipe.php ".$serverid." ".$serverid." ".$e['owner']." 2>error_logpipe.txt >/dev/null&";
+$conf .= " -pidfile bzfs.pid -ts -requireudp -groupdb groups.txt -loadplugin /usr/local/lib/bzflag/logDetail.so -reportfile reports.txt ";
+$conf .= $masterdata['confmaster'];
+$fh = fopen("servers/$serverid/conf.conf", 'w');
+fwrite($fh, $conf);
+fclose($fh);
+$cmd = "cd servers/".$serverid."; bzfs -conf conf.conf 2> error.txt | /usr/bin/php5-cgi ../../logpipe.php ".$serverid." ".$serverid." ".$e['owner']." 2>error_logpipe.txt >/dev/null&";
 shell_exec($cmd);
 sleep(2);
 $error = file_get_contents("servers/$e[0]/error.txt");
-if(preg_match("/Usage: /",$error) || preg_match("/ERROR: /",$error)){
-	echo "Server failed to start<br>";
-} else {
 	if($error){
 		$error = preg_replace("/\n/","<br>",$error);
 		echo "---------<br>";
 		echo $error;
 		echo "---------<br>";
-		echo "Server started successfully!";
 	}
+if(preg_match("/Usage: /",$error) || preg_match("/ERROR: /",$error)){
+	echo "Server failed to start<br>";
+} else {
+	echo "Server started successfully!";
 }
 }
+?>
+<?php
 if($_GET['mode']=='stop'){
 	?>
 	<tr><td>Request:</td><td>Stop</td></tr>

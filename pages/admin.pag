@@ -303,7 +303,6 @@ while($role = mysql_fetch_array($q2)){
 <fieldset>
 <legend><a href="?p=admin&op=conf">Master Conf/Group DB</a></legend>
 <?php if($_GET['op']=='conf'){
-$data = mysql_fetch_array(mysql_query("SELECT confmaster,groupmaster FROM settings"));
 if($_POST['updatemaster']){
 	$group = $_POST['group'];
 	$conf = $_POST['conf'];
@@ -311,12 +310,16 @@ if($_POST['updatemaster']){
 	mysql_query($q);
 	echo "Updated";
 }
+$data = mysql_fetch_array(mysql_query("SELECT confmaster,groupmaster FROM settings"));
 ?>
 <form method="post">
 <p>Enter a configuration file that will be included in ALL servers that are started</p>
 <textarea name="conf" cols=50 rows=10><?php echo $data['confmaster'];?></textarea>
 <p>Enter a group file that will be included in ALL servers that are started</p>
 <textarea name="group" cols=50 rows=10><?php echo $data['groupmaster'];?></textarea>
+<br>
+<p>Enter a list of plugins all users are allowed to load. List the plugin name then on the next line the plugin location</p>
+<textarea name="group" cols=50 rows=10><?php echo $data['plugins'];?></textarea>
 <br>
 <input type="hidden" name="updatemaster" value="1">
 <input type="submit" value="Save">
