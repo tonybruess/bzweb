@@ -24,14 +24,14 @@
 <h3>Player Info</h3>
 <?php
 	date_default_timezone_set("America/Chicago"); 	
-	if($_POST){
-	$query_type = $_POST['query_type'];
+	if($_GET){
+	$query_type = $_GET['query_type'];
 	}	
 	//check if search button was pressed
-	if (isset($_POST['searchfor'])){
-		if ($_POST['searchfor'] == "1" && $_POST['query'] != ""){ // form was posted and isn't blank
+	if ($_GET){
+		if ($_GET['query'] != ""){ // form was posted and isn't blank
 			//Setup vars
-			$search_query = $_POST['query'];
+			$search_query = $_GET['query'];
 			$query_clean = sanitize($search_query);
 			
 			// Check query type
@@ -97,10 +97,10 @@
 					if(strstr($result_array[$row][3],"ADMIN")){ $bg = ' bgcolor=#FF9933'; }
 					$temp_results=
 					"<tr class=\"a\"".$bg.">".
-						"<td style=\"text-align: center;\">".$result_array[$row][0]."</td>".
-						"<td style=\"text-align: center;\">".$result_array[$row][1]."</td>".
-						"<td style=\"text-align: center;\">".$result_array[$row][2]."</td>".
-						"<td style=\"text-align: center;\">".$result_array[$row][4]."</td>".
+						"<td style=\"text-align: center;\">"."<a href=\"./index.php?p=player&query_type=NA&query=".$result_array[$row][0]."&search=Search\">".$result_array[$row][0]."</a></td>".
+						"<td style=\"text-align: center;\">"."<a href=\"./index.php?p=player&query_type=IP&query=".$result_array[$row][1]."&search=Search\">".$result_array[$row][1]."</a></td>".
+						"<td style=\"text-align: center;\">"."<a href=\"./index.php?p=player&query_type=HO&query=".$result_array[$row][2]."&search=Search\">".$result_array[$row][2]."</a></td>".
+						"<td style=\"text-align: center;\">"."<a href=\"./index.php?p=player&query_type=BZ&query=".$result_array[$row][4]."&search=Search\">".$result_array[$row][4]."</a></td>".
 						"<td style=\"text-align: center;\">".date("Y-m-d",$result_array[$row][5]).' '.date("h:i:s A",$result_array[$row][5])."</td>".
 					"</tr>";
 					
@@ -111,13 +111,14 @@
 				$result.="</table>";
 			}
 		}
-		if ($_POST['searchfor'] == "1" && $_POST['query'] == ""){ // form was posted but is blank
+		if ($_GET['searchfor'] == "1" && $_GET['query'] == ""){ // form was posted but is blank
 			$info = "<b>You need to enter a search string.</b>";
 		}
 	}
 ?>
 
-<form method="post">
+<form method="get" >
+	<input type="hidden" name="p" value="player">
 	<b>Search for:</b>
 	<select name="query_type">
 		<option value="NA"<?php if($query_type == "NA") echo " selected"; ?>>Username</option>
@@ -127,7 +128,6 @@
 	</select>
 	<input type="text" name="query"/>
 	<input type="submit" value="Search" name="search">
-	<input type="hidden" name="searchfor" value="1" >
 </form>
 <br>
 
@@ -138,7 +138,7 @@
 		echo $info;
 	}
 	// Show result table
-	if(isset($result) || $_POST) 
+	if(isset($result) || $_GET) 
 	{ 
 		echo $result;
 	} else {
