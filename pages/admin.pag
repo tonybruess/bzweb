@@ -306,7 +306,8 @@ while($role = mysql_fetch_array($q2)){
 if($_POST['updatemaster']){
 	$group = $_POST['group'];
 	$conf = $_POST['conf'];
-	$q = "UPDATE settings SET `groupmaster` = '$group', `confmaster` = '$conf'";
+	$plugins = $_POST['plugins'];
+	$q = "UPDATE settings SET `groupmaster` = '$group', `confmaster` = '$conf', `plugins` = '$plugins'";
 	mysql_query($q);
 	echo "Updated";
 }
@@ -319,7 +320,7 @@ $data = mysql_fetch_array(mysql_query("SELECT confmaster,groupmaster FROM settin
 <textarea name="group" cols=50 rows=10><?php echo $data['groupmaster'];?></textarea>
 <br>
 <p>Enter a list of plugins all users are allowed to load. List the plugin name then on the next line the plugin location</p>
-<textarea name="group" cols=50 rows=10><?php echo $data['plugins'];?></textarea>
+<textarea name="plugins" cols=50 rows=10><?php echo $data['plugins'];?></textarea>
 <br>
 <input type="hidden" name="updatemaster" value="1">
 <input type="submit" value="Save">

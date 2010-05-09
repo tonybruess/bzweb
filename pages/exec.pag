@@ -129,6 +129,8 @@ switch ($e['style']) {
 }
 if($e['j']=='1')$conf .= ' -j';
 if($e['r']=='1')$conf .= ' +r';
+if($e['sb']=='1')$conf .= ' -sb';
+if($e['fb']=='1')$conf .= ' -fb';
 if($e['noradar']=='1')$conf .= ' -noradar';
 if($e['ms'] < 20)$conf .= ' -ms '.$e['ms'];
 if($e['autoteam']=='1')$conf .= ' -autoTeam';
