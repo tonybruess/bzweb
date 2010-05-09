@@ -82,6 +82,11 @@
 	?>
 	<h3>Install BZWeb - Part 1</h3>
 	<p>A few things first...</p>
+	<p>Make sure you have <b>php5-cgi</b> installed</p>
+	<p><b>PHP version 5</b> or later</p>
+	<p><b>MySQL Database Server</b> with an existing user and password</p>
+	<p>The directory that which BZWeb is installed in is <b>chmoded 777</b></p>
+	<p>Once you have all that done, you may <b>continue!</b><p>
 	<form method=post>
 	<input name=2 type=submit value=Continue>
 	</form>
@@ -127,25 +132,105 @@
 			$sql7='create table users (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,`name` TEXT,`bzid` INT, `permissions` INT,`pstart` INT,`pend` INT,`last login` INT)';
 
 			$sql8='create table roles (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,`name` TEXT,`permissions` VARCHAR(100))';
-			if(!mysql_query($sql1) || !mysql_query($sql2) || !mysql_query($sql3) || !mysql_query($sql4) || !mysql_query($sql5) || !mysql_query($sql6) || !mysql_query($sql7) || !mysql_query($sql8)){
-				echo "Failed to create tables";
+			
+			$sql9= 'create table bans (`id` INT,`server` INT,`banner` TEXT,`ip` VARCHAR(100),`length` VARCHAR(100),`reason` TEXT,`time` INT)';
+ 			if(!mysql_query($sql1)){
+				echo "Failed to create table 1";
 				die();
 			} else {
-				echo "Tables created...<br><br>";
+				echo "Table 1 created...<br><br>";
 			}
-			$site = $_POST['site'];
+ 			if(!mysql_query($sql2)){
+				echo "Failed to create table 2";
+				die();
+			} else {
+				echo "Table 2 created...<br><br>";
+			}
+ 			if(!mysql_query($sql3)){
+				echo "Failed to create table 3";
+				die();
+			} else {
+				echo "Table 3 created...<br><br>";
+			}
+ 			if(!mysql_query($sql4)){
+				echo "Failed to create table 4";
+				die();
+			} else {
+				echo "Table 4 created...<br><br>";
+			}
+ 			if(!mysql_query($sql5)){
+				echo "Failed to create table 5";
+				die();
+			} else {
+				echo "Table 5 created...<br><br>";
+			}
+ 			if(!mysql_query($sql6)){
+				echo "Failed to create table 6";
+				die();
+			} else {
+				echo "Table 6 created...<br><br>";
+			}
+ 			if(!mysql_query($sql7)){
+				echo "Failed to create table 7";
+				die();
+			} else {
+				echo "Table 7 created...<br><br>";
+			}
+ 			if(!mysql_query($sql8)){
+				echo "Failed to create table 8";
+				die();
+			} else {
+				echo "Table 8 created...<br><br>";
+			}
+ 			if(!mysql_query($sql9)){
+				echo "Failed to create table 9";
+				die();
+			} else {
+				echo "Table 9 created...<br><br>";
+			}
+			$site = $_POST['company'];
 			$email = $_POST['email'];
 			$name = $_POST['callsign'];
-			$sql1="INSERT INTO settings (`site`,`email`) VALUES ('$site','$email'); INSERT INTO roles (`name`,`permissions`) VALUES ('Admin','91111111111111111111111111111111'); INSERT INTO users (`name`,`permissions`) VALUES ('$name','1')";
+			$sql1= "INSERT INTO settings (`site`,`email`) VALUES ('$site','$email')";
+			$sql2 = "INSERT INTO roles (`name`,`permissions`) VALUES ('Admin','91111111111111111111111111111111')";
+			$sql3 = "INSERT INTO users (`name`,`permissions`) VALUES ('$name','1')";
 			if(!mysql_query($sql1)){
-				echo "Failed to insert data";
+				echo "Failed to insert data 1";
 				die();
 			} else {
-				echo "Data inserted...<br><br>";
-		}
+				echo "Data 1 inserted...<br><br>";
+			}
+			if(!mysql_query($sql2)){
+				echo "Failed to insert data 2";
+				die();
+			} else {
+				echo "Data 2 inserted...<br><br>";
+			}
+			if(!mysql_query($sql3)){
+				echo "Failed to insert data 3";
+				die();
+			} else {
+				echo "Data 3 inserted...<br><br>";
+			}
+				$data = file_get_contents("include/mysql-example.php");
+				$db = $_POST['db'];
+				$user = $_POST['user'];
+				$pass = $_POST['password'];
+				$data = preg_replace("/define('SQL_USER','mrapple');/","define('SQL_USER','$user');",$data);
+				$data = preg_replace("/define('SQL_PASS','inspiron');/","define('SQL_USER','$pass');",$data);
+				$data = preg_replace("/define('SQL_DB','bzweb');/","define('SQL_USER','$db');",$data);
+				$mysqlfile = "include/mysql.php";
+				$fh = fopen($mysqlfile, 'w');
+				if(fwrite($fh, $data)){
+					echo "Mysql file created...<br><br>";
+				} else {
+					echo "Failed to create mysql file<br><br>";
+					die();
+				}
+				fclose($fh);
 		?>
 		<p>You have sucesfully setup BZWeb on your server!</p>
-		<p>Click HERE to login using the callsign you provided at setup.</p>
+		<p>Click <a href="index.php">HERE</a> to login using the callsign you provided at setup.</p>
 		<?php
 		}
 	} else {

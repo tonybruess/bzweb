@@ -26,9 +26,12 @@ include("include/mysql.php");
 		$email = $_POST['email'];
 		$bzfs = $_POST['bzfs'];
 		$domain1 = $_POST['domain1'];
+		$domain2 = $_POST['domain2'];
+		$domain3 = $_POST['domain3'];
+		$domain4 = $_POST['domain4'];
 		$global = $_POST['global'];
 		$local = $_POST['local'];
-		$q = "UPDATE settings SET `site`='$site', `email`='$email', `bzfs`='$bzfs', `domain1`='$domain1', `global`='$global', `local`='$local'";
+		$q = "UPDATE settings SET `site`='$site', `email`='$email', `bzfs`='$bzfs', `domain1`='$domain1', `domain2`='$domain2', `domain3`='$domain3', `domain4`='$domain4', `global`='$global', `local`='$local'";
 		mysql_query($q);
 		$err = "Settings updated successfully";
 	}
