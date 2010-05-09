@@ -226,6 +226,8 @@ if($e && $conf){
 $serverid = $e[0];
 $conf .= " -pidfile bzfs.pid -ts -requireudp -groupdb groups.txt -loadplugin /usr/local/lib/bzflag/logDetail.so -reportfile reports.txt ";
 $conf .= $masterdata['confmaster'];
+//Add a new line to the end of the conf, thanks brad
+$conf .= "\n";
 $fh = fopen("servers/$serverid/conf.conf", 'w');
 fwrite($fh, $conf);
 fclose($fh);
