@@ -162,7 +162,7 @@ if($e['fth'] && $e['fth'] != "0" ) $conf .= " +f TH{".$e['fth']."}";
 if($e['fus'] && $e['fus'] != "0" ) $conf .= " +f US{".$e['fus']."}";
 if($e['fv'] && $e['fv'] != "0" ) $conf .= " +f V{".$e['fv']."}";
 if($e['fwg'] && $e['fwg'] != "0" ) $conf .= " +f WG{".$e['fwg']."}";
-if($e['worldfile'] == "None"){
+if($e['worldfile'] == "None" || !$e['worldfile']){
 	$conf .= ' -worldsize '.$e['worldsize'].' ';
 	if($e['b']=='1')$conf .= ' -b';
 	if($e['h']=='1')$conf .= ' -h';

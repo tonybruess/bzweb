@@ -43,6 +43,8 @@ $sitedata = mysql_fetch_array(mysql_query("SELECT * FROM settings"));
 	<link rel="stylesheet" href="global/servers.css">
 	<script type="text/javascript" src="global/global.js"></script>
 	<script type="text/javascript" src="global/servers.js"></script>
+	<script type="text/javascript" src="global/Mootools-Core.js"></script>
+	<script type="text/javascript" src="global/flags.js"></script>
 	<title>BZWeb</title>
 </head>
 
