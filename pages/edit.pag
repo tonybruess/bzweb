@@ -58,7 +58,10 @@ $port = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE name='$overallo
 if($_POST['p'] < $port['pstart'] || $_POST['p'] > $port['pend']){
 	die("That is not your port.");
 }
+?>
+<?php
 //Execute sucesfull Edit SQL Here
+$flags = json_decode($_POST['Flags'], true);
 mysql_query("UPDATE servers SET
 `style`='".$_POST['style']."',
 `j`='".$_POST['j']."',
@@ -78,29 +81,52 @@ mysql_query("UPDATE servers SET
 `ban`='".$_POST['ban']."',
 `report`='".$_POST['report']."',
 `nomasterban`='".$_POST['nomasterban']."',
-`fa`='".$_POST['fa']."',
-`fcl`='".$_POST['fcl']."',
-`ff`='".$_POST['ff']."',
-`fg`='".$_POST['fg']."',
-`fgm`='".$_POST['fgm']."',
-`fib`='".$_POST['fib']."',
-`fl`='".$_POST['fl']."',
-`fmg`='".$_POST['fmg']."',
-`fn`='".$_POST['fn']."',
-`foo`='".$_POST['foo']."',
-`fpz`='".$_POST['fpz']."',
-`fqt`='".$_POST['fqt']."',
-`fsb`='".$_POST['fsb']."',
-`fse`='".$_POST['fse']."',
-`fsh`='".$_POST['fsh']."',
-`fsr`='".$_POST['fsr']."',
-`fst`='".$_POST['fst']."',
-`fsw`='".$_POST['fsw']."',
-`ft`='".$_POST['ft']."',
-`fth`='".$_POST['fth']."',
-`fus`='".$_POST['fus']."',
-`fv`='".$_POST['fv']."',
-`fwg`='".$_POST['fwg']."',
+`agility`='".$flags['Agility']."',
+`burrow`='".$flags['Burrow']."',
+`cloaking`='".$flags['Cloaking']."',
+`genocide`='".$flags['Genocide']."',
+`guided missile`='".$flags['Guided Missile']."',
+`high speed`='".$flags['High Speed']."',
+`identify`='".$flags['Identify']."',
+`invisible bullet`='".$flags['Invisible Bullet']."',
+`jumping`='".$flags['Jumping']."',
+`laser`='".$flags['Laser']."',
+`machine gun`='".$flags['Machine Gun']."',
+`masquerade`='".$flags['Masquerade']."',
+`narrow`='".$flags['Narrow']."',
+`oscillation overthruster`='".$flags['Oscillation Overthruster']."',
+`phantom zone`='".$flags['Phantom Zone']."',
+`quick turn`='".$flags['Quick Turn']."',
+`rapid fire`='".$flags['Rapid Fire']."',
+`ricochet`='".$flags['Ricochet']."',
+`seer`='".$flags['Seer']."',
+`shield`='".$flags['Shield']."',
+`shock wave`='".$flags['Shock Wave']."',
+`stealth`='".$flags['Stealth']."',
+`steam roller`='".$flags['Steam Roller']."',
+`super bullet`='".$flags['Super Bullet']."',
+`thief`='".$flags['Thief']."',
+`tiny`='".$flags['Tiny']."',
+`useless`='".$flags['Useless']."',
+`wings`='".$flags['Wings']."',
+`blindness`='".$flags['Blindness']."',
+`bouncy`='".$flags['Bouncy']."',
+`colorblindness`='".$flags['Colorblindness']."',
+`forward only`='".$flags['Forward Only']."',
+`jamming`='".$flags['Jamming']."',
+`left turn only`='".$flags['Left Turn Only']."',
+`momentum`='".$flags['Momentum']."',
+`no jumping`='".$flags['No Jumping']."',
+`obesity`='".$flags['Obesity']."',
+`reverse controls`='".$flags['Reverse Controls']."',
+`reverse only`='".$flags['Reverse Only']."',
+`right turn only`='".$flags['Right Turn Only']."',
+`trigger happy`='".$flags['Trigger Happy']."',
+`wide angle`='".$flags['Wide Angle']."',
+`red flag`='".$flags['Red Flag']."',
+`green flag`='".$flags['Green Flag']."',
+`blue flag`='".$flags['Blue Flag']."',
+`purple flag`='".$flags['Purple Flag']."',
 `fb`='".$_POST['fb']."',
 `sb`='".$_POST['sb']."',
 `worldfile`='".$_POST['worldfile']."',
@@ -120,12 +146,64 @@ echo mysql_error();
 	$zar = mysql_fetch_array($z);
 //Edit conf file!
 ?>
+<script type="text/javascript">
+  window.addEvent("domready", function()
+  {
+<?php if($zar['agility']){ echo'    AddFlag("Agility",'; echo $zar['agility'];?>); <?php } ?>
+<?php if($zar['burrow']){ echo'    AddFlag("Burrow",'; echo $zar['burrow'];?>); <?php } ?>
+<?php if($zar['cloaking']){ echo'    AddFlag("Cloaking",'; echo $zar['cloaking'];?>); <?php } ?>
+<?php if($zar['genocide']){ echo'    AddFlag("Genocide",'; echo $zar['genocide'];?>); <?php } ?>
+<?php if($zar['guided missile']){ echo'    AddFlag("Guided Missile",'; echo $zar['guided missile'];?>); <?php } ?>
+<?php if($zar['high speed']){ echo'    AddFlag("High Speed",'; echo $zar['high speed'];?>); <?php } ?>
+<?php if($zar['identify']){ echo'    AddFlag("Identify",'; echo $zar['identify'];?>); <?php } ?>
+<?php if($zar['invisible bullet']){ echo'    AddFlag("Invisible Bullet",'; echo $zar['invisible bullet'];?>); <?php } ?>
+<?php if($zar['jumping']){ echo'    AddFlag("Jumping",'; echo $zar['jumping'];?>); <?php } ?>
+<?php if($zar['laser']){ echo'    AddFlag("Laser",'; echo $zar['laser'];?>); <?php } ?>
+<?php if($zar['machine gun']){ echo'    AddFlag("Machine Gun",'; echo $zar['machine gun'];?>); <?php } ?>
+<?php if($zar['masquerade']){ echo'    AddFlag("Masquerade",'; echo $zar['masquerade'];?>); <?php } ?>
+<?php if($zar['narrow']){ echo'    AddFlag("Narrow",'; echo $zar['narrow'];?>); <?php } ?>
+<?php if($zar['oscillation overthruster']){ echo'    AddFlag("Oscillation Overthruster",'; echo $zar['oscillation overthruster'];?>); <?php } ?>
+<?php if($zar['phantom zone']){ echo'    AddFlag("Phantom Zone",'; echo $zar['phantom zone'];?>); <?php } ?>
+<?php if($zar['quick turn']){ echo'    AddFlag("Quick Turn",'; echo $zar['quick turn'];?>); <?php } ?>
+<?php if($zar['rapid fire']){ echo'    AddFlag("Rapid Fire",'; echo $zar['rapid fire'];?>); <?php } ?>
+<?php if($zar['ricochet']){ echo'    AddFlag("Ricochet",'; echo $zar['ricochet'];?>); <?php } ?>
+<?php if($zar['seer']){ echo'    AddFlag("Seer",'; echo $zar['seer'];?>); <?php } ?>
+<?php if($zar['shield']){ echo'    AddFlag("Shield",'; echo $zar['shield'];?>); <?php } ?>
+<?php if($zar['shock wave']){ echo'    AddFlag("Shock Wave",'; echo $zar['shock wave'];?>); <?php } ?>
+<?php if($zar['stealth']){ echo'    AddFlag("Stealth",'; echo $zar['stealth'];?>); <?php } ?>
+<?php if($zar['steam roller']){ echo'    AddFlag("Steam Roller",'; echo $zar['steam roller'];?>); <?php } ?>
+<?php if($zar['super bullet']){ echo'    AddFlag("Super Bullet",'; echo $zar['super bullet'];?>); <?php } ?>
+<?php if($zar['thief']){ echo'    AddFlag("Thief",'; echo $zar['thief'];?>); <?php } ?>
+<?php if($zar['tiny']){ echo'    AddFlag("Tiny",'; echo $zar['tiny'];?>); <?php } ?>
+<?php if($zar['useless']){ echo'    AddFlag("Useless",'; echo $zar['useless'];?>); <?php } ?>
+<?php if($zar['wings']){ echo'    AddFlag("Wings",'; echo $zar['wings'];?>); <?php } ?>
+<?php if($zar['blindness']){ echo'    AddFlag("Blindness",'; echo $zar['blindness'];?>); <?php } ?>
+<?php if($zar['bouncy']){ echo'    AddFlag("Bouncy",'; echo $zar['bouncy'];?>); <?php } ?>
+<?php if($zar['colorblindness']){ echo'    AddFlag("Colorblindness",'; echo $zar['colorblindness'];?>); <?php } ?>
+<?php if($zar['forward only']){ echo'    AddFlag("Forward Only",'; echo $zar['forward only'];?>); <?php } ?>
+<?php if($zar['jamming']){ echo'    AddFlag("Jamming",'; echo $zar['jamming'];?>); <?php } ?>
+<?php if($zar['left turn only']){ echo'    AddFlag("Left Turn Only",'; echo $zar['left turn only'];?>); <?php } ?>
+<?php if($zar['momentum']){ echo'    AddFlag("Momentum",'; echo $zar['momentum'];?>); <?php } ?>
+<?php if($zar['no jumping']){ echo'    AddFlag("No Jumping",'; echo $zar['no jumping'];?>); <?php } ?>
+<?php if($zar['obesity']){ echo'    AddFlag("Obesity",'; echo $zar['obesity'];?>); <?php } ?>
+<?php if($zar['reverse controls']){ echo'    AddFlag("Reverse Controls",'; echo $zar['reverse controls'];?>); <?php } ?>
+<?php if($zar['reverse only']){ echo'    AddFlag("Reverse Only",'; echo $zar['reverse only'];?>); <?php } ?>
+<?php if($zar['right turn only']){ echo'    AddFlag("Right Turn Only",'; echo $zar['right turn only'];?>); <?php } ?>
+<?php if($zar['trigger happy']){ echo'    AddFlag("Trigger Happy",'; echo $zar['trigger happy'];?>); <?php } ?>
+<?php if($zar['wide angle']){ echo'    AddFlag("Wide Angle",'; echo $zar['wide angle'];?>); <?php } ?>
+<?php if($zar['red flag']){ echo'    AddFlag("Red Flag",'; echo $zar['red flag'];?>); <?php } ?>
+<?php if($zar['green flag']){ echo'    AddFlag("Green Flag",'; echo $zar['green flag'];?>); <?php } ?>
+<?php if($zar['blue flag']){ echo'    AddFlag("Blue Flag",'; echo $zar['blue flag'];?>); <?php } ?>
+<?php if($zar['purple flag']){ echo'    AddFlag("Purple Flag",'; echo $zar['purple flag'];?>); <?php } ?>
+  });
+</script>
+
 <form method="GET">
 <input type="hidden" name="p" value="servers">
 <input type="submit" value="Back">
 </form>
 <br>
-<form method="POST">
+<form action="" method="post" id="theform">
 <input type="hidden" name="save" value="1">
 <fieldset>
  <legend>Gameplay Settings</legend>
@@ -181,29 +259,19 @@ while($bandb = mysql_fetch_array($banq)) {
 </fieldset><br>
 <fieldset>
  <legend>Flag Settings</legend>
-Add <input type="text" size="2" name="fa" value="<?php echo $zar['fa'];?>" maxlength="2" >Agility Flag(s) <br>
-Add <input type="text" size="2" name="fcl" value="<?php echo $zar['fcl'];?>" maxlength="2" >Cloaking Flag(s)<br>
-Add <input type="text" size="2" name="ff" value="<?php echo $zar['ff'];?>" maxlength="2" >Rapid Fire Flag(s)<br>
-Add <input type="text" size="2" name="fg" value="<?php echo $zar['fg'];?>" maxlength="2" >Genocide Flag(s)<br>
-Add <input type="text" size="2" name="fgm" value="<?php echo $zar['fgm'];?>" maxlength="2" >Guided Missile Flag(s)<br>
-Add <input type="text" size="2" name="fib" value="<?php echo $zar['fib'];?>" maxlength="2" >Invisible Bullet Flag(s)<br>
-Add <input type="text" size="2" name="fl" value="<?php echo $zar['fl'];?>" maxlength="2" >Laser Flag(s)<br>
-Add <input type="text" size="2" name="fmg" value="<?php echo $zar['fmg'];?>" maxlength="2" >Machine Gun Flag(s)<br>
-Add <input type="text" size="2" name="fn" value="<?php echo $zar['fn'];?>" maxlength="2" >Narrow Flag(s)<br>
-Add <input type="text" size="2" name="foo" value="<?php echo $zar['foo'];?>" maxlength="2" >Oscillation Overthruster Flag(s)<br>
-Add <input type="text" size="2" name="fpz" value="<?php echo $zar['fpz'];?>" maxlength="2" >Phantom Zone Flag(s)<br>
-Add <input type="text" size="2" name="fqt" value="<?php echo $zar['fqt'];?>" maxlength="2" >QuickTurn Flag(s)<br>
-Add <input type="text" size="2" name="fsb" value="<?php echo $zar['fsb'];?>" maxlength="2" >Super Bullet Flag(s)<br>
-Add <input type="text" size="2" name="fse" value="<?php echo $zar['fse'];?>" maxlength="2" >Seer Flag(s)<br>
-Add <input type="text" size="2" name="fsh" value="<?php echo $zar['fsh'];?>" maxlength="2" >Shield Flag(s)<br>
-Add <input type="text" size="2" name="fsr" value="<?php echo $zar['fsr'];?>" maxlength="2" >Steamroller Flag(s)<br>
-Add <input type="text" size="2" name="fst" value="<?php echo $zar['fst'];?>" maxlength="2" >Stealth Flag(s)<br>
-Add <input type="text" size="2" name="fsw" value="<?php echo $zar['fsw'];?>" maxlength="2" >Shockwave Flag(s)<br>
-Add <input type="text" size="2" name="ft" value="<?php echo $zar['ft'];?>" maxlength="2" >Tiny Flag(s)<br>
-Add <input type="text" size="2" name="fth" value="<?php echo $zar['fth'];?>" maxlength="2" >Thief Flag(s)<br>
-Add <input type="text" size="2" name="fus" value="<?php echo $zar['fus'];?>" maxlength="2" >Useless Flag(s)<br>
-Add <input type="text" size="2" name="fv" value="<?php echo $zar['fv'];?>" maxlength="2" >High Speed Flag(s)<br>
-Add <input type="text" size="2" name="fwg" value="<?php echo $zar['fwg'];?>" maxlength="2" >Wings Flag(s)<br>
+<div style="text-align: center; overflow: hidden;">
+<div style="float: left; width: 48%">
+<span>Press "Add" or double click to add <input type="text" id="NumFlagsToAdd" maxlength="2" value="1" style="width: 1.5em"> flag(s).</span>
+<input type="button" value="Add" style="width: 100%" id="AddButton">
+<select id="AvailableFlagList" multiple size="15" style="width: 100%;"></select>
+</div>
+<div style="float: right; width: 48%">
+<span>Press "Remove" or double click to remove <input type="text" id="NumFlagsToRemove" maxlength="2" value="1" style="width: 1.5em"> flag(s).</span>
+<input type="button" value="Remove" style="width: 100%" id="RemoveButton">
+<select id="FlagList" multiple size="15" style="width: 100%;"></select>
+</div>
+<input type="hidden" name="Flags" id="Flags" value="{}">
+</div>
 <input name="fb" type="checkbox" value="1" <?php if($zar['fb']=='1') echo 'checked';?>> Flags on Buildings<br>
 <input name="sb" type="checkbox" value="1" <?php if($zar['sb']=='1') echo 'checked';?>> Tanks Spawn on Buildings<br>
 </fieldset><br>
