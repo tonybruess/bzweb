@@ -42,7 +42,7 @@ if (!$_GET['server'] || !$_GET['group']){
 		$overallowner = $g_ar[2];		
 //If user posted conf, check if numerical 
 if($_POST['save']){
-$varscheck = Array($_POST['msv'],$_POST['rogue'],$_POST['red'],$_POST['green'],$_POST['blue'],$_POST['purple'],$_POST['observer'],$_POST['fa'],$_POST['fcl'],$_POST['frf'],$_POST['fg'],$_POST['fgm'],$_POST['fib'],$_POST['fl'],$_POST['fmg'],$_POST['fn'],$_POST['foo'],$_POST['fpz'],$_POST['fqt'],$_POST['fsb'],$_POST['fse'],$_POST['fsh'],$_POST['fsr'],$_POST['fst'],$_POST['fsw'],$_POST['ft'],$_POST['fth'],$_POST['fus'],$_POST['fv'],$_POST['fwg'],$_POST['worldsize'],$_POST['p']);
+$varscheck = Array($_POST['msv'],$_POST['rogue'],$_POST['red'],$_POST['green'],$_POST['blue'],$_POST['purple'],$_POST['observer'],$_POST['fa'],$_POST['fcl'],$_POST['frf'],$_POST['fg'],$_POST['fgm'],$_POST['fib'],$_POST['fl'],$_POST['fmg'],$_POST['fn'],$_POST['foo'],$_POST['fpz'],$_POST['fqt'],$_POST['fsb'],$_POST['fse'],$_POST['fsh'],$_POST['fsr'],$_POST['fst'],$_POST['fsw'],$_POST['ft'],$_POST['fth'],$_POST['fus'],$_POST['fv'],$_POST['fwg'],$_POST['worldsize'],$_POST['p'],$_POST['sa'],$_POST['st'],$_POST['sw']);
 //Loop each var
 foreach ($varscheck as $element) {
     if (is_numeric($element) || !$element) {
@@ -260,20 +260,31 @@ while($bandb = mysql_fetch_array($banq)) {
 <fieldset>
  <legend>Flag Settings</legend>
 <div style="text-align: center; overflow: hidden;">
-<div style="float: left; width: 48%">
+<div style="float: left; clear: left; width: 43%">
 <span>Press "Add" or double click to add <input type="text" id="NumFlagsToAdd" maxlength="2" value="1" style="width: 1.5em"> flag(s).</span>
 <input type="button" value="Add" style="width: 100%" id="AddButton">
 <select id="AvailableFlagList" multiple size="15" style="width: 100%;"></select>
+<table>
+<tr>
+<td><input name="fb" type="checkbox" value="1" <?php if($zar['fb']=='1') echo 'checked';?>> Flags Spawn on Buildings<br></td>
+<td><input name="sb" type="checkbox" value="1" <?php if($zar['sb']=='1') echo 'checked';?>> Tanks Spawn on Buildings<br></td>
+<td><input name="sa" type="checkbox" value="1" <?php if($zar['sa']=='1') echo 'checked';?>> Spawn Antidote Flags<br></td>
+</tr>
+</table>
 </div>
-<div style="float: right; width: 48%">
+<div style="float: right; width: 43%">
 <span>Press "Remove" or double click to remove <input type="text" id="NumFlagsToRemove" maxlength="2" value="1" style="width: 1.5em"> flag(s).</span>
 <input type="button" value="Remove" style="width: 100%" id="RemoveButton">
 <select id="FlagList" multiple size="15" style="width: 100%;"></select>
+Drop bad flag after <input name="st" type="text" maxlength="2" style="width: 1.5em;" value="<?php echo $zar['st'];?>"> secs<br>
+Drop bad flag after <input name="sw" type="text" maxlength="2" style="width: 1.5em;" value="<?php echo $zar['sw'];?>"> wins<br>
+</div>
+<div style="text-align: center; float: left; margin-right:15px; margin-left:15px; width: 10%">
+<br><br><br>
+Use the flag selector to manipulate flags. The left box contains all the flags while the right box contains the flags on your server.
 </div>
 <input type="hidden" name="Flags" id="Flags" value="{}">
 </div>
-<input name="fb" type="checkbox" value="1" <?php if($zar['fb']=='1') echo 'checked';?>> Flags on Buildings<br>
-<input name="sb" type="checkbox" value="1" <?php if($zar['sb']=='1') echo 'checked';?>> Tanks Spawn on Buildings<br>
 </fieldset><br>
 <fieldset>
  <legend>World Settings</legend>
