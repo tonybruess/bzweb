@@ -20,7 +20,6 @@
     License along with this program.  If not, see
     <http://www.gnu.org/licenses/>.
 */
-include_once "include/mysql.php";
 ?>
 <h3>Dashboard</h3>
 <p>Use the dashboard to see what other users are doing. Most recent activity is below</p>
@@ -185,9 +184,9 @@ if($_SESSION['perm'][31] || $_SESSION['perm'][16]){
 <h3>Most Recent Reports</h3>
 <?php
 	if($_SESSION['perm'][16]==1){
-		$q = "SELECT * FROM reports ORDER BY time DESC";
+		$q = "SELECT * FROM reports ORDER BY time DESC LIMIT 20";
 	} else {
-		$q = "SELECT * FROM reports WHERE serverowner='$name' ORDER BY time DESC";
+		$q = "SELECT * FROM reports WHERE serverowner='$name' ORDER BY time DESC LIMIT 20";
 	}
 				$query_result=mysql_query($q);
 				$result_array=array();
@@ -199,7 +198,7 @@ if($_SESSION['perm'][31] || $_SESSION['perm'][16]){
 				"<table width=\"100%\">
 				 <tr>
 				  <th width=\"20%\">When</th>
-				  <th width=\"10%\">Server</th>
+				  <th width=\"15%\">Server</th>
 				  <th width=\"10%\">Owner</th>
 				  <th width=\"10%\">Reporter</th>
 				  <th>Report</th>

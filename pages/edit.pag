@@ -358,21 +358,22 @@ foreach ( $porta as $portb ) {
 if($_GET['mode']=='file'){
 	//Edit file here
 	$idc = sanitize($_GET['file']);
-	$q = mysql_query("SELECT * FROM files WHERE id='$idc'");
-	$qr = mysql_fetch_array($q);
-	if($name == $qr['owner'] && $_SESSION['perm'][26] || $_SESSION['perm'][12]){
 	if($_POST){
-		$cc = $_POST['contents'];
+		$cc = sanitize($_POST['contents']);
 		$nc = sanitize($_POST['name']);
 		if(mysql_query("UPDATE files SET `name`='$nc', `contents`='$cc' WHERE id='$idc'"))
 		echo "Updated successfully!<br><br>";
+		echo mysql_error();
 	}
+	$q = mysql_query("SELECT * FROM files WHERE id='$idc'");
+	$qr = mysql_fetch_array($q);
+	if($name == $qr['owner'] && $_SESSION['perm'][26] || $_SESSION['perm'][12]){
 		?>
 <form action="?p=edit&mode=file&file=<?php echo $idc ?>" method="POST">
 Name: <input name="name" value="<?php echo $qr['name'] ?>" type="text">
 <br>
 Contents:
-<Br><textarea name="contents" cols="40" rows="15"><?php if($_POST){ echo $cc; } else { echo $qr['contents']; }?></textarea>
+<Br><textarea name="contents" cols="40" rows="15"><?php echo $qr['contents']; ?></textarea>
 <br>
 <input value="Save" type="submit" >
 

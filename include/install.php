@@ -108,10 +108,15 @@
 		} else {
 			?><h3>Setuping up BZWeb...</h3><?php
 			//Connect to database
-			   mysql_connect("localhost",$_POST['user'],$_POST['password']) or die("Error: ".mysql_error()); // Connecting to the server
+			   if(!mysql_connect("localhost",$_POST['user'],$_POST['password'])){
+			   		echo "Failed to connect to mysql. Error: ".mysql_error();
+			   		die();
+			   } else {
+			   		echo "Connected to mysql!...<br><br>";
+			   }
 			//All values, Create DB and such
 			if(!mysql_query('CREATE DATABASE '.$_POST['db'].' DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci')) {
-				echo "Failed to create database";
+				echo "Failed to create database. Error: ".mysql_error();
 				die();
 			} else {
 				echo "Database created...<br><br>";
@@ -135,58 +140,58 @@
 			
 			$sql9= 'create table bans (`id` INT,`server` INT,`banner` TEXT,`ip` VARCHAR(100),`length` VARCHAR(100),`reason` TEXT,`time` INT)';
  			if(!mysql_query($sql1)){
-				echo "Failed to create table 1";
+				echo "Failed to create table Files. Error: ".mysql_error();
 				die();
 			} else {
-				echo "Table 1 created...<br><br>";
+				echo "Table Files created...<br><br>";
 			}
  			if(!mysql_query($sql2)){
-				echo "Failed to create table 2";
+				echo "Failed to create table Groups. Error: ".mysql_error();
 				die();
 			} else {
-				echo "Table 2 created...<br><br>";
+				echo "Table Groups created...<br><br>";
 			}
  			if(!mysql_query($sql3)){
-				echo "Failed to create table 3";
+				echo "Failed to create table Servers. Error: ".mysql_error();
 				die();
 			} else {
-				echo "Table 3 created...<br><br>";
+				echo "Table Servers created...<br><br>";
 			}
  			if(!mysql_query($sql4)){
-				echo "Failed to create table 4";
+				echo "Failed to create table Players. Error: ".mysql_error();
 				die();
 			} else {
-				echo "Table 4 created...<br><br>";
+				echo "Table Players created...<br><br>";
 			}
  			if(!mysql_query($sql5)){
-				echo "Failed to create table 5";
+				echo "Failed to create table Reports. Error: ".mysql_error();
 				die();
 			} else {
-				echo "Table 5 created...<br><br>";
+				echo "Table Reports created...<br><br>";
 			}
  			if(!mysql_query($sql6)){
-				echo "Failed to create table 6";
+				echo "Failed to create table Settings. Error: ".mysql_error();
 				die();
 			} else {
-				echo "Table 6 created...<br><br>";
+				echo "Table Settings created...<br><br>";
 			}
  			if(!mysql_query($sql7)){
-				echo "Failed to create table 7";
+				echo "Failed to create table Users. Error: ".mysql_error();
 				die();
 			} else {
-				echo "Table 7 created...<br><br>";
+				echo "Table Users created...<br><br>";
 			}
  			if(!mysql_query($sql8)){
-				echo "Failed to create table 8";
+				echo "Failed to create table Roles. Error: ".mysql_error();
 				die();
 			} else {
-				echo "Table 8 created...<br><br>";
+				echo "Table Roles created...<br><br>";
 			}
  			if(!mysql_query($sql9)){
-				echo "Failed to create table 9";
+				echo "Failed to create table Bans. Error: ".mysql_error();
 				die();
 			} else {
-				echo "Table 9 created...<br><br>";
+				echo "Table Bans created...<br><br>";
 			}
 			$site = $_POST['company'];
 			$email = $_POST['email'];
@@ -195,37 +200,40 @@
 			$sql2 = "INSERT INTO roles (`name`,`permissions`) VALUES ('Admin','91111111111111111111111111111111')";
 			$sql3 = "INSERT INTO users (`name`,`permissions`) VALUES ('$name','1')";
 			if(!mysql_query($sql1)){
-				echo "Failed to insert data 1";
+				echo "Failed to insert settings data. Error: ".mysql_error();
 				die();
 			} else {
-				echo "Data 1 inserted...<br><br>";
+				echo "Settings data inserted...<br><br>";
 			}
 			if(!mysql_query($sql2)){
-				echo "Failed to insert data 2";
+				echo "Failed to insert roles data. Error: ".mysql_error();
 				die();
 			} else {
-				echo "Data 2 inserted...<br><br>";
+				echo "Roles data inserted...<br><br>".mysql_error();
 			}
 			if(!mysql_query($sql3)){
-				echo "Failed to insert data 3";
+				echo "Failed to insert users data. Error: ".mysql_error();
 				die();
 			} else {
-				echo "Data 3 inserted...<br><br>";
+				echo "User data inserted...<br><br>";
 			}
 				$data = file_get_contents("include/mysql-example.php");
 				$db = $_POST['db'];
 				$user = $_POST['user'];
 				$pass = $_POST['password'];
-				$data = preg_replace("/define('SQL_USER','mrapple');/","define('SQL_USER','$user');",$data);
-				$data = preg_replace("/define('SQL_PASS','inspiron');/","define('SQL_USER','$pass');",$data);
-				$data = preg_replace("/define('SQL_DB','bzweb');/","define('SQL_USER','$db');",$data);
+				preg_replace("/define('SQL_USER','mrapple');/","define('SQL_USER','$user');",$data);
+				preg_replace("/define('SQL_PASS','inspiron');/","define('SQL_USER','$pass');",$data);
+				preg_replace("/define('SQL_DB','bzweb');/","define('SQL_USER','$db');",$data);
 				$mysqlfile = "include/mysql.php";
 				$fh = fopen($mysqlfile, 'w');
 				if(fwrite($fh, $data)){
 					echo "Mysql file created...<br><br>";
 				} else {
 					echo "Failed to create mysql file<br><br>";
-					die();
+					?>
+					Paste the following into include/mysql.php:<br><br>
+					<textarea><?php echo $data; ?></textarea><br><br>
+					<?php
 				}
 				fclose($fh);
 		?>

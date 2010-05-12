@@ -144,7 +144,7 @@ if($_GET['filtered']){
 $q .= " OR `type`='MSG-FILTERED'";
 }
 if($_GET['chat']){
-$q .= " OR `type`='MSG-BROADCAST' OR `type`='MSG-TEAM'";
+$q .= " OR `type`='MSG-BROADCAST' OR `type`='MSG-TEAM' OR `type`='MSG-DIRECT'";
 }
 if($_GET['join']){
 $q .= " OR `type`='PLAYER-JOIN' OR `type`='PLAYER-PART'";
