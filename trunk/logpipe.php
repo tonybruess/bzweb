@@ -58,7 +58,7 @@ while(! feof($stdin)) {
 		if(count($player) == 0)
 			fwrite($stderr,"Could not parse player join: ".$entities[9]."\n");
 
-		$q = mysql_query("SELECT * FROM players WHERE `name`='$player[1]' AND `ip`='$player[4]'");
+		$q = mysql_query("SELECT * FROM players WHERE `name`='$player[1]' AND `ip`='$player[4]' AND `description`='$player[6]'");
 		$oldrecord = mysql_fetch_array($q);
 		if($oldrecord[0]) {
 			// verify the existing record to make sure the last seen time are up-to-date

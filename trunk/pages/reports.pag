@@ -41,6 +41,7 @@ if(!$id_clean){
 Please select a server:
 <input type=hidden name="p" value="reports">
 <select name="server">
+<option value="x">All</option>
 <?php
 while($qr = mysql_fetch_array($q)){
 ?>
@@ -57,13 +58,58 @@ Order by:<select name="order" onchange="this.form.submit();">
 <br>
 <input type=submit value=Go>
 </form>
+<h3>Most Recent Reports</h3>
 <?php
+	if($_SESSION['perm'][16]==1){
+		$q = "SELECT * FROM reports ORDER BY time DESC LIMIT 20";
+	} else {
+		$q = "SELECT * FROM reports WHERE serverowner='$name' ORDER BY time DESC LIMIT 20";
+	}
+				$query_result=mysql_query($q);
+				$result_array=array();
+				while($row = mysql_fetch_assoc($query_result)){ // Results found, add them to result array
+					array_push($result_array, array($row['name'], $row['server'], $row['reporter'], $row['report'], $row['time']));
+				}
+				// Setup result <table>
+				$result=
+				"<table width=\"100%\">
+				 <tr>
+				  <th width=\"20%\">When</th>
+				  <th width=\"15%\">Server</th>
+				  <th width=\"10%\">Owner</th>
+				  <th width=\"10%\">Reporter</th>
+				  <th>Report</th>
+				 </tr>";
+				
+				// Add items to result <table>
+				$num_results=count($result_array);			
+				for ( $row = 0; $row < $num_results; $row++ )
+				{				
+					$serverdetails = mysql_fetch_array(mysql_query("SELECT * FROM servers WHERE id=".$result_array[$row][1]));
+					if(strstr($result_array[$row][3],"VERIFIED")){ $bg = ' bgcolor=#99FF99'; } else { $bg = ' bgcolor=#CCCCCC'; }
+					if(strstr($result_array[$row][3],"ADMIN")){ $bg = ' bgcolor=#FF9933'; }
+					$temp_results=
+					"<tr class=\"a\"".$bg.">".
+						"<td style=\"text-align: center;\">".date("Y-m-d",$result_array[$row][4]).' '.date("h:i:s A",$result_array[$row][4])."</td>".
+						"<td style=\"text-align: center;\">".$serverdetails[2]."</td>".
+						"<td style=\"text-align: center;\">".$serverdetails[3]."</td>".
+						"<td style=\"text-align: center;\">".$result_array[$row][2]."</td>".
+						"<td style=\"text-align: center;\">".$result_array[$row][3]."</td>".
+					"</tr>";
+					
+					// Add table row to result
+					$result.=$temp_results;
+				}
+				// Finish result by closing <table>
+				$result.="</table>";
+					echo $result;
 } else {
 ?>
                 <form name="form" method="get">
 				Server:
 				<input type=hidden name="p" value="logs">
 				<select name="server" onchange="this.form.submit();">
+				<option value="x">All</option>
 				<?php
 				while($qr = mysql_fetch_array($q)){
 				?>
@@ -81,32 +127,45 @@ Order by:<select name="order" onchange="this.form.submit();">
                 </form><br>
      <table cellpadding="5">
  	<tr>
+ <?php if($id_clean=='x'){
+ 	echo '<td width="12%">Server</td>';
+ }
+ ?>
   		<td width="12%">Date</td>
   		<td width="11%">Time</td>
   		<td width="10%">Reporter</td>
   		<td width="60%">Report</td>
 	</tr>
                 <?php
-if($_GET['order']=='1' || !$_GET['order']){
-	// Setup correct mySQL query
-	if(($_SESSION[perm][16])==1){
-		$q = mysql_query("SELECT * FROM reports WHERE `server`='$id_clean' ORDER BY time DESC");
-	} else {
-		$q = mysql_query("SELECT * FROM reports WHERE `server`='$id_clean' And serverowner='$name' ORDER BY time DESC");
-	}
+
+if($id_clean !=='x'){
+if($_SESSION[perm][16]==1){
+	$q = 'SELECT * FROM reports WHERE `server`='.$id_clean;
 } else {
-	// Setup correct mySQL query
-	if(($_SESSION[perm][16])==1){
-		$q = mysql_query("SELECT * FROM reports WHERE `server`='$id_clean' ORDER BY time ASC");
-	} else {
-		$q = ("SELECT * FROM reports WHERE `server`='$id_clean' And serverowner='$name' ORDER BY time ASC");
-	}	
+	$q = 'SELECT * FROM reports WHERE `server`='.$id_clean.' And `serverowner`='.$name;
 }
+} else {
+if($_SESSION['perm'][16]=='1' && $id_clean=='x'){
+	$q = 'SELECT * FROM reports';
+} else {
+	$q = 'SELECT * FROM reports WHERE `serverowner`=\''.$name.'\'';
+}
+}
+if($_GET['order']=='1' || !$_GET['order']){
+	$q .= ' ORDER BY time DESC';
+} else {
+	$q .= ' ORDER BY time ASC';
+}
+$q = mysql_query($q);
 while($report = mysql_fetch_array($q)){
 $i_report++;
 ?>
 <tr <?php if ($i_report % 2) {echo 'bgcolor="#99999"';} else {echo 'bgcolor="#CDCDCE"';}?>>
-<td><?php echo date("Y-m-d",$report['time']);?></td>
+<?php
+if($id_clean=='x'){
+echo'<td>'.$report['server'].'</td>';
+}
+?><td><?php echo date("Y-m-d",$report['time']);?></td>
 <td><?php echo date("h:i:s A",$report['time']);?></td>
 <td><?php echo $report['reporter']?></td>
 <td><?php echo $report['report']?></td>

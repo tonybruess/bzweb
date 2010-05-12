@@ -202,12 +202,16 @@ if($e['public'])$conf .= ' -public "'.$e['public'].'"';
 if($e['domain'])$conf .= ' -publicaddr '.$e['domain'].':'.$e['p'].' -p '.$e['p'];
 if($e['disablebots']=='1') $conf .= ' -disableBots';
 $srvex = explode("\n",$e['servermsg']);
-foreach ($srvex as $srv){
+if($e['servermsg']){
+	foreach ($srvex as $srv){
 	$conf .= " -srvmsg \"$srv\"";
 }
+}
+if($e['admsg']){
 $adex = explode("\n",$e['admsg']);
 foreach ($adex as $ad){
 	$conf .= " -admsg \"$ad\"";
+}
 }
 $masterdata = mysql_fetch_array(mysql_query("SELECT groupmaster,confmaster FROM settings"));
 $groupinfo = mysql_fetch_array(mysql_query("SELECT * FROM files WHERE id=".$e['group']));
