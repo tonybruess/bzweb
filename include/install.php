@@ -222,7 +222,7 @@
 				$user = $_POST['user'];
 				$pass = $_POST['password'];
 				preg_replace("/define('SQL_USER','mrapple');/","define('SQL_USER','$user');",$data);
-				preg_replace("/define('SQL_PASS','inspiron');/","define('SQL_USER','$pass');",$data);
+				preg_replace("/define('SQL_PASS','');/","define('SQL_USER','$pass');",$data);
 				preg_replace("/define('SQL_DB','bzweb');/","define('SQL_USER','$db');",$data);
 				$mysqlfile = "include/mysql.php";
 				$fh = fopen($mysqlfile, 'w');
