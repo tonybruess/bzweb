@@ -156,3 +156,16 @@ window.addEvent("domready", function()
 
   UpdateFlagJSON();
 });
+
+function show(id)
+{
+    var e = document.getElementById(id);
+    e.style.display = 'block';
+}
+
+function hide(id)
+{
+    var e = document.getElementById(id);
+    e.style.display = 'none';
+    e.value = '';
+}

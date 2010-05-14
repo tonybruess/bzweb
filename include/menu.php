@@ -47,4 +47,3 @@ if($_SESSION['callsign']){
 <div id="Container">
 	
 	<div id="PageContent">		
-		

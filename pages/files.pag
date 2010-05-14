@@ -24,7 +24,7 @@ $op = $_GET['op'];
 ?>
 <h3>File Management</h3>
 <fieldset>
-<legend><a href="?p=files&op=create">Create a Help or Group Database</a></legend>
+<legend><a href="?p=files&op=create">Create Group DB, Ban DB, or Help File</a></legend>
 <?php
 if($op=='create'){
  if ( $_POST['type'] == "groupdb") {
@@ -42,18 +42,27 @@ if($op=='create'){
   		echo "Created successfully";
   	} else {
   		echo "Failed";
+  	} 
+  }elseif ( $_POST['type'] == "bandb") {
+  	$nameclean = sanitize($_POST['name']);
+  	$contentsclean = sanitize($_POST['contents']);
+  	if(mysql_query("INSERT INTO files (`name`,`owner`,`type`,`contents`) VALUES ('$nameclean','$name','helpf','$contentsclean')")){
+  		echo "Created successfully";
+  	} else {
+  		echo "Failed";
   	}
 }
 ?>
-<form action="?p=files&op=create" method="POST">
-Type: <select name="type">
-<option value="groupdb">Group Database</option>
-<option value="helpf">Help File</option>
-</select><br>
-Name: <input name="name" value="" type="text">
+<form id="form" action="?p=files&op=create" method="POST">
+Type:
+<input type="radio" name="type" value="groupdb" onclick="show('contents');" id="groupdb" checked><label for="groupdb"> Group Database</label>
+<input type="radio" name="type" value="bandb" onclick="hide('contents');" id="bandb"><label for="bandb"> Ban Database</label>
+<input type="radio" name="type" value="helpf" onclick="show('contents');" id="helpf"><label for="helpf"> Help File</label>
+<br>
+Name: <input  name="name" type="text">
 <input name="create" type="hidden" value="1">
 <br>
-<textarea name="contents" cols="40" rows="15"></textarea>
+<textarea name="contents" id="contents" cols="40" rows="15"></textarea>
 <br>
 <input value="Create" type="submit" >
 </form>
