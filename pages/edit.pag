@@ -359,7 +359,9 @@ if($_GET['mode']=='file'){
 	//Edit file here
 	$idc = sanitize($_GET['file']);
 	if($_POST){
-		$cc = sanitize($_POST['contents']);
+		$q = mysql_query("SELECT * FROM files WHERE id='$idc'");
+		$qr = mysql_fetch_array($q);
+		if ($qr['type']!=='bandb') $cc = sanitize($_POST['contents']);
 		$nc = sanitize($_POST['name']);
 		if(mysql_query("UPDATE files SET `name`='$nc', `contents`='$cc' WHERE id='$idc'"))
 		echo "Updated successfully!<br><br>";
@@ -373,7 +375,7 @@ if($_GET['mode']=='file'){
 Name: <input name="name" value="<?php echo $qr['name'] ?>" type="text">
 <br>
 Contents:
-<Br><textarea name="contents" cols="40" rows="15"><?php echo $qr['contents']; ?></textarea>
+<br><textarea name="contents" cols="40" rows="15" <?php if ($qr['type']=='bandb') echo 'readonly';?>><?php echo $qr['contents']; ?></textarea>
 <br>
 <input value="Save" type="submit" >
 
