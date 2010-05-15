@@ -76,8 +76,12 @@ while(! feof($stdin)) {
 			mysql_query("INSERT INTO players SET `serverowner`='$name', `name`='$player[1]',`ip`='$player[4]',`host`='$host',`description`='$player[6]',`bzid`='$player[3]',`time`='$ts'");
 		}
 	}
-	if($entities[7] == 'MSG-COMMAND' && preg_match("/^\d+:(.*?) ban ([^.]*).([^.]*).([^.]*).([^ ]*) ([^ ]*) (.*)/",$entities[9],$ban)){
+	if($entities[7] == 'MSG-COMMAND' && preg_match("/^\d+:(.*?) ban (^\d+$.^\d+$.^\d+$.^\d+$|(.*?)) ([^ ]*) (.*)/",$entities[9],$ban)){
+		if(is_numeric($ban[2]) && is_numeric($ban[3]) && is_numeric($ban[4]) && is_numeric($ban[5])){
 		mysql_query("INSERT INTO bans SET `server` = '$argv[1]', `banner`= '$ban[1]', `ip` = '$ban[2].$ban[3].$ban[4].$ban[5]', `length` = '$ban[6]', `reason` = '$ban[7]', `time` = '$ts'");
+		} else {
+					mysql_query("INSERT INTO bans SET `server` = '$argv[1]', `banner`= '$ban[1]', `ip` = '$ban[2]', `length` = '$ban[4]', `reason` = '$ban[5]', `time` = '$ts'");
+		}
 	}
 	if($entities[7] == 'MSG-REPORT' && preg_match("/(.*?):(.*?$)/",$entities[9],$report)){
          $justmessage = substr($report[2],$report[1]);
@@ -88,7 +92,9 @@ while(! feof($stdin)) {
 	}
 
 }
+mysql_query("DELETE FROM ".$argv[1]."serverlogs WHERE `type`='SERVER-STATUS' AND `data`='Running' AND `time`='$ts'");
+//Insert into logs that the server is done
+mysql_query("INSERT INTO ".$argv[1]."serverlogs SET `server` = '$argv[1]', `type` = 'SERVER-STATUS', `data` = 'Stopped', `time` = '$ts'");
 
 exit;
-
 ?>

@@ -33,13 +33,14 @@
 
 				$result_array=array();
 				while($row = mysql_fetch_assoc($query_result)){ // Results found, add them to result array
-					array_push($result_array, array($row['name'],$row['owner'],$row['id']));
+					array_push($result_array, array($row['name'],$row['owner'],$row['id'],$row['domain'],$row['p']));
 				}
 				// Setup result <table>
 				$result=
 				"<table width=\"100%\">
 				 <tr>
 				  <th>Server name</th>
+				  <th>Where</th>
 				  <th>Owner</th>
 				  <th>Logs</th>
 				  <th>Reports</th>
@@ -53,6 +54,7 @@
 					$temp_results=
 					"<tr class=\"a\"".$bg.">".
 						"<td style=\"text-align: center;\">".$result_array[$row][0]."</td>".
+						"<td style=\"text-align: center;\">".$result_array[$row][3].':'.$result_array[$row][4]."</td>".
 						"<td style=\"text-align: center;\">".$result_array[$row][1]."</td>".
 						"<td style=\"text-align: center;\"><a href=\"?p=logs&server=".$result_array[$row][2]."&order=1&admin=1&slash=1&filtered=1&chat=1&join=1&report=1&status=1&player=1\">Logs</a></td>".
 						"<td style=\"text-align: center;\"><a href=\"?p=reports&server=".$result_array[$row][2]."\">Reports</a></td>".
