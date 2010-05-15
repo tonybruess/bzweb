@@ -27,10 +27,17 @@ $op = $_GET['op'];
 <legend><a href="?p=files&op=create">Create Group DB, Ban DB, or Help File</a></legend>
 <?php
 if($op=='create'){
+	if($_SESSION['perm'][11]){
+		$id = $_POST['for'];
+		$for = mysql_fetch_array(mysql_query("SELECT name FROM users WHERE id='$id'"));
+		$owner = $for[0];
+	} else {
+		$owner = $name;
+	}
  if ( $_POST['type'] == "groupdb") {
   	$nameclean = sanitize($_POST['name']);
   	$contentsclean = sanitize($_POST['contents']);
-  	if(mysql_query("INSERT INTO files (`name`,`owner`,`type`,`contents`) VALUES ('$nameclean','$name','groupdb','$contentsclean')")){
+  	if(mysql_query("INSERT INTO files (`name`,`owner`,`type`,`contents`) VALUES ('$nameclean','$owner','groupdb','$contentsclean')")){
   		echo "Created successfully";
   	} else {
   		echo "Failed";
@@ -38,7 +45,7 @@ if($op=='create'){
   } elseif ( $_POST['type'] == "helpf") {
   	$nameclean = sanitize($_POST['name']);
   	$contentsclean = sanitize($_POST['contents']);
-  	if(mysql_query("INSERT INTO files (`name`,`owner`,`type`,`contents`) VALUES ('$nameclean','$name','helpf','$contentsclean')")){
+  	if(mysql_query("INSERT INTO files (`name`,`owner`,`type`,`contents`) VALUES ('$nameclean','$owner','helpf','$contentsclean')")){
   		echo "Created successfully";
   	} else {
   		echo "Failed";
@@ -46,7 +53,7 @@ if($op=='create'){
   }elseif ( $_POST['type'] == "bandb") {
   	$nameclean = sanitize($_POST['name']);
   	$contentsclean = sanitize($_POST['contents']);
-  	if(mysql_query("INSERT INTO files (`name`,`owner`,`type`,`contents`) VALUES ('$nameclean','$name','helpf','$contentsclean')")){
+  	if(mysql_query("INSERT INTO files (`name`,`owner`,`type`,`contents`) VALUES ('$nameclean','$owner','bandb','$contentsclean')")){
   		echo "Created successfully";
   	} else {
   		echo "Failed";
@@ -59,6 +66,21 @@ Type:
 <input type="radio" name="type" value="bandb" onclick="hide('contents');" id="bandb"><label for="bandb"> Ban Database</label>
 <input type="radio" name="type" value="helpf" onclick="show('contents');" id="helpf"><label for="helpf"> Help File</label>
 <br>
+<?php if($_SESSION['perm'][5]){ ?>
+For: <select name="for">
+<?php
+$q = mysql_query("SELECT * FROM users");
+while($users = mysql_fetch_array($q)){
+?>
+<option value="<?php echo $users['id'];?>"<?php if($users['id']==$_SESSION['id']) echo ' selected';?>><?php echo $users['name']?></option>
+<?php
+}
+?>
+</select>
+<br>
+<?php
+}
+?>
 Name: <input  name="name" type="text">
 <input name="create" type="hidden" value="1">
 <br>
@@ -124,6 +146,41 @@ if($op=='upload'){
 <legend><a href="?p=files&op=edit">Edit or Delete Files</a></legend>
 <?php
 if($op=='edit'){
+	if($_GET['mode']=='del'){
+		if(!$_SESSION['perm'][27]){
+			echo "You do not have permission to delete files";
+		} else {
+			$id = $_GET['id'];
+			$confirm = mysql_fetch_array(mysql_query("SELECT * FROM files WHERE id='$id' AND owner='$name'"));
+			if($confirm || $_SESSION['perm']['13']){
+				if(mysql_query("DELETE FROM files WHERE id='$id'")){
+					echo "Deleted!";
+				} else {
+					echo "Failed to delete";
+				}
+			} else {
+				echo "Not your file!";
+			}
+		}
+	}
+
+if($_SESSION['perm'][12]){?>
+<form method="POST">
+Files for: <select name="uid" onchange="this.form.submit();">
+<?php
+$uid = $_POST['uid'];
+if(!$uid) $uid = $_SESSION['id'];
+$q = mysql_query("SELECT * FROM users");
+while($users = mysql_fetch_array($q)){
+?>
+<option value="<?php echo $users['id'];?>" <?php if($users['id']==$uid){ echo 'selected'; $name = $users['name']; }?>><?php echo $users['name']?></option>
+<?php
+}
+?>
+</select>
+</form>
+<?php
+}
 ?>
 <fieldset>
 <legend>Maps</legend>
@@ -138,7 +195,7 @@ $m = mysql_query("SELECT * FROM files WHERE owner='$name' AND `type`='bzw'");
 while($mr = mysql_fetch_array($m)){
 	echo '<tr bgcolor="#DDDDDD"><td>';
 	echo $mr['name'];
-	echo '</td><td><a href="?p=edit&mode=file&file='.$mr['id'].'">Edit</a></td><td>Delete</td></tr>';
+	echo '</td><td><a href="?p=edit&mode=file&file='.$mr['id'].'">Edit</a></td><td><a href="?p=files&op=edit&mode=del&id='.$mr['id'].'">Delete</a></td></tr>';
 }
 ?>
 </table></fieldset><br>
@@ -155,7 +212,7 @@ $g = mysql_query("SELECT * FROM files WHERE owner='$name' AND `type`='groupdb'")
 while($gr = mysql_fetch_array($g)){
 	echo '<tr bgcolor="#DDDDDD"><td>';
 	echo $gr['name'];
-	echo '</td><td><a href="?p=edit&mode=file&file='.$gr['id'].'">Edit</a></td><td>Delete</td></tr>';
+	echo '</td><td><a href="?p=edit&mode=file&file='.$gr['id'].'">Edit</a></td><td><a href="?p=files&op=edit&mode=del&id='.$gr['id'].'">Delete</a></td></tr>';
 }
 ?>
 </table></fieldset><br><fieldset>
@@ -167,12 +224,30 @@ while($gr = mysql_fetch_array($g)){
 		<td width="50px">Delete</td>
 	</tr>
 <?php
-$b = mysql_query("SELECT * FROM files WHERE owner='$name' AND `type`='helpf'");
+$h = mysql_query("SELECT * FROM files WHERE owner='$name' AND `type`='helpf'");
+while($hr = mysql_fetch_array($h)){
+	echo '<tr bgcolor="#DDDDDD"><td>';
+	echo $hr['name'];
+	echo '</td><td><a href="?p=edit&mode=file&file='.$hr['id'].'">Edit</a></td><td><a href="?p=files&op=edit&mode=del&id='.$hr['id'].'">Delete</a></td></tr>';
+}
+?>
+</table></fieldset>
+<br><fieldset>
+<legend>Ban DB</legend>
+<table border="0px" cellpadding="3" cellspacing="3" width="500px">
+	<tr style="text-align: left; font-weight: bold;">
+		<td>File Name</td>
+		<td width="50px">View</td>
+		<td width="50px">Delete</td>
+	</tr>
+<?php
+$b = mysql_query("SELECT * FROM files WHERE owner='$name' AND `type`='bandb'");
 while($br = mysql_fetch_array($b)){
 	echo '<tr bgcolor="#DDDDDD"><td>';
 	echo $br['name'];
-	echo '</td><td><a href="?p=edit&mode=file&file='.$br['id'].'">Edit</a></td><td>Delete</td></tr>';
+	echo '</td><td><a href="?p=edit&mode=file&file='.$br['id'].'">Edit</a></td><td><a href="?p=files&op=edit&mode=del&id='.$br['id'].'">Delete</a></td></tr>';
 }
+$name = $_SESSION['name'];
 ?>
 </table></fieldset>
 <?php

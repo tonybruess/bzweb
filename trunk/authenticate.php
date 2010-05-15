@@ -79,13 +79,14 @@ $result = validate_token($_GET['token'], $_GET['username'], $groups);
 	if(strstr($bannedcap,$fusercap)) { 
 		exit("You have been banned from this server by an administrator.");
 	} else {
-	$users = mysql_query("SELECT name FROM users WHERE `name`='".$result['username']."'");
+	$users = mysql_query("SELECT * FROM users WHERE `name`='".$result['username']."'");
 	echo mysql_error();
 	$userar = mysql_fetch_array($users);
-		if(count($userar[0]) > 0) { 
+		if(count($userar['name']) > 0) { 
 		$ts = time();
 		$_SESSION['callsign'] = $fuser;
 		$_SESSION['pass'] = $ftoken;
+		$_SESSION['id'] = $userar['id'];
 	mysql_query("UPDATE users SET `last login`='$ts' WHERE `name`='$fuser'");
 	header('Location: index.php');
 	} else {
