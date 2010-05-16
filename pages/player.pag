@@ -97,17 +97,35 @@
 				// Add items to result <table>
 				$num = count($name_array);
 				$number_array = array();
+				$lastIP = NULL;
 				for ( $name = 0; $name < $num; $name++ ){
 					if(strstr($name_array[$name][3],"VERIFIED")){ $bg = ' bgcolor=#99FF99'; } else { $bg = ' bgcolor=#CCCCCC'; }
 					if(strstr($name_array[$name][3],"ADMIN")){ $bg = ' bgcolor=#FF9933'; }
+					$ipdisplay = $name_array[$name][0];
+					if($lastIP==$name_array[$name][0]){
+						$ipdisplay = NULL;
+					}
+					if(!$ipdisplay){
 					$temp_results=
-					"<tr class=\"a\"".$bg.">"."<td style=\"text-align: center;\">"."<a href=\"./index.php?p=player&query_type=IP&query=".$name_array[$name][0]."&search=Search\">".$name_array[$name][0]."</a></td>".
+					"<tr class=\"a\"".$bg.">"."<td style=\"text-align: center;\"></td>".
 						"<td style=\"text-align: center;\">"."<a href=\"./index.php?p=player&query_type=NA&query=".$name_array[$name][1]."&search=Search\">".$name_array[$name][1]."</a></td>".
 						"<td style=\"text-align: center;\">"."<a href=\"./index.php?p=player&query_type=HO&query=".$name_array[$name][2]."&search=Search\">".$name_array[$name][2]."</a></td>".
 						"<td style=\"text-align: center;\">"."<a href=\"./index.php?p=player&query_type=BZ&query=".$name_array[$name][4]."&search=Search\">".$name_array[$name][4]."</a></td>".
-						"<td style=\"text-align: center;\">".date("Y-m-d",$result_array[$row][5]).' '.date("h:i:s A",$name_array[$row][5])."</td>".
+						"<td style=\"text-align: center;\">".date("Y-m-d",$name_array[$name][5]).' '.date("h:i:s A",$name_array[$name][5])."</td>".
 					"</tr>";
+					} else {
+					$temp_results=
+					"<tr class=\"a\" bgcolor=#99999><td style=\"text-align: center;\">"."<a href=\"./index.php?p=player&query_type=IP&query=".$ipdisplay."&search=Search\">".$ipdisplay."</a></td><td style=\"text-align: center;\"></td><td style=\"text-align: center;\"></td><td style=\"text-align: center;\"></td><td style=\"text-align: center;\"></td></tr>";
+					$temp_results .=
+					"<tr class=\"a\"".$bg.">"."<td style=\"text-align: center;\"></td>".
+						"<td style=\"text-align: center;\">"."<a href=\"./index.php?p=player&query_type=NA&query=".$name_array[$name][1]."&search=Search\">".$name_array[$name][1]."</a></td>".
+						"<td style=\"text-align: center;\">"."<a href=\"./index.php?p=player&query_type=HO&query=".$name_array[$name][2]."&search=Search\">".$name_array[$name][2]."</a></td>".
+						"<td style=\"text-align: center;\">"."<a href=\"./index.php?p=player&query_type=BZ&query=".$name_array[$name][4]."&search=Search\">".$name_array[$name][4]."</a></td>".
+						"<td style=\"text-align: center;\">".date("Y-m-d",$name_array[$name][5]).' '.date("h:i:s A",$name_array[$name][5])."</td>".
+					"</tr>";
+					}
 					$result.=$temp_results;
+					$lastIP=$name_array[$name][0];
 					}
 				
 				// Finish result by closing <table>
