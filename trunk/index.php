@@ -18,7 +18,7 @@ if(!$_SESSION['callsign'] && $_GET['p'] !== "error"){
 		<p>Before accessing this page you must <a href="http://my.bzflag.org/weblogin.php?url=http://<?php echo $_SERVER['HTTP_HOST']; ?>%2Fauthenticate.php%3Ftoken%3D%25TOKEN%25%26username%3D%25USERNAME%25">login.</a></p>
 	<?php
 	include_once("include/footer.php");
-	} else { 
+	} else {
 	include_once("include/header.php");
 	$page = $_GET['p'];
 	if($page && file_exists("pages/$page.pag")){
