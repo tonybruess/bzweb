@@ -135,6 +135,21 @@ if($op=='upload'){
 <input type="file" name="map" >
 <input type="hidden" name="upload" value="1">
 <br><br>
+<?php if($_SESSION['perm'][5]){ ?>
+For: <select name="for">
+<?php
+$q = mysql_query("SELECT * FROM users");
+while($users = mysql_fetch_array($q)){
+?>
+<option value="<?php echo $users['id'];?>"<?php if($users['id']==$_SESSION['id']) echo ' selected';?>><?php echo $users['name']?></option>
+<?php
+}
+?>
+</select>
+<br><br>
+<?php
+}
+?>
 <input type="submit" value="Upload" >
 </form>
 <?php

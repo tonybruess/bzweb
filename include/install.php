@@ -122,7 +122,7 @@
 				echo "Database created...<br><br>";
 				   mysql_select_db($_POST['db']) or die("Error: ".mysql_error()); // Connecting to the database
 			}
-			$sql1='create table files (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,`name` text,`owner` VARCHAR(200),`type` VARCHAR(10),`contents` text)';
+			$sql1='create table files (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,`name` text,`owner` VARCHAR(200),`type` VARCHAR(10),`contents` LONGTEXT)';
 
 			$sql2='create table groups (`id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,`name` VARCHAR(100),`owner` VARCHAR(100),`status` INT,`enabled` INT)';
 
