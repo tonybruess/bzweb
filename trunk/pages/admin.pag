@@ -311,7 +311,7 @@ if($_POST['updatemaster']){
 	mysql_query($q);
 	echo "Updated";
 }
-$data = mysql_fetch_array(mysql_query("SELECT confmaster,groupmaster FROM settings"));
+$data = mysql_fetch_array(mysql_query("SELECT confmaster,groupmaster,plugins FROM settings"));
 ?>
 <form method="post">
 <p>Enter a configuration file that will be included in ALL servers that are started</p>

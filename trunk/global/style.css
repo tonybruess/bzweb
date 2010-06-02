@@ -37,7 +37,6 @@ a:focus{
 #Header{
 	height: 50px;
 	width: 100%;
-	min-width: 950px;
 	background-color: #f6f6f6;
 	border-bottom: solid 1px #c3c3c3;
 	margin-bottom: 50px;
@@ -47,16 +46,15 @@ a:focus{
 	display: block;
 	background-color: #f6f6f6;
 	border-top: solid 1px #c3c3c3;
-	min-width: 950px;
 }
 #PageContent{
 	display: block;
 	margin: 0 auto;
 	padding-left: 25px;
 	padding-bottom: 15px;
-	padding-right: 25px;
+	padding-right: 100px;
+	padding-left: 100px;
 	height: 100%;
-	width: 900px;
 }
 #Logo{
 	display: inline-block;
@@ -97,7 +95,7 @@ h3{
 /* Navigation Styling */
 
 #PageNavigation{
-	width: 900px;
+    padding: 100px;
 	height: 50px;
 	margin: 0 auto;
 	display: block;
