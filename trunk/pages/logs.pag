@@ -49,19 +49,21 @@ Order by:<select name="order" onchange="this.form.submit();">
 <option value="2"<?php if($_GET['order']=='2') echo " selected";?>>Oldest</option>
 </select>
 <br>
-               <input type="radio" name="type" value="a" <?php if(!$_GET['search']) echo 'checked '; ?>onclick="admin.disabled=false; slash.disabled=false; filtered.disabled=false; search.disabled=true; chat.disabled=false; join.disabled=false; report.disabled=false; status.disabled=false; player.disabled=false; search.value='';">
-				Include:
-				<input type="checkbox" checked value="1" name="admin" <?php if($_GET['search']) echo 'disabled '; ?>>Admin Chat
-				<input type="checkbox" checked value="1" name="slash" <?php if($_GET['search']) echo 'disabled '; ?>>Commands
-				<input type="checkbox" checked value="1" name="filtered" <?php if($_GET['search']) echo 'disabled '; ?>>Filtered Chat
-				<input type="checkbox" checked value="1" name="chat" <?php if($_GET['search']) echo 'disabled '; ?>>Player Chat
-				<input type="checkbox" checked value="1" name="join" <?php if($_GET['search']) echo 'disabled '; ?>>Player Joins/Parts
-				<input type="checkbox" checked value="1" name="report" <?php if($_GET['search']) echo 'disabled '; ?>>Reports
-				<input type="checkbox" checked value="1" name="status" <?php if($_GET['search']) echo 'disabled '; ?>>Server Status
-				<input type="checkbox" checked value="1" name="player" <?php if($_GET['search']) echo 'disabled '; ?>>Playercount
+ 				Include:
+				<input type="checkbox" checked value="1" name="admin">Admin Chat
+				<input type="checkbox" checked value="1" name="slash">Commands
+				<input type="checkbox" checked value="1" name="filtered">Filtered Chat
+				<input type="checkbox" checked value="1" name="chat">Player Chat
+				<input type="checkbox" checked value="1" name="join">Player Joins/Parts
+				<input type="checkbox" checked value="1" name="report">Reports
+				<input type="checkbox" checked value="1" name="status">Server Status
+				<input type="checkbox" checked value="1" name="player">Playercount
 				<br>
-				<input type="radio" name="type" value="b"  onclick="admin.disabled=true; slash.disabled=true; filtered.disabled=true; chat.disabled=true; join.disabled=true; report.disabled=true; status.disabled=true; player.disabled=true; search.disabled=false; search.value='<?php echo $_GET['search'] ?>'" <?php if($_GET['search']) echo 'checked '; ?>> 
-				Search: <input name="search" type="text" value="<?php echo $_GET['search'];?>" <?php if(!$_GET['search']) echo 'disabled '; ?>>
+				Search: <input name="search" type="text" value="<?php echo $_GET['search'];?>">
+				<br>
+				From: <input name="fmonth" type="text" style="width: 15px;" maxlength="2" value="<?php echo date("m"); ?>"> / <input name="fday" type="text" style="width: 15px;" maxlength="2" value="<?php echo date("d"); ?>"> / <input name="fyear" type="text" style="width: 30px;" maxlength="4" value="<?php echo date("Y"); ?>">
+				<br>
+				To: <input name="tmonth" type="text" style="width: 15px;" maxlength="2" value="<?php echo date("m"); ?>"> / <input name="tday" type="text" style="width: 15px;" maxlength="2" value="<?php echo date("d"); ?>"> / <input name="tyear" type="text" style="width: 30px;" maxlength="4" value="<?php echo date("Y"); ?>">
 				<br>
 <input type=submit value=Go>
 </form>
@@ -86,53 +88,56 @@ Order by:<select name="order" onchange="this.form.submit();">
                 <option value="2"<?php if($_GET['order']=='2') echo " selected";?>>Oldest</option>
                 </select>
                 <br>
-                <input type="radio" name="type" value="a" <?php if(!$_GET['search']) echo 'checked '; ?>onclick="admin.disabled=false; slash.disabled=false; filtered.disabled=false; search.disabled=true; chat.disabled=false; join.disabled=false; report.disabled=false; status.disabled=false; player.disabled=false; search.value='';">
 				Include:
-				<input type="checkbox" <?php if($_GET['admin']) echo 'checked ';?>value="1" name="admin" <?php if($_GET['search']) echo 'disabled '; ?>>Admin Chat
-				<input type="checkbox" <?php if($_GET['slash']) echo 'checked ';?>value="1" name="slash" <?php if($_GET['search']) echo 'disabled '; ?>>Commands
-				<input type="checkbox" <?php if($_GET['filtered']) echo 'checked ';?>value="1" name="filtered" <?php if($_GET['search']) echo 'disabled '; ?>>Filtered Chat
-				<input type="checkbox" <?php if($_GET['chat']) echo 'checked ';?>value="1" name="chat" <?php if($_GET['search']) echo 'disabled '; ?>>Player Chat
-				<input type="checkbox" <?php if($_GET['join']) echo 'checked ';?>value="1" name="join" <?php if($_GET['search']) echo 'disabled '; ?>>Player Joins/Parts
-				<input type="checkbox" <?php if($_GET['report']) echo 'checked ';?>value="1" name="report" <?php if($_GET['search']) echo 'disabled '; ?>>Reports
-				<input type="checkbox" <?php if($_GET['status']) echo 'checked ';?>value="1" name="status" <?php if($_GET['search']) echo 'disabled '; ?>>Server Status
-				<input type="checkbox" <?php if($_GET['player']) echo 'checked ';?>value="1" name="player" <?php if($_GET['search']) echo 'disabled '; ?>>Playercount
+				<input type="checkbox" <?php if($_GET['admin']) echo 'checked ';?>value="1" name="admin">Admin Chat
+				<input type="checkbox" <?php if($_GET['slash']) echo 'checked ';?>value="1" name="slash">Commands
+				<input type="checkbox" <?php if($_GET['filtered']) echo 'checked ';?>value="1" name="filtered">Filtered Chat
+				<input type="checkbox" <?php if($_GET['chat']) echo 'checked ';?>value="1" name="chat">Player Chat
+				<input type="checkbox" <?php if($_GET['join']) echo 'checked ';?>value="1" name="join">Player Joins/Parts
+				<input type="checkbox" <?php if($_GET['report']) echo 'checked ';?>value="1" name="report">Reports
+				<input type="checkbox" <?php if($_GET['status']) echo 'checked ';?>value="1" name="status">Server Status
+				<input type="checkbox" <?php if($_GET['player']) echo 'checked ';?>value="1" name="player">Playercount
 				<br>
-				<input type="radio" name="type" value="b"  onclick="admin.disabled=true; slash.disabled=true; filtered.disabled=true; chat.disabled=true; join.disabled=true; report.disabled=true; status.disabled=true; player.disabled=true; search.disabled=false; search.value='<?php echo $_GET['search'] ?>'" <?php if($_GET['search']) echo 'checked '; ?>> 
-				Search: <input name="search" type="text" value="<?php echo $_GET['search'];?>" <?php if(!$_GET['search']) echo 'disabled '; ?>>
+				Search: <input name="search" type="text" value="<?php echo $_GET['search'];?>">
+				<br>
+				From: <input name="fmonth" type="text" style="width: 15px;" maxlength="2" value="<?php echo $_GET['fmonth'] ?>"> / <input name="fday" type="text" style="width: 15px;" maxlength="2" value="<?php echo $_GET['fday']; ?>"> / <input name="fyear" type="text" style="width: 30px;" maxlength="4" value="<?php echo $_GET['fyear']; ?>">
+				<br>
+				To: <input name="tmonth" type="text" style="width: 15px;" maxlength="2" value="<?php echo $_GET['tmonth']; ?>"> / <input name="tday" type="text" style="width: 15px;" maxlength="2" value="<?php echo $_GET['tday']; ?>"> / <input name="tyear" type="text" style="width: 30px;" maxlength="4" value="<?php echo $_GET['tyear']; ?>">
 				<br>
 				<input type=submit value=Update>
                 </form><br>
-     <table cellpadding="1">
+     <table cellpadding="3" width="100%">
      <tr>
-     <td width="5%" BGCOLOR="#66CC66"><center>join</center></td>
-     <td width="5%" BGCOLOR="#66CC66"><center>part</center></td>
-     <td width="9%" BGCOLOR="#99FF99"><center>msg-brodcast</center></td>
-     <td width="8%" BGCOLOR="#FF9933"><center>msg-admin</center></td>
-     <td width="7%" BGCOLOR="#33FFFF"><center>msg-team</center></td>
-     <td width="11%" BGCOLOR="#FF3300"><center>slashcommand</center></td>
-     <td width="9%" BGCOLOR="#CCCCC"><center>playercount</center></td>
-     <td width="9%" BGCOLOR="#FFFFCC"><center>msg-private</center></td>
-     <td width="6%" BGCOLOR="#FFFF00"><center>filtered</center></td>
-     <td width="6%" BGCOLOR="#CC66FF"><center>report</center></td>
-     <td width="9%" BGCOLOR="#CC33CC"><center>server-status</center></td>
+     <td width="5%" BGCOLOR="#66CC66"><center><b>join</b></center></td>
+     <td width="5%" BGCOLOR="#66CC66"><center><b>part</b></center></td>
+     <td width="9%" BGCOLOR="#99FF99"><center><b>msg-brodcast</b></center></td>
+     <td width="8%" BGCOLOR="#FF9933"><center><b>msg-admin</b></center></td>
+     <td width="7%" BGCOLOR="#33FFFF"><center><b>msg-team</b></center></td>
+     <td width="11%" BGCOLOR="#FF3300"><center><b>slashcommand</b></center></td>
+     <td width="9%" BGCOLOR="#CCCCC"><center><b>playercount</b></center></td>
+     <td width="9%" BGCOLOR="#FFFFCC"><center><b>msg-private</b></center></td>
+     <td width="6%" BGCOLOR="#FFFF00"><center><b>filtered</b></center></td>
+     <td width="6%" BGCOLOR="#CC66FF"><center><b>report</b></center></td>
+     <td width="9%" BGCOLOR="#CC33CC"><center><b>server-status</b></center></td>
      </tr>
      </table>
-     <table cellpadding="5">
+     <table cellpadding="3" width="100%">
  	<tr>
-  		<td width="12%">Date</td>
-  		<td width="11%">Time</td>
-  		<td width="12%">Event</td>
-  		<td width="10%">From</td>
-  		<td width="10%">To</td>
-  		<td width="50%">Detail</td>
+  		<td width="7%"><b>Date</b></td>
+  		<td width="7%"><b>Time</b></td>
+  		<td width="9%"><b>Event</b></td>
+  		<td width="10%"><b>From</b></td>
+  		<td width="10%"><b>To</b></td>
+  		<td width="60%"><b>Detail</b></td>
 	</tr>
 <?php
+$from = strtotime($_GET['fyear'].'-'.$_GET['fmonth'].'-'.$_GET['fday']);
+$to = strtotime($_GET['tyear'].'-'.$_GET['tmonth'].'-'.$_GET['tday']);
 $check = mysql_fetch_array(mysql_query("SELECT owner FROM servers WHERE id='$id_clean'"));
 if($name !== $check[0]&&$_SESSION['perm'][17]!=='1'){
 	die();
 }
 $q = "SELECT * FROM ".$id_clean."serverlogs WHERE `server`='$id_clean'";
-if(!$_GET['search']){
 $q .= " AND `type`=''";
 if($_GET['admin']){
 $q .= " OR `type`='MSG-ADMIN'";
@@ -158,17 +163,15 @@ $q .= " OR `type`='SERVER-STATUS'";
 if($_GET['player']){
 $q .= " OR `type`='PLAYERS'";
 }
-} else {
-	$search = $_GET['search'];
-$q .= " AND data LIKE '%$search%'";
-}
 if($_GET['order']=='2'){
 	$q .= " ORDER BY time ASC";
 } else {
 	$q .= " ORDER BY time DESC";
 }
 $qr = mysql_query($q);
+$search = $_GET['search'];
 while($log = mysql_fetch_array($qr)){
+	if($log['time'] > $from && $log['time'] < $to && preg_match("/$search/i",$log['data'])){
 ?><tr
 <?php
 	if($log['type'] == "PLAYER-JOIN") {
@@ -235,7 +238,8 @@ while($log = mysql_fetch_array($qr)){
           echo "join</td>";
           echo "<td>--</td>";
           echo "<td>--</td>";
-          echo "<td><b>Name:</b> $player[1] <b>IP:</b> $player[4] <b>BZid:</b> $player[3]"; if(strstr("$player[6]","ADMIN")){ echo "<b> Admin</b></td>";
+          echo "<td><b>Name:</b> $player[1] <b>IP:</b> $player[4] ";
+          if($player[3]) echo "<b>BZid:</b> $player[3]"; if(strstr("$player[6]","ADMIN")){ echo "<b> Admin</b></td>";
           } else {
           	echo " <b>Not Admin</b>";
           }
@@ -334,7 +338,7 @@ while($log = mysql_fetch_array($qr)){
          $playerpart = array();
          preg_match("/(.*?):(.*?$)/",$log['data'],$playerpart);
           echo "part</td>";
-          echo "<td><b>Player part</b> </td>";
+          echo "<td>Player part</td>";
           echo "<td>--</td>";
           echo "<td>$playerpart[2]</td>";
           echo "</tr>";
@@ -366,6 +370,8 @@ while($log = mysql_fetch_array($qr)){
      ?>
      </tr>
 <?php
+	} else {
+	}
 }
 ?>
 	</table>
