@@ -29,11 +29,13 @@ $dirs = glob("*");
 exec("pidof bzfs", $pid);
 //Go through each directory and server seeing if PID is actually up, updating mysql each time
 foreach($dirs as $dir){
-	$pidc = file_get_contents("$dir/bzfs.pid");
-	if(strstr($pid[0],$pidc)){
-			mysql_query("UPDATE servers SET `status`='1' WHERE `id`='$dir'");
-		} else {
-			mysql_query("UPDATE servers SET `status`='0' WHERE `id`='$dir'");
+	if(file_exists("$dir/bzfs.pid")){
+		$pidc = file_get_contents("$dir/bzfs.pid");
+		if(strstr($pid[0],$pidc)){
+				mysql_query("UPDATE servers SET `status`='1' WHERE `id`='$dir'");
+			} else {
+				mysql_query("UPDATE servers SET `status`='0' WHERE `id`='$dir'");
+		}
 	}
 }
 //Back into main dir
@@ -55,7 +57,11 @@ if ($_POST['createserver'] == "1" && $_POST['newserver'] != ""){ // form was pos
 			echo "Server Already Exists";
 		} elseif ($g_ar[2] == $name || $_SESSION['perm'][4]){
 			//Create server
+			if(!$_SESSION['perm'][14]){
 			mysql_query("INSERT INTO servers (`master`, `name`, `owner`, `enabled`) VALUES ('$g_ar[0]', '$newserver_clean', '$name', '1')");
+			} else {
+			mysql_query("INSERT INTO servers (`master`, `name`, `owner`, `enabled`) VALUES ('$g_ar[0]', '$newserver_clean', '$g_ar[2]', '1')");
+			}
 			$a = mysql_query("SELECT id FROM servers WHERE `master` = '$g_ar[0]' AND `name` = '$newserver_clean'");
 			$a_ar = mysql_fetch_array($a);
 			//Create logs
@@ -130,6 +136,7 @@ if ($_POST['deletegroup'] == "1"){ // form was posted and isnt blank
 <table width="100%">
  <tr>
   <th>Server</th>
+  <th>Port</th>
   <th>Status</th>
   <th>Owner</th>
   <th>Logs</th>
@@ -149,6 +156,7 @@ while ($g_row = mysql_fetch_array($group)) {
   $i_groups++;
   echo ' <tr id="'.$i_groups.'" class="a">
   <td id="p1"><div id="p2" class="tier1"><a id="p3" onclick="toggleRows(this)" class="folder"></a>'.$g_row[1].'</div></td>
+  <td><center>--</center></td>
   <td><center>--</center></td>
   <td><center>'.$g_row[2].'</center></td>
   <td><center>--</center></td>
@@ -175,6 +183,7 @@ while ($s_row = mysql_fetch_array($server)) {
   } else {
    echo ' <a><div class="doc"></div></a>'.$s_row[2].'</div></td>';
   }
+  echo '<td><center>'; if($s_row['p']){ echo $s_row['p']; }else{ echo '--'; } echo '</center></td>';
   // Check mysql if server is up and if user owns server
   if($s_row[4]==1){
   	  	if($name == $g_row[2] && $_SESSION['perm'][19] || $_SESSION['perm'][20]){
