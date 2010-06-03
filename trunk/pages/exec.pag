@@ -105,7 +105,7 @@ if($_GET['mode']=='start'){
 		<tr>
 			<td>Output:</td>
 			<td>
-<?
+<?php
 if(!$pidd){
 	mysql_query("UPDATE servers SET `status`=1 WHERE id='$serverclean'");
 	echo "Server is already running.<br>";
