@@ -34,7 +34,7 @@ if(($_SESSION[perm][16])==1){
 }
 
 ?>
- <?
+ <?php
 if(!$id_clean){
 ?>
 <form>
