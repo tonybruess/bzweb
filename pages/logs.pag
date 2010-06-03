@@ -21,7 +21,7 @@
     <http://www.gnu.org/licenses/>.
 */
 ?>				<h3>Logs</h3>
-<?
+<?php
 date_default_timezone_set("America/Chicago"); 
 $id_clean = sanitize($_GET['server']);
 if($_SESSION['perm'][17]=='1'){
