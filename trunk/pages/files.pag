@@ -53,7 +53,11 @@ if($op=='create'){
   }elseif ( $_POST['type'] == "bandb") {
   	$nameclean = sanitize($_POST['name']);
   	$contentsclean = sanitize($_POST['contents']);
-  	if(mysql_query("INSERT INTO files (`name`,`owner`,`type`,`contents`) VALUES ('$nameclean','$owner','bandb','$contentsclean')")){
+	$file = "banfiles/$owner/$nameclean";
+  	$fh = fopen($file, 'w');
+  	fwrite($fh,"");
+	fclose($fh);
+  	if(file_exists("banfiles/$owner/".$e['nameclean'])){
   		echo "Created successfully";
   	} else {
   		echo "Failed";

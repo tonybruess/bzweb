@@ -250,11 +250,13 @@ while($groupdb = mysql_fetch_array($groupq)) {
 <select name ="ban">
 <option>None</option>
 <?php
-$banq = mysql_query("SELECT * FROM files WHERE owner='$overallowner' AND type='bandb'");
-while($bandb = mysql_fetch_array($banq)) {
-  ?><option value="<?php echo $bandb['id']?>"<?php if ($zar['ban'] == $bandb['id']) { echo ' selected'; } ?>><?php
-  echo $bandb['name'] ?></option><?php
-  }
+$previousbanfile = mysql_fetch_array(mysql_query("SELECT ban FROM servers WHERE id='$server_clean'"));
+foreach (glob("banfiles/$overallowner/*") as $filename) {
+	$l = strlen("banfiles/$overallowner/");
+	$filereal = substr($filename,$l);
+    echo "<option";
+    if($filereal==$previousbanfile[0]) echo ' selected'; echo ">$filereal</option>";
+}
 ?>
 </select> Ban Database
 <br>
