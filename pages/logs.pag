@@ -123,12 +123,12 @@ Order by:<select name="order" onchange="this.form.submit();">
      </table>
      <table cellpadding="3" width="100%">
  	<tr>
-  		<td width="7%"><b>Date</b></td>
-  		<td width="7%"><b>Time</b></td>
-  		<td width="9%"><b>Event</b></td>
-  		<td width="10%"><b>From</b></td>
-  		<td width="10%"><b>To</b></td>
-  		<td width="60%"><b>Detail</b></td>
+  		<td><b>Date</b></td>
+  		<td><b>Time</b></td>
+  		<td><b>Event</b></td>
+  		<td><b>From</b></td>
+  		<td><b>To</b></td>
+  		<td><b>Detail</b></td>
 	</tr>
 <?php
 $from = strtotime($_GET['fyear'].'-'.$_GET['fmonth'].'-'.$_GET['fday']);
@@ -171,7 +171,7 @@ if($_GET['order']=='2'){
 $qr = mysql_query($q);
 $search = $_GET['search'];
 while($log = mysql_fetch_array($qr)){
-	if($log['time'] > $from && $log['time'] < $to && preg_match("/$search/i",$log['data'])){
+	if($log['time'] > $from && $log['time'] < $to && preg_match("/$search/",$log['data'])){
 ?><tr
 <?php
 	if($log['type'] == "PLAYER-JOIN") {

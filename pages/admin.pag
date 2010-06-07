@@ -127,7 +127,9 @@ if($_GET['mode']=='edit'){
 	if(!$_POST[29]) $_POST[29] = 0;
 	if(!$_POST[30]) $_POST[30] = 0;
 	if(!$_POST[31]) $_POST[31] = 0;
-	$perm = $_POST[0].$_POST[1].$_POST[2].$_POST[3].$_POST[4].$_POST[5].$_POST[6].$_POST[7].$_POST[8].$_POST[9].$_POST[10].$_POST[11].$_POST[12].$_POST[13].$_POST[14].$_POST[15].$_POST[16].$_POST[17].$_POST[18].$_POST['vs'].$_POST[19].$_POST[20].$_POST[21].$_POST[22].$_POST[23].$_POST[24].$_POST[25].$_POST[26].$_POST[27].$_POST[28].$_POST[29].$_POST[30].$_POST[31];
+	if(!$_POST[32]) $_POST[32] = 0;
+	if(!$_POST[33]) $_POST[33] = 0;
+	$perm = $_POST[0].$_POST[1].$_POST[2].$_POST[3].$_POST[4].$_POST[5].$_POST[6].$_POST[7].$_POST[8].$_POST[9].$_POST[10].$_POST[11].$_POST[12].$_POST[13].$_POST[14].$_POST[15].$_POST[16].$_POST[17].$_POST[18].$_POST['vs'].$_POST[19].$_POST[20].$_POST[21].$_POST[22].$_POST[23].$_POST[24].$_POST[25].$_POST[26].$_POST[27].$_POST[28].$_POST[29].$_POST[30].$_POST[31].$_POST[32].$_POST[33];
 		mysql_query("UPDATE roles SET permissions='$perm' WHERE id=".$_GET['role']."");
 		echo "Role updated sucesfully<br>";
 	}
@@ -164,14 +166,14 @@ You are editing permissions for: <b><?php echo $roles['name']?></b><br>
 </tr>
 
 <tr class="a" bgcolor=#CCCCCC>
-<td><center>--</center></td>
+<td><input name="32" id="32" type="checkbox" value="1"<?php if($perm[32]=='1') echo ' checked'?>> <label for="32"> Custom Conf Options</label></label></td>
 <td><input name="19"  id="19" type="checkbox" value="1"<?php if($perm[19]=='1') echo ' checked'?>> <label for="19"> Start/Stop Servers</label></td>
 <td><input name="20"  id="20" type="checkbox" value="1"<?php if($perm[20]=='1') echo ' checked'?>> <label for="20"> Start/Stop Any Server</label></td>
 <td><center>--</center></td>
 <td><center>--</center></td>
 </tr>
 <tr class="a" bgcolor=#CCCCCC>
-<td><center>--</center></td>
+<td><input name="33" id="33" type="checkbox" value="1"<?php if($perm[33]=='1') echo ' checked'?>> <label for="33"> Disable Master Conf</label></label></td>
 <td><input name="21"  id="21" type="checkbox" value="1"<?php if($perm[21]=='1') echo ' checked'?>> <label for="21"> Edit Confs</label></td>
 <td><input name="22"  id="22" type="checkbox" value="1"<?php if($perm[22]=='1') echo ' checked'?>> <label for="22"> Edit Any Conf</label></td>
 <td><input name="vg"  id="vg" type="checkbox" value="1" onclick="this.form.vs.checked = this.checked;"<?php if($perm[18]=='1') echo ' checked'?>> <label for="vg"> View All Groups</label></td>
