@@ -184,6 +184,12 @@ if($e['green flag'] != "0" ) $conf .= " +f G*{".$e['green flag']."}";
 if($e['blue flag'] != "0" ) $conf .= " +f B*{".$e['blue flag']."}";
 if($e['purple flag'] != "0" ) $conf .= " +f P*{".$e['purple flag']."}";
 
+if($e['ban'] == "None" || !$e['ban']){
+	echo "Not saving bans to a banfile...";
+} else {
+	$conf .=" -banfile \"../../banfiles/".$e['owner']."/".$e['ban']."\"";
+}
+
 if($e['worldfile'] == "None" || !$e['worldfile']){
 	$conf .= ' -worldsize '.$e['worldsize'].' ';
 	if($e['b']=='1')$conf .= ' -b';

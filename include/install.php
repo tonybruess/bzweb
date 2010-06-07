@@ -235,7 +235,8 @@
 			$data = str_replace("define('SQL_USER','mrapple');", "define('SQL_USER','$user');", $data);
 			$data = str_replace("define('SQL_PASS','');", "define('SQL_PASS','$password');", $data);
 			$data = str_replace("define('SQL_DB','bzweb');", "define('SQL_DB','$db');", $data);
-			
+			mkdir('banfiles/'.$name);
+			chmod('banfiles/'.$name, 0777);
 			if(file_put_contents('include/mysql.php', $data))
 			{
 				echo 'MySQL file created... <br>';

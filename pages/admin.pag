@@ -248,6 +248,8 @@ if($_POST['newuser']){
 	$ts = time();
 	mysql_query("INSERT INTO users (`name`,`permissions`,`last login`) VALUES ('".$_POST['newuser']."','".$_POST['role']."','$ts')");
 	echo mysql_error();
+	mkdir('banfiles/'.$_POST['newuser']);
+	chmod('banfiles/'.$_POST['newuser'], 0777);
 	}
 }
 $q = mysql_query("SELECT * FROM users ORDER BY `name` ASC");
