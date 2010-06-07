@@ -13,7 +13,7 @@ if(file_exists("./include/update.php"))
 	die();
 }
 
-if(!isset($_SESSION['callsign']) && isset($_GET['p']) && $_GET['p'] != 'error')
+if(!isset($_SESSION['callsign']) && $_GET['p'] != 'error')
 {
 	include_once("./include/header.php");
 	include_once("./include/menu.php");
