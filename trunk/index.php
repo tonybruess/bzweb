@@ -1,7 +1,7 @@
 <?php
 require('./include/security.php');
 include('./include/session.php');
-
+$name = $_SESSION['callsign'];
 if(!file_exists("./include/mysql.php"))
 {
 	include_once("./include/install.php");
@@ -35,7 +35,7 @@ else
 		$_GET['p'] = 'index';
 		
 	$page = CleanFilePath($_GET['p']);
-	if($page === true && file_exists("./pages/$page.pag"))
+	if($page == true && file_exists("./pages/$page.pag"))
 	{
 		include_once("./include/menu.php");
 		require_once("./pages/$page.pag");

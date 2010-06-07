@@ -44,7 +44,7 @@
     mysql_select_db(SQL_DB) or die("Error: ".mysql_error()); // Connecting to the database
     
     if($_SESSION['callsign']){
-    $userdata = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE name='$name'"));	 
+    $userdata = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE `name`='$name'"));	 
 	$rolesdata = mysql_fetch_array(mysql_query("SELECT * FROM roles WHERE `id`=".$userdata['permissions'].""));
 	$perm = str_split($rolesdata['permissions']);
 	    	if($perm[1]=='0'){

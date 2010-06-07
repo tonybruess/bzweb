@@ -141,7 +141,9 @@ mysql_query("UPDATE servers SET
 `domain`='".$_POST['domain']."',
 `disablebots`='".$_POST['disablebots']."',
 `servermsg`='".$_POST['servermsg']."',
-`admsg`='".$_POST['admsg']."' WHERE `id`='$server_clean'");
+`admsg`='".$_POST['admsg']."',
+`custom`='".$_POST['custom']."',
+`disablemaster`='".$_POST['disablemaster']."' WHERE `id`='$server_clean'");
 echo mysql_error();
 }
 //Fetch the data
@@ -348,7 +350,8 @@ while($mapfile = mysql_fetch_array($mapq)) {
 </fieldset><br>
 <fieldset>
  <legend>Miscellaneous Settings</legend>
-<input name="disablebots" type="checkbox" value="1" <?php if($zar['disablebots']=='1') echo 'checked';?>> Disable Bots<br>
+ <input name="disablebots" type="checkbox" value="1" <?php if($zar['disablebots']=='1') echo 'checked';?>> Disable Bots<br>
+ <?php if($_SESSION['perm'][33]){?><input name="disablemaster" type="checkbox" value="1" <?php if($zar['disablemaster']=='1') echo 'checked';?>> Disable Master Conf<br><?php } ?>
 <?php
 //<input name="owncmd" type="text" size="50" > Own Command Line Options<br>
 ?><br>
@@ -358,6 +361,7 @@ while($mapfile = mysql_fetch_array($mapq)) {
  Ad message goes here, one per line <br><textarea type="text" cols="50" rows="10" name="admsg">
 <?php echo $zar['admsg']?>
 </textarea><br>
+<?php if($_SESSION['perm'][32]){ ?><br>Custom Conf Options:<br><textarea type="text" cols=50 rows=10 name="custom"><?php echo $zar['custom'] ?></textarea><br> <?php } ?>
 </fieldset>
 <br>
 <center>
