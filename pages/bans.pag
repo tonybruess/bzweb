@@ -19,81 +19,6 @@
     You should have received a copy of the GNU Lesser General Public
     License along with this program.  If not, see
     <http://www.gnu.org/licenses/>.
-*/
-?>
-				<h3>Bans</h3>
-<?php
-	if($_POST){
-	$query_type = $_POST['query_type'];
-	}	
-	//check if search button was pressed
-	if (isset($_POST['searchfor'])){
-		if ($_POST['searchfor'] == "1" && $_POST['query'] != ""){ // form was posted and isn't blank
-			//Setup vars
-			$search_query = $_POST['query'];
-			$query_clean = sanitize($search_query);
-			
-			// Check query type
-			if ($query_type == "BA") {
-				$info = "<b>Search Type: </b>Banner query<br><b>You Searched: </b>".$query_clean."<br><br>";
-				// Setup correct mySQL query
-				$sql_query=("Select * FROM bans WHERE banner LIKE '%$query_clean%'");
-			}else if ($query_type == "AD") {
-				$info = "<b>Search Type: </b>Address query<br><b>You Searched: </b>".$query_clean."<br><br>";
-				// Setup correct mySQL query
-				$sql_query=("Select * FROM bans WHERE ip LIKE '%$query_clean%'");
-			}else if ($query_type == "RE") {
-				$info = "<b>Search Type: </b>Reason query<br><b>You Searched: </b>".$query_clean."<br><br>";
-				$sql_query=("Select * FROM bans WHERE reason LIKE '%$query_clean%'");
-			}
-			
-			// Run query
-			$query_result=mysql_query($sql_query);
-			if(mysql_num_rows($query_result)<1){ // No results found
-				$info = "<b>Search string not found.</b><br>";
-			}else{
-				$result_array=array();
-				while($row = mysql_fetch_assoc($query_result)){ // Results found, add them to result array
-					array_push($result_array, array($row['banner'], $row['ip'], $row['length'], $row['reason'], $row['time'], ));
-				}
-				// Setup result <table>
-				$result=
-				"<table width=\"100%\">
-				 <tr>
-				  <th>Banner</th>
-				  <th>Address</th>
-				  <th>Length</th>
-				  <th>Reason</th>
-				  <th>When</th>
-				 </tr>";
-				
-				// Add items to result <table>
-				$num_results=count($result_array);			
-				for ( $row = 0; $row < $num_results; $row++ )
-				{				
-					if(strstr($result_array[$row][2],"5h")){$bg=' bgcolor=#BBC9D3';} else {$bg =' bgcolor=#CCCCCC';}
-					$temp_results=
-					"<tr class=\"a\"".$bg.">".
-						"<td style=\"text-align: center;\">".$result_array[$row][0]."</td>".
-						"<td style=\"text-align: center;\">".$result_array[$row][1]."</td>".
-						"<td style=\"text-align: center;\">".$result_array[$row][2]."</td>".
-						"<td style=\"text-align: center;\">".$result_array[$row][3]."</td>".
-						"<td style=\"text-align: center;\">".date("Y-m-d",$result_array[$row][5]).' '.date("h:i:s A",$result_array[$row][5])."</td>".
-					"</tr>";
-					
-					// Add table row to result
-					$result.=$temp_results;
-				}
-				// Finish result by closing <table>
-				$result.="</table>";
-			}
-		}
-		if ($_POST['searchfor'] == "1" && $_POST['query'] == ""){ // form was posted but is blank
-			$info = "<b>You need to enter a search string.</b>";
-		}
-	}
-?>
-
 <form method="post">
 	<b>Search for:</b>
 	<select name="query_type">
@@ -105,55 +30,72 @@
 	<input type="submit" value="Search" name="search">
 	<input type="hidden" name="searchfor" value="1" >
 </form>
+*/
+?>
+				<h3>Bans</h3>
 <br>
-
+<form method="post">
+	<b>Ban File:</b>
+	<select name="banfile">
+	<?php
+foreach (glob("banfiles/$name/*") as $filename) {
+	$l = strlen("banfiles/$name/");
+	$filereal = substr($filename,$l);
+ 	$postedfile = substr($_POST['banfile'],$l);
+   echo "<option value=\"$filename\"";
+    if($filereal==$postedfile) echo ' selected';
+    echo ">$filereal</option>";
+}
+?>
+	</select>
+	<input type="submit" value="Load" name="search">
+</form>
+<br>
 <?php
-	// Show info message
-	if(isset($info)) 
-	{ 
-		echo $info;
-	}
-	// Show result table
-	if(isset($result) || $_POST) 
-	{ 
-		echo $result;
-	} else {
-				$sql_query=("SELECT * FROM bans");
-				$query_result=mysql_query($sql_query);
-				$result_array=array();
-				while($row = mysql_fetch_assoc($query_result)){ // Results found, add them to result array
-					array_push($result_array, array($row['banner'], $row['ip'], $row['length'], $row['reason'], $row['time'], ));
-				}
-				// Setup result <table>
-				$result=
-				"<table width=\"100%\">
-				 <tr>
-				  <th>Banner</th>
-				  <th>Address</th>
-				  <th>Length</th>
-				  <th>Reason</th>
-				  <th>When</th>
-				 </tr>";
-				
-				// Add items to result <table>
-				$num_results=count($result_array);			
-				for ( $row = 0; $row < $num_results; $row++ )
-				{				
-					if(strstr($result_array[$row][2],"5h")){$bg=' bgcolor=#BBC9D3';} else {$bg =' bgcolor=#CCCCCC';}
-					$temp_results=
-					"<tr class=\"a\"".$bg.">".
-						"<td style=\"text-align: center;\">".$result_array[$row][0]."</td>".
-						"<td style=\"text-align: center;\">".$result_array[$row][1]."</td>".
-						"<td style=\"text-align: center;\">".$result_array[$row][2]."</td>".
-						"<td style=\"text-align: center;\">".$result_array[$row][3]."</td>".
-						"<td style=\"text-align: center;\">".date("Y-m-d",$result_array[$row][5]).' '.date("h:i:s A",$result_array[$row][5])."</td>".
-					"</tr>";
-					
-					// Add table row to result
-					$result.=$temp_results;
-				}
-				// Finish result by closing <table>
-				$result.="</table>";
-					echo $result;
+$banfile = file($_POST['banfile']);
+foreach($banfile as $line){
+			$count++;
+			$type = NULL;
+			list($q1, $q2, $q3, $q4) = explode(".", $line) ;
+			// We don't check q4 because we already know its an ip
+			if (is_numeric($q1) && (is_numeric($q2) || $q2 == "*") && (is_numeric($q3) || $q3 == "*")) {
+				// This is an IP.
+				$type = 'ip';
+				$count = '1';
+				$data = "$q1.$q2.$q3.$q4";
+			} elseif (strstr($line,"host:")) {
+				$type = 'host';
+				$count = '1';
+				$data = explode(":",$line);
+				$data = $data[1];
+			} elseif (strstr($line,"bzid:")) {
+				$type = 'bzid';
+				$count = '1';
+				$data = explode(":",$line);
+				$data = $data[1];
 			}
+			if($count=='1'){
+				echo "Type: $type<br><br>";
+				echo "Ban: $data<br><br>";
+			}
+			if($count=='2'){
+				$data = explode(":",$line);
+				$data = $data[1];
+				echo "Length: $data<br><br>";
+			}
+			if($count=='3'){
+				$data = explode(":",$line);
+				$data = $data[1];
+				preg_match("/(banner:)(.*)/",$line,$match);
+				$match[2] = $data;
+				echo "Banner: $data<br><br>";
+			}
+			if($count=='4'){
+				$data = explode(":",$line);
+				$data = $data[1];
+				preg_match("/(banner:)(.*)/",$line,$match);
+				$match[2] = $data;
+				echo "Reason: $data<br><br>";
+			}
+}
 ?>
