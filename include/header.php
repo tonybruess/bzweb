@@ -50,7 +50,7 @@ $sitedata = mysql_fetch_array(mysql_query("SELECT * FROM settings"));
 	<title>BZWeb</title>
 </head>
 
-<body onload="collapseAllRows();">
+<body>
 
 <noscript>
 <div id="Header"><div id="PageNavigation"><div id="Logo"><h1><?php echo $sitedata['site'] ?></h1><h2>BZFS Administration</h2></div></div></div><div id="Container"><div id="PageContent"><h3>No Javascript Support Detected</h3><p>This website requires JavaScript support. Please enable JavaScript and reload the page.</p></div>
