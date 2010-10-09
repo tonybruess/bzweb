@@ -2,6 +2,7 @@
 require('./include/security.php');
 include('./include/session.php');
 $name = $_SESSION['callsign'];
+$authPage = urlencode('http://'.$_SERVER['SERVER_NAME'].dirname($_SERVER['SCRIPT_NAME']).'/authenticate.php?token=%TOKEN%&username=%USERNAME%');
 if(!file_exists("./include/mysql.php"))
 {
 	include_once("./include/install.php");
@@ -21,7 +22,7 @@ if(!isset($_SESSION['callsign']) && $_GET['p'] != 'error')
 	?>
 		<h3>Please login</h3>
 		<p>
-			Before accessing this page you must <a href="http://my.bzflag.org/weblogin.php?url=http://<?php echo $_SERVER['HTTP_HOST']; ?>%2Fauthenticate.php%3Ftoken%3D%25TOKEN%25%26username%3D%25USERNAME%25">login.</a>
+			Before accessing this page you must <a href='http://my.bzflag.org/weblogin.php?url=<?php echo $authPage; ?>'>login.</a>
 		</p>
 	<?php
 	

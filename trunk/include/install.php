@@ -140,29 +140,22 @@
 				$error = true;
 				echo "<br> ERROR: Please enter a(n) $field";
 			}
+			$var = $field;
+			$$var = $_POST[$field];
 		}
-		
+		print_r($_POST);
 		if($error)
 		{
 			DoLogin();
 		}
 		else
 		{
-			$callsign = mysql_real_escape_string($_POST['callsign']);
-			$company = mysql_real_escape_string($_POST['company']);
-			$email = mysql_real_escape_string($_POST['email']);
-			$db = mysql_real_escape_string($_POST['db']);
-			$rootUser = mysql_real_escape_string($_POST['RootUser']);
-			$rootPassword = mysql_real_escape_string($_POST['RootPassword']);
-			$user = mysql_real_escape_string($_POST['NewUser']);
-			$password = mysql_real_escape_string($_POST['NewPassword']);
-			
 			echo "<h3>Setting up BZWeb...</h3>";
 			
 			// Try connecting to MySQL as root
-			if(!mysql_connect("localhost", $rootUser, $rootPassword))
+			if(!mysql_connect("localhost", $RootUser, $RootPassword))
 			{
-				die("Failed to connect to MySQL using username '$rootUser' and password '$rootPassword'. Error: ".mysql_error());
+				die("Failed to connect to MySQL using username '$RootUser' and password '$RootPassword'. Error: ".mysql_error());
 			}
 			
 			echo "Successfully connected to MySQL. <br>";
@@ -179,14 +172,14 @@
 			mysql_select_db($db) or die ("Error selecting database: ".mysql_error());
 			
 			// Create the user
-			$createUserSQL = "GRANT ALL ON $db.* TO '$user' IDENTIFIED BY '$password'";
+			$createUserSQL = "GRANT ALL ON $db.* TO '$NewUser' IDENTIFIED BY '$NewPassword'";
 			
 			if(!mysql_query($createUserSQL))
 			{
-				die("Unable to create user '$user' with password '$password'.");
+				die("Unable to create user '$NewUser' with password '$NewPassword'.");
 			}
 			
-			echo "User '$user' created... <br>";
+			echo "User '$NewUser' created... <br>";
 			
 			// Create the tables
 			$CreateTableSQL = array(
@@ -245,7 +238,7 @@
 			{
 				echo 'Failed to create MySQL file. <br>';
 				echo 'Paste the following into include/mysql.php: <br>';
-				echo "<textarea>$data</textarea> <br>";
+				echo "<textarea cols=\"60\" rows=\"10\">$data</textarea> <br>";
 			}
 		?>
 		
