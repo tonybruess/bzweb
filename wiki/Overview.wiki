@@ -8,6 +8,6 @@ Users can start, stop, restart, and customize everything about their server.
 
 There is also an administration panel which allows the server administrator to keep tabs on users and enable/disable certain features.
 
-For questions, join ##bzbureau on irc.freenode.net and ask mrapple.
+For questions, join #bzextreme on irc.freenode.net and ask mrapple.
 
 = Details =
