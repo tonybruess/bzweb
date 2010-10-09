@@ -342,10 +342,17 @@ foreach ( $porta as $portb ) {
  <option value="">None</option>
  <?php
  $plugins = mysql_query("SELECT plugins FROM settings");
- $pluginsarray = explode("\n",$plugins);
-while($mapfile = mysql_fetch_array($mapq)) {
-  ?><option value="<?php echo $mapfile['id']?>"<?php if ($zar['worldfile'] == $mapfile['id']) { echo ' selected'; } ?>><?php
-  echo $mapfile['name'] ?></option><?php
+ $plugin = mysql_fetch_array($plugins);
+ $pluginarray = explode("\n",$plugin[0]);
+ $i = 0;
+foreach($pluginarray as $plugin) {
+  if($i % 2)
+  {
+  ?>
+  <option value="<?php echo trim($pluginarray[$i]); ?>"><?php echo trim($pluginarray[$i-1]); ?></option>
+  <?php
+  }
+  $i++;
   }
 ?>
  </select>
