@@ -133,7 +133,8 @@ if ($_POST['deletegroup'] == "1"){ // form was posted and isnt blank
 
 }
 ?>
-<b>Click a folder to hide its contents</b>
+<b>Click a folder to hide its contents or click a server to edit it</b>
+<br>
 <table width="100%">
  <tr>
   <th>Server</th>
