@@ -35,7 +35,7 @@
 		return $str ;
 	}
 
-	include_once("../config.php");
+	include_once("./config.php");
 	        
     // Creating the connection using the above configuration
     mysql_connect(SQL_SERVER,SQL_USER,SQL_PASS) or die("Error: ".mysql_error()); // Connecting to the server
