@@ -4,7 +4,7 @@
     Copyright (c) 2010 Tony Bruess
 
 	BZWeb is an online based tool developed by mrapple which allows multiple users to manage bzfs instances.
-	For questions, join ##bzbureau on irc.freenode.net and ask mrapple.
+	For questions, join #bzextreme on irc.freenode.net and ask mrapple.
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as
