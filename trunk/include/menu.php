@@ -21,8 +21,9 @@
     <http://www.gnu.org/licenses/>.
 */
 if($_SESSION['callsign']){
-	?>
-	<ul>
+?>
+
+		<ul>
 			<?php   if($_SESSION['perm']['2']){?><li><a href="index.php?p=admin"<?php if($page=='admin') echo ' class=active';?>>Admin</a></li>
 			<?php } ?><li><a href="index.php"<?php if($page=='index') echo ' class=active';?>>Home</a></li>
  			<li><a href="index.php?p=servers"<?php if($page=='servers') echo ' class=active';?>>Servers</a></li>
@@ -31,17 +32,14 @@ if($_SESSION['callsign']){
  			<?php } if($_SESSION['perm'][29] || $_SESSION['perm'][15]){?><li><a href="index.php?p=player"<?php if($page=='player') echo ' class=active';?>>Player Info</a></li>
  			<?php } if($_SESSION['perm'][31] || $_SESSION['perm'][16]){?><li><a href="index.php?p=reports"<?php if($page=='reports') echo ' class=active';?>>Reports</a></li>
  			<?php } if($_SESSION['perm'][30] || $_SESSION['perm'][17]){?><li><a href="index.php?p=logs"<?php if($page=='logs') echo ' class=active';?>>Logs</a></li>
- 			<?php } ?><li><a href="index.php?p=logout"<?php if($page=='logout') echo ' class=active';?>>Logout</a></li>
-		</ul>
-
+ 			<?php } ?><li><a href="index.php?p=feedback">Feedback</a>
+			<li><a href="index.php?p=logout"<?php if($page=='logout') echo ' class=active';?>>Logout</a></li>
+ 		</ul>
 	<?php } else { ?>		
 			<ul>
 				<li><a href='http://my.bzflag.org/weblogin.php?url=<?php echo $authPage; ?>'>Login</a></li>
 			</ul>
-		<?php
-		
-		}
-		?>
+	<?php } ?>
 	</div>
 </div>
 <div id="Container">
