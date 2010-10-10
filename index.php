@@ -26,7 +26,7 @@ include('./include/session.php');
 $name = $_SESSION['callsign'];
 $authPage = urlencode('http://'.$_SERVER['SERVER_NAME'].dirname($_SERVER['SCRIPT_NAME']).'/authenticate.php?token=%TOKEN%&username=%USERNAME%');
 
-if(!file_exists("./include/mysql.php"))
+if(!file_exists("./config.php"))
 {
 	include_once("./include/install.php");
 	die();
@@ -59,16 +59,16 @@ else
 		$_GET['p'] = 'index';
 		
 	$page = CleanFilePath($_GET['p']);
-	if($page == true && file_exists("./pages/$page.pag"))
+	if($page == true && file_exists("./pages/$page.php"))
 	{
 		include_once("./include/menu.php");
-		require_once("./pages/$page.pag");
+		require_once("./pages/$page.php");
 	}
 	else
 	{
 		$page = 'index';
 		include_once("./include/menu.php");
-		include_once("./pages/index.pag");
+		include_once("./pages/index.php");
 	}
 	include_once("./include/footer.php");
 }

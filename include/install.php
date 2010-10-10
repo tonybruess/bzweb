@@ -224,20 +224,20 @@
 				}
 			}
 			
-			$data = file_get_contents('include/mysql-example.php');
+			$data = file_get_contents('include/config.default.php');
 			$data = str_replace("define('SQL_USER','mrapple');", "define('SQL_USER','$NewUser');", $data);
 			$data = str_replace("define('SQL_PASS','');", "define('SQL_PASS','$NewPassword');", $data);
 			$data = str_replace("define('SQL_DB','bzweb');", "define('SQL_DB','$db');", $data);
 			mkdir('banfiles/'.$name);
 			chmod('banfiles/'.$name, 0777);
-			if(file_put_contents('include/mysql.php', $data))
+			if(file_put_contents('config.php', $data))
 			{
 				echo 'MySQL file created... <br>';
 			}
 			else
 			{
 				echo 'Failed to create MySQL file. <br>';
-				echo 'Paste the following into include/mysql.php: <br>';
+				echo 'Paste the following into config.php: <br>';
 				echo "<textarea cols=\"60\" rows=\"10\">$data</textarea> <br>";
 			}
 		?>
