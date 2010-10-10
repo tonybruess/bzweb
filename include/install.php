@@ -209,7 +209,7 @@
 			$DefaultSQL = array(
 				'settings' => "INSERT INTO settings (`site`, `email`) VALUES ('$company', '$email')",
 				'roles' => "INSERT INTO roles (`name`, `permissions`) VALUES ('Admin', '91111111111111111111111111111111')",
-				'users' => "INSERT INTO users (`name`,`permissions`) VALUES ('$name','1')"
+				'users' => "INSERT INTO users (`name`,`permissions`) VALUES ('$callsign','1')"
 			);
 			
 			foreach($DefaultSQL as $table=>$sql)
