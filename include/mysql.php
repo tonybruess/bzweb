@@ -22,19 +22,6 @@
 */
 ?>
 <?php
-	function sanitize($str)
-	{
-		if (function_exists( "mysql_real_escape_string" ))
-		{ // If PHP version > 4.3.0
-			$str = mysql_real_escape_string($str) ;
-		} else
-		{ // If PHP version < 4.3.0
- 			// Precede sensitive characters with a slash \
- 			$str = addslashes($str) ;
-		}
-		return $str ;
-	}
-
 	include_once("./config.php");
 	        
     // Creating the connection using the above configuration
