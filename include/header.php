@@ -52,10 +52,7 @@ $sitedata = mysql_fetch_array(mysql_query("SELECT * FROM settings"));
 
 <body>
 
-<noscript>
-<div id="Header"><div id="PageNavigation"><div id="Logo"><h1><?php echo $sitedata['site'] ?></h1><h2>BZFS Administration</h2></div></div></div><div id="Container"><div id="PageContent"><h3>No Javascript Support Detected</h3><p>This website requires JavaScript support. Please enable JavaScript and reload the page.</p></div>
-<div id="PageBottom"><div id="Copyright"><span><?php if(!$_SESSION['callsign'])$name="Guest";echo 'Logged in as '.$name.' from '.$_SERVER['REMOTE_ADDR']?> &copy; 2010 BZBureau.com</span></div></div></div>
-</noscript>
+<noscript><div id="Header"><div id="PageNavigation"><div id="Logo"><h1><?php echo $sitedata['site'] ?></h1><h2>BZFS Administration</h2></div></div></div><div id="Container"><div id="PageContent"><h3>No Javascript Support Detected</h3><p>This website requires JavaScript support. Please enable JavaScript and reload the page.</p></div><div id="PageBottom"><div id="Copyright"><span><?php if(!$_SESSION['callsign'])$name="Guest";echo 'Logged in as '.$name.' from '.$_SERVER['REMOTE_ADDR']?> &copy; 2010 BZExtreme.com</span></div></div></div></noscript>
 
 <div id="body" style="display: none;">
 <script>document.getElementById("body").style.display = '';</script>
