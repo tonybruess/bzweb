@@ -225,8 +225,8 @@
 			}
 			
 			$data = file_get_contents('include/mysql-example.php');
-			$data = str_replace("define('SQL_USER','mrapple');", "define('SQL_USER','$user');", $data);
-			$data = str_replace("define('SQL_PASS','');", "define('SQL_PASS','$password');", $data);
+			$data = str_replace("define('SQL_USER','mrapple');", "define('SQL_USER','$NewUser');", $data);
+			$data = str_replace("define('SQL_PASS','');", "define('SQL_PASS','$NewPassword');", $data);
 			$data = str_replace("define('SQL_DB','bzweb');", "define('SQL_DB','$db');", $data);
 			mkdir('banfiles/'.$name);
 			chmod('banfiles/'.$name, 0777);
