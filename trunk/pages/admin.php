@@ -236,6 +236,8 @@ if($_POST['role']){
 	mysql_query("UPDATE users SET `permissions`=".$_POST['role']." WHERE id=".$_POST['id']);
 }
 if($_POST['pstart']){
+	if(!is_numeric($_POST['pstart']) || !isset($_POST['pstart'])) $_POST['pstart'] = '0';
+	if(!is_numeric($_POST['pend']) || !isset($_POST['pend'])) $_POST['pend'] = '0';
 	mysql_query("UPDATE users SET `pstart`='".$_POST['pstart']."', `pend`='".$_POST['pend']."' WHERE id=".$_POST['id']."");
 	echo mysql_error();
 }

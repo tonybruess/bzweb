@@ -3,8 +3,8 @@
     BZWeb v1.0
     Copyright (c) 2010 Tony Bruess
 
-	BZWeb is an online based tool developed by mrapple which allows multiple users to manage bzfs instances.
-	For questions, join #bzextreme on irc.freenode.net and ask mrapple.
+BZWeb is an online based tool developed by mrapple which allows multiple users to manage bzfs instances.
+For questions, join #bzextreme on irc.freenode.net and ask mrapple.
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as
@@ -28,6 +28,22 @@
 function CleanFilePath($path)
 {
 	return preg_replace("/[^a-zA-Z0-9 -]/", "", $path);
+}
+
+function sanitize($str)
+{
+	if (function_exists( "mysql_real_escape_string" ))
+	{
+		// If PHP version > 4.3.0
+		$str = mysql_real_escape_string($str) ;
+	}
+	else
+	{
+		// If PHP version < 4.3.0
+ 		die("Upgrade PHP to atleast version 4.3.0");
+	}
+	
+	return $str;
 }
 
 ?>

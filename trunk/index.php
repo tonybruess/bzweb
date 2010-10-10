@@ -20,7 +20,15 @@
     License along with this program.  If not, see
     <http://www.gnu.org/licenses/>.
 */
+
 require('./include/security.php');
+
+/* We're just gonna sanitize everything. */
+
+foreach ($_POST as $key => $value) { 
+	$_POST[$key] = sanitize($value); 
+}
+
 include('./include/session.php');
 
 $name = $_SESSION['callsign'];

@@ -63,6 +63,7 @@ if($_POST['p'] < $port['pstart'] || $_POST['p'] > $port['pend']){
 //Execute sucesfull Edit SQL Here
 $flags = json_decode($_POST['Flags'], true);
 mysql_query("UPDATE servers SET
+`name`='".$_POST['name']."',
 `style`='".$_POST['style']."',
 `j`='".$_POST['j']."',
 `r`='".$_POST['r']."',
@@ -209,6 +210,11 @@ echo mysql_error();
 </form>
 <br>
 <form action="" method="post" id="theform">
+Name: <input type="text" name="name" value="<?php echo $zar['name']; ?>">
+<br>
+<center>
+<input value="           Save           " type="submit" >
+</center>
 <input type="hidden" name="save" value="1">
 <fieldset>
  <legend>Gameplay Settings</legend>
