@@ -23,22 +23,32 @@
 
 /* Thanks Constitution!! */
 
+// Turn on argv, argc
+ini_set('register_argc_argv', 1);
+echo init_get('register_argc_argv');
 chdir("../../");
 $name = $argv[3];
 
 // Connect to mysql
 require "config.php";
+
 mysql_connect(SQL_SERVER,SQL_USER,SQL_PASS) or die("Error: ".mysql_error()); // Connecting to the server
 mysql_select_db(SQL_DB) or die("Error: ".mysql_error()); // Connecting to the database
 
 $stdin=fopen('php://stdin','r');
 $stderr=fopen('php://stderr','r');
+
 set_time_limit(0);
+
 stream_set_timeout($stdin,0);
 stream_set_blocking($stdin,0);
 
 // we need to ping MySQL every 10 minutes to keep it alive
 $lastPing = time();
+
+// Use $argc and $argv from $_SERVER, thanks blast
+$argc = $_SERVER['argc'];
+$argv = $_SERVER['argv'];
 
 // make sure the server id is specified
 if($argc < 2 || ! is_numeric($argv[1]))

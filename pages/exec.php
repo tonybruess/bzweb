@@ -245,7 +245,7 @@ $conf .= "\n";
 $fh = fopen("servers/$serverid/conf.conf", 'w');
 fwrite($fh, $conf);
 fclose($fh);
-$cmd = "cd servers/".$serverid."; bzfs -conf conf.conf 2> error.txt | /usr/bin/php5-cgi ../../logpipe.php ".$serverid." ".$serverid." ".$e['owner']." 2>error_logpipe.txt >/dev/null&";
+$cmd = "cd servers/".$serverid."; bzfs -conf conf.conf 2> error.txt | /usr/bin/php5 ../../logpipe.php ".$serverid." ".$serverid." ".$e['owner']." 2>error_logpipe.txt >/dev/null&";
 shell_exec($cmd);
 sleep(2);
 $error = file_get_contents("servers/$e[0]/error.txt");
