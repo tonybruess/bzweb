@@ -23,9 +23,6 @@
 
 /* Thanks Constitution!! */
 
-// Turn on argv, argc
-ini_set('register_argc_argv', 1);
-echo init_get('register_argc_argv');
 chdir("../../");
 $name = $argv[3];
 
