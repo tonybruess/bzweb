@@ -63,7 +63,7 @@ Order by:<select name="order" onchange="this.form.submit();">
 				<br>
 				From: <input name="fmonth" type="text" style="width: 15px;" maxlength="2" value="<?php echo date("m"); ?>"> / <input name="fday" type="text" style="width: 15px;" maxlength="2" value="<?php echo date("d"); ?>"> / <input name="fyear" type="text" style="width: 30px;" maxlength="4" value="<?php echo date("Y"); ?>">
 				<br>
-				To: <input name="tmonth" type="text" style="width: 15px;" maxlength="2" value="<?php echo date("m"); ?>"> / <input name="tday" type="text" style="width: 15px;" maxlength="2" value="<?php echo date("d"); ?>"> / <input name="tyear" type="text" style="width: 30px;" maxlength="4" value="<?php echo date("Y"); ?>">
+				To: <input name="tmonth" type="text" style="width: 15px;" maxlength="2" value="<?php echo date("m"); ?>"> / <input name="tday" type="text" style="width: 15px;" maxlength="2" value="<?php echo date("d")+1; ?>"> / <input name="tyear" type="text" style="width: 30px;" maxlength="4" value="<?php echo date("Y"); ?>">
 				<br>
 <input type=submit value=Go>
 </form>
