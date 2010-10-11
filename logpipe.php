@@ -25,7 +25,12 @@
 
 chdir("../../");
 $name = $argv[3];
+
+// Connect to mysql
 require "config.php";
+mysql_connect(SQL_SERVER,SQL_USER,SQL_PASS) or die("Error: ".mysql_error()); // Connecting to the server
+mysql_select_db(SQL_DB) or die("Error: ".mysql_error()); // Connecting to the database
+
 $stdin=fopen('php://stdin','r');
 $stderr=fopen('php://stderr','r');
 set_time_limit(0);
@@ -35,7 +40,6 @@ stream_set_blocking($stdin,0);
 // we need to ping MySQL every 10 minutes to keep it alive
 $lastPing = time();
 
-	file_put_contents("logpipe.log", "something here");
 // make sure the server id is specified
 if($argc < 2 || ! is_numeric($argv[1]))
 	die("A server id must be specified.\n");
@@ -63,11 +67,7 @@ while(! feof($stdin)) {
 	$ts = mktime($entities[4],$entities[5],$entities[6],$entities[2],$entities[3],$entities[1]);
 
 	if(count($entities) > 1)
-		mysql_query("INSERT INTO ".$argv[1]."serverlogs SET ".
-				"server=".$argv[1].",".
-				"time=".$ts.",".
-				"type=\"".mysql_real_escape_string($entities[7])."\",".
-				"data=\"".mysql_real_escape_string($entities[9])."\"");
+		mysql_query("INSERT INTO ".$argv[1]."serverlogs SET "."server=".$argv[1].","."time=".$ts.","."type=\"".mysql_real_escape_string($entities[7])."\","."data=\"".mysql_real_escape_string($entities[9])."\"");
 	else if(preg_match("/\S/",$line) == 1)
 		// if we can't parse it and it's something other than whitespace, log it
 		fwrite($stderr,"Unable to parse server log entry: ".$line."\n");
