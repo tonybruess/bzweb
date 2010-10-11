@@ -63,7 +63,7 @@ Order by:<select name="order" onchange="this.form.submit();">
 				<br>
 				From: <input name="fmonth" type="text" style="width: 15px;" maxlength="2" value="<?php echo date("m"); ?>"> / <input name="fday" type="text" style="width: 15px;" maxlength="2" value="<?php echo date("d"); ?>"> / <input name="fyear" type="text" style="width: 30px;" maxlength="4" value="<?php echo date("Y"); ?>">
 				<br>
-				To: <input name="tmonth" type="text" style="width: 15px;" maxlength="2" value="<?php echo date("m"); ?>"> / <input name="tday" type="text" style="width: 15px;" maxlength="2" value="<?php echo date("d")+1; ?>"> / <input name="tyear" type="text" style="width: 30px;" maxlength="4" value="<?php echo date("Y"); ?>">
+				To: <input name="tmonth" type="text" style="width: 15px;" maxlength="2" value="<?php echo date("m"); ?>"> / <input name="tday" type="text" style="width: 15px;" maxlength="2" value="<?php echo date("d"); ?>"> / <input name="tyear" type="text" style="width: 30px;" maxlength="4" value="<?php echo date("Y"); ?>">
 				<br>
 <input type=submit value=Go>
 </form>
@@ -86,7 +86,7 @@ Order by:<select name="order" onchange="this.form.submit();">
 				if(!$_GET['fday']) $_GET['fday'] = date("d");
 				if(!$_GET['tyear']) $_GET['tyear'] = date("Y");
 				if(!$_GET['tmonth']) $_GET['tmonth'] = date("m");
-				if(!$_GET['tday']) $_GET['tday'] = date("d")+1;
+				if(!$_GET['tday']) $_GET['tday'] = date("d");
 				?>
 				</select>
 				<br>
@@ -139,7 +139,8 @@ Order by:<select name="order" onchange="this.form.submit();">
 	</tr>
 <?php
 $from = strtotime($_GET['fyear'].'-'.$_GET['fmonth'].'-'.$_GET['fday']);
-$to = strtotime($_GET['tyear'].'-'.$_GET['tmonth'].'-'.$_GET['tday']);
+// Were adding 86400 seconds to the to date because its going from the start of the day to the end of the day
+$to = strtotime($_GET['tyear'].'-'.$_GET['tmonth'].'-'.$_GET['tday']) + 86400;
 $check = mysql_fetch_array(mysql_query("SELECT owner FROM servers WHERE id='$id_clean'"));
 if($name !== $check[0]&&$_SESSION['perm'][17]!=='1'){
 	die();
