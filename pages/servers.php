@@ -207,7 +207,7 @@ while ($s_row = mysql_fetch_array($server)) {
   <td><center>--</center></td>
   <td>';
 if($_SESSION['perm'][17]=='1'||$name == $g_row[2]){
-	echo'<center><a href="?p=logs&server='.$s_row[0].'">Logs</a></center>';
+	echo'<center><a href="?p=logs&server='.$s_row[0].'&admin=1&slash=1&filtered=1&chat=1&join=1&report=1&status=1&player=1">Logs</a></center>';
 } else {
 	echo '<center>--</center>';
 }

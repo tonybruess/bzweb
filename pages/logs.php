@@ -80,6 +80,13 @@ Order by:<select name="order" onchange="this.form.submit();">
 				<option value="<?php echo $qr[0]?>"<?php if($qr[0]==$id_clean) echo ' selected';?>><?php echo $qr[2]?></option>
 				<?php
 				}
+				print_r($_GET);
+				if(!$_GET['fyear']) $_GET['fyear'] = date("Y");
+				if(!$_GET['fmonth']) $_GET['fmonth'] = date("m");
+				if(!$_GET['fday']) $_GET['fday'] = date("d");
+				if(!$_GET['tyear']) $_GET['tyear'] = date("Y");
+				if(!$_GET['tmonth']) $_GET['tmonth'] = date("m");
+				if(!$_GET['tday']) $_GET['tday'] = date("d")+1;
 				?>
 				</select>
 				<br>
