@@ -25,7 +25,7 @@
 
 chdir("../../");
 $name = $argv[3];
-require "include/mysql.php";
+require "config.php";
 $stdin=fopen('php://stdin','r');
 $stderr=fopen('php://stderr','r');
 set_time_limit(0);
