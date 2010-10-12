@@ -24,8 +24,7 @@
 		</div>
 	
 		<div id="PageBottom">
-			<div id="Copyright"><span><?php if(!$_SESSION['callsign'])$name="Guest";
-		echo 'Logged in as '.$name.' from '.$_SERVER['REMOTE_ADDR']?> &copy; 2010 BZExtreme.com</span></div>
+			<div id="Copyright"><span><?php echo ($_SESSION['callsign'] ? 'Logged in as ' . $_SESSION['callsign'] . ' from ' . $_SERVER['REMOTE_ADDR'] : 'Not logged in') ?> - &copy; 2010 BZExtreme.com</span></div>
 		</div>
 
 	</div>
