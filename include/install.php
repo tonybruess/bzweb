@@ -191,7 +191,8 @@
 				'Settings' => 'CREATE TABLE settings (`site` TEXT,`email` TEXT,`bzfs` TEXT,`domain1` TEXT,`domain2` TEXT,`domain3` TEXT, `domain4` TEXT, `global` int,`local` int, `confmaster` TEXT, `groupmaster` TEXT, `plugins` TEXT)',
 				'Users' => 'CREATE TABLE users (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,`name` TEXT,`bzid` INT, `permissions` INT,`pstart` INT,`pend` INT,`last login` INT)',
 				'Roles' => 'create table roles (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,`name` TEXT,`permissions` VARCHAR(100))',
-				'Bans' => 'create table bans (`id` INT,`server` INT,`banner` TEXT,`ip` VARCHAR(100),`length` VARCHAR(100),`reason` TEXT,`time` INT)'
+				'Bans' => 'create table bans (`id` INT,`server` INT,`banner` TEXT,`ip` VARCHAR(100),`length` VARCHAR(100),`reason` TEXT,`time` INT)',
+				'Plugins' => 'CREATE TABLE plugins (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` TEXT, `location` TEXT, `arguments` TEXT, `enabled` BOOL DEFAULT TRUE)'
 			);
 			
 			foreach($CreateTableSQL as $name=>$sql)
