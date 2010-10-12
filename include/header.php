@@ -20,7 +20,6 @@
     License along with this program.  If not, see
     <http://www.gnu.org/licenses/>.
 */
-include("include/mysql.php");
 	if($_POST['updatesettings']){
 		$site = $_POST['site'];
 		$email = $_POST['email'];
