@@ -20,6 +20,7 @@
 	License along with this program.  If not, see
 	<http://www.gnu.org/licenses/>.
 */
+
 mysql_connect(SQL_SERVER,SQL_USER,SQL_PASS) or die("Error: ".mysql_error());
 mysql_select_db(SQL_DB) or die("Error: ".mysql_error());
 
