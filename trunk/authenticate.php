@@ -23,7 +23,8 @@
 session_start(); 
 header("Cache-control: private");
 
-include("include/mysql.php");
+require('./config.php');
+require('./include/mysql.php');
 
 if(!$_GET['token'] || !$_GET['username']){
 	die("Incorrect information submitted.");

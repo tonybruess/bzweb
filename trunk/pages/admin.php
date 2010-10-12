@@ -312,8 +312,7 @@ while($role = mysql_fetch_array($q2)){
 if($_POST['updatemaster']){
 	$group = $_POST['group'];
 	$conf = $_POST['conf'];
-	$plugins = $_POST['plugins'];
-	$q = "UPDATE settings SET `groupmaster` = '$group', `confmaster` = '$conf', `plugins` = '$plugins'";
+	$q = "UPDATE settings SET `groupmaster` = '$group', `confmaster` = '$conf'";
 	mysql_query($q);
 	echo "Updated";
 }
@@ -325,12 +324,66 @@ $data = mysql_fetch_array(mysql_query("SELECT confmaster,groupmaster,plugins FRO
 <p>Enter a group file that will be included in ALL servers that are started</p>
 <textarea name="group" cols=50 rows=10><?php echo $data['groupmaster'];?></textarea>
 <br>
-<p>Enter a list of plugins all users are allowed to load. List the plugin name then on the next line the plugin location</p>
-<textarea name="plugins" cols=50 rows=10><?php echo $data['plugins'];?></textarea>
-<br>
 <input type="hidden" name="updatemaster" value="1">
 <input type="submit" value="Save">
 </form><?php
+}
+?>
+</fieldset>
+<br>
+<fieldset>
+<legend><a href="?p=admin&op=plugins">Plugins</a></legend>
+<?php
+if($_GET['op']=='plugins')
+{
+	if($_POST['new'])
+	{
+		if(mysql_query("INSERT INTO plugins SET `name`='".$_POST['name']."', `location`='".$_POST['location']."', `enabled`='1'"))
+			echo "Plugin added successfully";
+	}
+	if($_POST['delete'])
+	{
+		if(mysql_query("DELETE FROM plugins WHERE `id`='".$_POST['id']."'"))
+			echo "Plugin deleted successfully";
+	}
+	if($_POST['update'])
+	{
+		if($_POST['enabled']) $enabled = true;
+		if(mysql_query("UPDATE plugins SET `name`='".$_POST['name']."', `location`='".$_POST['location']."', `enabled`='$enabled' WHERE `id`='".$_POST['id']."'"))
+			echo "Plugin updated successfully";
+			echo mysql_error();
+	}
+	
+	$plugins = mysql_query("SELECT * FROM plugins");
+?>
+<table>
+<tr>
+<th>Name</th>
+<th>Location</th>
+<th>Enabled</th>
+<th>Save</th>
+<th>Delete</th>
+</tr>
+<?php
+while($plugin = mysql_fetch_assoc($plugins))
+{
+?>
+<tr><form method="post"><td><input type="text" name="name" value="<?php echo $plugin['name']; ?>"></td><td><input type="text" name="location" value="<?php echo $plugin['location']; ?>"></td><td><input type="checkbox" name="enabled"<?php if($plugin['enabled']) echo ' checked'; ?>></td><td><input type="hidden" name="id" value="<?php echo $plugin['id']; ?>"><input type="submit" name="update" value="Save"></form></td><td><form method="post"><input type="hidden" name="id" value="<?php echo $plugin['id'] ?>"><input type="submit" name="delete" value="Delete"></form></td></tr>
+<?php
+}
+?>
+</table>
+<br>
+<b>Add a new plugin:</b>
+<br>
+<form method="post">
+Name: <input type="text" name="name">
+<br>
+Location: <input type="text" name="location">
+<br>
+<input type="submit" name="new" value="Add">
+</form>
+<?php
 }
 ?>
 </fieldset>
