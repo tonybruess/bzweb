@@ -1,3 +1,4 @@
+<?php
 function validate_token($token, $username, $groups = array(), $checkIP = true)
 {
   if (isset($token, $username) && strlen($token) > 0 && strlen($username) > 0)
@@ -57,4 +58,4 @@ function validate_token($token, $username, $groups = array(), $checkIP = true)
     }
   } 
 } 
-
+?>
