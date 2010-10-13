@@ -21,9 +21,10 @@
 	<http://www.gnu.org/licenses/>.
 */
 
+session_start();
+
 require('./config.php');
 require('./include/mysql.php');
-require('./include/session.php');
 require('./include/checktoken.php');
 
 if(!$_GET['token'] || !$_GET['username']){
@@ -31,7 +32,7 @@ if(!$_GET['token'] || !$_GET['username']){
 }
 else
 {	
-	$result = validate_token($_GET['token'], $_GET['username']);
+	$result = validate_token($_GET['token'], $_GET['username'], $null, false);
 	$users = mysql_query("SELECT * FROM users WHERE `name`='".$result['username']."'");
 	$userar = mysql_fetch_array($users);
 	
