@@ -68,6 +68,6 @@ else
 	{
 		require_once("./pages/index.php");
 	}
-	require_once("./include/footer.php");
 }
+require_once("./include/footer.php");
 ?>
