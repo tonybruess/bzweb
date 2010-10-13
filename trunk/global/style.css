@@ -54,6 +54,7 @@ a:focus
 {
 	display:inline-block;
 	margin-top:10px;
+	float: left;
 }
 
 #Logo h1
