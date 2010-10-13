@@ -60,7 +60,7 @@ if(!isset($_SESSION['callsign']) && $_GET['p'] != 'error')
 }
 else
 {	
-	if(ile_exists("./pages/$page.php"))
+	if(file_exists("./pages/$page.php"))
 	{
 		require_once("./pages/$page.php");
 	}
