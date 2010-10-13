@@ -206,7 +206,7 @@
 			
 			$DefaultSQL = array(
 				'settings' => "INSERT INTO settings (`site`, `email`) VALUES ('$company', '$email')",
-				'roles' => "INSERT INTO roles (`name`, `permissions`) VALUES ('Admin', '91111111111111111111111111111111')",
+				'roles' => "INSERT INTO roles (`name`, `permissions`) VALUES ('Admin', '9111111111111111111111111111111111')",
 				'users' => "INSERT INTO users (`name`,`permissions`) VALUES ('$callsign','1')"
 			);
 			
@@ -228,7 +228,8 @@
 			$data = str_replace("define('SQL_DB','bzweb');", "define('SQL_DB','$db');", $data);
 			mkdir('banfiles/'.$name);
 			chmod('banfiles/'.$name, 0777);
-			if(file_put_contents('config.php', $data))
+			$config = fopen('./config.php', 'w');
+			if(fwrite($config, $data))
 			{
 				echo 'MySQL file created... <br>';
 			}
@@ -238,6 +239,7 @@
 				echo 'Paste the following into config.php: <br>';
 				echo "<textarea cols=\"60\" rows=\"10\">$data</textarea> <br>";
 			}
+			fclose($config);
 		?>
 		
 		<p>You have sucesfully setup BZWeb on your server!</p>
