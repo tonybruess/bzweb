@@ -21,6 +21,14 @@
 	<http://www.gnu.org/licenses/>.
 */
 
+if(!file_exists('./config.php'))
+{
+	require_once('./include/session.php');
+	require_once('./include/install.php');
+	require_once('./include/footer.php');
+	die();
+}
+
 require('./config.php');
 require('./include/session.php');
 require('./include/mysql.php');
@@ -36,13 +44,6 @@ $page = CleanFilePath($_GET['p']);
 
 if(!$page)
 	$page = 'index';
-
-if(!file_exists('./config.php'))
-{
-	require_once('./include/install.php');
-	require_once('./include/footer.php');
-	die();
-}
 
 if(file_exists('./include/update.php'))
 {
