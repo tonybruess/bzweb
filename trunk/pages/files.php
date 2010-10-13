@@ -37,31 +37,29 @@ if($op=='create'){
  if ( $_POST['type'] == "groupdb") {
   	$nameclean = sanitize($_POST['name']);
   	$contentsclean = sanitize($_POST['contents']);
-  	if(mysql_query("INSERT INTO files (`name`,`owner`,`type`,`contents`) VALUES ('$nameclean','$owner','groupdb','$contentsclean')")){
+  	if(mysql_query("INSERT INTO files (`name`,`owner`,`type`,`contents`) VALUES ('$nameclean','$owner','groupdb','$contentsclean')"))
   		echo "Created successfully";
-  	} else {
+  	else
   		echo "Failed";
-  	}
   } elseif ( $_POST['type'] == "helpf") {
   	$nameclean = sanitize($_POST['name']);
   	$contentsclean = sanitize($_POST['contents']);
-  	if(mysql_query("INSERT INTO files (`name`,`owner`,`type`,`contents`) VALUES ('$nameclean','$owner','helpf','$contentsclean')")){
+  	if(mysql_query("INSERT INTO files (`name`,`owner`,`type`,`contents`) VALUES ('$nameclean','$owner','helpf','$contentsclean')"))
   		echo "Created successfully";
-  	} else {
+  	else
   		echo "Failed";
-  	} 
   }elseif ( $_POST['type'] == "bandb") {
+  	mkdir("banfiles/$owner/",0777);
   	$nameclean = sanitize($_POST['name']);
   	$contentsclean = sanitize($_POST['contents']);
 	$file = "banfiles/$owner/$nameclean";
   	$fh = fopen($file, 'w');
   	fwrite($fh,"");
 	fclose($fh);
-  	if(file_exists("banfiles/$owner/".$e['nameclean'])){
+  	if(file_exists("banfiles/$owner/".$e['nameclean']))
   		echo "Created successfully";
-  	} else {
+  	else
   		echo "Failed";
-  	}
 }
 ?>
 <form id="form" action="?p=files&op=create" method="POST">
@@ -169,16 +167,34 @@ if($op=='edit'){
 		if(!$_SESSION['perm'][27]){
 			echo "You do not have permission to delete files";
 		} else {
-			$id = $_GET['id'];
-			$confirm = mysql_fetch_array(mysql_query("SELECT * FROM files WHERE id='$id' AND owner='$name'"));
-			if($confirm || $_SESSION['perm']['13']){
-				if(mysql_query("DELETE FROM files WHERE id='$id'")){
-					echo "Deleted!";
-				} else {
-					echo "Failed to delete";
+			if(!is_numeric($_GET['id']))
+			{
+				$banfile = $_GET['id'];
+				$owner = explode('/',$banfile);
+				$owner = $owner[1];
+				if($owner == $name || $_SESSION['perm']['13'])
+				{
+					if(unlink($banfile))
+						echo 'Deleted!';
+					else
+						echo 'Failed to delete';
 				}
-			} else {
-				echo "Not your file!";
+			}
+			else
+			{
+				$id = $_GET['id'];
+				$confirm = mysql_fetch_array(mysql_query("SELECT * FROM files WHERE id='$id' AND owner='$name'"));
+				if($confirm || $_SESSION['perm']['13'])
+				{
+					if(mysql_query("DELETE FROM files WHERE id='$id'"))
+						echo 'Deleted!';
+					else
+						echo 'Failed to delete';
+				}
+				else
+				{
+					echo 'Not your file!';
+				}
 			}
 		}
 	}
@@ -260,13 +276,12 @@ while($hr = mysql_fetch_array($h)){
 		<td width="50px">Delete</td>
 	</tr>
 <?php
-$b = mysql_query("SELECT * FROM files WHERE owner='$name' AND `type`='bandb'");
-while($br = mysql_fetch_array($b)){
-	echo '<tr bgcolor="#DDDDDD"><td>';
-	echo $br['name'];
-	echo '</td><td><a href="?p=edit&mode=file&file='.$br['id'].'">Edit</a></td><td><a href="?p=files&op=edit&mode=del&id='.$br['id'].'">Delete</a></td></tr>';
-}
-$name = $_SESSION['name'];
+	foreach (glob("banfiles/$name/*") as $filename) {
+		$lengthOfBanfile = strlen("banfiles/$name/");
+		$filereal = substr($filename,$lengthOfBanfile);
+		echo '<tr bgcolor="#DDDDDD"><td>'.$filereal.'</td><td><a href="'.$filename.'">View</a></td><td><a href="?p=files&op=edit&mode=del&id='.$filename.'">Delete</a></td></tr>';
+	}
+$name = $_SESSION['callsign'];
 ?>
 </table></fieldset>
 <?php

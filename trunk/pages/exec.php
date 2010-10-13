@@ -116,6 +116,7 @@ if(!$pidd){
 } else {
 	mysql_query("UPDATE servers SET `status`=0 WHERE id='$serverclean'");
 	echo "Server is not already running...<br>";
+	mkdir("servers/$serverclean/",0777);
 }
 
 //Parse config
@@ -185,7 +186,7 @@ if($e['blue flag'] != "0" ) $conf .= " +f B*{".$e['blue flag']."}";
 if($e['purple flag'] != "0" ) $conf .= " +f P*{".$e['purple flag']."}";
 
 if($e['ban'] == "None" || !$e['ban']){
-	echo "Not saving bans to a banfile...";
+	echo "Not saving bans to a banfile...<br>";
 } else {
 	$conf .=" -banfile \"../../banfiles/".$e['owner']."/".$e['ban']."\"";
 }
@@ -210,13 +211,13 @@ if($e['disablebots']=='1') $conf .= ' -disableBots';
 $srvex = explode("\n",$e['servermsg']);
 if($e['servermsg']){
 	foreach ($srvex as $srv){
-	$conf .= " -srvmsg \"$srv\"";
+	$conf .= ' -srvmsg "'.trim($srv).'"';
 }
 }
 if($e['admsg']){
 $adex = explode("\n",$e['admsg']);
 foreach ($adex as $ad){
-	$conf .= " -admsg \"$ad\"";
+	$conf .= ' -admsg "'.trim($ad).'"';
 }
 }
 $masterdata = mysql_fetch_array(mysql_query("SELECT groupmaster,confmaster FROM settings"));
@@ -250,7 +251,7 @@ shell_exec($cmd);
 sleep(2);
 $error = file_get_contents("servers/$e[0]/error.txt");
 	if($error){
-		$error = preg_replace("/\n/","<br>",$error);
+		$error = nl2br($error);
 		echo "---------<br>";
 		echo $error;
 		echo "---------<br>";
