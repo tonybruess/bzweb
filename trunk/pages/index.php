@@ -21,8 +21,8 @@
     <http://www.gnu.org/licenses/>.
 */
 ?>
-<h3>Dashboard</h3>
-<p>Use the dashboard to see what other users are doing. Most recent activity is below</p>
+<div id="info"><h3>Dashboard</h3>
+Use the dashboard to see what's going on. Most recent activity is displayed below</div>
 			<h3>Current Up Server(s)</h3>
 <?php
 				if($_SESSION['perm'][18]){

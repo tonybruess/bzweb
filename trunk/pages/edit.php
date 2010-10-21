@@ -23,118 +23,41 @@
 ?>
 <h3>Edit</h3>
 <?php
-if($_GET['mode']=='conf'){
-//Check for correc paramaters
-if (!$_GET['server'] || !$_GET['group']){
-	echo "Error encountered, contact support";
-} else {
-	$server_clean = sanitize($_GET['server']);
-	$group_clean = sanitize($_GET['group']);
-	$groupData = mysql_query("SELECT * FROM groups WHERE `id`='$group_clean'");
-	$serverData = mysql_query("SELECT * FROM servers WHERE `master`='$group_clean' AND `id`='$server_clean'");
-	$groupData = mysql_fetch_array($groupData);
-	$serverData = mysql_fetch_array($serverData);
-	if($name == $groupData['owner'] && $_SESSION['perm'][21] || $_SESSION['perm'][22]){
-		$overallowner = $groupData['owner'];		
-	if($_POST['save']){
-		$varscheck = Array($_POST['msv'],$_POST['rogue'],$_POST['red'],$_POST['green'],$_POST['blue'],$_POST['purple'],$_POST['observer'],$_POST['fa'],$_POST['fcl'],$_POST['frf'],$_POST['fg'],$_POST['fgm'],$_POST['fib'],$_POST['fl'],$_POST['fmg'],$_POST['fn'],$_POST['foo'],$_POST['fpz'],$_POST['fqt'],$_POST['fsb'],$_POST['fse'],$_POST['fsh'],$_POST['fsr'],$_POST['fst'],$_POST['fsw'],$_POST['ft'],$_POST['fth'],$_POST['fus'],$_POST['fv'],$_POST['fwg'],$_POST['worldsize'],$_POST['p'],$_POST['sa'],$_POST['st'],$_POST['sw']);
-		foreach ($varscheck as $element) {
-			if (!is_numeric($element) && $element) {
-				echo "Alphabetic characters detected";
-				include_once('./include/footer.php');
- 			  }
-		}
-	$port = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE name='$overallowner'"));
-	if($_POST['p'] < $port['pstart'] || $_POST['p'] > $port['pend'])
-		die("That is not your port.");
+if($_GET['mode']=='conf')
+{
+	if(!$_GET['server'] || !$_GET['group'])
+		echo "Error encountered, contact support";
+	else
+	{
+		$server_clean = $_GET['server'];
+		$group_clean = $_GET['group'];
+		$groupData = mysql_query("SELECT * FROM groups WHERE `id`='$group_clean'");
+		$serverData = mysql_query("SELECT * FROM servers WHERE `master`='$group_clean' AND `id`='$server_clean'");
+		$groupData = mysql_fetch_array($groupData);
+		$serverData = mysql_fetch_array($serverData);
+		if($name == $groupData['owner'] && $_SESSION['perm'][21] || $_SESSION['perm'][22])
+		{
+			$overallowner = $groupData['owner'];		
+			if($_POST['save'])
+			{
+				$varscheck = Array($_POST['msv'],$_POST['rogue'],$_POST['red'],$_POST['green'],$_POST['blue'],$_POST['purple'],$_POST['observer'],$_POST['fa'],$_POST['fcl'],$_POST['frf'],$_POST['fg'],$_POST['fgm'],$_POST['fib'],$_POST['fl'],$_POST['fmg'],$_POST['fn'],$_POST['foo'],$_POST['fpz'],$_POST['fqt'],$_POST['fsb'],$_POST['fse'],$_POST['fsh'],$_POST['fsr'],$_POST['fst'],$_POST['fsw'],$_POST['ft'],$_POST['fth'],$_POST['fus'],$_POST['fv'],$_POST['fwg'],$_POST['worldsize'],$_POST['p'],$_POST['sa'],$_POST['st'],$_POST['sw']);
+				foreach ($varscheck as $element)
+				{
+					if (!is_numeric($element) && $element)
+					{
+						echo "Alphabetic characters detected";
+						include_once('./include/footer.php');
+	 				}
+				}
+				$port = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE name='$overallowner'"));
+				if($_POST['p'] < $port['pstart'] || $_POST['p'] > $port['pend'])
+					die("That is not your port.");
 
-$flags = json_decode(stripslashes($_POST['Flags']), true);
-mysql_query("UPDATE servers SET
-`name`='".$_POST['name']."',
-`style`='".$_POST['style']."',
-`j`='".$_POST['j']."',
-`r`='".$_POST['r']."',
-`ms`='".$_POST['ms']."',
-`noradar`='".$_POST['noradar']."',
-`autoteam`='".$_POST['autoteam']."',
-`mp`='".$_POST['mp']."',
-`rogue`='".$_POST['rogue']."',
-`red`='".$_POST['red']."',
-`green`='".$_POST['green']."',
-`blue`='".$_POST['blue']."',
-`purple`='".$_POST['purple']."',
-`observer`='".$_POST['observer']."',
-`user`='".$_POST['user']."',
-`group`='".$_POST['group']."',
-`ban`='".$_POST['ban']."',
-`report`='".$_POST['report']."',
-`nomasterban`='".$_POST['nomasterban']."',
-`agility`='".$flags['Agility']."',
-`burrow`='".$flags['Burrow']."',
-`cloaking`='".$flags['Cloaking']."',
-`genocide`='".$flags['Genocide']."',
-`guided missile`='".$flags['Guided Missile']."',
-`high speed`='".$flags['High Speed']."',
-`identify`='".$flags['Identify']."',
-`invisible bullet`='".$flags['Invisible Bullet']."',
-`jumping`='".$flags['Jumping']."',
-`laser`='".$flags['Laser']."',
-`machine gun`='".$flags['Machine Gun']."',
-`masquerade`='".$flags['Masquerade']."',
-`narrow`='".$flags['Narrow']."',
-`oscillation overthruster`='".$flags['Oscillation Overthruster']."',
-`phantom zone`='".$flags['Phantom Zone']."',
-`quick turn`='".$flags['Quick Turn']."',
-`rapid fire`='".$flags['Rapid Fire']."',
-`ricochet`='".$flags['Ricochet']."',
-`seer`='".$flags['Seer']."',
-`shield`='".$flags['Shield']."',
-`shock wave`='".$flags['Shock Wave']."',
-`stealth`='".$flags['Stealth']."',
-`steam roller`='".$flags['Steam Roller']."',
-`super bullet`='".$flags['Super Bullet']."',
-`thief`='".$flags['Thief']."',
-`tiny`='".$flags['Tiny']."',
-`useless`='".$flags['Useless']."',
-`wings`='".$flags['Wings']."',
-`blindness`='".$flags['Blindness']."',
-`bouncy`='".$flags['Bouncy']."',
-`colorblindness`='".$flags['Colorblindness']."',
-`forward only`='".$flags['Forward Only']."',
-`jamming`='".$flags['Jamming']."',
-`left turn only`='".$flags['Left Turn Only']."',
-`momentum`='".$flags['Momentum']."',
-`no jumping`='".$flags['No Jumping']."',
-`obesity`='".$flags['Obesity']."',
-`reverse controls`='".$flags['Reverse Controls']."',
-`reverse only`='".$flags['Reverse Only']."',
-`right turn only`='".$flags['Right Turn Only']."',
-`trigger happy`='".$flags['Trigger Happy']."',
-`wide angle`='".$flags['Wide Angle']."',
-`red flag`='".$flags['Red Flag']."',
-`green flag`='".$flags['Green Flag']."',
-`blue flag`='".$flags['Blue Flag']."',
-`purple flag`='".$flags['Purple Flag']."',
-`fb`='".$_POST['fb']."',
-`sb`='".$_POST['sb']."',
-`sa`='".$_POST['sa']."',
-`st`='".$_POST['st']."',
-`sw`='".$_POST['sw']."',
-`worldfile`='".$_POST['worldfile']."',
-`b`='".$_POST['b']."',
-`h`='".$_POST['h']."',
-`worldsize`='".$_POST['worldsize']."',
-`public`='".$_POST['public']."',
-`p`='".$_POST['p']."',
-`domain`='".$_POST['domain']."',
-`disablebots`='".$_POST['disablebots']."',
-`servermsg`='".$_POST['servermsg']."',
-`admsg`='".$_POST['admsg']."',
-`custom`='".$_POST['custom']."',
-`disablemaster`='".$_POST['disablemaster']."' WHERE `id`='$server_clean'");
+				$flags = json_decode(stripslashes($_POST['Flags']), true);
+				mysql_query("UPDATE servers SET `name`='".$_POST['name']."',`style`='".$_POST['style']."',`j`='".$_POST['j']."',`r`='".$_POST['r']."',`ms`='".$_POST['ms']."',`noradar`='".$_POST['noradar']."',`autoteam`='".$_POST['autoteam']."',`mp`='".$_POST['mp']."',`rogue`='".$_POST['rogue']."',`red`='".$_POST['red']."',`green`='".$_POST['green']."',`blue`='".$_POST['blue']."',`purple`='".$_POST['purple']."',`observer`='".$_POST['observer']."',`user`='".$_POST['user']."',`group`='".$_POST['group']."',`ban`='".$_POST['ban']."',`report`='".$_POST['report']."',`nomasterban`='".$_POST['nomasterban']."',`agility`='".$flags['Agility']."',`burrow`='".$flags['Burrow']."',`cloaking`='".$flags['Cloaking']."',`genocide`='".$flags['Genocide']."',`guided missile`='".$flags['Guided Missile']."',`high speed`='".$flags['High Speed']."',`identify`='".$flags['Identify']."',`invisible bullet`='".$flags['Invisible Bullet']."',`jumping`='".$flags['Jumping']."',`laser`='".$flags['Laser']."',`machine gun`='".$flags['Machine Gun']."',`masquerade`='".$flags['Masquerade']."',`narrow`='".$flags['Narrow']."',`oscillation overthruster`='".$flags['Oscillation Overthruster']."',`phantom zone`='".$flags['Phantom Zone']."',`quick turn`='".$flags['Quick Turn']."',`rapid fire`='".$flags['Rapid Fire']."',`ricochet`='".$flags['Ricochet']."',`seer`='".$flags['Seer']."',`shield`='".$flags['Shield']."',`shock wave`='".$flags['Shock Wave']."',`stealth`='".$flags['Stealth']."',`steam roller`='".$flags['Steam Roller']."',`super bullet`='".$flags['Super Bullet']."',`thief`='".$flags['Thief']."',`tiny`='".$flags['Tiny']."',`useless`='".$flags['Useless']."',`wings`='".$flags['Wings']."',`blindness`='".$flags['Blindness']."',`bouncy`='".$flags['Bouncy']."',`colorblindness`='".$flags['Colorblindness']."',`forward only`='".$flags['Forward Only']."',`jamming`='".$flags['Jamming']."',`left turn only`='".$flags['Left Turn Only']."',`momentum`='".$flags['Momentum']."',`no jumping`='".$flags['No Jumping']."',`obesity`='".$flags['Obesity']."',`reverse controls`='".$flags['Reverse Controls']."',`reverse only`='".$flags['Reverse Only']."',`right turn only`='".$flags['Right Turn Only']."',`trigger happy`='".$flags['Trigger Happy']."',`wide angle`='".$flags['Wide Angle']."',`red flag`='".$flags['Red Flag']."',`green flag`='".$flags['Green Flag']."',`blue flag`='".$flags['Blue Flag']."',`purple flag`='".$flags['Purple Flag']."',`fb`='".$_POST['fb']."',`sb`='".$_POST['sb']."',`sa`='".$_POST['sa']."',`st`='".$_POST['st']."',`sw`='".$_POST['sw']."',`worldfile`='".$_POST['worldfile']."',`b`='".$_POST['b']."',`h`='".$_POST['h']."',`worldsize`='".$_POST['worldsize']."',`public`='".$_POST['public']."',`p`='".$_POST['p']."',`domain`='".$_POST['domain']."',`disablebots`='".$_POST['disablebots']."',`servermsg`='".$_POST['servermsg']."',`admsg`='".$_POST['admsg']."',`custom`='".$_POST['custom']."',`disablemaster`='".$_POST['disablemaster']."' WHERE `id`='$server_clean'");
 }
-	$serverData = mysql_query("SELECT * FROM servers WHERE `id`='$server_clean'");
-	$serverData = mysql_fetch_array($serverData);
+				$serverData = mysql_query("SELECT * FROM servers WHERE `id`='$server_clean'");
+				$serverData = mysql_fetch_array($serverData);
 ?>
 <script type="text/javascript">
   window.addEvent("domready", function()
@@ -353,32 +276,29 @@ Name: <input type="text" name="name" value="<?php echo $serverData['name']; ?>">
 </form>
 </div>
 <?php
-	} else {
-		echo "This isn't your conf";
+		}
+		else
+			echo 'This isn\'t your conf';
 	}
 }
-} else {
-//If not a conf edit, check for a file edit.
-if($_GET['mode']=='file')
+else
 {
-	//Edit file here
-	$idc = sanitize($_GET['file']);
-	if($_POST)
+	if($_GET['mode']=='file')
 	{
-		$q = mysql_query("SELECT * FROM files WHERE id='$idc'");
+		$id = $_GET['file'];
+		if($_POST)
+		{
+			$contents = $_POST['contents'];
+			$fileName = $_POST['name'];
+			if(mysql_query("UPDATE files SET `name`='$fileName', `contents`='$contents' WHERE id='$id'"))
+				echo 'Updated successfully!<br><br>';
+		}
+		$q = mysql_query("SELECT * FROM files WHERE id='$id'");
 		$qr = mysql_fetch_array($q);
-		if ($qr['type']!=='bandb') $cc = sanitize($_POST['contents']);
-		$nc = sanitize($_POST['name']);
-		if(mysql_query("UPDATE files SET `name`='$nc', `contents`='$cc' WHERE id='$idc'"))
-		echo "Updated successfully!<br><br>";
-		echo mysql_error();
-	}
-	$q = mysql_query("SELECT * FROM files WHERE id='$idc'");
-	$qr = mysql_fetch_array($q);
-	if($name == $qr['owner'] && $_SESSION['perm'][26] || $_SESSION['perm'][12])
-	{
+		if($name == $qr['owner'] && $_SESSION['perm'][26] || $_SESSION['perm'][12])
+		{
 		?>
-<form action="?p=edit&mode=file&file=<?php echo $idc ?>" method="POST">
+<form action="?p=edit&mode=file&file=<?php echo $id ?>" method="POST">
 Name: <input name="name" value="<?php echo $qr['name'] ?>" type="text">
 <br>
 Contents:
@@ -388,9 +308,9 @@ Contents:
 
 </form>
 <?php
-} else {
-	echo "This isnt your file";
-}
-}
+		}
+		else
+			echo 'This isn\'t your file';
+	}
 }
 ?>

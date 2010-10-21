@@ -131,7 +131,7 @@ if($_GET['mode']=='edit'){
 	if(!$_POST[33]) $_POST[33] = 0;
 	$perm = $_POST[0].$_POST[1].$_POST[2].$_POST[3].$_POST[4].$_POST[5].$_POST[6].$_POST[7].$_POST[8].$_POST[9].$_POST[10].$_POST[11].$_POST[12].$_POST[13].$_POST[14].$_POST[15].$_POST[16].$_POST[17].$_POST[18].$_POST['vs'].$_POST[19].$_POST[20].$_POST[21].$_POST[22].$_POST[23].$_POST[24].$_POST[25].$_POST[26].$_POST[27].$_POST[28].$_POST[29].$_POST[30].$_POST[31].$_POST[32].$_POST[33];
 		mysql_query("UPDATE roles SET permissions='$perm' WHERE id=".$_GET['role']."");
-		echo "Role updated sucesfully<br>";
+		echo '<div id="info">Role updated sucesfully<br></div>';
 	}
 $roles = mysql_fetch_array(mysql_query("SELECT * FROM roles WHERE id=".$_GET['role'].""));
 $perm = str_split($roles['permissions']);
@@ -239,17 +239,15 @@ if($_POST['pstart']){
 	if(!is_numeric($_POST['pstart']) || !isset($_POST['pstart'])) $_POST['pstart'] = '0';
 	if(!is_numeric($_POST['pend']) || !isset($_POST['pend'])) $_POST['pend'] = '0';
 	mysql_query("UPDATE users SET `pstart`='".$_POST['pstart']."', `pend`='".$_POST['pend']."' WHERE id=".$_POST['id']."");
-	echo mysql_error();
 }
 if($_POST['newuser']){
 	$userm = mysql_query("SELECT * FROM users WHERE name='".$_POST['newuser']."'");
 	$q = mysql_fetch_array($userm);
 	if($q[0]){
-		echo "User exists";
+		echo '<div id="info">User already exists</div>';
 	} else {
 	$ts = time();
 	mysql_query("INSERT INTO users (`name`,`permissions`,`last login`) VALUES ('".$_POST['newuser']."','".$_POST['role']."','$ts')");
-	echo mysql_error();
 	mkdir('banfiles/'.$_POST['newuser']);
 	chmod('banfiles/'.$_POST['newuser'], 0777);
 	}
@@ -314,7 +312,7 @@ if($_POST['updatemaster']){
 	$conf = $_POST['conf'];
 	$q = "UPDATE settings SET `groupmaster` = '$group', `confmaster` = '$conf'";
 	mysql_query($q);
-	echo "Updated";
+	echo '<div id="info">Updated</div>';
 }
 $data = mysql_fetch_array(mysql_query("SELECT confmaster,groupmaster,plugins FROM settings"));
 ?>
@@ -339,19 +337,18 @@ if($_GET['op']=='plugins')
 	if($_POST['new'])
 	{
 		if(mysql_query("INSERT INTO plugins SET `name`='".$_POST['name']."', `location`='".$_POST['location']."', `enabled`='1'"))
-			echo "Plugin added successfully";
+			echo '<div id="info">Plugin added successfully</div>';
 	}
 	if($_POST['delete'])
 	{
 		if(mysql_query("DELETE FROM plugins WHERE `id`='".$_POST['id']."'"))
-			echo "Plugin deleted successfully";
+			echo '<div id="info">Plugin deleted successfully</div>';
 	}
 	if($_POST['update'])
 	{
 		if($_POST['enabled']) $enabled = true;
 		if(mysql_query("UPDATE plugins SET `name`='".$_POST['name']."', `location`='".$_POST['location']."', `enabled`='$enabled' WHERE `id`='".$_POST['id']."'"))
-			echo "Plugin updated successfully";
-			echo mysql_error();
+			echo '<div id="info">Plugin updated successfully</div>';
 	}
 	
 	$plugins = mysql_query("SELECT * FROM plugins");

@@ -137,8 +137,7 @@ if ($_POST['deletegroup']){
 		echo "No Permission";
 }
 ?>
-<b>Click a folder to hide its contents or click a server to edit it</b>
-<br>
+<div id="info"><b>Click a folder to hide its contents or click a server to edit it</b><br></div>
 <table width="100%">
 <tr><th>Server</th><th>Port</th><th>Status</th><th>Owner</th><th>Logs</th><th>Reports</th><th>Delete</th></tr>
 <?php
@@ -235,5 +234,4 @@ while ($users = mysql_fetch_array($userq))
 <?php
 }
 ?>
-<br>
-<small>NOTE: Servers can be recovered, Groups can not.</small>
+<div id="info2"><small>NOTE: Servers can be recovered, Groups can not.</small></div>
