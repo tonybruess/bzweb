@@ -79,8 +79,8 @@ if($_GET['mode']=='start') echo 'Start'; if($_GET['mode']=='stop') echo 'Stop';?
 </form>
 <?php
 	$name = $_SESSION['callsign'];
-	$serverclean = sanitize($_GET['s']);
-	$groupclean = sanitize($_GET['g']);
+	$serverclean = $_GET['s'];
+	$groupclean = $_GET['g'];
 	$g = mysql_query("SELECT * FROM groups WHERE id='$groupclean'");
 	$e = mysql_query("SELECT * FROM servers WHERE id='$serverclean' AND master='$groupclean'");
 	$g = mysql_fetch_array($g);

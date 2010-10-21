@@ -34,10 +34,11 @@ require('./include/session.php');
 require('./include/mysql.php');
 require('./include/security.php');
 
-foreach ($_POST as $key => $value) { 
+foreach ($_POST as $key => $value)
 	$_POST[$key] = sanitize($value); 
-}
-
+foreach ($_GET as $key => $value)
+	$_GET[$key] = sanitize($value); 
+	
 $name = $_SESSION['callsign'];
 $authPage = urlencode('http://'.$_SERVER['SERVER_NAME'].dirname($_SERVER['SCRIPT_NAME']).'/authenticate.php?token=%TOKEN%&username=%USERNAME%');
 $page = CleanFilePath($_GET['p']);
