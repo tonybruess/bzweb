@@ -24,13 +24,13 @@ if($_POST)
 	}
 	else
 	{
-		echo "ERROR: Could not send feedback";
+		echo "ERROR: Could not send feedback. Please click <a href=\"?p=feedback\">here</a>.";
 	}
 }
 else
 {
 ?>
-<p>Please give feedback! Bugs, feature requests, or things that don't work are all welcome.</p>
+<div id="info"><p>Please give feedback! Bugs, feature requests, or things that don't work are all welcome.</p></div>
 <form method="post">
 Name: <?php echo $_SESSION['callsign']; ?>
 <br><br>

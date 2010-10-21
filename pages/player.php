@@ -102,7 +102,7 @@
 		}
 	}
 	if ($_GET['searchfor'] && !$_GET['query'])
-		$info = "<b>You need to enter a search string.</b>";
+		$info = '<div id="info"><b>You need to enter a search string.</b></div';
 ?>
 
 <form method="get" >
@@ -121,7 +121,7 @@
 
 <?php
 	if(isset($info)) 
-		echo $info;
+		echo '<div id="info">' . $info . '</div>';
 	if(isset($result) || $_GET) 
 		echo $result;
 	else
@@ -136,7 +136,7 @@
 		$result_array=array();
 		while($row = mysql_fetch_assoc($query_result))
 			array_push($result_array, array($row['name'], $row['ip'], $row['host'], $row['description'], $row['bzid'], $row['time'], ));
-		$result = '<table width="100%"><tr><th>Username</th><<th>Ip Address</th><<th>Host</th><th>BZID</th><th>Last Seen</th></tr>";			
+		$result = '<table width="100%"><tr><th>Username</th><th>Ip Address</th><<th>Host</th><th>BZID</th><th>Last Seen</th></tr>';			
 		$num_results=count($result_array);			
 		for ($row = 0; $row < $num_results; $row++)
 		{				
