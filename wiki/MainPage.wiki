@@ -19,7 +19,7 @@ For questions, join #bzextreme on irc.freenode.net and ask mrapple.
 
 ----
 ==Current Version==
-BZWeb is under ongoing development. Please checkout the SVN or visit bzextreme.com/bzweb.
+BZWeb is under ongoing development. Please checkout the SVN or visit http://bzweb.bzextreme.com/.
 ----
 ==How Can I Help?==
 If you wish to contribute to bzweb, mail tony AT bzextreme DOT com.
