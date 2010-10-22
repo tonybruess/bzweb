@@ -46,7 +46,7 @@ $sitedata = mysql_fetch_array(mysql_query("SELECT * FROM settings"));
 	<script type="text/javascript" src="global/servers.js"></script>
 	<script type="text/javascript" src="global/Mootools-Core.js"></script>
 	<script type="text/javascript" src="global/flags.js"></script>
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
 	  $(document).ready(function () {
 		var hide = setTimeout("$('#info').slideUp(1000);",4000);
@@ -57,11 +57,9 @@ $sitedata = mysql_fetch_array(mysql_query("SELECT * FROM settings"));
 </head>
 
 <body>
-
-<noscript><div id="Header"><div id="PageNavigation"><div id="Logo"><h1><?php echo $sitedata['site'] ?></h1><h2>BZFS Administration</h2></div></div></div><div id="Container"><div id="PageContent"><h3>No Javascript Support Detected</h3><p>This website requires JavaScript support. Please enable JavaScript and reload the page.</p></div><div id="PageBottom"><div id="Copyright"><span><?php echo ($_SESSION['callsign'] ? 'Logged in as ' . $_SESSION['callsign'] . ' from ' . $_SERVER['REMOTE_ADDR'] : 'Not logged in') ?> - &copy; 2010 BZExtreme.com</span></div></div></div></noscript>
-
+<noscript><p>This website requires JavaScript support. Please enable JavaScript and reload the page.</p></noscript>
 <div id="body" style="display: none;">
-<script>document.getElementById("body").style.display = '';</script>
+<script type="text/javascript">document.getElementById("body").style.display = '';</script>
 	<div id="Header">
 		<div id="PageNavigation">
 			<div id="Logo">
