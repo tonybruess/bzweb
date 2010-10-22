@@ -49,8 +49,8 @@ $sitedata = mysql_fetch_array(mysql_query("SELECT * FROM settings"));
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
 	  $(document).ready(function () {
-		var hide = setTimeout("$('#info').slideUp(1000);",3000);
-		var hide2 = setTimeout("$('#info2').slideUp(1000);",3000);
+		var hide = setTimeout("$('#info').slideUp(1000);",4000);
+		var hide2 = setTimeout("$('#info2').slideUp(1000);",4000);
 		});
 	</script>
 	<title>BZWeb</title>
