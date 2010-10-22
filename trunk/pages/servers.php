@@ -230,8 +230,7 @@ while ($users = mysql_fetch_array($userq))
  <input type="submit" value="Create it">
 <input type="hidden" name="creategroup" value="1" >
 </form>
-<br>
 <?php
 }
 ?>
-<div id="info2"><small>NOTE: Servers can be recovered, Groups can not.</small></div>
+<div id="info2"><br><small>NOTE: Servers can be recovered, Groups can not.</small></div>
