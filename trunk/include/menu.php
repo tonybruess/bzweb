@@ -32,7 +32,7 @@ if($_SESSION['callsign']){
  			<?php } if($_SESSION['perm'][29] || $_SESSION['perm'][15]){?><li><a href="index.php?p=player"<?php if($page=='player') echo ' class=active';?>>Player Info</a></li>
  			<?php } if($_SESSION['perm'][31] || $_SESSION['perm'][16]){?><li><a href="index.php?p=reports"<?php if($page=='reports') echo ' class=active';?>>Reports</a></li>
  			<?php } if($_SESSION['perm'][30] || $_SESSION['perm'][17]){?><li><a href="index.php?p=logs"<?php if($page=='logs') echo ' class=active';?>>Logs</a></li>
- 			<?php } ?><li><a href="index.php?p=feedback">Feedback</a>
+ 			<?php } ?><li><a href="index.php?p=feedback"<?php if($page=='feedback') echo ' class=active';?>>Feedback</a>
 			<li><a href="index.php?p=logout"<?php if($page=='logout') echo ' class=active';?>>Logout</a></li>
  		</ul>
 	<?php } else { ?>		

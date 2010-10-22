@@ -32,7 +32,7 @@
 		$local = $_POST['local'];
 		$q = "UPDATE settings SET `site`='$site', `email`='$email', `bzfs`='$bzfs', `domain1`='$domain1', `domain2`='$domain2', `domain3`='$domain3', `domain4`='$domain4', `global`='$global', `local`='$local'";
 		if(mysql_query($q))
-			$err = "Settings updated successfully";
+			$err = '<div id="info">Settings updated successfully</div>';
 	}
 $sitedata = mysql_fetch_array(mysql_query("SELECT * FROM settings"));
 ?>
@@ -46,6 +46,13 @@ $sitedata = mysql_fetch_array(mysql_query("SELECT * FROM settings"));
 	<script type="text/javascript" src="global/servers.js"></script>
 	<script type="text/javascript" src="global/Mootools-Core.js"></script>
 	<script type="text/javascript" src="global/flags.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript">
+	  $(document).ready(function () {
+		var hide = setTimeout("$('#info').slideUp(1000);",3000);
+		var hide2 = setTimeout("$('#info2').slideUp(1000);",3000);
+		});
+	</script>
 	<title>BZWeb</title>
 </head>
 
