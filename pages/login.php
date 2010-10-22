@@ -28,5 +28,5 @@
 		<p>Name: <input type="text" name="name"></p>
 		<p>Password: <input type="password" name="pass"></p>
 		<p><input type="submit" value="Login"></p>
-		<p><small>BZWeb and <?php echo $sitedata['site']; ?> do not store your personal information.</small></p>
+		<p id="info"><small>BZWeb and <?php echo $sitedata['site']; ?> do not store your personal information.</small></p>
 		</form>
