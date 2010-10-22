@@ -29,7 +29,7 @@ if($_SESSION['callsign']){
  			<li><a href="index.php?p=servers"<?php if($page=='servers') echo ' class=active';?>>Servers</a></li>
  			<li><a href="index.php?p=files"<?php if($page=='files') echo ' class=active';?>>Files</a></li>
  			<?php   if($_SESSION['perm'][28] || $_SESSION['perm'][14]){?><li><a href="index.php?p=bans"<?php if($page=='bans') echo ' class=active';?>>Bans</a></li>
- 			<?php } if($_SESSION['perm'][29] || $_SESSION['perm'][15]){?><li><a href="index.php?p=player"<?php if($page=='player') echo ' class=active';?>>Player Info</a></li>
+ 			<?php } if($_SESSION['perm'][29] || $_SESSION['perm'][15]){?><li><a href="index.php?p=player"<?php if($page=='player') echo ' class=active';?>>PlayerInfo</a></li>
  			<?php } if($_SESSION['perm'][31] || $_SESSION['perm'][16]){?><li><a href="index.php?p=reports"<?php if($page=='reports') echo ' class=active';?>>Reports</a></li>
  			<?php } if($_SESSION['perm'][30] || $_SESSION['perm'][17]){?><li><a href="index.php?p=logs"<?php if($page=='logs') echo ' class=active';?>>Logs</a></li>
  			<?php } ?><li><a href="index.php?p=feedback"<?php if($page=='feedback') echo ' class=active';?>>Feedback</a>
@@ -37,7 +37,7 @@ if($_SESSION['callsign']){
  		</ul>
 	<?php } else { ?>		
 			<ul>
-				<li><a href='http://my.bzflag.org/weblogin.php?url=<?php echo $authPage; ?>'>Login</a></li>
+				<li><a href='index.php'>Login</a></li>
 			</ul>
 	<?php } ?>
 	</div>
