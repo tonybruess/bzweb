@@ -40,7 +40,7 @@ foreach ($_GET as $key => $value)
 	$_GET[$key] = sanitize($value); 
 	
 $name = $_SESSION['callsign'];
-$authPage = urlencode('http://'.$_SERVER['SERVER_NAME'].dirname($_SERVER['SCRIPT_NAME']).'/authenticate.php?token=%TOKEN%&username=%USERNAME%');
+$authPage = 'http://my.bzflag.org/weblogin.php?url=' . urlencode('http://'.$_SERVER['SERVER_NAME'].dirname($_SERVER['SCRIPT_NAME']).'authenticate.php?token=%TOKEN%&username=%USERNAME%');
 $page = CleanFilePath($_GET['p']);
 
 if(!$page)
