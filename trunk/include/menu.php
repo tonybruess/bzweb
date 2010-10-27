@@ -37,7 +37,7 @@ if($_SESSION['callsign']){
  		</ul>
 	<?php } else { ?>		
 			<ul>
-				<li><a href='index.php'>Login</a></li>
+				<li><a href='<?php echo $authPage; ?>'>Login</a></li>
 			</ul>
 	<?php } ?>
 	</div>
