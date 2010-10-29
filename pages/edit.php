@@ -158,9 +158,8 @@ Name: <input type="text" name="name" value="<?php echo $serverData['name']; ?>">
 		<option>None</option>
 		<?php
 		foreach (glob("banfiles/$overallowner/*") as $filename) {
-			$lengthOfBanfile = strlen("banfiles/$overallowner/");
-			$filereal = substr($filename,$lengthOfBanfile);
-			echo '<option' . ($serverData['ban'] == $filereal ? ' selected' : '') . '>'.$filename.'</option>';
+			$filereal = substr($filename, strlen("banfiles/$overallowner/"));
+			echo '<option' . ($serverData['ban'] == $filereal ? ' selected' : '') . '>'.$filereal.'</option>';
 		}
 		?>
 	</select> Ban Database
