@@ -88,13 +88,13 @@ if ($_POST['creategroup'] && $_POST['newgroup'])
 	{
 		if(!$_POST['underuser'])
 		{
-			mysql_query("INSERT INTO groups (`name`, `owner`, `enabled`) VALUES ('$newgroup', '$name', 1)");
+			mysql_query("INSERT INTO groups (`name`, `owner`, `enabled`) VALUES ('$newgroup', '".$_SESSION['callsign']."', 1)");
 			echo "Group Created Successfully!";
 		}
 		if($_POST['underuser'] && $_SESSION['perm'][8])
 		{
 			$underuser = $_POST['underuser'];
-			mysql_query("INSERT INTO groups (`name`, `owner`, `status`, `enabled`) VALUES ('$newgroup', '$underuserc', 0, 1)");
+			mysql_query("INSERT INTO groups (`name`, `owner`, `status`, `enabled`) VALUES ('$newgroup', '$underuser', 0, 1)");
 			echo "Group Created Successfully for user ".$_POST['underuser']."!";
 		}
 		else
