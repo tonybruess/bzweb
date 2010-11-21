@@ -46,19 +46,6 @@ $sitedata = mysql_fetch_array(mysql_query("SELECT * FROM settings"));
 	<script type="text/javascript" src="global/servers.js"></script>
 	<script type="text/javascript" src="global/Mootools-Core.js"></script>
 	<script type="text/javascript" src="global/flags.js"></script>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script type="text/javascript">
-	  $(document).ready(function () {
-	  	$("li").slideUp(0);
-	  	$("#PageContent").slideUp(0);
-	  	$("#Logo").slideUp(0);
-	  	$("li").slideToggle(500);
-	  	$("#PageContent").slideDown(500);
-	  	$("#Logo").slideToggle(500);
-		var hide = setTimeout("$('#info').slideUp(1000);",4000);
-		var hide2 = setTimeout("$('#info2').slideUp(1000);",4000);
-		});
-	</script>
 	<title>BZWeb</title>
 </head>
 
