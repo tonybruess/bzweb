@@ -12,10 +12,10 @@ if($_POST)
 	$date = date("m-j-Y") . ' around ' . date("g:i A");
 	$headers = 'From: BZWeb Feedback <noreply@bzextreme.com>' . "\r\n";
 	
-	$name = $_SESSION['callsign'];
-	$email = $_POST['email'];
-	$why = $_POST['why'];
-	$message = $_POST['feedback'];
+	$name = stripslashes($_SESSION['callsign']);
+	$email = stripslashes($_POST['email']);
+	$why = stripslashes($_POST['why']);
+	$message = stripslashes($_POST['feedback']);
 	
 	$messagefinal = "Name: $name\n\nEmail: $email\n\nWhy: $why\n\nMessage: \n\n$message\n\n Sent on $date from IP $ip at $domain";
 	
