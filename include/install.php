@@ -101,7 +101,7 @@
 		</table>
 		<br>
 		<input name="Part2" type="hidden" value="2">
-		<input name="Part3" type="submit" value="	 Setup BZWEB	 ">
+		<input name="Part3" type="submit" value="   Setup BZWEB   ">
 		</form>
 		<?php
 		}
@@ -111,9 +111,9 @@
 			
 		<h3>Install BZWeb - Part 1</h3>
 		<p>A few things first...</p>
-		<p>Make sure you have <b>php5-cgi</b> installed</p>
+		<p>Make sure you can execute <b>php5</b> from the command line</p>
 		<p><b>PHP version 5</b> or later</p>
-		<p><b>MySQL Database Server</b> with an existing user and password</p>
+		<p><b>MySQL Database Server</b> to which you know the root password</p>
 		<p>The directory that which BZWeb is installed in is <b>chmoded 777</b></p>
 		<p>Once you have all that done, you may <b>continue!</b><p>
 		<form method="post">
