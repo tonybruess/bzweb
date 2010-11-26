@@ -21,6 +21,9 @@
 	<http://www.gnu.org/licenses/>.
 */
 
+if(phpversion() < 5)
+	die('Please upgrade PHP to atleast version 5');
+
 if(!file_exists('./config.php'))
 {
 	require_once('./include/session.php');
